@@ -129,9 +129,11 @@
 #define OQS_KEM_alg_titanium_cca_med_kem "Titanium-CCA-med"
 /** Algorithm identifier for Titanium supet CCA KEM */
 #define OQS_KEM_alg_titanium_cca_super_kem "Titanium-CCA-super"
+/** Algorithm identifier for ROUND5. */
+#define OQS_KEM_alg_ROUND5
 // EDIT-WHEN-ADDING-KEM
 /** Number of algorithm identifiers above. */
-#define OQS_KEM_algs_length 52
+#define OQS_KEM_algs_length 53
 
 /**
  * Returns identifiers for available key encapsulation mechanisms in liboqs.  Used with OQS_KEM_new.
@@ -304,6 +306,7 @@ OQS_API void OQS_KEM_free(OQS_KEM *kem);
 #include <oqs/kem_sike.h>
 #include <oqs/kem_threebears.h>
 #include <oqs/kem_titanium.h>
+#include <oqs/kem_round5.h>
 // EDIT-WHEN-ADDING-KEM
 
 #endif // __OQS_KEM_H
