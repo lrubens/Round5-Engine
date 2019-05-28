@@ -81,6 +81,7 @@ void certgen(){
     );
     fclose(f);
     fclose(f2);
+    X509_free(x509);BN_free(bne);EVP_PKEY_free(pkey);
 }
 
 int main(int argc, char **argv){

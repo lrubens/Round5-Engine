@@ -178,9 +178,14 @@ static int pki_gen_priv_encode(int nid, PKCS8_PRIV_KEY_INFO *p8, const EVP_PKEY 
 
     ret = 1;
     err:
+    _round5_keypair_free(kp);
     if (tmp_buf)
         OPENSSL_secure_free(tmp_buf);
+    free(nid_data->name);
+    free(nid_data);
+    nid_data = NULL;
     return ret;
+    
 }
 
 static int pki_curve25519_bits(const EVP_PKEY *pkey)
@@ -245,6 +250,7 @@ static int pki_gen_priv_decode(int nid, EVP_PKEY *pkey, RC_CONST PKCS8_PRIV_KEY_
 
     ASN1_OCTET_STRING_free(oct);
     oct = NULL;
+    free(p);
     p = NULL;
     plen = 0;
 
