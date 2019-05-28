@@ -5,10 +5,22 @@
 #include <openssl/crypto.h>
 #include <openssl/ec.h>
 #include <openssl/err.h>
-#include "ossl/suola_err.h"
 #include "ossl/ossl_compat.h"
-
+#define NID_ROUND5 0
 extern int round5_sk_to_pk(unsigned char *pk, const unsigned char *sk);
+
+struct round5_nid_data_st _round5_nid_data[] = {
+        {
+            SKLEN, PKLEN, round5_sk_to_pk, NID_undef
+        }
+};
+
+inline const struct round5_nid_data_st *round5_get_nid_data(int nid){
+    if (nid == NID_ROUND5) {
+        return &_round5_nid_data[0];
+    }
+    return NULL;
+}
 
 ROUND5_KEYPAIR *_round5_keypair_new(int nid, round5_keypair_flags_t flags){
     ROUND5_KEYPAIR *kpair = NULL;
@@ -23,6 +35,7 @@ ROUND5_KEYPAIR *_round5_keypair_new(int nid, round5_keypair_flags_t flags){
     if (flags & NO_PRIV_KEY == 0){
         kpair->has_private = 1;
     }
+    //free(nid_data);
     return kpair;
     err:
     if (kpair)
@@ -36,3 +49,4 @@ int _round5_keypair_free(ROUND5_KEYPAIR *keypair){
     OPENSSL_secure_free(keypair);
     return 1;
 }
+

@@ -50,11 +50,11 @@ endif
 # Dir/File Setup ###############################################################
 ################################################################################
 
-srcdir    = src
-builddir  = build
-objdir    = $(builddir)/.o
-depdir    = $(builddir)/.d
-docdir    = doc
+srcdir    = reference/src
+builddir  = reference/build
+objdir    = reference/$(builddir)/.o
+depdir    = reference/$(builddir)/.d
+docdir    = reference/doc
 
 # RNG depends on KAT-generation setting
 ifdef NIST_KAT_GENERATION
@@ -189,7 +189,7 @@ doc pdf latex: ;
 endif
 
 # Remove the generated documentation and build files
-clean: clean-build clean-doc
+clean: clean-build 
 
 # Remove only the generated build files
 clean-build:
@@ -204,8 +204,8 @@ clean-obj:
 	@rm -fr $(objdir)
 
 # Remove only the generated documentation
-clean-doc:
-	@rm -fr $(docdir)
+# clean-doc:
+	# @rm -fr $(docdir)
 
 # Above are all "phony" targets
 .PHONY: build all doc pdf latex clean clean-obj clean-dep clean-doc clean-all createAfixed
@@ -248,7 +248,9 @@ $(1): $$(patsubst $(builddir)/%,$(objdir)/$(2)/%.o,$(1)) $(filter-out $(objdir)/
 	$(CC) $(LDFLAGS) $$^ $(LOADLIBS) $(LDLIBS) -o $$@
 endef
 
-$(foreach exe,$(examples),$(eval $(call exe_template,$(exe),examples)))
+compile: $(CC) -fPIC $(LDFLAGS) -c round5_engine.c meths/*.c ossl/*.c $(LOADLIBS) $(LDLIBS)
+
+# $(foreach exe,$(examples),$(eval $(call exe_template,$(exe),examples)))
 
 
 # Fuzzers
@@ -277,3 +279,4 @@ $(depdir)/%.d: ;
 
 # Include dependency files
 include $(wildcard $(patsubst $(srcdir)/%,$(depdir)/%.d,$(basename $(srcs))))
+

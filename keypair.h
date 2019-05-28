@@ -7,15 +7,21 @@
 #include <openssl/obj_mac.h>
 #include <stdint.h>
 #include <stddef.h>
+#define CURVE25519_BITS 253
+#define CURVE25519_SECURITY_BITS 128
+#define PKLEN 1349
+#define SKLEN 1413
 
 typedef struct {
     union {
-        unsigned char *sk;
-        unsigned char *pk;
+        uint8_t sk[SKLEN];
+        uint8_t pk[PKLEN];
     } key;
     int nid;
     char has_private;
 } ROUND5_KEYPAIR;
+
+
 
 typedef enum {
     NO_FLAG=0,
@@ -37,3 +43,4 @@ const struct round5_nid_data_st *round5_get_nid_data(int nid);
 
 
 #endif //ROUND5_KEYPAIR_H
+

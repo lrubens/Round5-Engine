@@ -1,1 +1,1 @@
-../reference/Makefile
+super: ../reference/Makefile

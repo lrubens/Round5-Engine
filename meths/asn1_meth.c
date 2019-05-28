@@ -87,7 +87,7 @@ static int pki_gen_ctrl(int nid, EVP_PKEY *pkey, int op, long arg1, void *arg2)
 {
     ROUND5_KEYPAIR *kp = NULL;
     const unsigned char *p = NULL;
-    const struct round_nid_data_st *nid_data = round5_get_nid_data(nid);
+    const struct round5_nid_data_st *nid_data = round5_get_nid_data(nid);
     int pklen = 0;
 
     switch (op) {
@@ -95,7 +95,6 @@ static int pki_gen_ctrl(int nid, EVP_PKEY *pkey, int op, long arg1, void *arg2)
 #ifndef OPENSSL_V102_COMPAT
         // FIXME: check if/how this control signals should be handled in 1.0.2
         case ASN1_PKEY_CTRL_SET1_TLS_ENCPT:
-            debug("nid: %d, op: ASN1_PKEY_CTRL_SET1_TLS_ENCPT, pklen: %ld\n", nid, arg1);
             p = arg2;
             pklen = arg1;
 
@@ -116,7 +115,6 @@ static int pki_gen_ctrl(int nid, EVP_PKEY *pkey, int op, long arg1, void *arg2)
 
 
         case ASN1_PKEY_CTRL_GET1_TLS_ENCPT:
-            debug("nid: %d, op: ASN1_PKEY_CTRL_GET1_TLS_ENCPT\n", nid);
             kp = EVP_PKEY_get0(pkey);
             if (kp == NULL && nid == kp->nid) {
                 unsigned char **ppt = arg2;
@@ -126,12 +124,6 @@ static int pki_gen_ctrl(int nid, EVP_PKEY *pkey, int op, long arg1, void *arg2)
             }
             return 0;
 #endif
-        case ASN1_PKEY_CTRL_DEFAULT_MD_NID:
-            debug("nid: %d, op: ASN1_PKEY_CTRL_DEFAULT_MD_NID, ret: %s\n",
-                  nid, OBJ_nid2sn(nid_data->default_md_nid) );
-            *(int *)arg2 = nid_data->default_md_nid;
-            return 2;
-
         default:
             return -2;
 
@@ -238,7 +230,7 @@ static int pki_gen_priv_decode(int nid, EVP_PKEY *pkey, RC_CONST PKCS8_PRIV_KEY_
         }
     }
 
-    if (p == NULL || plen != nid_data->privk_bytes) {
+    if (p == NULL || plen != nid_data->sk_bytes) {
 //        SUOLAerr(SUOLA_F_ASN1_GENERIC_PRIV_DECODE, SUOLA_R_WRONG_LENGTH);
         return 0;
     }
@@ -246,10 +238,10 @@ static int pki_gen_priv_decode(int nid, EVP_PKEY *pkey, RC_CONST PKCS8_PRIV_KEY_
     kp = _round5_keypair_new(nid, NO_FLAG);
 //    if (suola_keypair_is_invalid_private(kp)){
 //        SUOLAerr(SUOLA_F_ASN1_GENERIC_PRIV_DECODE, SUOLA_R_INVALID_PRIVATE_KEY);
-        return 0;
-    }
+//        return 0;
+//    }
 
-    memcpy(kp->key.sk, p, nid_data->privk_bytes);       //TODO: privk_bytes
+    memcpy(kp->key.sk, p, nid_data->sk_bytes);       //TODO: privk_bytes
 
     ASN1_OCTET_STRING_free(oct);
     oct = NULL;
@@ -295,6 +287,7 @@ static int pki_gen_pub_encode(int nid, X509_PUBKEY *pk, const EVP_PKEY *pkey)
 //        SUOLAerr(SUOLA_F_ASN1_GENERIC_PUB_ENCODE, ERR_R_MALLOC_FAILURE);
         return 0;
     }
+    _round5_keypair_free(kp);
     return 1;
 }
 
@@ -342,11 +335,11 @@ static int pki_gen_pub_decode(int nid, EVP_PKEY *pkey, X509_PUBKEY *pubkey)
     return 1;
 }
 
-static int pki_pub_cmp(const EVP_PKEY *a, consts EVP_PKEY *b){
+static int pki_pub_cmp(const EVP_PKEY *a, const EVP_PKEY *b){
     return 1;
 }
 
-int pki_register_asn1_meth(int nid, EVP_PKEY_ASN1_METHOD **ameth, const char *pem_str, const char *info){
+int _register_asn1_meth(int nid, EVP_PKEY_ASN1_METHOD **ameth, const char *pem_str, const char *info){
     *ameth = EVP_PKEY_asn1_new(nid, 0, pem_str, info);
     if (!*ameth)
         return 0;

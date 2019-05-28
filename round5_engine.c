@@ -17,11 +17,14 @@
 #ifndef ENGINE_NAME
 #define ENGINE_NAME "An engine integrating round5 into OpenSSL"
 #endif
+#define sizeof_static_array(a) \
+    ( (sizeof((a))) / sizeof((a)[0]) )
 
 static const char *engine_id = ENGINE_ID;
 static const char *engine_name = ENGINE_NAME;
 
 static int register_methods();
+static int pkey_asn1_meths(ENGINE *e, EVP_PKEY_ASN1_METHOD **ameth, const int **nids, int nid);
 static int pkey_meths(ENGINE *e, EVP_PKEY_METHOD **pmeth, const int **nids, int nid);
 static int pkey_meth_nids[] = {
         0,   //NID_ROUND5
@@ -49,6 +52,7 @@ static void pkey_asn1_meth_nids_init(){
 static EVP_PKEY_ASN1_METHOD *ameth_round5 = NULL;
 
 static int e_init(ENGINE *e){
+    printf("Round5\n");
     return 1;
 }
 
@@ -64,24 +68,24 @@ static int e_finish(ENGINE *e){
 static int bind(ENGINE *e, const char *id){
     int ret = 0;
     if (!ENGINE_set_id(e, engine_id)) {
-        errorf("ENGINE_set_id failed\n");
+        printf("ENGINE_set_id failed\n");
         goto end;
     }
     if (!ENGINE_set_name(e, engine_name)) {
-        errorf("ENGINE_set_name failed\n");
+        printf("ENGINE_set_name failed\n");
         goto end;
     }
 
     if(!ENGINE_set_init_function(e, e_init)) {
-        errorf("ENGINE_set_init_function failed\n");
+        printf("ENGINE_set_init_function failed\n");
         goto end;
     }
     if(!ENGINE_set_destroy_function(e, e_destroy)) {
-        errorf("ENGINE_set_destroy_function failed\n");
+        printf("ENGINE_set_destroy_function failed\n");
         goto end;
     }
     if(!ENGINE_set_finish_function(e, e_finish)) {
-        errorf("ENGINE_set_finish_function failed\n");
+        printf("ENGINE_set_finish_function failed\n");
         goto end;
     }
 
@@ -91,7 +95,7 @@ static int bind(ENGINE *e, const char *id){
 //    }
 
     if (!_register_nids()) {
-        errorf("Failure registering NIDs\n");
+        printf("Failure registering NIDs\n");
         goto end;
     } else {
         pkey_meth_nids_init();
@@ -99,18 +103,18 @@ static int bind(ENGINE *e, const char *id){
     }
 
     if (!register_methods()) {
-        errorf("Failure registering methods\n");
+        printf("Failure registering methods\n");
         goto end;
     }
 
     if (!ENGINE_set_pkey_asn1_meths(e, pkey_asn1_meths)) {
-        errorf("ENGINE_set_pkey_asn1_meths failed\n");
+        printf("ENGINE_set_pkey_asn1_meths failed\n");
         goto end;
     }
 
 
     if (!ENGINE_set_pkey_meths(e, pkey_meths)) {
-        errorf("ENGINE_set_pkey_meths failed\n");
+        printf("ENGINE_set_pkey_meths failed\n");
         goto end;
     }
 
@@ -171,3 +175,17 @@ static int register_ameth(int id, EVP_PKEY_ASN1_METHOD **ameth, int flags){
     info = OBJ_nid2ln(id);
     return _register_asn1_meth(id, ameth, pem_str, info);
 }
+
+static int register_methods(){
+    if (!register_ameth(NID_ROUND5, &ameth_round5, 0)){
+        return 0;
+    }
+    if (!register_pmeth(NID_ROUND5, &pmeth_round5, 0)){
+        return 0;
+    }
+    return 1;
+}
+
+IMPLEMENT_DYNAMIC_CHECK_FN()
+IMPLEMENT_DYNAMIC_BIND_FN(bind)
+
