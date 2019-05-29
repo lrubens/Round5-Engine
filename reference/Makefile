@@ -50,11 +50,11 @@ endif
 # Dir/File Setup ###############################################################
 ################################################################################
 
-srcdir    = reference/src
-builddir  = reference/build
-objdir    = reference/$(builddir)/.o
-depdir    = reference/$(builddir)/.d
-docdir    = reference/doc
+srcdir    = src
+builddir  = build
+objdir    = $(builddir)/.o
+depdir    = $(builddir)/.d
+docdir    = doc
 
 # RNG depends on KAT-generation setting
 ifdef NIST_KAT_GENERATION

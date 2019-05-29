@@ -133,7 +133,27 @@ static int pki_gen_ctrl(int nid, EVP_PKEY *pkey, int op, long arg1, void *arg2)
 
 static int pki_gen_priv_encode(int nid, PKCS8_PRIV_KEY_INFO *p8, const EVP_PKEY *pkey)
 {
-    const ROUND5_KEYPAIR *kp = EVP_PKEY_get0(pkey);
+
+    const struct round5_nid_data_st *nid_data = round5_get_nid_data(nid);
+    ASN1_OBJECT *algobj = OBJ_nid2obj(nid);
+    ASN1_STRING *params = ASN1_STRING_new();//encode_gost_algor_params(pk);
+    unsigned char /**priv_buf = NULL,*/ *buf = NULL;
+    int key_len, /*priv_len = 0,*/ i = 0;
+
+    if (!params) {
+        return 0;
+    }
+
+    key_len = nid_data->sk_bytes;
+    if (key_len == 0) {
+        return 0;
+    }
+
+    ROUND5_KEYPAIR *key_data = EVP_PKEY_get0(pkey);
+
+    return PKCS8_pkey_set0(p8, algobj, 0, V_ASN1_SEQUENCE, params,
+                           key_data->key.sk, key_len);
+    /*const ROUND5_KEYPAIR *kp = EVP_PKEY_get0(pkey);
     ASN1_OCTET_STRING oct;
     unsigned char *penc = NULL;
     int penclen;
@@ -184,7 +204,7 @@ static int pki_gen_priv_encode(int nid, PKCS8_PRIV_KEY_INFO *p8, const EVP_PKEY 
     free(nid_data->name);
     free(nid_data);
     nid_data = NULL;
-    return ret;
+    return ret; */
     
 }
 
