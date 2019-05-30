@@ -6,6 +6,7 @@
 #include "../keypair.h"
 #include "../ossl/objects.h"
 #include <openssl/err.h>
+#include <openssl/bio.h>
 #include <openssl/ec.h>
 #include <openssl/x509.h>
 #include <openssl/bn.h>
@@ -24,8 +25,11 @@ typedef enum {
 } key_op_t;
 
 static void pki_free(EVP_PKEY *pkey){
-    ROUND5_KEYPAIR *kpair = EVP_PKEY_get0(pkey);
-    _round5_keypair_free(kpair);
+    struct ROUND5 *kpair = NULL;
+    
+    kpair = EVP_PKEY_get0(pkey);
+    kpair = NULL;
+
 }
 
 static int pki_key_print( BIO *bp, const EVP_PKEY *pkey,
@@ -34,8 +38,8 @@ static int pki_key_print( BIO *bp, const EVP_PKEY *pkey,
     if (!pkey)
         return 0;
 
-    const ROUND5_KEYPAIR *kpair = EVP_PKEY_get0(pkey);
-    const struct round5_nid_data_st *nid_data = NULL;
+    struct ROUND5 *kpair = EVP_PKEY_get0(pkey);
+    //const struct round5_nid_data_st *nid_data = NULL;
 
     if (op == PRIVATE) {
 //        if (suola_keypair_is_invalid_private(kpair)) {
@@ -43,12 +47,14 @@ static int pki_key_print( BIO *bp, const EVP_PKEY *pkey,
 //                return 0;
 //            return 1;
 //        }
-        nid_data = round5_get_nid_data(kpair->nid);
-        if (BIO_printf(bp, "%*s%s Private-Key:\n", indent, "", nid_data->name) <= 0)
+        //nid_data = round5_get_nid_data(1061); //fix later
+        // if (BIO_printf(bp, "%*s%s Private-Key:\n", indent, "", nid_data->name) <= 0)
+        if (BIO_printf(bp, "%*s%s Private-Key:\n", indent, "", "round5") <= 0)
             return 0;
         if (BIO_printf(bp, "%*spriv:\n", indent, "") <= 0)
             return 0;
-        if (ASN1_buf_print(bp, kpair->key.sk, nid_data->sk_bytes, indent + 4) == 0)
+        // if (ASN1_buf_print(bp, kpair->sk, nid_data->sk_bytes, indent + 4) == 0)
+        if (ASN1_buf_print(bp, kpair->sk, 1413, indent + 4) == 0)
             return 0;
     } else {
 //        if (suola_keypair_is_invalid(kpair)) {
@@ -56,14 +62,14 @@ static int pki_key_print( BIO *bp, const EVP_PKEY *pkey,
 //                return 0;
 //            return 1;
 //        }
-        nid_data = round5_get_nid_data(kpair->nid);
-        if (BIO_printf(bp, "%*s%s Public-Key:\n", indent, "", nid_data->name) <= 0)
+        //nid_data = round5_get_nid_data(1061);
+        if (BIO_printf(bp, "%*s%s Public-Key:\n", indent, "", "round5") <= 0) //change last parameter back to nid_data->name
             return 0;
     }
     if (BIO_printf(bp, "%*spub:\n", indent, "") <= 0)
         return 0;
-    if (ASN1_buf_print(bp, kpair->key.pk, nid_data->pk_bytes,
-                       indent + 4) == 0)
+    //printf("nid_data->pk_bytes: %d\n", nid_data->pk_bytes); //nid_data is broken
+    if (ASN1_buf_print(bp, kpair->pk, 1349, indent + 4) == 0)
         return 0;
     return 1;
 }
@@ -133,11 +139,13 @@ static int pki_gen_ctrl(int nid, EVP_PKEY *pkey, int op, long arg1, void *arg2)
 }
 
 
-static int pki_gen_priv_encode(int nid, PKCS8_PRIV_KEY_INFO *p8, const EVP_PKEY *pkey)
+// static int pki_gen_priv_encode(int nid, PKCS8_PRIV_KEY_INFO *p8, const EVP_PKEY *pkey)
+static int pki_gen_priv_encode(PKCS8_PRIV_KEY_INFO *p8, const EVP_PKEY *pkey)
 {
 
-    const struct round5_nid_data_st *nid_data = round5_get_nid_data(nid);
-    ASN1_OBJECT *algobj = OBJ_nid2obj(nid);
+    //const struct round5_nid_data_st *nid_data = round5_get_nid_data(nid);
+    // ASN1_OBJECT *algobj = OBJ_nid2obj(nid);
+    ASN1_OBJECT *algobj = OBJ_nid2obj(1061);
     ASN1_STRING *params = ASN1_STRING_new();//encode_gost_algor_params(pk);
     unsigned char /**priv_buf = NULL,*/ *buf = NULL;
     size_t key_len, /*priv_len = 0,*/ i = 0;
@@ -146,8 +154,8 @@ static int pki_gen_priv_encode(int nid, PKCS8_PRIV_KEY_INFO *p8, const EVP_PKEY 
         return 0;
     }
 
-    key_len = nid_data->sk_bytes;
-    //key_len = 1413; //TODO: take this out
+    //key_len = nid_data->sk_bytes;
+    key_len = 1413; //TODO: take this out
     if (key_len == 0) {
         return 0;
     }
@@ -155,7 +163,8 @@ static int pki_gen_priv_encode(int nid, PKCS8_PRIV_KEY_INFO *p8, const EVP_PKEY 
     // ROUND5_KEYPAIR *key_data = NULL;
     // key_data = _round5_keypair_new(nid, 0);
     // key_data = EVP_PKEY_get0(pkey);
-    struct ROUND5 *key_data = EVP_PKEY_get0(pkey);
+    struct ROUND5 *key_data = NULL;
+    key_data = EVP_PKEY_get0(pkey);
     // key_data = OPENSSL_secure_malloc(sizeof(*key_data));
     // key_data = EVP_PKEY_get0(pkey);
     //BN data = BN_new();
@@ -294,9 +303,64 @@ static int pki_gen_priv_decode(int nid, EVP_PKEY *pkey, RC_CONST PKCS8_PRIV_KEY_
     return 1;
 }
 
-static int pki_gen_pub_encode(int nid, X509_PUBKEY *pk, const EVP_PKEY *pkey)
+// static int pki_gen_pub_encode(int nid, X509_PUBKEY *pub,  EVP_PKEY *pk)
+static int pki_gen_pub_encode(X509_PUBKEY *pub,  EVP_PKEY *pk)
 {
-    return 0;
+
+    ASN1_OBJECT *algobj = NULL;
+    ASN1_OCTET_STRING *octet = NULL;
+    void *pval = NULL;
+    unsigned char *buf = NULL; //*databuf = NULL;
+    int data_len, ret = -1;
+    int ptype = V_ASN1_UNDEF;
+    //const EC_POINT *pub_key;
+    //BIGNUM *X = NULL, *Y = NULL, *order = NULL;
+    struct ROUND5 *ec = NULL;
+    //OPENSSL_malloc(sizeof(*ec));
+    ec = EVP_PKEY_get0(pk);
+    BIO *b = NULL;
+    b = BIO_new(BIO_s_mem());
+    ASN1_PCTX *pctx = NULL;
+    pctx = ASN1_PCTX_new();
+    unsigned char *private_key_text = NULL;
+    EVP_PKEY_print_private(b, (EVP_PKEY *)pk, 4, pctx);
+    BIO_get_mem_data(b, &private_key_text);
+    printf("%s\n", private_key_text);
+    BIO_free(b);
+    ASN1_PCTX_free(pctx);
+
+    // algobj = OBJ_nid2obj(EVP_PKEY_base_id(pk));
+    algobj = OBJ_nid2obj(1061);
+
+	ASN1_STRING *params = ASN1_STRING_new();//encode_gost_algor_params(pk);
+	pval = params;
+	ptype = V_ASN1_SEQUENCE;
+
+    //data_len = 2 * BN_num_bytes(order);
+    //databuf = OPENSSL_zalloc(data_len);
+    // if (databuf == NULL) {
+    //     goto err;
+    // }
+	//BUF_reverse(databuf, NULL, data_len);
+
+    octet = ASN1_OCTET_STRING_new();
+    if (octet == NULL) {
+        goto err;
+    }
+
+    // if (0 == ASN1_STRING_set(octet, databuf, data_len)) {
+    //     goto err;
+    // }
+    
+    ret = i2d_ASN1_OCTET_STRING(octet, &buf);
+ err:
+    ASN1_BIT_STRING_free(octet);
+    // if (databuf)
+    //     OPENSSL_free(databuf);
+    if (ret < 0)
+        return 0;
+    
+    return X509_PUBKEY_set0_param(pub, algobj, ptype, pval, buf, ret);
 //     struct ROUND5 *kp = EVP_PKEY_get0(pkey);
 //     unsigned char *penc;
 //     const struct round5_nid_data_st *nid_data = round5_get_nid_data(nid);
@@ -326,46 +390,49 @@ static int pki_gen_pub_encode(int nid, X509_PUBKEY *pk, const EVP_PKEY *pkey)
 
 static int pki_gen_pub_decode(int nid, EVP_PKEY *pkey, X509_PUBKEY *pubkey)
 {
-    const unsigned char *p;
-    int pklen;
-    X509_ALGOR *palg;
-    ROUND5_KEYPAIR *kp = NULL;
-    const struct round5_nid_data_st *nid_data = round5_get_nid_data(nid);
 
-    if (nid_data == NULL) {
-//        SUOLAerr(SUOLA_F_ASN1_GENERIC_PUB_DECODE, SUOLA_R_MISSING_NID_DATA);
-        return 0;
-    }
 
-    if (!X509_PUBKEY_get0_param(NULL, &p, &pklen, &palg, pubkey))
-        return 0;
+    return 0;
+//     const unsigned char *p;
+//     int pklen;
+//     X509_ALGOR *palg;
+//     ROUND5_KEYPAIR *kp = NULL;
+//     const struct round5_nid_data_st *nid_data = round5_get_nid_data(nid);
 
-    if (palg != NULL) {
-        int ptype;
+//     if (nid_data == NULL) {
+// //        SUOLAerr(SUOLA_F_ASN1_GENERIC_PUB_DECODE, SUOLA_R_MISSING_NID_DATA);
+//         return 0;
+//     }
 
-        /* Algorithm parameters must be absent */
-        X509_ALGOR_get0(NULL, &ptype, NULL, palg);
-        if (ptype != V_ASN1_UNDEF) {
-//            SUOLAerr(SUOLA_F_ASN1_GENERIC_PUB_DECODE, SUOLA_R_INVALID_ENCODING);
-            return 0;
-        }
-    }
+//     if (!X509_PUBKEY_get0_param(NULL, &p, &pklen, &palg, pubkey))
+//         return 0;
 
-    if (p == NULL || pklen != nid_data->pk_bytes) {
-//        SUOLAerr(SUOLA_F_ASN1_GENERIC_PUB_DECODE, SUOLA_R_WRONG_LENGTH);
-        return 0;
-    }
+//     if (palg != NULL) {
+//         int ptype;
 
-    kp = _round5_keypair_new(nid, NO_PRIV_KEY);
-//    if ( suola_keypair_is_invalid(kp) ){
-//        SUOLAerr(SUOLA_F_ASN1_GENERIC_PUB_DECODE, SUOLA_R_INVALID_KEY);
-//        return 0;
-//    }
+//         /* Algorithm parameters must be absent */
+//         X509_ALGOR_get0(NULL, &ptype, NULL, palg);
+//         if (ptype != V_ASN1_UNDEF) {
+// //            SUOLAerr(SUOLA_F_ASN1_GENERIC_PUB_DECODE, SUOLA_R_INVALID_ENCODING);
+//             return 0;
+//         }
+//     }
 
-    memcpy(kp->key.pk, p, pklen);
+//     if (p == NULL || pklen != nid_data->pk_bytes) {
+// //        SUOLAerr(SUOLA_F_ASN1_GENERIC_PUB_DECODE, SUOLA_R_WRONG_LENGTH);
+//         return 0;
+//     }
 
-    EVP_PKEY_assign(pkey, nid, kp);
-    return 1;
+//     kp = _round5_keypair_new(nid, NO_PRIV_KEY);
+// //    if ( suola_keypair_is_invalid(kp) ){
+// //        SUOLAerr(SUOLA_F_ASN1_GENERIC_PUB_DECODE, SUOLA_R_INVALID_KEY);
+// //        return 0;
+// //    }
+
+//     memcpy(kp->key.pk, p, pklen);
+
+//     EVP_PKEY_assign(pkey, nid, kp);
+//     return 1;
 }
 
 static int pki_pub_cmp(const EVP_PKEY *a, const EVP_PKEY *b){

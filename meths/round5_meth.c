@@ -52,7 +52,6 @@ static int keygen(EVP_PKEY_CTX *ctx, EVP_PKEY *pkey){
     // kpair->key.sk = malloc((uint32_t) params->kappa_bytes + (uint32_t) params->kappa_bytes + params->pk_size);
     if (!round5_sk_to_pk(kpair->pk, kpair->sk))
         goto err;
-    printf("%d", kpair->pk);
     //kpair = OPENSSL_secure_malloc(sizeof(*kpair));
     // EVP_PKEY_assign(pkey, EVP_PKEY_base_id(pkey), kpair);
      //this is bad
