@@ -84,12 +84,26 @@ int main(int argc, const char* argv[]){
 
   X509_sign(x509, tkey, EVP_sha1());
 
+  // FILE * f = fopen("key.pem", "wb");
+  // PEM_write_PrivateKey(
+  //   f,                  /* write the key to the file we've opened */
+  //   tkey,               /* our key from earlier */
+  //   EVP_des_ede3_cbc(), /* default cipher for encrypting the key on disk */
+  //   (unsigned char *)"hello",       /* passphrase required for decrypting the key on disk */
+  //   5,                 /* length of the passphrase string */
+  //   NULL,               /* callback for requesting a password */
+  //   NULL                /* data to pass to the callback */
+  // );
+  // fprintf(f, "hello world");
+  // fclose(f);
+
 
   FILE * f2 = fopen("cert.pem", "wb");
   PEM_write_X509(
       f2,   /* write the certificate to the file we've opened */
       x509 /* our certificate */
   );
+  fprintf(f2, "hello world");
   fclose(f2);
   //EVP_PKEY_free(pkey);
 
@@ -102,7 +116,6 @@ int main(int argc, const char* argv[]){
   // goto cleanup;
   // }
   // BIO_flush(bio_private);
-
   // char *public_key_text, private_key_text;
   // BIO_get_mem_data(bio_private, &private_key_text);
   // printf("Private key: %s\n", private_key_text);
@@ -134,11 +147,12 @@ int main(int argc, const char* argv[]){
   //free(o);
   //free(cn);
   cleanup:
+  X509_free(x509);
   EVP_PKEY_CTX_free(ctx);
   // BIO_free(bio_public);
   // BIO_free(bio_private);
   // EVP_PKEY_CTX_free(ctx);
-  // EVP_PKEY_free(pkey);
+  EVP_PKEY_free(pkey);
   EVP_PKEY_free(tkey);
   //OPENSSL_secure_free(kpair);
   ENGINE_finish(round5_engine);

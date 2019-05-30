@@ -146,8 +146,8 @@ static int pki_gen_priv_encode(int nid, PKCS8_PRIV_KEY_INFO *p8, const EVP_PKEY 
         return 0;
     }
 
-    //key_len = nid_data->sk_bytes;
-    key_len = 1413; //TODO: take this out
+    key_len = nid_data->sk_bytes;
+    //key_len = 1413; //TODO: take this out
     if (key_len == 0) {
         return 0;
     }
