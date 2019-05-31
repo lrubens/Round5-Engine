@@ -68,7 +68,7 @@ struct certKey * gen_cert(){
   //if (paramset)
 	//T(EVP_PKEY_CTX_ctrl_str(ctx, "paramset", paramset));
   EVP_PKEY *pkey = NULL;
-  // pkey = EVP_PKEY_new();
+  pkey = EVP_PKEY_new();
   T((EVP_PKEY_keygen(ctx, &pkey)) == 1);
   
   // BIO *b = NULL;
@@ -125,11 +125,8 @@ struct certKey * gen_cert(){
   T(X509_add_ext(x509ss, ext, 2));
   X509_EXTENSION_free(ext);
 
-  // EVP_MD_CTX *mctx;
-  // T(mctx = EVP_MD_CTX_new());
-  // T(EVP_DigestSignInit(mctx, NULL, NULL, NULL, pkey));
-  // T(X509_sign_ctx(x509ss, mctx));
-  // EVP_MD_CTX_free(mctx);
+
+  
   struct certKey *c = NULL;
   c = OPENSSL_malloc(sizeof(*c));
   c->cert = x509ss;
@@ -143,7 +140,35 @@ struct certKey * gen_cert(){
 
 int main(int argc, const char* argv[]){
   struct certKey *c = gen_cert();
-  int ret = X509_sign(c->cert, c->key, (EVP_MD *)EVP_sha256());
+  // int ret = X509_sign(c->cert, c->key, (EVP_MD *)EVP_sha256());
+  //T(EVP_PKEY_set_type_str(c->key, "RSA", 3));
+  EVP_PKEY * pkey;
+  pkey = EVP_PKEY_new();
+  RSA *rsa = NULL;
+  BIGNUM *bne = NULL;
+  //BIO *bp_public = NULL, *bp_private = NULL;
+
+  int bits = 2048;
+  unsigned long e = RSA_F4;
+
+  bne = BN_new();
+  int ret = BN_set_word(bne,e);
+  if(ret != 1){
+      //do something
+  }
+
+  //this should be the round5 algorithm
+  rsa = RSA_new();
+  ret = RSA_generate_key_ex(rsa, bits, bne, NULL);
+  if(ret != 1){
+      //do something
+  }
+  EVP_PKEY_assign_RSA(pkey, rsa);
+  EVP_MD_CTX *mctx;
+  T(mctx = EVP_MD_CTX_new());
+  T(EVP_DigestSignInit(mctx, NULL, EVP_sha1(), NULL, pkey));
+  T(X509_sign_ctx(c->cert, mctx));
+  EVP_MD_CTX_free(mctx);
   // printf("\nreturn: %d\n", ret);
   X509_print_fp(stdout, c->cert);
   FILE * f = fopen("key.pem", "wb");
@@ -163,6 +188,10 @@ int main(int argc, const char* argv[]){
       c->cert /* our certificate */
   );
   fclose(f2);
+  BN_free(bne);
+  EVP_PKEY_free(pkey);
+  X509_free(c->cert);
+  EVP_PKEY_free(c->key);
   free(c);
 }
 

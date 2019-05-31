@@ -52,7 +52,6 @@ static void pkey_asn1_meth_nids_init(){
 static EVP_PKEY_ASN1_METHOD *ameth_round5 = NULL;
 
 static int e_init(ENGINE *e){
-    printf("Round5\n");
     return 1;
 }
 

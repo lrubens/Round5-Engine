@@ -24,8 +24,8 @@ typedef struct {
 } ROUND5_KEYPAIR;
 
 struct ROUND5{
-    unsigned char sk[SKLEN];
-    unsigned char pk[PKLEN];
+    unsigned char *sk;
+    unsigned char *pk;
     int nid;
 };
 
