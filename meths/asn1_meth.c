@@ -49,7 +49,7 @@ static int pki_key_print( BIO *bp, const EVP_PKEY *pkey,
 //        }
         //nid_data = round5_get_nid_data(1061); //fix later
         // if (BIO_printf(bp, "%*s%s Private-Key:\n", indent, "", nid_data->name) <= 0)
-        if (BIO_printf(bp, "%*s%s Private-Key:\n", indent, "", "round5") <= 0)
+        if (BIO_printf(bp, "%*s%s Private-Key:\n", indent, "", "") <= 0)
             return 0;
         if (BIO_printf(bp, "%*spriv:\n", indent, "") <= 0)
             return 0;
@@ -63,11 +63,11 @@ static int pki_key_print( BIO *bp, const EVP_PKEY *pkey,
 //            return 1;
 //        }
         //nid_data = round5_get_nid_data(1061);
-        if (BIO_printf(bp, "%*s%s Public-Key:\n", indent, "", "round5") <= 0) //change last parameter back to nid_data->name
+        if (BIO_printf(bp, "%*s%sPublic-Key:\n", indent, "", "") <= 0) //change last parameter back to nid_data->name
             return 0;
     }
-    if (BIO_printf(bp, "%*spub:\n", indent, "") <= 0)
-        return 0;
+    // if (BIO_printf(bp, "%*s", indent, "") <= 0)
+    //     return 0;
     //printf("nid_data->pk_bytes: %d\n", nid_data->pk_bytes); //nid_data is broken
     if (ASN1_buf_print(bp, kpair->pk, 1349, indent + 4) == 0)
         return 0;
@@ -111,7 +111,7 @@ static int pki_gen_ctrl(int nid, EVP_PKEY *pkey, int op, long arg1, void *arg2)
 //                return 0;
 //            }
 
-            kp = _round5_keypair_new(nid, NO_PRIV_KEY);
+            kp = round5_new(nid);
 //            if (suola_keypair_is_invalid(kp)) {
 //                return 0;
 //            }
@@ -142,10 +142,10 @@ static int pki_gen_ctrl(int nid, EVP_PKEY *pkey, int op, long arg1, void *arg2)
 // static int pki_gen_priv_encode(int nid, PKCS8_PRIV_KEY_INFO *p8, const EVP_PKEY *pkey)
 static int pki_gen_priv_encode(PKCS8_PRIV_KEY_INFO *p8, const EVP_PKEY *pkey)
 {
-
-    //const struct round5_nid_data_st *nid_data = round5_get_nid_data(nid);
+    int nid = NID_ROUND5;
+    const struct round5_nid_data_st *nid_data = round5_get_nid_data(nid);
     // ASN1_OBJECT *algobj = OBJ_nid2obj(nid);
-    ASN1_OBJECT *algobj = OBJ_nid2obj(1061);
+    ASN1_OBJECT *algobj = OBJ_nid2obj(nid);
     ASN1_STRING *params = ASN1_STRING_new();//encode_gost_algor_params(pk);
     unsigned char /**priv_buf = NULL,*/ *buf = NULL;
     size_t key_len, /*priv_len = 0,*/ i = 0;
@@ -278,7 +278,7 @@ static int pki_gen_priv_decode(int nid, EVP_PKEY *pkey, RC_CONST PKCS8_PRIV_KEY_
         return 0;
     }
 
-    kp = _round5_keypair_new(nid, NO_FLAG);
+    kp = round5_new(nid);
 //    if (suola_keypair_is_invalid_private(kp)){
 //        SUOLAerr(SUOLA_F_ASN1_GENERIC_PRIV_DECODE, SUOLA_R_INVALID_PRIVATE_KEY);
 //        return 0;
@@ -294,7 +294,7 @@ static int pki_gen_priv_decode(int nid, EVP_PKEY *pkey, RC_CONST PKCS8_PRIV_KEY_
 
     // Generate corresponding public key
     if ( 1 != (nid_data->sk_to_pk)(kp->key.pk, kp->key.sk) ) {
-        _round5_keypair_free(kp);
+        round5_free(kp);
         return 0;
     }
 
@@ -330,7 +330,8 @@ static int pki_gen_pub_encode(X509_PUBKEY *pub,  EVP_PKEY *pk)
     ASN1_PCTX_free(pctx);
 
     // algobj = OBJ_nid2obj(EVP_PKEY_base_id(pk));
-    algobj = OBJ_nid2obj(1061);
+    algobj = OBJ_nid2obj(NID_ROUND5);
+    // printf("ID:%d", EVP_PKEY_base_id(pk));
 
 	ASN1_STRING *params = ASN1_STRING_new();//encode_gost_algor_params(pk);
 	pval = params;

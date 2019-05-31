@@ -14,11 +14,11 @@
 #include <openssl/crypto.h>
 #include <openssl/err.h>
 #include <openssl/ec.h>
-
 #include "../keypair.h"
-#define NID_ROUND5 (0)
-#define keypair_new(flags) \
-  _round5_keypair_new(NID_ROUND5, (flags))
+#include "../ossl/objects.h"
+// #define NID_ROUND5 (0)
+// #define ROUND5_new(flags) \
+//   round5_new(NID_ROUND5, (flags))
 
 
 // struct Round5 {
@@ -38,16 +38,19 @@ int round5_sk_to_pk(unsigned char *pk, const unsigned char *sk){
 }
 
 static int keygen(EVP_PKEY_CTX *ctx, EVP_PKEY *pkey){
-    struct ROUND5 *kpair = EVP_PKEY_get0(pkey);
-    //kpair = OPENSSL_secure_malloc(sizeof(*kpair));
-    //kpair = EVP_PKEY_get0(pkey);
+    printf("here\n\n");
+    // printf("NID NID:%d", NID_ROUND5);
+    struct ROUND5 *kpair = NULL;
+    // EVP_PKEY_get0(pkey);
+    kpair = OPENSSL_secure_malloc(sizeof(*kpair));
+    kpair = EVP_PKEY_get0(pkey);
+    printf("\n\ngetting key\n\n");
     if (!kpair){
         kpair = OPENSSL_malloc(sizeof(*kpair));
-        EVP_PKEY_assign(pkey, 1061, kpair);
+        EVP_PKEY_assign(pkey, 1195, kpair);
     }
-
-    parameters *params;
-    params = set_parameters_from_api();
+    // printf("NID NID:%d\n\n", NID_ROUND5);
+    printf("passed the first test\n\n");
     // kpair->key.pk = malloc(params->pk_size);
     // kpair->key.sk = malloc((uint32_t) params->kappa_bytes + (uint32_t) params->kappa_bytes + params->pk_size);
     if (!round5_sk_to_pk(kpair->pk, kpair->sk))

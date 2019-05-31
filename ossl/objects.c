@@ -41,6 +41,11 @@ static int _register_nid(const char *oid_str, const char *sn, const char *ln) {
     }
 
 
+int get_nid(){
+    return NID_ROUND5;
+}
+
+
 int _register_nids()
 {
     _REGISTER_NID(ROUND5);

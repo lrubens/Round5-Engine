@@ -26,6 +26,7 @@ typedef struct {
 struct ROUND5{
     unsigned char sk[SKLEN];
     unsigned char pk[PKLEN];
+    int nid;
 };
 
 
@@ -35,9 +36,9 @@ typedef enum {
     NO_PRIV_KEY=1,
 } round5_keypair_flags_t;
 
-ROUND5_KEYPAIR *_round5_keypair_new(int nid, round5_keypair_flags_t flags);
+struct ROUND5 *round5_new(int nid);
 
-int _round5_keypair_free(ROUND5_KEYPAIR *keypair);
+int round5_free(struct ROUND5 *keypair);
 
 struct round5_nid_data_st {
     const char *name;

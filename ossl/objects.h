@@ -14,5 +14,6 @@
 extern int NID_ROUND5;
 
 int _register_nids();
+int get_nid();
 
 #endif //ROUND5_OBJECTS_H
