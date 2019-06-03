@@ -1,11 +1,24 @@
 //
 // Created by ruben on 5/24/2019.
 //
-#ifdef OPENSSL_V102_COMPAT
+// #ifdef OPENSSL_V102_COMPAT
 #include <openssl/crypto.h>
 #include <openssl/evp.h>
 #include "ossl_compat.h"
 #include <string.h>
+
+// EVP_MD *EVP_MD_meth_new(int md_type, int pkey_type)
+// {
+// 	EVP_MD *ret = NULL;
+//     ret = OPENSSL_malloc(sizeof(*ret));
+
+// 	if (ret != NULL) {
+// 		ret->type = md_type;
+// 		// FIXME: we are discarding pkey_type
+// 	}
+
+// 	return ret;
+// }
 
 void *OPENSSL_memdup(const void *src, size_t size)
 {
@@ -90,4 +103,4 @@ int ASN1_buf_print(BIO *bp, const unsigned char *buf, size_t buflen, int indent)
     return 1;
 }
 
-#endif /* OPENSSL_V102_COMPAT */
+// #endif /* OPENSSL_V102_COMPAT */

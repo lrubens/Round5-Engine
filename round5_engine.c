@@ -57,6 +57,8 @@ static void pkey_meth_nids_init(){
 
 static EVP_PKEY_METHOD *pmeth_round5 = NULL;
 
+static EVP_MD *md_obj = NULL;
+
 static int register_ameth(int id, EVP_PKEY_ASN1_METHOD **ameth, int flags);
 
 static int pkey_asn1_meth_nids[] = {
@@ -212,11 +214,58 @@ static int register_ameth(int id, EVP_PKEY_ASN1_METHOD **ameth, int flags){
     return _register_asn1_meth(id, ameth, pem_str, info);
 }
 
+int register_md_identity(EVP_MD *md){
+    if ((md = EVP_MD_meth_new(NID_KECCAK, NID_undef)) == NULL
+        || !EVP_MD_meth_set_result_size(md, sizeof(struct digest_init_ctx))
+        //|| !EVP_MD_meth_set_input_blocksize(md, sizeof(struct digest_init_ctx))
+        || !EVP_MD_meth_set_app_datasize(md, sizeof(struct digest_init_ctx))
+        || !EVP_MD_meth_set_init(md, keccak_digest_init)
+        || !EVP_MD_meth_set_update(md, keccak_digest_update)
+        || !EVP_MD_meth_set_final(md, keccak_digest_final)
+        || !EVP_MD_meth_set_copy(md, keccak_digest_copy)
+        || !EVP_MD_meth_set_cleanup(md, keccak_digest_cleanup)) {
+        EVP_MD_meth_free(md);
+        md = NULL;
+        return 0;
+        }
+        return 1;
+}
+
+static int register_md(int md_id, int pkey_type, EVP_MD **md, int flags)
+{
+    int ret = 0;
+    printf("registering md method for '%s' with md_id=%d, pkey_type=%d, flags=%08x\n",
+            OBJ_nid2ln(md_id), md_id, pkey_type, flags);
+
+    *md = NULL;
+    md = OPENSSL_malloc(sizeof(*md));
+    md->type = md_type;
+
+    if (*md == NULL)
+        return 0;
+
+    if ( md_id == NID_KECCAK ) {
+        register_md_identity(*md);
+        ret = 1;
+    }
+
+    if (ret == 1) {
+        ret = EVP_add_digest(*md);
+        return ret;
+    }
+
+    /* Unsupported md type */
+    return 0;
+}
+
 static int register_methods(){
     if (!register_ameth(NID_ROUND5, &ameth_round5, 0)){
         return 0;
     }
     if (!register_pmeth(NID_ROUND5, &pmeth_round5, 0)){
+        return 0;
+    }
+    if (!register_md(NID_KECCAK, NID_ROUND5, &md_obj, 0)){
         return 0;
     }
     return 1;
