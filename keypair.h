@@ -36,7 +36,7 @@ typedef enum {
     NO_PRIV_KEY=1,
 } round5_keypair_flags_t;
 
-struct ROUND5 *round5_new(int nid);
+struct ROUND5 *round5_new();
 
 int round5_free(struct ROUND5 *keypair);
 

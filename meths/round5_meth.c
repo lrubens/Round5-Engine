@@ -16,47 +16,31 @@
 #include <openssl/ec.h>
 #include "../keypair.h"
 #include "../ossl/objects.h"
-// #define NID_ROUND5 (0)
-// #define ROUND5_new(flags) \
-//   round5_new(NID_ROUND5, (flags))
-
-
-// struct Round5 {
-
-// }
 
 int round5_sk_to_pk(unsigned char *pk, const unsigned char *sk, parameters *params){
-    //set_parameter_tau(params, 1);
-   
     if (r5_cca_pke_keygen(pk, sk, params) != 0){
         return 0;
     }
     else
         return 1;
-    
 }
 
 static int keygen(EVP_PKEY_CTX *ctx, EVP_PKEY *pkey){
-    // printf("NID NID:%d", NID_ROUND5);
     struct ROUND5 *kpair = NULL;
-    // EVP_PKEY_get0(pkey);
-    //kpair = OPENSSL_secure_malloc(sizeof(*kpair));
     kpair = EVP_PKEY_get0(pkey);
-    
     if (!kpair){
         kpair = OPENSSL_malloc(sizeof(*kpair));
         EVP_PKEY_assign(pkey, NID_ROUND5, kpair);
     }
     parameters *params;
     params = set_parameters_from_api();
-    kpair->pk = malloc(params->pk_size);
-    kpair->sk = malloc((uint32_t) params->kappa_bytes + (uint32_t) params->kappa_bytes + params->pk_size);
+    kpair->pk = OPENSSL_malloc(params->pk_size);
+    kpair->sk = OPENSSL_malloc((uint32_t) params->kappa_bytes + (uint32_t) params->kappa_bytes + params->pk_size);
     if (!round5_sk_to_pk(kpair->pk, kpair->sk, params))
         goto err;
-    //kpair = OPENSSL_secure_malloc(sizeof(*kpair));
-    //EVP_PKEY_assign(pkey, NID_ROUND5, kpair);
-    //this is bad
-    //free(kpair->sk);
+    // free(kpair->pk);
+    // free(kpair);
+    // free(kpair->sk);
     return 1;
     err:
     return 0;

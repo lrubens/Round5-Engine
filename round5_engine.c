@@ -52,6 +52,7 @@ static void pkey_asn1_meth_nids_init(){
 static EVP_PKEY_ASN1_METHOD *ameth_round5 = NULL;
 
 static int e_init(ENGINE *e){
+    // OBJ_cleanup();
     return 1;
 }
 
@@ -147,8 +148,10 @@ static int register_pmeth(int id, EVP_PKEY_METHOD **pmeth, int flags){
     if (id == NID_ROUND5){
         pki_register_round5(*pmeth);
     }
-    else
+    else{
+        EVP_PKEY_meth_free(*pmeth); 
         return 0;
+    }
     return 1;
 }
 

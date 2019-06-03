@@ -7,8 +7,6 @@
 #include <openssl/err.h>
 #include "ossl/ossl_compat.h"
 #include "ossl/objects.h"
-// #define ROUND5_new(NID_ROUND5, roun5_)
-// #define NID_ROUND5 0
 extern int round5_sk_to_pk(unsigned char *pk, const unsigned char *sk);
 
 struct round5_nid_data_st _round5_nid_data[] = {
@@ -24,7 +22,8 @@ inline const struct round5_nid_data_st *round5_get_nid_data(int nid){
     return NULL;
 }
 
-struct ROUND5 *round5_new(int nid){
+struct ROUND5 *round5_new(){
+    int nid = NID_ROUND5;
     struct ROUND5 *kpair = NULL;
     const struct round5_nid_data_st *nid_data = round5_get_nid_data(nid);
     if (nid_data == NULL)
@@ -40,27 +39,6 @@ struct ROUND5 *round5_new(int nid){
         OPENSSL_secure_free(kpair);
     return NULL;
 }
-
-// ROUND5_KEYPAIR *_round5_keypair_new(int nid, round5_keypair_flags_t flags){
-//     ROUND5_KEYPAIR *kpair = NULL;
-//     const struct round5_nid_data_st *nid_data = round5_get_nid_data(nid);
-//     if (nid_data == NULL)
-//         goto err;
-//     kpair = OPENSSL_secure_malloc(sizeof(*kpair));
-//     if (kpair == NULL)
-//         goto err;
-//     kpair->nid = nid;
-//     kpair->has_private = 0;
-//     if (flags & NO_PRIV_KEY == 0){
-//         kpair->has_private = 1;
-//     }
-//     //free(nid_data);
-//     return kpair;
-//     err:
-//     if (kpair)
-//         OPENSSL_secure_free(kpair);
-//     return NULL;
-// }
 
 int round5_free(struct ROUND5 *keypair){
     if (!keypair)

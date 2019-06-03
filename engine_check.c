@@ -42,8 +42,6 @@ struct certKey * gen_cert(){
   //round5_sk_to_pk(kpair->key.pk, kpair->key.sk);
   //kpair->key.pk = pk;
   //kpair->key.sk = sk;
-  const char *o = "test o";
-  const char *cn = "test cn";
   //OPENSSL_config(NULL);
   //SSL_library_init();
   //SSL_load_error_strings();
@@ -90,8 +88,10 @@ struct certKey * gen_cert(){
   T(X509_REQ_set_version(req, 0L));
   X509_NAME *name;
   T(name = X509_NAME_new());
-  X509_NAME_add_entry_by_txt(name, "C",  MBSTRING_ASC, (unsigned char *)"CA", -1, -1, 0);
-  X509_NAME_add_entry_by_txt(name, "O",  MBSTRING_ASC, (unsigned char *)"MyCompany Inc.", -1, -1, 0);
+  X509_NAME_add_entry_by_txt(name, "C",  MBSTRING_ASC, (unsigned char *)"USA", -1, -1, 0);
+  X509_NAME_add_entry_by_txt(name, "ST",  MBSTRING_ASC, (unsigned char *)"MA", -1, -1, 0);
+  X509_NAME_add_entry_by_txt(name, "L",  MBSTRING_ASC, (unsigned char *)"Cambridge", -1, -1, 0);
+  X509_NAME_add_entry_by_txt(name, "O",  MBSTRING_ASC, (unsigned char *)"Draper", -1, -1, 0);
   X509_NAME_add_entry_by_txt(name, "CN", MBSTRING_ASC, (unsigned char *)"localhost", -1, -1, 0);
   T(X509_REQ_set_subject_name(req, name));
   T(X509_REQ_set_pubkey(req, pkey));
@@ -166,7 +166,7 @@ int main(int argc, const char* argv[]){
   EVP_PKEY_assign_RSA(pkey, rsa);
   EVP_MD_CTX *mctx;
   T(mctx = EVP_MD_CTX_new());
-  T(EVP_DigestSignInit(mctx, NULL, EVP_sha1(), NULL, pkey));
+  T(EVP_DigestSignInit(mctx, NULL, EVP_sha512(), NULL, pkey));
   T(X509_sign_ctx(c->cert, mctx));
   EVP_MD_CTX_free(mctx);
   // printf("\nreturn: %d\n", ret);
