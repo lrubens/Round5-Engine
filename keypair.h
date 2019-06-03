@@ -12,16 +12,16 @@
 #define PKLEN 1349
 #define SKLEN 1413
 
-typedef struct {
-    union {
-        // uint8_t sk[SKLEN];
-        // uint8_t pk[PKLEN];
-        unsigned char sk[SKLEN];
-        unsigned char pk[PKLEN];
-    } key;
-    int nid;
-    char has_private;
-} ROUND5_KEYPAIR;
+// typedef struct {
+//     union {
+//         // uint8_t sk[SKLEN];
+//         // uint8_t pk[PKLEN];
+//         unsigned char sk[SKLEN];
+//         unsigned char pk[PKLEN];
+//     } key;
+//     int nid;
+//     char has_private;
+// } ROUND5_KEYPAIR;
 
 struct ROUND5{
     unsigned char *sk;

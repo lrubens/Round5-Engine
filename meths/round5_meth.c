@@ -21,8 +21,9 @@ int round5_sk_to_pk(unsigned char *pk, const unsigned char *sk, parameters *para
     if (r5_cca_pke_keygen(pk, sk, params) != 0){
         return 0;
     }
-    else
+    else{
         return 1;
+    }
 }
 
 static int keygen(EVP_PKEY_CTX *ctx, EVP_PKEY *pkey){
@@ -38,7 +39,7 @@ static int keygen(EVP_PKEY_CTX *ctx, EVP_PKEY *pkey){
     kpair->sk = OPENSSL_malloc((uint32_t) params->kappa_bytes + (uint32_t) params->kappa_bytes + params->pk_size);
     if (!round5_sk_to_pk(kpair->pk, kpair->sk, params))
         goto err;
-    // free(kpair->pk);
+    //printf("\n\n\n\n%d\n\n\n\n", sizeof(kpair->sk));
     // free(kpair);
     // free(kpair->sk);
     return 1;

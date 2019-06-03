@@ -9,7 +9,7 @@
 #include "meths/round5_meth.h"
 #include "meths/asn1_meth.h"
 #include "ossl/objects.h"
-//#include "
+#include "meths/dilithium_meth.h"
 #ifndef ENGINE_ID
 #define ENGINE_ID "round5"
 #endif
@@ -20,9 +20,26 @@
 #define sizeof_static_array(a) \
     ( (sizeof((a))) / sizeof((a)[0]) )
 
+// static const EVP_MD k = {
+//     NID_KECCAK,
+//     0,
+//     16,
+//     0,
+//     keccak_digest_init,
+//     keccak_digest_update,
+//     keccak_digest_final,
+//     keccak_digest_copy,
+//     keccak_digest_cleanup,
+//     EVP_PKEY_NULL_method,
+//     64,
+//     sizeof(EVP_MD_CTX),
+//     NULL
+// };
+
 static const char *engine_id = ENGINE_ID;
 static const char *engine_name = ENGINE_NAME;
 
+static int digest(ENGINE *e, const EVP_MD **digest, const int **nids, int nid);
 static int register_methods();
 static int pkey_asn1_meths(ENGINE *e, EVP_PKEY_ASN1_METHOD **ameth, const int **nids, int nid);
 static int pkey_meths(ENGINE *e, EVP_PKEY_METHOD **pmeth, const int **nids, int nid);
@@ -30,6 +47,8 @@ static int pkey_meth_nids[] = {
         0,   //NID_ROUND5
         0    //NID_DILITHIUM to be integrated later
 };
+
+
 
 static void pkey_meth_nids_init(){
     pkey_meth_nids[0] = NID_ROUND5;
@@ -63,6 +82,12 @@ static int e_destroy(ENGINE *e){
 
 static int e_finish(ENGINE *e){
     return 1;
+}
+
+static int digest(ENGINE *e, const EVP_MD **d, const int **nids, int nid){
+    if(nid == NID_KECCAK){
+        *d = keccak_digest();
+    }
 }
 
 static int bind(ENGINE *e, const char *id){
@@ -117,7 +142,15 @@ static int bind(ENGINE *e, const char *id){
         printf("ENGINE_set_pkey_meths failed\n");
         goto end;
     }
-
+    if (!ENGINE_set_digests(e, digest)){
+        printf("ENGINE_set_digests failed\n");
+        goto end;
+    }
+    // if(!ENGINE_register_digests(e) || !EVP_add_digest(keccak_digest())){
+    //     printf("failed\n");
+    //     goto end;
+    // }
+    // ENGINE_register_all_complete();
 //    if (suola_implementation_init() != 0) {       // TODO: figure this out
 //        errorf("suola_implementation_init failed\n");
 //        goto end;
@@ -127,6 +160,7 @@ static int bind(ENGINE *e, const char *id){
     end:
     return ret;
 }
+
 
 static int pkey_meths(ENGINE *e, EVP_PKEY_METHOD **pmeth, const int **nids, int nid){
     if (!pmeth){
@@ -187,6 +221,8 @@ static int register_methods(){
     }
     return 1;
 }
+
+
 
 IMPLEMENT_DYNAMIC_CHECK_FN()
 IMPLEMENT_DYNAMIC_BIND_FN(bind)

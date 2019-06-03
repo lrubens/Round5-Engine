@@ -6,6 +6,8 @@
 #include "objects_internal.h"
 
 int NID_ROUND5;
+int NID_KECCAK;
+int NID_DILITHIUM;
 
 
 static int _register_nid(const char *oid_str, const char *sn, const char *ln) {
@@ -49,6 +51,8 @@ int get_nid(){
 int _register_nids()
 {
     _REGISTER_NID(ROUND5);
+    _REGISTER_NID(KECCAK);
+    _REGISTER_NID(DILITHIUM);
 
 //    SUOLA_REGISTER_NID(ED25519);
 

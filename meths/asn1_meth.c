@@ -39,6 +39,7 @@ static void pki_free(EVP_PKEY *pkey){
         // free(kpair);
     }
     //free(&kpair->pk);
+    pkey = NULL;
 
     
 }
@@ -105,7 +106,7 @@ static int pki_gen_pub_print(BIO *bp, const EVP_PKEY *pkey, int indent, ASN1_PCT
 
 static int pki_gen_ctrl(int nid, EVP_PKEY *pkey, int op, long arg1, void *arg2)
 {
-    ROUND5_KEYPAIR *kp = NULL;
+    struct ROUND5 *kp = NULL;
     const unsigned char *p = NULL;
     const struct round5_nid_data_st *nid_data = round5_get_nid_data(nid);
     int pklen = 0;
@@ -128,7 +129,7 @@ static int pki_gen_ctrl(int nid, EVP_PKEY *pkey, int op, long arg1, void *arg2)
 //                return 0;
 //            }
 
-            memcpy(kp->key.pk, p, pklen);
+            memcpy(kp->pk, p, pklen);
 
             EVP_PKEY_assign(pkey, nid, kp);
             return 1;
@@ -138,7 +139,7 @@ static int pki_gen_ctrl(int nid, EVP_PKEY *pkey, int op, long arg1, void *arg2)
             kp = EVP_PKEY_get0(pkey);
             if (kp == NULL && nid == kp->nid) {
                 unsigned char **ppt = arg2;
-                *ppt = OPENSSL_memdup(kp->key.sk, nid_data->pk_bytes);    // TODO: figure out pubk_bytes
+                *ppt = OPENSSL_memdup(kp->sk, nid_data->pk_bytes);    // TODO: figure out pubk_bytes
                 if (*ppt != NULL)
                     return nid_data->pk_bytes;
             }
@@ -340,7 +341,7 @@ static int pki_gen_pub_encode(X509_PUBKEY *pub,  EVP_PKEY *pk)
     ASN1_OBJECT *algobj = NULL;
     ASN1_OCTET_STRING *octet = NULL;
     void *pval = NULL;
-    unsigned char *buf = NULL, *databuf = NULL;
+    unsigned char *databuf = NULL;
     int data_len, ret = -1;
     int ptype = V_ASN1_UNDEF ;
     struct ROUND5 *kpair = EVP_PKEY_get0(pk);
@@ -354,7 +355,9 @@ static int pki_gen_pub_encode(X509_PUBKEY *pub,  EVP_PKEY *pk)
     databuf = OPENSSL_memdup(kpair->pk, PKLEN);
     if (!databuf)
         printf("Invalid key\n\n");
-    return X509_PUBKEY_set0_param(pub, algobj, ptype, pval, databuf, PKLEN);
+    X509_PUBKEY_set0_param(pub, algobj, ptype, pval, databuf, PKLEN);
+    free(databuf);
+    return 1;
 }
 
 static int pki_gen_pub_decode(EVP_PKEY *pkey, X509_PUBKEY *pubkey)
@@ -372,7 +375,7 @@ static int pki_gen_pub_decode(EVP_PKEY *pkey, X509_PUBKEY *pubkey)
     kpair->pk = OPENSSL_malloc(pub_len);
     memcpy(kpair->pk, pubkey_buf, pub_len);
     EVP_PKEY_assign(pkey, NID_ROUND5, kpair);
-    // OPENSSL_free(kpair->pk);
+    OPENSSL_free(kpair->pk);
     return 1;
 }
 
@@ -393,6 +396,6 @@ int _register_asn1_meth(int nid, EVP_PKEY_ASN1_METHOD **ameth, const char *pem_s
 #ifndef OPENSSL_V102_COMPAT
     EVP_PKEY_asn1_set_security_bits(*ameth, pki_curve25519_security_bits);
 #endif
-    EVP_PKEY_asn1_set_free(*ameth, pki_free);
+    //EVP_PKEY_asn1_set_free(*ameth, pki_free);
     return 1;
 }

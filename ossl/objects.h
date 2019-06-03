@@ -10,8 +10,16 @@
 #ifdef NID_ROUND5
 #undef NID_ROUND5
 #endif
+#ifdef NID_KECCAK
+#undef NID_KECCAK
+#endif
+#ifdef NID_DILITHIUM
+#undef NID_DILITHIUM
+#endif
 
 extern int NID_ROUND5;
+extern int NID_KECCAK;
+extern int NID_DILITHIUM;
 
 int _register_nids();
 int get_nid();

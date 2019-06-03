@@ -43,17 +43,17 @@ struct certKey * gen_cert(){
   //kpair->key.pk = pk;
   //kpair->key.sk = sk;
   //OPENSSL_config(NULL);
-  //SSL_library_init();
-  //SSL_load_error_strings();
+  // SSL_library_init();
+  // SSL_load_error_strings();
   OPENSSL_add_all_algorithms_conf();
   ERR_load_crypto_strings();
   ENGINE_load_dynamic();
   ENGINE *round5_engine;
 	T(round5_engine = ENGINE_by_id("round5"));
 	T(ENGINE_init(round5_engine));
-  T(ENGINE_set_default(round5_engine, ENGINE_METHOD_ALL));
-	// T(ENGINE_set_default(round5_engine, ENGINE_METHOD_PKEY_METHS));
-  // T(ENGINE_set_default(round5_engine, ENGINE_METHOD_PKEY_ASN1_METHS));
+  // T(ENGINE_set_default(round5_engine, ENGINE_METHOD_ALL));
+	T(ENGINE_set_default(round5_engine, ENGINE_METHOD_PKEY_METHS));
+  T(ENGINE_set_default(round5_engine, ENGINE_METHOD_PKEY_ASN1_METHS));
 
   // Testing Engine functions
   char *algname = "Round5";
@@ -67,7 +67,9 @@ struct certKey * gen_cert(){
 	//T(EVP_PKEY_CTX_ctrl_str(ctx, "paramset", paramset));
   EVP_PKEY *pkey = NULL;
   pkey = EVP_PKEY_new();
+  printf("\nkeygen\n");
   T((EVP_PKEY_keygen(ctx, &pkey)) == 1);
+  printf("\npost keygen\n");
   
   // BIO *b = NULL;
   // b = BIO_new(BIO_s_mem());
@@ -134,7 +136,7 @@ struct certKey * gen_cert(){
   cleanup:
   ENGINE_finish(round5_engine);
   ENGINE_free(round5_engine);
-  ENGINE_cleanup();
+  //ENGINE_cleanup();
   return c;
 }
 
@@ -148,7 +150,7 @@ int main(int argc, const char* argv[]){
   BIGNUM *bne = NULL;
   //BIO *bp_public = NULL, *bp_private = NULL;
 
-  int bits = 2048;
+  int bits = 1024;
   unsigned long e = RSA_F4;
 
   bne = BN_new();
