@@ -20,23 +20,23 @@
 // 	return ret;
 // }
 
-void *OPENSSL_memdup(const void *src, size_t size)
-{
-    void *ret = OPENSSL_malloc(size);
-    if (ret != NULL) {
-        memcpy(ret, src, size);
-    }
-    return ret;
-}
+// void *OPENSSL_memdup(const void *src, size_t size)
+// {
+//     void *ret = OPENSSL_malloc(size);
+//     if (ret != NULL) {
+//         memcpy(ret, src, size);
+//     }
+//     return ret;
+// }
 
-void CRYPTO_clear_free(void *src, size_t oldlen, const char *file, int line)
-{
-    if (src == NULL)
-        return;
-    if (oldlen > 0)
-        OPENSSL_cleanse(src, oldlen);
-    CRYPTO_free(src);
-}
+// void CRYPTO_clear_free(void *src, size_t oldlen, const char *file, int line)
+// {
+//     if (src == NULL)
+//         return;
+//     if (oldlen > 0)
+//         OPENSSL_cleanse(src, oldlen);
+//     CRYPTO_free(src);
+// }
 
 void *CRYPTO_clear_realloc(void *src, size_t oldlen, size_t newlen, const char *file, int line)
 {

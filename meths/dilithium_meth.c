@@ -94,22 +94,27 @@ static int dilithium_signctx(EVP_PKEY_CTX *ctx, unsigned char *sig,
 //     return 1;
 // }
 int keccak_digest_init(EVP_MD_CTX *ctx){
+    printf("\nstarted digest_init\n");
+    return 1;
     struct digest_init_ctx *c = EVP_MD_CTX_md_data(ctx);
     c->data = malloc(2048);
     c->len = 2048;
     c->offset = 0;
     Keccak_HashInitialize_SHA3_256(c->instance); 
+    printf("\nfinished digest_init\n");
     return 1;
 }
 
 int keccak_digest_update(EVP_MD_CTX *ctx, void *data, size_t count){
     struct digest_init_ctx *c = EVP_MD_CTX_md_data(ctx);
     Keccak_HashUpdate(c->instance, data, count);
+    printf("\nfinished digest_update\n");
     return 1;
 }
 int keccak_digest_final(EVP_MD_CTX *ctx, unsigned char *digest){
     struct digest_init_ctx *c = EVP_MD_CTX_md_data(ctx);
     Keccak_HashFinal(c->instance, digest);
+    printf("\ndigest: %s\n", digest);
     return 1;
 }
 

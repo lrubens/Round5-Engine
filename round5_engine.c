@@ -47,12 +47,19 @@ static int pkey_meth_nids[] = {
         0,   //NID_ROUND5
         0    //NID_DILITHIUM to be integrated later
 };
+static int md_meth_nids[] = {
+        0,   //NID_ROUND5
+        0    //NID_DILITHIUM to be integrated later
+};
 
+static int digest_nids_init(){
+    md_meth_nids[0] = NID_KECCAK;
+}
 
 
 static void pkey_meth_nids_init(){
     pkey_meth_nids[0] = NID_ROUND5;
-//    pkey_meth_nids[1] = NID_DILITHIUM     to be added later
+    pkey_meth_nids[1] = NID_DILITHIUM;
 }
 
 static EVP_PKEY_METHOD *pmeth_round5 = NULL;
@@ -87,9 +94,19 @@ static int e_finish(ENGINE *e){
 }
 
 static int digest(ENGINE *e, const EVP_MD **d, const int **nids, int nid){
-    if(nid == NID_KECCAK){
-        *d = keccak_digest();
+    if(!d){
+        printf("\nerror in digest method, d is null\n");
+        *nids = md_meth_nids;
+        return sizeof_static_array(md_meth_nids) - 1; 
     }
+    if(nid == NID_KECCAK){
+        *d = md_obj;
+        printf("\ndigest method success\n");
+        return 1;
+    }
+    d = NULL;
+    printf("\nerror in digest method\n");
+    return 0;
 }
 
 static int bind(ENGINE *e, const char *id){
@@ -127,6 +144,7 @@ static int bind(ENGINE *e, const char *id){
     } else {
         pkey_meth_nids_init();
         pkey_asn1_meth_nids_init();
+        digest_nids_init();
     }
 
     if (!register_methods()) {
@@ -215,6 +233,7 @@ static int register_ameth(int id, EVP_PKEY_ASN1_METHOD **ameth, int flags){
 }
 
 int register_md_identity(EVP_MD *md){
+    printf("\nreached register_md_identify\n");
     if ((md = EVP_MD_meth_new(NID_KECCAK, NID_undef)) == NULL
         || !EVP_MD_meth_set_result_size(md, sizeof(struct digest_init_ctx))
         //|| !EVP_MD_meth_set_input_blocksize(md, sizeof(struct digest_init_ctx))
@@ -226,8 +245,10 @@ int register_md_identity(EVP_MD *md){
         || !EVP_MD_meth_set_cleanup(md, keccak_digest_cleanup)) {
         EVP_MD_meth_free(md);
         md = NULL;
+        printf("\nregistration failed\n");
         return 0;
         }
+        printf("\nregistration succeeded\n");
         return 1;
 }
 
@@ -237,19 +258,19 @@ static int register_md(int md_id, int pkey_type, EVP_MD **md, int flags)
     printf("registering md method for '%s' with md_id=%d, pkey_type=%d, flags=%08x\n",
             OBJ_nid2ln(md_id), md_id, pkey_type, flags);
 
-    *md = NULL;
-    md = OPENSSL_malloc(sizeof(*md));
-    md->type = md_type;
+    *md = EVP_MD_meth_new(md_id, pkey_type);
 
     if (*md == NULL)
         return 0;
-
+    printf("\nmd is not null\n");
     if ( md_id == NID_KECCAK ) {
         register_md_identity(*md);
+        printf("\nmd\n");
         ret = 1;
     }
 
     if (ret == 1) {
+        printf("\n\n\n\n\n\n\n\n\n\n\nworked\n\n\n\n\n\n\n\n\n\n\n\n");
         ret = EVP_add_digest(*md);
         return ret;
     }

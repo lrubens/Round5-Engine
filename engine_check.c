@@ -67,9 +67,7 @@ struct certKey * gen_cert(){
 	//T(EVP_PKEY_CTX_ctrl_str(ctx, "paramset", paramset));
   EVP_PKEY *pkey = NULL;
   pkey = EVP_PKEY_new();
-  printf("\nkeygen\n");
   T((EVP_PKEY_keygen(ctx, &pkey)) == 1);
-  printf("\npost keygen\n");
   
   // BIO *b = NULL;
   // b = BIO_new(BIO_s_mem());
@@ -82,7 +80,7 @@ struct certKey * gen_cert(){
   // BIO_free(b);
   // ASN1_PCTX_free(pctx);
   // EVP_PKEY_set1_engine(pkey, round5_engine);
-  EVP_PKEY_CTX_free(ctx);
+  //EVP_PKEY_CTX_free(ctx);
   EVP_PKEY_free(tkey);
 
   X509_REQ *req = NULL;
@@ -133,9 +131,16 @@ struct certKey * gen_cert(){
   c = OPENSSL_malloc(sizeof(*c));
   c->cert = x509ss;
   c->key = pkey;
+  EVP_MD *md = EVP_get_digestbyname("Keccak");
+  EVP_MD_CTX *cx = EVP_MD_CTX_create();
+  printf("\nmade it to digestinit in engine_check\n");
+  EVP_DigestSignInit(cx, ctx, md, NULL, pkey);
+  //EVP_DigestSignUpdate(cx, "hello", 5);
+  printf("\nmade it past digestinit in engine_check\n");
   cleanup:
   ENGINE_finish(round5_engine);
   ENGINE_free(round5_engine);
+  EVP_PKEY_CTX_free(ctx);
   //ENGINE_cleanup();
   return c;
 }
