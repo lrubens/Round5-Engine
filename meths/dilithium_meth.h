@@ -38,5 +38,8 @@ int keccak_digest_final(EVP_MD_CTX *ctx, unsigned char *digest);
 int keccak_digest_copy(EVP_MD_CTX *to, const EVP_MD_CTX *from);
 int keccak_digest_cleanup(EVP_MD_CTX *ctx);
 EVP_MD * keccak_digest(void);
+void pki_register_dilithium(EVP_PKEY_METHOD *pmeth);
+static int dilithium_sign(EVP_PKEY_CTX *ctx, unsigned char *sig, size_t *siglen, const unsigned char *tbs, size_t tbs_len);
+//unsigned char *h(const unsigned char *dgst, int dlen, struct ROUND5 *key);
 
 #endif //DILITHIUM_METH_H

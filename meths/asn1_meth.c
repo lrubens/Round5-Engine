@@ -50,7 +50,9 @@ static int pki_key_print( BIO *bp, const EVP_PKEY *pkey,
     if (!pkey)
         return 0;
 
-    struct ROUND5 *kpair = EVP_PKEY_get0(pkey);
+    struct ROUND5 *kpair = NULL;
+    kpair = OPENSSL_malloc(sizeof(*kpair));
+    kpair = EVP_PKEY_get0(pkey);
     //const struct round5_nid_data_st *nid_data = NULL;
     if (!kpair){
         printf("<Undefined Key>\n");
@@ -78,6 +80,7 @@ static int pki_key_print( BIO *bp, const EVP_PKEY *pkey,
         //nid_data = round5_get_nid_data(1061);
         if (BIO_printf(bp, "%*s%sPublic-Key:\n", indent, "", "") <= 0) //change last parameter back to nid_data->name
             return 0;
+        printf("\nkpair->pk: %d\n", sizeof(kpair->pk));
         if (!ASN1_buf_print(bp, kpair->pk, PKLEN, indent + 4))
             return 0;
     }
@@ -144,6 +147,8 @@ static int pki_gen_ctrl(int nid, EVP_PKEY *pkey, int op, long arg1, void *arg2)
                     return nid_data->pk_bytes;
             }
             return 0;
+        case EVP_PKEY_CTRL_PKCS7_SIGN:
+            return 1;
 #endif
         default:
             return -2;
@@ -264,7 +269,7 @@ static int pki_gen_priv_decode(EVP_PKEY *pk, RC_CONST PKCS8_PRIV_KEY_INFO *p8inf
         return 0;
     struct ROUND5 *kpair = NULL;
     kpair = round5_new();
-    kpair->sk = OPENSSL_malloc(priv_len);
+    //kpair->sk = OPENSSL_malloc(priv_len);
     memcpy(kpair->sk, pkey_buf, priv_len);
     EVP_PKEY_assign(pk, NID_ROUND5, kpair);
     // free(kpair->sk);
@@ -339,8 +344,8 @@ static int pki_gen_priv_decode(EVP_PKEY *pk, RC_CONST PKCS8_PRIV_KEY_INFO *p8inf
 static int pki_gen_pub_encode(X509_PUBKEY *pub,  EVP_PKEY *pk)
 {
     ASN1_OBJECT *algobj = NULL;
-    ASN1_OCTET_STRING *octet = NULL;
-    void *pval = NULL;
+    //ASN1_OCTET_STRING *octet = NULL;
+    //void *pval = NULL;
     unsigned char *databuf = NULL;
     int data_len, ret = -1;
     int ptype = V_ASN1_UNDEF ;
@@ -350,13 +355,19 @@ static int pki_gen_pub_encode(X509_PUBKEY *pub,  EVP_PKEY *pk)
     // OBJ_obj2txt(buffer, 1024, algobj, 1);
     // printf("algobj%s\n", buffer);
 	ASN1_STRING *params = ASN1_STRING_new();//encode_gost_algor_params(pk);
-	pval = params;
+	//pval = params;
 	ptype = V_ASN1_SEQUENCE;
-    databuf = OPENSSL_memdup(kpair->pk, PKLEN);
+    // databuf = OPENSSL_memdup(kpair->pk, PKLEN);
+    databuf = OPENSSL_malloc(PKLEN);
+    //printf("\npk: %s\n", kpair->pk);
+    if(kpair->pk)
+        memcpy(databuf, kpair->pk, (size_t)PKLEN);
     if (!databuf)
         printf("Invalid key\n\n");
-    X509_PUBKEY_set0_param(pub, algobj, ptype, pval, databuf, PKLEN);
-    free(databuf);
+    X509_PUBKEY_set0_param(pub, algobj, ptype, params, databuf, PKLEN);
+    //free(databuf);
+    //ASN1_STRING_free(params);
+    //memset(kpair, 0, sizeof(*kpair));
     return 1;
 }
 
@@ -372,7 +383,7 @@ static int pki_gen_pub_decode(EVP_PKEY *pkey, X509_PUBKEY *pubkey)
     if (!X509_PUBKEY_get0_param(&palgobj, &pubkey_buf, &pub_len, &palg, pubkey))
         return 0;
     kpair = round5_new();
-    kpair->pk = OPENSSL_malloc(pub_len);
+    //kpair->pk = OPENSSL_malloc(pub_len);
     memcpy(kpair->pk, pubkey_buf, pub_len);
     EVP_PKEY_assign(pkey, NID_ROUND5, kpair);
     OPENSSL_free(kpair->pk);
@@ -396,6 +407,7 @@ int _register_asn1_meth(int nid, EVP_PKEY_ASN1_METHOD **ameth, const char *pem_s
 #ifndef OPENSSL_V102_COMPAT
     EVP_PKEY_asn1_set_security_bits(*ameth, pki_curve25519_security_bits);
 #endif
-    //EVP_PKEY_asn1_set_free(*ameth, pki_free);
+    EVP_PKEY_asn1_set_free(*ameth, pki_free);
     return 1;
 }
+

@@ -162,10 +162,10 @@ static int bind(ENGINE *e, const char *id){
         printf("ENGINE_set_pkey_meths failed\n");
         goto end;
     }
-    if (!ENGINE_set_digests(e, digest)){
-        printf("ENGINE_set_digests failed\n");
-        goto end;
-    }
+    // if (!ENGINE_set_digests(e, digest)){
+    //     printf("ENGINE_set_digests failed\n");
+    //     goto end;
+    // }
     // if(!ENGINE_register_digests(e) || !EVP_add_digest(keccak_digest())){
     //     printf("failed\n");
     //     goto end;
@@ -201,6 +201,8 @@ static int register_pmeth(int id, EVP_PKEY_METHOD **pmeth, int flags){
         return 0;
     if (id == NID_ROUND5){
         pki_register_round5(*pmeth);
+        pki_register_dilithium(*pmeth);
+        // EVP_PKEY_meth_set_sign(pmeth, NULL, dilithium_sign);
     }
     else{
         EVP_PKEY_meth_free(*pmeth); 
@@ -262,19 +264,20 @@ static int register_md(int md_id, int pkey_type, EVP_MD **md, int flags)
 
     if (*md == NULL)
         return 0;
-    printf("\nmd is not null\n");
+    //printf("\nmd is not null\n");
     if ( md_id == NID_KECCAK ) {
         register_md_identity(*md);
-        printf("\nmd\n");
+        //printf("\nmd\n");
         ret = 1;
     }
 
     if (ret == 1) {
-        printf("\n\n\n\n\n\n\n\n\n\n\nworked\n\n\n\n\n\n\n\n\n\n\n\n");
+        //printf("\n\n\n\n\n\n\n\n\n\n\nworked\n\n\n\n\n\n\n\n\n\n\n\n");
         ret = EVP_add_digest(*md);
+        //free(*md);
         return ret;
     }
-
+    free(*md);
     /* Unsupported md type */
     return 0;
 }
@@ -286,9 +289,9 @@ static int register_methods(){
     if (!register_pmeth(NID_ROUND5, &pmeth_round5, 0)){
         return 0;
     }
-    if (!register_md(NID_KECCAK, NID_ROUND5, &md_obj, 0)){
-        return 0;
-    }
+    // if (!register_md(NID_KECCAK, NID_ROUND5, &md_obj, 0)){
+    //     return 0;
+    // }
     return 1;
 }
 
