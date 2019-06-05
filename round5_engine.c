@@ -100,11 +100,11 @@ static int digest(ENGINE *e, const EVP_MD **d, const int **nids, int nid){
         return sizeof_static_array(md_meth_nids) - 1; 
     }
     if(nid == NID_KECCAK){
-        *d = md_obj;
+        *d = keccak_digest();
         printf("\ndigest method success\n");
         return 1;
     }
-    d = NULL;
+    *d = NULL;
     printf("\nerror in digest method\n");
     return 0;
 }
@@ -142,6 +142,7 @@ static int bind(ENGINE *e, const char *id){
         printf("Failure registering NIDs\n");
         goto end;
     } else {
+        printf("\nregistered nids\n");
         pkey_meth_nids_init();
         pkey_asn1_meth_nids_init();
         digest_nids_init();
@@ -162,14 +163,20 @@ static int bind(ENGINE *e, const char *id){
         printf("ENGINE_set_pkey_meths failed\n");
         goto end;
     }
-    // if (!ENGINE_set_digests(e, digest)){
-    //     printf("ENGINE_set_digests failed\n");
-    //     goto end;
-    // }
-    // if(!ENGINE_register_digests(e) || !EVP_add_digest(keccak_digest())){
-    //     printf("failed\n");
-    //     goto end;
-    // }
+    if(!ENGINE_register_digests(e) || !EVP_add_digest(md_obj)){
+        printf("failed\n");
+        goto end;
+    }
+    if (!ENGINE_set_digests(e, digest)){
+        printf("ENGINE_set_digests failed\n");
+        goto end;
+    }
+    else{
+        if(md_obj){
+            printf("\nnot null\n");
+        }
+    }
+    
     // ENGINE_register_all_complete();
 //    if (suola_implementation_init() != 0) {       // TODO: figure this out
 //        errorf("suola_implementation_init failed\n");
@@ -249,9 +256,9 @@ int register_md_identity(EVP_MD *md){
         md = NULL;
         printf("\nregistration failed\n");
         return 0;
-        }
-        printf("\nregistration succeeded\n");
-        return 1;
+    }
+    printf("\nregistration succeeded\n");
+    return 1;
 }
 
 static int register_md(int md_id, int pkey_type, EVP_MD **md, int flags)
@@ -267,7 +274,7 @@ static int register_md(int md_id, int pkey_type, EVP_MD **md, int flags)
     //printf("\nmd is not null\n");
     if ( md_id == NID_KECCAK ) {
         register_md_identity(*md);
-        //printf("\nmd\n");
+        printf("\nmd: %s\n", OBJ_nid2ln(NID_KECCAK));
         ret = 1;
     }
 
@@ -289,9 +296,9 @@ static int register_methods(){
     if (!register_pmeth(NID_ROUND5, &pmeth_round5, 0)){
         return 0;
     }
-    // if (!register_md(NID_KECCAK, NID_ROUND5, &md_obj, 0)){
-    //     return 0;
-    // }
+    if (!register_md(NID_KECCAK, NID_ROUND5, &md_obj, 0)){
+        return 0;
+    }
     return 1;
 }
 

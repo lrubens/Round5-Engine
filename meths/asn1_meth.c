@@ -80,7 +80,6 @@ static int pki_key_print( BIO *bp, const EVP_PKEY *pkey,
         //nid_data = round5_get_nid_data(1061);
         if (BIO_printf(bp, "%*s%sPublic-Key:\n", indent, "", "") <= 0) //change last parameter back to nid_data->name
             return 0;
-        printf("\nkpair->pk: %d\n", sizeof(kpair->pk));
         if (!ASN1_buf_print(bp, kpair->pk, PKLEN, indent + 4))
             return 0;
     }

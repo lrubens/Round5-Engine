@@ -33,6 +33,7 @@ static int keygen(EVP_PKEY_CTX *ctx, EVP_PKEY *pkey){
     kpair = EVP_PKEY_get0(pkey);
     parameters *params;
     params = set_parameters_from_api();
+    printf("\nparams->ct_size: %d\n",params->ct_size);
     if (!kpair){
         kpair = OPENSSL_malloc(sizeof(*kpair));
         EVP_PKEY_assign(pkey, NID_ROUND5, kpair);
@@ -41,6 +42,8 @@ static int keygen(EVP_PKEY_CTX *ctx, EVP_PKEY *pkey){
     
     if (!round5_sk_to_pk(kpair->pk, kpair->sk, params))
         goto err;
+    //test_func(kpair->sk);
+    //exit(0);
     printf("\n\nFinished printing: %d\n\n", sizeof(kpair->pk));
     //EVP_PKEY_assign(pkey, NID_ROUND5, kpair);
     //printf("\n\n\n\n%d\n\n\n\n", sizeof(kpair->sk));
