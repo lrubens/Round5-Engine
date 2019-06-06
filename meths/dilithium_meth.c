@@ -203,6 +203,7 @@ EVP_MD *keccak_digest(void){
             md = NULL;
         }
         keccak = md;
+        EVP_MD_meth_free(md);
     }
     return keccak;
 }

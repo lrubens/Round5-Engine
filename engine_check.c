@@ -84,18 +84,17 @@ static void generateSimpleRawMaterial(unsigned char *data, unsigned int length, 
   pkey = EVP_PKEY_new();
   T((EVP_PKEY_keygen(ctx, &pkey)) == 1);
   
-  BIO *b = NULL;
-  b = BIO_new(BIO_s_mem());
-  ASN1_PCTX *pctx = NULL;
-  pctx = ASN1_PCTX_new();
-  unsigned char *private_key_text = NULL;
-  EVP_PKEY_print_public(b, pkey, 4, pctx);
-  BIO_get_mem_data(b, &private_key_text);
-  printf("%s\n", private_key_text);
-  BIO_free(b);
-  ASN1_PCTX_free(pctx);
-  EVP_PKEY_set1_engine(pkey, round5_engine);
-  EVP_PKEY_CTX_free(ctx);
+  // BIO *b = NULL;
+  // b = BIO_new(BIO_s_mem());
+  // ASN1_PCTX *pctx = NULL;
+  // pctx = ASN1_PCTX_new();
+  // unsigned char *private_key_text = NULL;
+  // EVP_PKEY_print_public(b, pkey, 4, pctx);
+  // BIO_get_mem_data(b, &private_key_text);
+  // printf("%s\n", private_key_text);
+  // BIO_free(b);
+  // ASN1_PCTX_free(pctx);
+  // EVP_PKEY_set1_engine(pkey, round5_engine);
   EVP_PKEY_free(tkey);
   //EVP_PKEY_CTX_free(ctx);
 
@@ -141,19 +140,37 @@ static void generateSimpleRawMaterial(unsigned char *data, unsigned int length, 
   T(X509_add_ext(x509ss, ext, 2));
   X509_EXTENSION_free(ext);
 
-
-  
+  unsigned char msg[] = "hello";
+  printf("\nmsg len: %d\n", strlen(msg));
+  int len = strlen(msg);
+  EVP_PKEY_CTX *tx = NULL;
+  T(tx = EVP_PKEY_CTX_new(pkey, NULL));
+  EVP_PKEY_encrypt_init(tx);
+  size_t buflen = 1525 + len;
+  unsigned char buf[1525 + len];
+  EVP_PKEY_encrypt(tx, buf, &buflen, msg, len); 
+  printf("\nencrypted message: %s\n", buf);
+  EVP_PKEY_decrypt_init(tx);
+  unsigned char buf2[len];
+  EVP_PKEY_decrypt(tx, buf2, &len, buf, buflen);
+  printf("\ndecrypted message: %s\n", buf2);
+  printf("\nmsg len: %d\n", strlen(buf2));
   // struct certKey *c = NULL;
   // c = OPENSSL_malloc(sizeof(*c));
   // c->cert = malloc(sizeof(c->cert));
   // c->key = malloc(sizeof(c->key));
+
+
+   
   c->cert = x509ss;
   c->key = pkey;
+  /*
   EVP_MD *md = EVP_get_digestbyname("Keccak");
   // printf("\nnid keccak: %s\n", OBJ_nid2ln(NID_KECCAK));
   // EVP_MD *md = EVP_get_digestbynid(NID_KECCAK);
   EVP_MD_CTX *cx = EVP_MD_CTX_create();
-  EVP_DigestInit(cx, md);
+  EVP_MD_CTX_init(cx);
+  EVP_DigestInit_ex(cx, md, NULL);
   printf("\ndigest init\n");
   unsigned char *msg = "hello wo";
   EVP_DigestUpdate(cx, msg, strlen(msg));
@@ -161,8 +178,12 @@ static void generateSimpleRawMaterial(unsigned char *data, unsigned int length, 
   unsigned char *buf = NULL;
   buf = malloc(64);
   unsigned int *buflen = 64;
-  EVP_DigestFinal(cx, buf, buflen);
+  EVP_DigestFinal_ex(cx, buf, NULL);
   printf("\ndigest final\n");
+  */
+
+
+
   //printf("\nbuf: %s\n", buf);
   // size_t siglen = 2713;
   // unsigned char *sig;
@@ -180,12 +201,14 @@ static void generateSimpleRawMaterial(unsigned char *data, unsigned int length, 
   //EVP_DigestSignUpdate(cx, "hello", 5);
   
   cleanup:
-  // ENGINE_finish(round5_engine);
-  // ENGINE_free(round5_engine);
+  EVP_PKEY_CTX_free(ctx);
+  EVP_PKEY_CTX_free(tx);
+  ENGINE_finish(round5_engine);
+  ENGINE_free(round5_engine);
   //EVP_PKEY_CTX_free(ctx);
   // EVP_MD_CTX_free(cx);
-  printf("\nfinished\n");
-  //ENGINE_cleanup();
+  // printf("\nfinished\n");
+  ENGINE_cleanup();
   return 1;
 }
 
@@ -260,7 +283,7 @@ int signature(){
   T(EVP_PKEY_CTX_ctrl_str(ctx1, "paramset", NULL));
   EVP_PKEY *key2 = NULL;
   err = EVP_PKEY_keygen(ctx1, &key2);
-  printf("\tEVP_PKEY_*_str:\t\t");
+  // printf("\tEVP_PKEY_*_str:\t\t");
   //print_test_result(err);
 
   BIO *b = NULL;
@@ -301,26 +324,26 @@ int main(int argc, const char* argv[]){
   // return 0;
   struct certKey *c = NULL;
   c = OPENSSL_malloc(sizeof(*c));
-  c->cert = NULL;
-  c->cert = malloc(sizeof(c->cert));
-  c->key = NULL;
-  c->key = malloc(sizeof(c->key));
-  printf("\n%d\n", sizeof(struct certKey));
+  // c->cert = NULL;
+  // c->cert = malloc(sizeof(c->cert));
+  // c->key = NULL;
+  // c->key = malloc(sizeof(c->key));
+  // printf("\n%d\n", sizeof(struct certKey));
   gen_cert(c);
-  printf("\npast gen_cert\n");
-  BIO *b = NULL;
-  b = BIO_new(BIO_s_mem());
-  ASN1_PCTX *pctx = NULL;
-  pctx = ASN1_PCTX_new();
-  unsigned char *private_key_text = NULL;
-  private_key_text = malloc(2048);
-  EVP_PKEY_print_public(b, c->key, 4, pctx);
-  BIO_get_mem_data(b, &private_key_text);
-  printf("\nhello1\n");
-  printf("%s\n", private_key_text);
-  printf("\nhello\n");
-  //BIO_free(b);
-  ASN1_PCTX_free(pctx);
+  // printf("\npast gen_cert\n");
+  // BIO *b = NULL;
+  // b = BIO_new(BIO_s_mem());
+  // ASN1_PCTX *pctx = NULL;
+  // pctx = ASN1_PCTX_new();
+  // unsigned char *private_key_text = NULL;
+  // private_key_text = malloc(2048);
+  // EVP_PKEY_print_public(b, c->key, 4, pctx);
+  // BIO_get_mem_data(b, &private_key_text);
+  // printf("\nhello1\n");
+  // printf("%s\n", private_key_text);
+  // printf("\nhello\n");
+  // //BIO_free(b);
+  // ASN1_PCTX_free(pctx);
   // /c = gen_cert();
   // int ret = X509_sign(c->cert, c->key, (EVP_MD *)EVP_sha256());
   //T(EVP_PKEY_set_type_str(c->key, "RSA", 3));
@@ -348,32 +371,32 @@ int main(int argc, const char* argv[]){
   EVP_MD_CTX *mctx = NULL;
   T(mctx = EVP_MD_CTX_new());
   T(EVP_DigestSignInit(mctx, NULL, EVP_sha512(), NULL, pkey));
-  printf("\nbefore x509 sign\n");
+  // printf("\nbefore x509 sign\n");
   T(X509_sign_ctx(c->cert, mctx));
   EVP_MD_CTX_free(mctx);
   // printf("\nreturn: %d\n", ret);
-  X509_print_fp(stdout, c->cert);
-  FILE * f = fopen("key.pem", "wb");
-  PEM_write_PrivateKey(
-    f,                  /* write the key to the file we've opened */
-    c->key,               /* our key from earlier */
-    EVP_des_ede3_cbc(), /* default cipher for encrypting the key on disk */
-    (unsigned char *)"hello",       /* passphrase required for decrypting the key on disk */
-    5,                 /* length of the passphrase string */
-    NULL,               /* callback for requesting a password */
-    NULL                /* data to pass to the callback */
-  );
-  fclose(f);
-  FILE * f2 = fopen("cert.pem", "wb");
-  PEM_write_X509(
-      f2,   /* write the certificate to the file we've opened */
-      c->cert /* our certificate */
-  );
-  fclose(f2);
-  //BN_free(bne);
+  // X509_print_fp(stdout, c->cert);
+  // FILE * f = fopen("key.pem", "wb");
+  // PEM_write_PrivateKey(
+  //   f,                  /* write the key to the file we've opened */
+  //   c->key,               /* our key from earlier */
+  //   EVP_des_ede3_cbc(), /* default cipher for encrypting the key on disk */
+  //   (unsigned char *)"hello",       /* passphrase required for decrypting the key on disk */
+  //   5,                 /* length of the passphrase string */
+  //   NULL,               /* callback for requesting a password */
+  //   NULL                /* data to pass to the callback */
+  // );
+  // fclose(f);
+  // FILE * f2 = fopen("cert.pem", "wb");
+  // PEM_write_X509(
+  //     f2,   /* write the certificate to the file we've opened */
+  //     c->cert /* our certificate */
+  // );
+  // fclose(f2);
+  BN_free(bne);
   EVP_PKEY_free(pkey);
   X509_free(c->cert);
-  EVP_PKEY_free(c->key);
+  //EVP_PKEY_free(c->key);
   free(c);
 }
 

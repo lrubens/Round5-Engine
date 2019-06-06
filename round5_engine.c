@@ -64,7 +64,7 @@ static void pkey_meth_nids_init(){
 
 static EVP_PKEY_METHOD *pmeth_round5 = NULL;
 
-static EVP_MD *md_obj = NULL;
+// static EVP_MD *md_obj = NULL;
 
 static int register_ameth(int id, EVP_PKEY_ASN1_METHOD **ameth, int flags);
 
@@ -85,6 +85,7 @@ static int e_init(ENGINE *e){
 }
 
 static int e_destroy(ENGINE *e){
+    // EVP_MD_meth_free(md_obj);
     OBJ_cleanup();
     return 1;
 }
@@ -95,17 +96,20 @@ static int e_finish(ENGINE *e){
 
 static int digest(ENGINE *e, const EVP_MD **d, const int **nids, int nid){
     if(!d){
-        printf("\nerror in digest method, d is null\n");
+        // printf("\nerror in digest method, d is null\n");
         *nids = md_meth_nids;
         return sizeof_static_array(md_meth_nids) - 1; 
     }
     if(nid == NID_KECCAK){
         *d = keccak_digest();
-        printf("\ndigest method success\n");
+        // printf("\ndigest method success\n");
         return 1;
     }
-    *d = NULL;
-    printf("\nerror in digest method\n");
+    EVP_MD_meth_free(*d);
+    EVP_MD_meth_free(d);
+    // *d = NULL;
+    // printf("\nerror in digest method\n");
+    
     return 0;
 }
 
@@ -142,7 +146,7 @@ static int bind(ENGINE *e, const char *id){
         printf("Failure registering NIDs\n");
         goto end;
     } else {
-        printf("\nregistered nids\n");
+        // printf("\nregistered nids\n");
         pkey_meth_nids_init();
         pkey_asn1_meth_nids_init();
         digest_nids_init();
@@ -163,7 +167,8 @@ static int bind(ENGINE *e, const char *id){
         printf("ENGINE_set_pkey_meths failed\n");
         goto end;
     }
-    if(!ENGINE_register_digests(e) || !EVP_add_digest(md_obj)){
+    //  || !EVP_add_digest(md_obj)
+    if(!ENGINE_register_digests(e)){
         printf("failed\n");
         goto end;
     }
@@ -171,11 +176,11 @@ static int bind(ENGINE *e, const char *id){
         printf("ENGINE_set_digests failed\n");
         goto end;
     }
-    else{
-        if(md_obj){
-            printf("\nnot null\n");
-        }
-    }
+    // else{
+    //     if(md_obj){
+    //         printf("\nnot null\n");
+    //     }
+    // }
     
     // ENGINE_register_all_complete();
 //    if (suola_implementation_init() != 0) {       // TODO: figure this out
@@ -242,7 +247,7 @@ static int register_ameth(int id, EVP_PKEY_ASN1_METHOD **ameth, int flags){
 }
 
 int register_md_identity(EVP_MD *md){
-    printf("\nreached register_md_identify\n");
+    // printf("\nreached register_md_identify\n");
     if ((md = EVP_MD_meth_new(NID_KECCAK, NID_undef)) == NULL
         || !EVP_MD_meth_set_result_size(md, sizeof(struct digest_init_ctx))
         //|| !EVP_MD_meth_set_input_blocksize(md, sizeof(struct digest_init_ctx))
@@ -254,18 +259,18 @@ int register_md_identity(EVP_MD *md){
         || !EVP_MD_meth_set_cleanup(md, keccak_digest_cleanup)) {
         EVP_MD_meth_free(md);
         md = NULL;
-        printf("\nregistration failed\n");
+        // printf("\nregistration failed\n");
         return 0;
     }
-    printf("\nregistration succeeded\n");
+    // printf("\nregistration succeeded\n");
     return 1;
 }
 
 static int register_md(int md_id, int pkey_type, EVP_MD **md, int flags)
 {
     int ret = 0;
-    printf("registering md method for '%s' with md_id=%d, pkey_type=%d, flags=%08x\n",
-            OBJ_nid2ln(md_id), md_id, pkey_type, flags);
+    // printf("registering md method for '%s' with md_id=%d, pkey_type=%d, flags=%08x\n",
+            // OBJ_nid2ln(md_id), md_id, pkey_type, flags);
 
     *md = EVP_MD_meth_new(md_id, pkey_type);
 
@@ -274,7 +279,7 @@ static int register_md(int md_id, int pkey_type, EVP_MD **md, int flags)
     //printf("\nmd is not null\n");
     if ( md_id == NID_KECCAK ) {
         register_md_identity(*md);
-        printf("\nmd: %s\n", OBJ_nid2ln(NID_KECCAK));
+        // printf("\nmd: %s\n", OBJ_nid2ln(NID_KECCAK));
         ret = 1;
     }
 
@@ -284,7 +289,7 @@ static int register_md(int md_id, int pkey_type, EVP_MD **md, int flags)
         //free(*md);
         return ret;
     }
-    free(*md);
+    EVP_MD_meth_free(*md);
     /* Unsupported md type */
     return 0;
 }
@@ -296,9 +301,10 @@ static int register_methods(){
     if (!register_pmeth(NID_ROUND5, &pmeth_round5, 0)){
         return 0;
     }
-    if (!register_md(NID_KECCAK, NID_ROUND5, &md_obj, 0)){
-        return 0;
-    }
+    // if (!register_md(NID_KECCAK, NID_ROUND5, &md_obj, 0)){
+    //     return 0;
+    // }
+    // EVP_MD_meth_free(md_obj);
     return 1;
 }
 
