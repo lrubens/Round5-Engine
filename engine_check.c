@@ -32,6 +32,18 @@ struct certKey{
   EVP_PKEY *key;
 };
 
+static void generateSimpleRawMaterial(unsigned char *data, unsigned int length, unsigned char seed1, unsigned int seed2){
+  unsigned int i;
+  for(i = 0; i < length; i++){
+    unsigned char iRolled;
+    unsigned char byte;
+    seed2 = seed2 % 8;
+    iRolled = ((unsigned char)i << seed2) | ((unsigned char)i >> (8 - seed2));
+    byte = seed1 + 161*length - iRolled + i;
+    data[i] = byte;
+  }
+}
+
 /*struct certKey **/int gen_cert(struct certKey *c){
   // parameters *params;
   // params = set_parameters_from_api();
@@ -137,21 +149,21 @@ struct certKey{
   // c->key = malloc(sizeof(c->key));
   c->cert = x509ss;
   c->key = pkey;
-  printf("\n%d\n", sizeof(*c));
   EVP_MD *md = EVP_get_digestbyname("Keccak");
   // printf("\nnid keccak: %s\n", OBJ_nid2ln(NID_KECCAK));
   // EVP_MD *md = EVP_get_digestbynid(NID_KECCAK);
   EVP_MD_CTX *cx = EVP_MD_CTX_create();
   EVP_DigestInit(cx, md);
   printf("\ndigest init\n");
-  unsigned char *msg = "hello world";
+  unsigned char *msg = "hello wo";
   EVP_DigestUpdate(cx, msg, strlen(msg));
   printf("\ndigest update\n");
   unsigned char *buf = NULL;
   buf = malloc(64);
   unsigned int *buflen = 64;
   EVP_DigestFinal(cx, buf, buflen);
-  printf("\nbuf: %s\n", buf);
+  printf("\ndigest final\n");
+  //printf("\nbuf: %s\n", buf);
   // size_t siglen = 2713;
   // unsigned char *sig;
   // T(sig = OPENSSL_malloc(siglen));
@@ -171,7 +183,7 @@ struct certKey{
   // ENGINE_finish(round5_engine);
   // ENGINE_free(round5_engine);
   //EVP_PKEY_CTX_free(ctx);
-  EVP_MD_CTX_free(cx);
+  // EVP_MD_CTX_free(cx);
   printf("\nfinished\n");
   //ENGINE_cleanup();
   return 1;

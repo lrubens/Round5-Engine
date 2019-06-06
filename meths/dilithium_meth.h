@@ -23,11 +23,18 @@ struct DILITHIUM{
 //     unsigned char * data;
 // };
 
+
+
 struct digest_init_ctx{
-    unsigned long long offset;
-    unsigned long long len;
-    unsigned char *data;
-    Keccak_HashInstance instance;
+    // unsigned long long offset;
+    // unsigned long long len;
+    // unsigned char *data;
+    Keccak_HashInstance *instance;
+};
+
+struct hash_ctx{
+    struct digest_init_ctx dgst;
+    Keccak_HashInstance inst;
 };
 
 static int dilithium_init(EVP_PKEY_CTX *ctx);

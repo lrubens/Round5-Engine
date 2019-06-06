@@ -103,19 +103,48 @@ static int dilithium_signctx(EVP_PKEY_CTX *ctx, unsigned char *sig,
 //     return 1;
 // }
 int keccak_digest_init(EVP_MD_CTX *ctx){
-    printf("\nstarted digest_init\n");
-    struct digest_init_ctx *c = (struct digest_init_ctx *)EVP_MD_CTX_md_data(ctx);
-    memset(&(c->instance), 0, sizeof(Keccak_HashInstance));
-
-    Keccak_HashInitialize_SHA3_256(&(c->instance));
+    
+    struct hash_ctx *c = EVP_MD_CTX_md_data(ctx);
+    memset(&(c->dgst), 0, sizeof(struct digest_init_ctx));
+    Keccak_HashInstance h;
+    // Keccak_HashInitialize_SHAKE256(&(c->inst));
+    Keccak_HashInitialize_SHAKE256(&h);
+    // gost_init(&(c->cctx), &GostR3411_94_CryptoProParamSet);
+    c->dgst.instance = &(h);
     return 1;
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // printf("\nstarted digest_init\n");
+    // struct digest_init_ctx *c = EVP_MD_CTX_md_data(ctx);;
+    // // c = malloc(sizeof(*c));
+    // // c = EVP_MD_CTX_md_data(ctx);
+    // Keccak_HashInstance h; 
+    // // memset(&(c->instance), 0, sizeof(Keccak_HashInstance));
+    // // c->instance = h;
+
+    // // Keccak_HashInitialize_SHAKE256((Keccak_HashInstance *)EVP_MD_CTX_md_data(ctx));
+    // Keccak_HashInitialize_SHAKE256((EVP_MD_CTX_md_data(ctx)));
+
+    // return 1;
 }
 
 int keccak_digest_update(EVP_MD_CTX *ctx, void *data, size_t count){
     // Keccak_HashInstance *inst = EVP_MD_CTX_md_data(ctx);
     // Keccak_HashInstance anything;
-     
-    Keccak_HashUpdate((Keccak_HashInstance *) EVP_MD_CTX_md_data(ctx), data, count);
+    printf("started digest_update");
+    struct hash_ctx *c = EVP_MD_CTX_md_data(ctx);
+    // struct digest_init_ctx *c = EVP_MD_CTX_md_data(ctx);
+    // c->instance = malloc(sizeof(*(c->instance)));
+    // memset((c->instance), 0, sizeof(*(c->instance)));
+    Keccak_HashUpdate(c->dgst.instance, data, count);
+    printf("\nafter hashupdate\n");
     // Keccak_HashUpdate(&anything, data, count);
 
     //exit(0);
@@ -124,9 +153,17 @@ int keccak_digest_update(EVP_MD_CTX *ctx, void *data, size_t count){
 int keccak_digest_final(EVP_MD_CTX *ctx, unsigned char *digest){
     // struct digest_init_ctx *c = malloc(sizeof(struct digest_init_ctx));
     // c = EVP_MD_CTX_md_data(ctx);
-    
-    Keccak_HashFinal((Keccak_HashInstance *) EVP_MD_CTX_md_data(ctx), digest);
-    //Keccak_HashSqueeze((Keccak_HashInstance *) EVP_MD_CTX_md_data(ctx), digest, 64);
+    printf("\nstarted digest_final\n");
+    struct hash_ctx *c = NULL;
+    // c = malloc(sizeof(*c));
+    // c->instance = malloc(sizeof(*(c->instance)));
+    c = EVP_MD_CTX_md_data(ctx);
+    // digest = malloc(64);
+    // memset((c->instance), 0, sizeof(*(c->instance)));
+    // Keccak_HashFinal(&(c->instance), digest);
+    Keccak_HashFinal(c->dgst.instance, digest);
+    //Keccak_HashSqueeze(&(c->instance), digest, 64);
+    printf("\ndigest:  %s\n", digest);
     return 1;
 }
 
