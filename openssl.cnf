@@ -1,0 +1,13 @@
+openssl_conf  = openssl_def
+
+[openssl_def]
+engines = engine_section
+
+[engine_section]
+round5 = round5_section
+
+[round5_section]
+engine_id = round5
+dynamic_path = /usr/local/ssl/lib/engines-1.1/round5.so
+default_algorithms = ALL
+

@@ -1,0 +1,169 @@
+<?xml version="1.0"?>
+<target name="generic64/libkeccak.a">
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keccak/KeccakSponge-common.h</h><I>lib/high/Keccak/</I>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keccak/KeccakSponge.inc</h><I>lib/high/Keccak/</I>
+    
+        <c xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keccak/KeccakSpongeWidth200.c</c>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keccak/KeccakSpongeWidth200.h</h><I>lib/high/Keccak/</I>
+    
+        <c xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keccak/KeccakSpongeWidth400.c</c>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keccak/KeccakSpongeWidth400.h</h><I>lib/high/Keccak/</I>
+    
+        <c xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keccak/KeccakSpongeWidth800.c</c>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keccak/KeccakSpongeWidth800.h</h><I>lib/high/Keccak/</I>
+    
+        <c xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keccak/KeccakSpongeWidth1600.c</c>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keccak/KeccakSpongeWidth1600.h</h><I>lib/high/Keccak/</I>
+    
+        <c xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keccak/FIPS202/SimpleFIPS202.c</c>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keccak/FIPS202/SimpleFIPS202.h</h><I>lib/high/Keccak/FIPS202/</I>
+        <c xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keccak/FIPS202/KeccakHash.c</c>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keccak/FIPS202/KeccakHash.h</h><I>lib/high/Keccak/FIPS202/</I>
+    
+        <c xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keccak/SP800-185/SP800-185.c</c>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keccak/SP800-185/SP800-185.inc</h><I>lib/high/Keccak/SP800-185/</I>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keccak/SP800-185/SP800-185.h</h><I>lib/high/Keccak/SP800-185/</I>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/common/Phases.h</h><I>lib/high/common/</I>
+    
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keccak/KeccakDuplex-common.h</h><I>lib/high/Keccak/</I>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keccak/KeccakDuplex.inc</h><I>lib/high/Keccak/</I>
+    
+        <c xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keccak/KeccakDuplexWidth200.c</c>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keccak/KeccakDuplexWidth200.h</h><I>lib/high/Keccak/</I>
+    
+        <c xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keccak/KeccakDuplexWidth400.c</c>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keccak/KeccakDuplexWidth400.h</h><I>lib/high/Keccak/</I>
+    
+        <c xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keccak/KeccakDuplexWidth800.c</c>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keccak/KeccakDuplexWidth800.h</h><I>lib/high/Keccak/</I>
+    
+        <c xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keccak/KeccakDuplexWidth1600.c</c>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keccak/KeccakDuplexWidth1600.h</h><I>lib/high/Keccak/</I>
+    
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keccak/PRG/KeccakPRG-common.h</h><I>lib/high/Keccak/PRG/</I>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keccak/PRG/KeccakPRG.inc</h><I>lib/high/Keccak/PRG/</I>
+    
+        <c xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keccak/PRG/KeccakPRGWidth200.c</c>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keccak/PRG/KeccakPRGWidth200.h</h><I>lib/high/Keccak/PRG/</I>
+    
+        <c xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keccak/PRG/KeccakPRGWidth400.c</c>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keccak/PRG/KeccakPRGWidth400.h</h><I>lib/high/Keccak/PRG/</I>
+    
+        <c xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keccak/PRG/KeccakPRGWidth800.c</c>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keccak/PRG/KeccakPRGWidth800.h</h><I>lib/high/Keccak/PRG/</I>
+    
+        <c xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keccak/PRG/KeccakPRGWidth1600.c</c>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keccak/PRG/KeccakPRGWidth1600.h</h><I>lib/high/Keccak/PRG/</I>
+    
+        <c xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/KangarooTwelve/KangarooTwelve.c</c>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/KangarooTwelve/KangarooTwelve.h</h><I>lib/high/KangarooTwelve/</I>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/common/Phases.h</h><I>lib/high/common/</I>
+    
+        <c xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Kravatte/Kravatte.c</c>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Kravatte/Kravatte.h</h><I>lib/high/Kravatte/</I>
+        <c xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Kravatte/KravatteModes.c</c>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Kravatte/KravatteModes.h</h><I>lib/high/Kravatte/</I>
+    
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/common/brg_endian.h</h><I>lib/common/</I>
+        <gcc xmlns:xi="http://www.w3.org/2001/XInclude">-fomit-frame-pointer</gcc>
+        <gcc xmlns:xi="http://www.w3.org/2001/XInclude">-O2</gcc>
+        <gcc xmlns:xi="http://www.w3.org/2001/XInclude">-g0</gcc>
+        <gcc xmlns:xi="http://www.w3.org/2001/XInclude">-march=native</gcc>
+        <gcc xmlns:xi="http://www.w3.org/2001/XInclude">-mtune=native</gcc>
+    
+    
+        <c xmlns:xi="http://www.w3.org/2001/XInclude">lib/low/KeccakP-200/Reference/KeccakP-200-reference.c</c>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/low/KeccakP-200/Reference/KeccakP-200-reference.h</h><I>lib/low/KeccakP-200/Reference/</I>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/low/KeccakP-200/Reference/KeccakP-200-SnP.h</h><I>lib/low/KeccakP-200/Reference/</I>
+    
+    
+        <c xmlns:xi="http://www.w3.org/2001/XInclude">lib/low/KeccakP-400/Reference/KeccakP-400-reference.c</c>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/low/KeccakP-400/Reference/KeccakP-400-reference.h</h><I>lib/low/KeccakP-400/Reference/</I>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/low/KeccakP-400/Reference/KeccakP-400-SnP.h</h><I>lib/low/KeccakP-400/Reference/</I>
+    
+    
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/low/KeccakP-800/Optimized32/KeccakP-800-SnP.h</h><I>lib/low/KeccakP-800/Optimized32/</I>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/low/KeccakP-800/Optimized32/KeccakP-800-opt32-bis.macros</h><I>lib/low/KeccakP-800/Optimized32/</I>
+        <c xmlns:xi="http://www.w3.org/2001/XInclude">lib/low/KeccakP-800/Optimized32/KeccakP-800-opt32.c</c>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/low/KeccakP-800/Optimized32/KeccakP-800-opt32.macros</h><I>lib/low/KeccakP-800/Optimized32/</I>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/low/KeccakP-800/Optimized32/KeccakP-800-unrolling-bis.macros</h><I>lib/low/KeccakP-800/Optimized32/</I>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/low/KeccakP-800/Optimized32/KeccakP-800-unrolling.macros</h><I>lib/low/KeccakP-800/Optimized32/</I>
+    
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/low/KeccakP-800/Optimized32/ufull/KeccakP-800-opt32-config.h</h><I>lib/low/KeccakP-800/Optimized32/ufull/</I>
+    
+    
+        <c xmlns:xi="http://www.w3.org/2001/XInclude">lib/low/KeccakP-1600/Optimized64/KeccakP-1600-opt64.c</c>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/low/KeccakP-1600/Optimized/KeccakP-1600-unrolling.macros</h><I>lib/low/KeccakP-1600/Optimized/</I>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/low/KeccakP-1600/Optimized/KeccakP-1600-64.macros</h><I>lib/low/KeccakP-1600/Optimized/</I>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/low/KeccakP-1600/Optimized64/KeccakP-1600-SnP.h</h><I>lib/low/KeccakP-1600/Optimized64/</I>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/low/common/SnP-Relaned.h</h><I>lib/low/common/</I>
+        <gcc xmlns:xi="http://www.w3.org/2001/XInclude">-m64</gcc>
+    
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/low/KeccakP-1600/Optimized64/ufull/KeccakP-1600-opt64-config.h</h><I>lib/low/KeccakP-1600/Optimized64/ufull/</I>
+    
+        <c xmlns:xi="http://www.w3.org/2001/XInclude">lib/low/KeccakP-1600-times2/FallbackOn1/KeccakP-1600-times2-on1.c</c>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/low/KeccakP-1600-times2/FallbackOn1/KeccakP-1600-times2-SnP.h</h><I>lib/low/KeccakP-1600-times2/FallbackOn1/</I>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/low/common/PlSnP-Fallback.inc</h><I>lib/low/common/</I>
+    
+        <c xmlns:xi="http://www.w3.org/2001/XInclude">lib/low/KeccakP-1600-times4/FallbackOn1/KeccakP-1600-times4-on1.c</c>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/low/KeccakP-1600-times4/FallbackOn1/KeccakP-1600-times4-SnP.h</h><I>lib/low/KeccakP-1600-times4/FallbackOn1/</I>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/low/common/PlSnP-Fallback.inc</h><I>lib/low/common/</I>
+    
+        <c xmlns:xi="http://www.w3.org/2001/XInclude">lib/low/KeccakP-1600-times8/FallbackOn1/KeccakP-1600-times8-on1.c</c>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/low/KeccakP-1600-times8/FallbackOn1/KeccakP-1600-times8-SnP.h</h><I>lib/low/KeccakP-1600-times8/FallbackOn1/</I>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/low/common/PlSnP-Fallback.inc</h><I>lib/low/common/</I>
+    
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/low/Ketje/SnP-compliant/Ket.inc</h><I>lib/low/Ketje/SnP-compliant/</I>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/low/Ketje/SnP-compliant/Ket-common.h</h><I>lib/low/Ketje/SnP-compliant/</I>
+    
+        <c xmlns:xi="http://www.w3.org/2001/XInclude">lib/low/Ketje/SnP-compliant/KetJr.c</c>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/low/Ketje/SnP-compliant/KetJr.h</h><I>lib/low/Ketje/SnP-compliant/</I>
+    
+        <c xmlns:xi="http://www.w3.org/2001/XInclude">lib/low/Ketje/SnP-compliant/KetSr.c</c>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/low/Ketje/SnP-compliant/KetSr.h</h><I>lib/low/Ketje/SnP-compliant/</I>
+    
+        <c xmlns:xi="http://www.w3.org/2001/XInclude">lib/low/Ketje/SnP-compliant/KetMn.c</c>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/low/Ketje/SnP-compliant/KetMn.h</h><I>lib/low/Ketje/SnP-compliant/</I>
+    
+        <c xmlns:xi="http://www.w3.org/2001/XInclude">lib/low/Ketje/SnP-compliant/KetMj.c</c>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/low/Ketje/SnP-compliant/KetMj.h</h><I>lib/low/Ketje/SnP-compliant/</I>
+    
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Ketje/Ketje-common.h</h><I>lib/high/Ketje/</I>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Ketje/Ketjev2.inc</h><I>lib/high/Ketje/</I>
+    
+        <c xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Ketje/KetjeJr.c</c>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Ketje/KetjeJr.h</h><I>lib/high/Ketje/</I>
+    
+        <c xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Ketje/KetjeSr.c</c>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Ketje/KetjeSr.h</h><I>lib/high/Ketje/</I>
+    
+        <c xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Ketje/KetjeMn.c</c>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Ketje/KetjeMn.h</h><I>lib/high/Ketje/</I>
+    
+        <c xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Ketje/KetjeMj.c</c>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Ketje/KetjeMj.h</h><I>lib/high/Ketje/</I>
+    
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Ketje/Ketjev2.h</h><I>lib/high/Ketje/</I>
+    
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keyak/Motorist.inc</h><I>lib/high/Keyak/</I>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keyak/Keyak-common.h</h><I>lib/high/Keyak/</I>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keyak/Keyakv2.inc</h><I>lib/high/Keyak/</I>
+    
+        <c xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keyak/RiverKeyak.c</c>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keyak/RiverKeyak.h</h><I>lib/high/Keyak/</I>
+    
+        <c xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keyak/LakeKeyak.c</c>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keyak/LakeKeyak.h</h><I>lib/high/Keyak/</I>
+    
+        <c xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keyak/SeaKeyak.c</c>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keyak/SeaKeyak.h</h><I>lib/high/Keyak/</I>
+    
+        <c xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keyak/OceanKeyak.c</c>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keyak/OceanKeyak.h</h><I>lib/high/Keyak/</I>
+    
+        <c xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keyak/LunarKeyak.c</c>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/high/Keyak/LunarKeyak.h</h><I>lib/high/Keyak/</I>
+    
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/common/align.h</h><I>lib/common/</I>
+        <h xmlns:xi="http://www.w3.org/2001/XInclude">lib/common/brg_endian.h</h><I>lib/common/</I>
+    </target>
