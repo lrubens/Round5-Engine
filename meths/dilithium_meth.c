@@ -423,16 +423,23 @@ int test_func(unsigned char *sk)
     poly c, chat;
     polyvecl mat[K], s1, s1hat;
     polyveck t0, s2, t, t1;
-
-    rho = seedbuf;
-    tr = rho + SEEDBYTES;
-    key = tr + CRHBYTES;
+    rhoprime = rho + SEEDBYTES;
+    // rho = seedbuf;
+    // tr = rho + SEEDBYTES;
+    // key = tr + CRHBYTES;
     // mu = key + SEEDBYTES;
     // rhoprime = mu + CRHBYTES;
     // printf("\nkey: %s\n", key);
     // printf("\ntr: %s\n", tr);
     // printf("\nrho: %s\n", rho);
-    unpack_sk(rho, key, tr, &s1, &s2, &t0, sk);
+    unpack_pk(rho, &t1, pk);
+    expand_mat(mat, rho);
+    for(int i = 0; i < L; i++){
+        poly_uniform_eta(&s1.vec[i], rhoprime, nonce++);
+    }
+    for(int i = 0; i < K; i++){
+        poly_uniform_eta(&s2.vec[i], rhoprime, nonce++);
+    }
     mu = key + SEEDBYTES;
     rhoprime = mu + CRHBYTES;
     expand_mat(mat, rho);

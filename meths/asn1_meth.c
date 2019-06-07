@@ -51,7 +51,7 @@ static int pki_key_print( BIO *bp, const EVP_PKEY *pkey,
         return 0;
 
     struct ROUND5 *kpair = NULL;
-    kpair = OPENSSL_malloc(sizeof(*kpair));
+    //kpair = OPENSSL_malloc(sizeof(*kpair));
     kpair = EVP_PKEY_get0(pkey);
     //const struct round5_nid_data_st *nid_data = NULL;
     if (!kpair){
