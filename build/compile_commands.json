@@ -1,0 +1,332 @@
+[
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -Dround5_engine_EXPORTS -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -lkeccak -lcrypto -lssl -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/round5_engine.dir/meths/round5_meth.c.o   -c /home/rubensl/Post-Quantum-PKI/meths/round5_meth.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/meths/round5_meth.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -Dround5_engine_EXPORTS -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -lkeccak -lcrypto -lssl -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/round5_engine.dir/meths/asn1_meth.c.o   -c /home/rubensl/Post-Quantum-PKI/meths/asn1_meth.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/meths/asn1_meth.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -Dround5_engine_EXPORTS -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -lkeccak -lcrypto -lssl -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.o   -c /home/rubensl/Post-Quantum-PKI/meths/dilithium_meth.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/meths/dilithium_meth.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -Dround5_engine_EXPORTS -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -lkeccak -lcrypto -lssl -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/round5_engine.dir/ossl/objects.c.o   -c /home/rubensl/Post-Quantum-PKI/ossl/objects.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/ossl/objects.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -Dround5_engine_EXPORTS -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -lkeccak -lcrypto -lssl -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/round5_engine.dir/ossl/ossl_compat.c.o   -c /home/rubensl/Post-Quantum-PKI/ossl/ossl_compat.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/ossl/ossl_compat.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -Dround5_engine_EXPORTS -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -lkeccak -lcrypto -lssl -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/round5_engine.dir/keypair.c.o   -c /home/rubensl/Post-Quantum-PKI/keypair.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/keypair.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -Dround5_engine_EXPORTS -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -lkeccak -lcrypto -lssl -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/round5_engine.dir/dilithium/ref/PQCgenKAT_sign.c.o   -c /home/rubensl/Post-Quantum-PKI/dilithium/ref/PQCgenKAT_sign.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/dilithium/ref/PQCgenKAT_sign.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -Dround5_engine_EXPORTS -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -lkeccak -lcrypto -lssl -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/round5_engine.dir/dilithium/ref/aes256ctr.c.o   -c /home/rubensl/Post-Quantum-PKI/dilithium/ref/aes256ctr.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/dilithium/ref/aes256ctr.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -Dround5_engine_EXPORTS -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -lkeccak -lcrypto -lssl -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/round5_engine.dir/dilithium/ref/ntt.c.o   -c /home/rubensl/Post-Quantum-PKI/dilithium/ref/ntt.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/dilithium/ref/ntt.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -Dround5_engine_EXPORTS -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -lkeccak -lcrypto -lssl -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/round5_engine.dir/dilithium/ref/packing.c.o   -c /home/rubensl/Post-Quantum-PKI/dilithium/ref/packing.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/dilithium/ref/packing.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -Dround5_engine_EXPORTS -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -lkeccak -lcrypto -lssl -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/round5_engine.dir/dilithium/ref/poly.c.o   -c /home/rubensl/Post-Quantum-PKI/dilithium/ref/poly.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/dilithium/ref/poly.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -Dround5_engine_EXPORTS -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -lkeccak -lcrypto -lssl -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/round5_engine.dir/dilithium/ref/polyvec.c.o   -c /home/rubensl/Post-Quantum-PKI/dilithium/ref/polyvec.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/dilithium/ref/polyvec.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -Dround5_engine_EXPORTS -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -lkeccak -lcrypto -lssl -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/round5_engine.dir/dilithium/ref/reduce.c.o   -c /home/rubensl/Post-Quantum-PKI/dilithium/ref/reduce.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/dilithium/ref/reduce.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -Dround5_engine_EXPORTS -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -lkeccak -lcrypto -lssl -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/round5_engine.dir/dilithium/ref/rounding.c.o   -c /home/rubensl/Post-Quantum-PKI/dilithium/ref/rounding.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/dilithium/ref/rounding.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -Dround5_engine_EXPORTS -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -lkeccak -lcrypto -lssl -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/round5_engine.dir/dilithium/ref/sign.c.o   -c /home/rubensl/Post-Quantum-PKI/dilithium/ref/sign.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/dilithium/ref/sign.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/dilithium.dir/dilithium/ref/PQCgenKAT_sign.c.o   -c /home/rubensl/Post-Quantum-PKI/dilithium/ref/PQCgenKAT_sign.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/dilithium/ref/PQCgenKAT_sign.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/dilithium.dir/dilithium/ref/aes256ctr.c.o   -c /home/rubensl/Post-Quantum-PKI/dilithium/ref/aes256ctr.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/dilithium/ref/aes256ctr.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/dilithium.dir/dilithium/ref/ntt.c.o   -c /home/rubensl/Post-Quantum-PKI/dilithium/ref/ntt.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/dilithium/ref/ntt.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/dilithium.dir/dilithium/ref/packing.c.o   -c /home/rubensl/Post-Quantum-PKI/dilithium/ref/packing.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/dilithium/ref/packing.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/dilithium.dir/dilithium/ref/poly.c.o   -c /home/rubensl/Post-Quantum-PKI/dilithium/ref/poly.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/dilithium/ref/poly.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/dilithium.dir/dilithium/ref/polyvec.c.o   -c /home/rubensl/Post-Quantum-PKI/dilithium/ref/polyvec.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/dilithium/ref/polyvec.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/dilithium.dir/dilithium/ref/reduce.c.o   -c /home/rubensl/Post-Quantum-PKI/dilithium/ref/reduce.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/dilithium/ref/reduce.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/dilithium.dir/dilithium/ref/rounding.c.o   -c /home/rubensl/Post-Quantum-PKI/dilithium/ref/rounding.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/dilithium/ref/rounding.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/dilithium.dir/dilithium/ref/sign.c.o   -c /home/rubensl/Post-Quantum-PKI/dilithium/ref/sign.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/dilithium/ref/sign.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/xkcp.dir/XKCP/lib/high/KangarooTwelve/KangarooTwelve.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/KangarooTwelve/KangarooTwelve.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/XKCP/lib/high/KangarooTwelve/KangarooTwelve.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/xkcp.dir/XKCP/lib/high/Keccak/FIPS202/KeccakHash.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/FIPS202/KeccakHash.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/FIPS202/KeccakHash.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/xkcp.dir/XKCP/lib/high/Keccak/FIPS202/SimpleFIPS202.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/FIPS202/SimpleFIPS202.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/FIPS202/SimpleFIPS202.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/xkcp.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth1600.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakDuplexWidth1600.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakDuplexWidth1600.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/xkcp.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth200.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakDuplexWidth200.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakDuplexWidth200.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/xkcp.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth400.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakDuplexWidth400.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakDuplexWidth400.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/xkcp.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth800.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakDuplexWidth800.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakDuplexWidth800.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/xkcp.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth1600.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakSpongeWidth1600.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakSpongeWidth1600.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/xkcp.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth200.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakSpongeWidth200.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakSpongeWidth200.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/xkcp.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth400.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakSpongeWidth400.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakSpongeWidth400.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/xkcp.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth800.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakSpongeWidth800.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakSpongeWidth800.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/xkcp.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth1600.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth1600.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth1600.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/xkcp.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth200.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth200.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth200.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/xkcp.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth400.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth400.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth400.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/xkcp.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth800.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth800.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth800.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/xkcp.dir/XKCP/lib/high/Keccak/SP800-185/SP800-185.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/SP800-185/SP800-185.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/SP800-185/SP800-185.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/xkcp.dir/XKCP/lib/high/Keyak/LakeKeyak.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keyak/LakeKeyak.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keyak/LakeKeyak.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/xkcp.dir/XKCP/lib/high/Keyak/LunarKeyak.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keyak/LunarKeyak.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keyak/LunarKeyak.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/xkcp.dir/XKCP/lib/high/Keyak/OceanKeyak.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keyak/OceanKeyak.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keyak/OceanKeyak.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/xkcp.dir/XKCP/lib/high/Keyak/RiverKeyak.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keyak/RiverKeyak.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keyak/RiverKeyak.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/xkcp.dir/XKCP/lib/high/Keyak/SeaKeyak.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keyak/SeaKeyak.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keyak/SeaKeyak.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/round5.dir/Round5/reference/src/a_fixed.c.o   -c /home/rubensl/Post-Quantum-PKI/Round5/reference/src/a_fixed.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/Round5/reference/src/a_fixed.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/round5.dir/Round5/reference/src/a_random.c.o   -c /home/rubensl/Post-Quantum-PKI/Round5/reference/src/a_random.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/Round5/reference/src/a_random.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/round5.dir/Round5/reference/src/cca_encrypt.c.o   -c /home/rubensl/Post-Quantum-PKI/Round5/reference/src/cca_encrypt.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/Round5/reference/src/cca_encrypt.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/round5.dir/Round5/reference/src/cpa_kem.c.o   -c /home/rubensl/Post-Quantum-PKI/Round5/reference/src/cpa_kem.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/Round5/reference/src/cpa_kem.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/round5.dir/Round5/reference/src/drbg.c.o   -c /home/rubensl/Post-Quantum-PKI/Round5/reference/src/drbg.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/Round5/reference/src/drbg.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/round5.dir/Round5/reference/src/little_endian.c.o   -c /home/rubensl/Post-Quantum-PKI/Round5/reference/src/little_endian.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/Round5/reference/src/little_endian.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/round5.dir/Round5/reference/src/misc.c.o   -c /home/rubensl/Post-Quantum-PKI/Round5/reference/src/misc.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/Round5/reference/src/misc.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/round5.dir/Round5/reference/src/nist_rng.c.o   -c /home/rubensl/Post-Quantum-PKI/Round5/reference/src/nist_rng.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/Round5/reference/src/nist_rng.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/round5.dir/Round5/reference/src/pack.c.o   -c /home/rubensl/Post-Quantum-PKI/Round5/reference/src/pack.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/Round5/reference/src/pack.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/round5.dir/Round5/reference/src/parameters.c.o   -c /home/rubensl/Post-Quantum-PKI/Round5/reference/src/parameters.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/Round5/reference/src/parameters.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/round5.dir/Round5/reference/src/r5_cca_kem.c.o   -c /home/rubensl/Post-Quantum-PKI/Round5/reference/src/r5_cca_kem.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/Round5/reference/src/r5_cca_kem.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/round5.dir/Round5/reference/src/r5_cca_pke.c.o   -c /home/rubensl/Post-Quantum-PKI/Round5/reference/src/r5_cca_pke.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/Round5/reference/src/r5_cca_pke.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/round5.dir/Round5/reference/src/r5_core.c.o   -c /home/rubensl/Post-Quantum-PKI/Round5/reference/src/r5_core.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/Round5/reference/src/r5_core.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/round5.dir/Round5/reference/src/r5_cpa_kem.c.o   -c /home/rubensl/Post-Quantum-PKI/Round5/reference/src/r5_cpa_kem.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/Round5/reference/src/r5_cpa_kem.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/round5.dir/Round5/reference/src/r5_cpa_pke.c.o   -c /home/rubensl/Post-Quantum-PKI/Round5/reference/src/r5_cpa_pke.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/Round5/reference/src/r5_cpa_pke.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/round5.dir/Round5/reference/src/r5_dem.c.o   -c /home/rubensl/Post-Quantum-PKI/Round5/reference/src/r5_dem.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/Round5/reference/src/r5_dem.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/round5.dir/Round5/reference/src/r5_hash.c.o   -c /home/rubensl/Post-Quantum-PKI/Round5/reference/src/r5_hash.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/Round5/reference/src/r5_hash.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/round5.dir/Round5/reference/src/r5_memory.c.o   -c /home/rubensl/Post-Quantum-PKI/Round5/reference/src/r5_memory.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/Round5/reference/src/r5_memory.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/round5.dir/Round5/reference/src/r5_parameter_sets.c.o   -c /home/rubensl/Post-Quantum-PKI/Round5/reference/src/r5_parameter_sets.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/Round5/reference/src/r5_parameter_sets.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/round5.dir/Round5/reference/src/shake.c.o   -c /home/rubensl/Post-Quantum-PKI/Round5/reference/src/shake.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/Round5/reference/src/shake.c"
+},
+{
+  "directory": "/home/rubensl/Post-Quantum-PKI/build",
+  "command": "/usr/bin/c99-gcc -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/dilithium/ref -I/home/rubensl/Post-Quantum-PKI/Round5/reference/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers  -g -fPIC   -fPIC -Xlinker -zmuldefs -g -lcrypto -lssl -lm -Xlinker -zmuldefs -o CMakeFiles/round5.dir/Round5/reference/src/xef_ref.c.o   -c /home/rubensl/Post-Quantum-PKI/Round5/reference/src/xef_ref.c",
+  "file": "/home/rubensl/Post-Quantum-PKI/Round5/reference/src/xef_ref.c"
+}
+]
