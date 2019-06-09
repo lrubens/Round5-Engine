@@ -9,7 +9,7 @@
 #include "../keypair.h"
 #include "../../dilithium/ref/packing.h"
 #include <inttypes.h>
-#include "../reference/src/r5_cca_pke.h"
+#include "../../reference/src/r5_cca_pke.h"
 //#include "KeccakHash.h"
 
 static EVP_MD *keccak = NULL;

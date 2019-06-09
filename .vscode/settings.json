@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "r5_cpa_kem.h": "c"
+        "r5_cpa_kem.h": "c",
+        "parameters.h": "c"
     }
 }

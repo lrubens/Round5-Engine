@@ -3,14 +3,14 @@
 //
 
 #include "round5_meth.h"
-#include "../reference/src/r5_cca_pke.h"
-#include "../reference/src/parameters.h"
-#include "../reference/src/r5_memory.c"
-#include "../reference/src/r5_cpa_kem.h"
-#include "../reference/src/misc.h"
-#include "../reference/src/r5_memory.h"
-#include "../reference/src/rng.h"
-#include "../reference/src/a_fixed.h"
+#include "../../reference/src/r5_cca_pke.h"
+#include "../../reference/src/parameters.h"
+#include "../../reference/src/r5_memory.c"
+#include "../../reference/src/r5_cpa_kem.h"
+#include "../../reference/src/misc.h"
+#include "../../reference/src/r5_memory.h"
+#include "../../reference/src/rng.h"
+#include "../../reference/src/a_fixed.h"
 #include <openssl/crypto.h>
 #include <openssl/err.h>
 #include <openssl/ec.h>
