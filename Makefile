@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/rubensl/Post-Quantum-PKI
+CMAKE_SOURCE_DIR = /home/gfleming/Post-Quantum-PKI
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/rubensl/Post-Quantum-PKI
+CMAKE_BINARY_DIR = /home/gfleming/Post-Quantum-PKI
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -79,6 +79,16 @@ install/local/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
 	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
 
 # Special rule for the target edit_cache
 edit_cache:
@@ -114,21 +124,11 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
-
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/rubensl/Post-Quantum-PKI/CMakeFiles /home/rubensl/Post-Quantum-PKI/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/gfleming/Post-Quantum-PKI/CMakeFiles /home/gfleming/Post-Quantum-PKI/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/rubensl/Post-Quantum-PKI/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/gfleming/Post-Quantum-PKI/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -168,6 +168,19 @@ round5: cmake_check_build_system
 round5/fast:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/build
 .PHONY : round5/fast
+
+#=============================================================================
+# Target rules for targets named dilithium
+
+# Build rule for target.
+dilithium: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 dilithium
+.PHONY : dilithium
+
+# fast build rule for target.
+dilithium/fast:
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/build
+.PHONY : dilithium/fast
 
 #=============================================================================
 # Target rules for targets named engine_check
@@ -1740,7 +1753,7 @@ dilithium/ref/PQCgenKAT_sign.o: dilithium/ref/PQCgenKAT_sign.c.o
 
 # target to build an object file
 dilithium/ref/PQCgenKAT_sign.c.o:
-	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/dilithium/ref/PQCgenKAT_sign.c.o
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/PQCgenKAT_sign.c.o
 .PHONY : dilithium/ref/PQCgenKAT_sign.c.o
 
 dilithium/ref/PQCgenKAT_sign.i: dilithium/ref/PQCgenKAT_sign.c.i
@@ -1749,7 +1762,7 @@ dilithium/ref/PQCgenKAT_sign.i: dilithium/ref/PQCgenKAT_sign.c.i
 
 # target to preprocess a source file
 dilithium/ref/PQCgenKAT_sign.c.i:
-	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/dilithium/ref/PQCgenKAT_sign.c.i
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/PQCgenKAT_sign.c.i
 .PHONY : dilithium/ref/PQCgenKAT_sign.c.i
 
 dilithium/ref/PQCgenKAT_sign.s: dilithium/ref/PQCgenKAT_sign.c.s
@@ -1758,7 +1771,7 @@ dilithium/ref/PQCgenKAT_sign.s: dilithium/ref/PQCgenKAT_sign.c.s
 
 # target to generate assembly for a file
 dilithium/ref/PQCgenKAT_sign.c.s:
-	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/dilithium/ref/PQCgenKAT_sign.c.s
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/PQCgenKAT_sign.c.s
 .PHONY : dilithium/ref/PQCgenKAT_sign.c.s
 
 dilithium/ref/aes256ctr.o: dilithium/ref/aes256ctr.c.o
@@ -1767,7 +1780,7 @@ dilithium/ref/aes256ctr.o: dilithium/ref/aes256ctr.c.o
 
 # target to build an object file
 dilithium/ref/aes256ctr.c.o:
-	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/dilithium/ref/aes256ctr.c.o
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/aes256ctr.c.o
 .PHONY : dilithium/ref/aes256ctr.c.o
 
 dilithium/ref/aes256ctr.i: dilithium/ref/aes256ctr.c.i
@@ -1776,7 +1789,7 @@ dilithium/ref/aes256ctr.i: dilithium/ref/aes256ctr.c.i
 
 # target to preprocess a source file
 dilithium/ref/aes256ctr.c.i:
-	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/dilithium/ref/aes256ctr.c.i
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/aes256ctr.c.i
 .PHONY : dilithium/ref/aes256ctr.c.i
 
 dilithium/ref/aes256ctr.s: dilithium/ref/aes256ctr.c.s
@@ -1785,7 +1798,7 @@ dilithium/ref/aes256ctr.s: dilithium/ref/aes256ctr.c.s
 
 # target to generate assembly for a file
 dilithium/ref/aes256ctr.c.s:
-	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/dilithium/ref/aes256ctr.c.s
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/aes256ctr.c.s
 .PHONY : dilithium/ref/aes256ctr.c.s
 
 dilithium/ref/fips202.o: dilithium/ref/fips202.c.o
@@ -1794,7 +1807,7 @@ dilithium/ref/fips202.o: dilithium/ref/fips202.c.o
 
 # target to build an object file
 dilithium/ref/fips202.c.o:
-	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/dilithium/ref/fips202.c.o
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/fips202.c.o
 .PHONY : dilithium/ref/fips202.c.o
 
 dilithium/ref/fips202.i: dilithium/ref/fips202.c.i
@@ -1803,7 +1816,7 @@ dilithium/ref/fips202.i: dilithium/ref/fips202.c.i
 
 # target to preprocess a source file
 dilithium/ref/fips202.c.i:
-	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/dilithium/ref/fips202.c.i
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/fips202.c.i
 .PHONY : dilithium/ref/fips202.c.i
 
 dilithium/ref/fips202.s: dilithium/ref/fips202.c.s
@@ -1812,7 +1825,7 @@ dilithium/ref/fips202.s: dilithium/ref/fips202.c.s
 
 # target to generate assembly for a file
 dilithium/ref/fips202.c.s:
-	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/dilithium/ref/fips202.c.s
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/fips202.c.s
 .PHONY : dilithium/ref/fips202.c.s
 
 dilithium/ref/ntt.o: dilithium/ref/ntt.c.o
@@ -1821,7 +1834,7 @@ dilithium/ref/ntt.o: dilithium/ref/ntt.c.o
 
 # target to build an object file
 dilithium/ref/ntt.c.o:
-	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/dilithium/ref/ntt.c.o
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/ntt.c.o
 .PHONY : dilithium/ref/ntt.c.o
 
 dilithium/ref/ntt.i: dilithium/ref/ntt.c.i
@@ -1830,7 +1843,7 @@ dilithium/ref/ntt.i: dilithium/ref/ntt.c.i
 
 # target to preprocess a source file
 dilithium/ref/ntt.c.i:
-	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/dilithium/ref/ntt.c.i
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/ntt.c.i
 .PHONY : dilithium/ref/ntt.c.i
 
 dilithium/ref/ntt.s: dilithium/ref/ntt.c.s
@@ -1839,7 +1852,7 @@ dilithium/ref/ntt.s: dilithium/ref/ntt.c.s
 
 # target to generate assembly for a file
 dilithium/ref/ntt.c.s:
-	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/dilithium/ref/ntt.c.s
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/ntt.c.s
 .PHONY : dilithium/ref/ntt.c.s
 
 dilithium/ref/packing.o: dilithium/ref/packing.c.o
@@ -1848,7 +1861,7 @@ dilithium/ref/packing.o: dilithium/ref/packing.c.o
 
 # target to build an object file
 dilithium/ref/packing.c.o:
-	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/dilithium/ref/packing.c.o
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/packing.c.o
 .PHONY : dilithium/ref/packing.c.o
 
 dilithium/ref/packing.i: dilithium/ref/packing.c.i
@@ -1857,7 +1870,7 @@ dilithium/ref/packing.i: dilithium/ref/packing.c.i
 
 # target to preprocess a source file
 dilithium/ref/packing.c.i:
-	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/dilithium/ref/packing.c.i
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/packing.c.i
 .PHONY : dilithium/ref/packing.c.i
 
 dilithium/ref/packing.s: dilithium/ref/packing.c.s
@@ -1866,7 +1879,7 @@ dilithium/ref/packing.s: dilithium/ref/packing.c.s
 
 # target to generate assembly for a file
 dilithium/ref/packing.c.s:
-	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/dilithium/ref/packing.c.s
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/packing.c.s
 .PHONY : dilithium/ref/packing.c.s
 
 dilithium/ref/poly.o: dilithium/ref/poly.c.o
@@ -1875,7 +1888,7 @@ dilithium/ref/poly.o: dilithium/ref/poly.c.o
 
 # target to build an object file
 dilithium/ref/poly.c.o:
-	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/dilithium/ref/poly.c.o
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/poly.c.o
 .PHONY : dilithium/ref/poly.c.o
 
 dilithium/ref/poly.i: dilithium/ref/poly.c.i
@@ -1884,7 +1897,7 @@ dilithium/ref/poly.i: dilithium/ref/poly.c.i
 
 # target to preprocess a source file
 dilithium/ref/poly.c.i:
-	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/dilithium/ref/poly.c.i
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/poly.c.i
 .PHONY : dilithium/ref/poly.c.i
 
 dilithium/ref/poly.s: dilithium/ref/poly.c.s
@@ -1893,7 +1906,7 @@ dilithium/ref/poly.s: dilithium/ref/poly.c.s
 
 # target to generate assembly for a file
 dilithium/ref/poly.c.s:
-	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/dilithium/ref/poly.c.s
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/poly.c.s
 .PHONY : dilithium/ref/poly.c.s
 
 dilithium/ref/polyvec.o: dilithium/ref/polyvec.c.o
@@ -1902,7 +1915,7 @@ dilithium/ref/polyvec.o: dilithium/ref/polyvec.c.o
 
 # target to build an object file
 dilithium/ref/polyvec.c.o:
-	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/dilithium/ref/polyvec.c.o
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/polyvec.c.o
 .PHONY : dilithium/ref/polyvec.c.o
 
 dilithium/ref/polyvec.i: dilithium/ref/polyvec.c.i
@@ -1911,7 +1924,7 @@ dilithium/ref/polyvec.i: dilithium/ref/polyvec.c.i
 
 # target to preprocess a source file
 dilithium/ref/polyvec.c.i:
-	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/dilithium/ref/polyvec.c.i
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/polyvec.c.i
 .PHONY : dilithium/ref/polyvec.c.i
 
 dilithium/ref/polyvec.s: dilithium/ref/polyvec.c.s
@@ -1920,7 +1933,7 @@ dilithium/ref/polyvec.s: dilithium/ref/polyvec.c.s
 
 # target to generate assembly for a file
 dilithium/ref/polyvec.c.s:
-	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/dilithium/ref/polyvec.c.s
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/polyvec.c.s
 .PHONY : dilithium/ref/polyvec.c.s
 
 dilithium/ref/reduce.o: dilithium/ref/reduce.c.o
@@ -1929,7 +1942,7 @@ dilithium/ref/reduce.o: dilithium/ref/reduce.c.o
 
 # target to build an object file
 dilithium/ref/reduce.c.o:
-	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/dilithium/ref/reduce.c.o
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/reduce.c.o
 .PHONY : dilithium/ref/reduce.c.o
 
 dilithium/ref/reduce.i: dilithium/ref/reduce.c.i
@@ -1938,7 +1951,7 @@ dilithium/ref/reduce.i: dilithium/ref/reduce.c.i
 
 # target to preprocess a source file
 dilithium/ref/reduce.c.i:
-	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/dilithium/ref/reduce.c.i
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/reduce.c.i
 .PHONY : dilithium/ref/reduce.c.i
 
 dilithium/ref/reduce.s: dilithium/ref/reduce.c.s
@@ -1947,7 +1960,7 @@ dilithium/ref/reduce.s: dilithium/ref/reduce.c.s
 
 # target to generate assembly for a file
 dilithium/ref/reduce.c.s:
-	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/dilithium/ref/reduce.c.s
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/reduce.c.s
 .PHONY : dilithium/ref/reduce.c.s
 
 dilithium/ref/rounding.o: dilithium/ref/rounding.c.o
@@ -1956,7 +1969,7 @@ dilithium/ref/rounding.o: dilithium/ref/rounding.c.o
 
 # target to build an object file
 dilithium/ref/rounding.c.o:
-	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/dilithium/ref/rounding.c.o
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/rounding.c.o
 .PHONY : dilithium/ref/rounding.c.o
 
 dilithium/ref/rounding.i: dilithium/ref/rounding.c.i
@@ -1965,7 +1978,7 @@ dilithium/ref/rounding.i: dilithium/ref/rounding.c.i
 
 # target to preprocess a source file
 dilithium/ref/rounding.c.i:
-	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/dilithium/ref/rounding.c.i
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/rounding.c.i
 .PHONY : dilithium/ref/rounding.c.i
 
 dilithium/ref/rounding.s: dilithium/ref/rounding.c.s
@@ -1974,7 +1987,7 @@ dilithium/ref/rounding.s: dilithium/ref/rounding.c.s
 
 # target to generate assembly for a file
 dilithium/ref/rounding.c.s:
-	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/dilithium/ref/rounding.c.s
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/rounding.c.s
 .PHONY : dilithium/ref/rounding.c.s
 
 dilithium/ref/sign.o: dilithium/ref/sign.c.o
@@ -1983,7 +1996,7 @@ dilithium/ref/sign.o: dilithium/ref/sign.c.o
 
 # target to build an object file
 dilithium/ref/sign.c.o:
-	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/dilithium/ref/sign.c.o
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/sign.c.o
 .PHONY : dilithium/ref/sign.c.o
 
 dilithium/ref/sign.i: dilithium/ref/sign.c.i
@@ -1992,7 +2005,7 @@ dilithium/ref/sign.i: dilithium/ref/sign.c.i
 
 # target to preprocess a source file
 dilithium/ref/sign.c.i:
-	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/dilithium/ref/sign.c.i
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/sign.c.i
 .PHONY : dilithium/ref/sign.c.i
 
 dilithium/ref/sign.s: dilithium/ref/sign.c.s
@@ -2001,7 +2014,7 @@ dilithium/ref/sign.s: dilithium/ref/sign.c.s
 
 # target to generate assembly for a file
 dilithium/ref/sign.c.s:
-	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/dilithium/ref/sign.c.s
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/sign.c.s
 .PHONY : dilithium/ref/sign.c.s
 
 keypair.o: keypair.c.o
@@ -2057,33 +2070,6 @@ meths/asn1_meth.s: meths/asn1_meth.c.s
 meths/asn1_meth.c.s:
 	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/meths/asn1_meth.c.s
 .PHONY : meths/asn1_meth.c.s
-
-meths/dilithium_meth.o: meths/dilithium_meth.c.o
-
-.PHONY : meths/dilithium_meth.o
-
-# target to build an object file
-meths/dilithium_meth.c.o:
-	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.o
-.PHONY : meths/dilithium_meth.c.o
-
-meths/dilithium_meth.i: meths/dilithium_meth.c.i
-
-.PHONY : meths/dilithium_meth.i
-
-# target to preprocess a source file
-meths/dilithium_meth.c.i:
-	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.i
-.PHONY : meths/dilithium_meth.c.i
-
-meths/dilithium_meth.s: meths/dilithium_meth.c.s
-
-.PHONY : meths/dilithium_meth.s
-
-# target to generate assembly for a file
-meths/dilithium_meth.c.s:
-	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.s
-.PHONY : meths/dilithium_meth.c.s
 
 meths/round5_meth.o: meths/round5_meth.c.o
 
@@ -2228,13 +2214,14 @@ help:
 	@echo "... depend"
 	@echo "... install/strip"
 	@echo "... install/local"
-	@echo "... edit_cache"
+	@echo "... list_install_components"
 	@echo "... round5"
+	@echo "... dilithium"
+	@echo "... edit_cache"
 	@echo "... install"
 	@echo "... engine_check"
 	@echo "... round5_engine"
 	@echo "... rebuild_cache"
-	@echo "... list_install_components"
 	@echo "... Round5/reference/src/a_fixed.o"
 	@echo "... Round5/reference/src/a_fixed.i"
 	@echo "... Round5/reference/src/a_fixed.s"
@@ -2442,9 +2429,6 @@ help:
 	@echo "... meths/asn1_meth.o"
 	@echo "... meths/asn1_meth.i"
 	@echo "... meths/asn1_meth.s"
-	@echo "... meths/dilithium_meth.o"
-	@echo "... meths/dilithium_meth.i"
-	@echo "... meths/dilithium_meth.s"
 	@echo "... meths/round5_meth.o"
 	@echo "... meths/round5_meth.i"
 	@echo "... meths/round5_meth.s"

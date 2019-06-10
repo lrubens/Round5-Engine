@@ -83,8 +83,8 @@ set(METHODS_SOURCE_FILES
     meths/round5_meth.h
     meths/asn1_meth.c
     meths/asn1_meth.h
-    meths/dilithium_meth.c
-    meths/dilithium_meth.h
+    # meths/dilithium_meth.c
+    # meths/dilithium_meth.h
 )
 
 set(OSSL_SOURCE_FILES
@@ -106,7 +106,7 @@ file(GLOB ENGINE_SOURCE round5_engine.c)
 
 set(ROUND5_LIB_SOURCE
     ${XKCP_SOURCE_FILES}
-    ${DILITHIUM_SOURCE_FILES}
+    #${DILITHIUM_SOURCE_FILES}
     ${ROUND5_SOURCE_FILES}
 )
 
@@ -128,12 +128,12 @@ set(TEST
 include_directories(${CMAKE_SOURCE_DIR})
 include_directories(meths)
 include_directories(ossl)
-include_directories(dilithium/ref)
+# include_directories(dilithium/ref)
 include_directories(Round5/reference/src)
 include_directories(XKCP/bin/generic64/libkeccak.a.headers)
 
-# add_library(xkcp STATIC ${XKCP_SOURCE_FILES})
-# set_target_properties(xkcp PROPERTIES POSITION_INDEPENDENT_CODE ON)
+add_library(dilithium STATIC ${DILITHIUM_SOURCE_FILES})
+set_target_properties(dilithium PROPERTIES POSITION_INDEPENDENT_CODE ON)
 
 add_library(round5 STATIC ${ROUND5_LIB_SOURCE})
 set_target_properties(round5 PROPERTIES POSITION_INDEPENDENT_CODE ON)
@@ -146,11 +146,10 @@ set_target_properties(round5 PROPERTIES COMPILE_FLAGS "-lkeccak -lcrypto -lssl -
 # Create shared library
 add_library(round5_engine SHARED ${ROUND5_ENGINE_SOURCE_FILES})
 # set_target_properties(round5_engine PROPERTIES COMPILE_FLAGS "-fPIC -lkeccak -lcrypto -lssl -Xlinker -zmuldefs")
-<<<<<<< Updated upstream
-target_link_libraries(round5_engine dilithium ${OPENSSL_CRYPTO_LIBRARY})
-=======
-target_link_libraries(round5_engine round5 ${OPENSSL_CRYPTO_LIBRARY})
->>>>>>> Stashed changes
+# <<<<<<< Updated upstream
+# target_link_libraries(round5_engine dilithium ${OPENSSL_CRYPTO_LIBRARY})
+target_link_libraries(round5_engine round5 ${OPENSSL_CRYPTO_LIBRARY} -Xlinker -zmuldefs)
+# >>>>>>> Stashed changes
 # target_include_directories(round5_engine PUBLIC Round5/reference/src)
 target_compile_definitions(round5_engine PUBLIC R5ND_5PKE_5d)
 set_target_properties(round5_engine PROPERTIES COMPILE_FLAGS "-lkeccak -lcrypto -lssl -DR5ND_5PKE_5d -Xlinker -zmuldefs")

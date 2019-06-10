@@ -7,10 +7,17 @@
 #include <openssl/obj_mac.h>
 #include <stdint.h>
 #include <stddef.h>
+#include "Round5/reference/src/parameters.h"
 #define CURVE25519_BITS 253
 #define CURVE25519_SECURITY_BITS 128
-#define PKLEN 1349
-#define SKLEN 1413
+// #ifdef PKLEN
+// #undef PKLEN
+// #endif
+// #ifdef SKLEN
+// #undef SKLEN
+// #endif
+extern int PKLEN;
+extern int SKLEN;
 
 // typedef struct {
 //     union {
@@ -24,8 +31,8 @@
 // } ROUND5_KEYPAIR;
 
 struct ROUND5{
-    unsigned char sk[SKLEN];
-    unsigned char pk[PKLEN];
+    unsigned char *sk;
+    unsigned char *pk;
     int nid;
 };
 

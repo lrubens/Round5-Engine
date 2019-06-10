@@ -364,7 +364,7 @@ static int pki_gen_pub_encode(X509_PUBKEY *pub,  EVP_PKEY *pk)
     if (!databuf)
         printf("Invalid key\n\n");
     X509_PUBKEY_set0_param(pub, algobj, ptype, params, databuf, PKLEN);
-    free(databuf);
+    //free(databuf);
     //ASN1_STRING_free(params);
     //memset(kpair, 0, sizeof(*kpair));
     return 1;

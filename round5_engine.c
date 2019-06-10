@@ -9,7 +9,7 @@
 #include "meths/round5_meth.h"
 #include "meths/asn1_meth.h"
 #include "ossl/objects.h"
-#include "meths/dilithium_meth.h"
+// #include "meths/dilithium_meth.h"
 #ifndef ENGINE_ID
 #define ENGINE_ID "round5"
 #endif
@@ -94,24 +94,24 @@ static int e_finish(ENGINE *e){
     return 1;
 }
 
-static int digest(ENGINE *e, const EVP_MD **d, const int **nids, int nid){
-    if(!d){
-        // printf("\nerror in digest method, d is null\n");
-        *nids = md_meth_nids;
-        return sizeof_static_array(md_meth_nids) - 1; 
-    }
-    if(nid == NID_KECCAK){
-        *d = keccak_digest();
-        // printf("\ndigest method success\n");
-        return 1;
-    }
-    EVP_MD_meth_free(*d);
-    EVP_MD_meth_free(d);
-    // *d = NULL;
-    // printf("\nerror in digest method\n");
+// static int digest(ENGINE *e, const EVP_MD **d, const int **nids, int nid){
+//     if(!d){
+//         // printf("\nerror in digest method, d is null\n");
+//         *nids = md_meth_nids;
+//         return sizeof_static_array(md_meth_nids) - 1; 
+//     }
+//     if(nid == NID_KECCAK){
+//         *d = keccak_digest();
+//         // printf("\ndigest method success\n");
+//         return 1;
+//     }
+//     EVP_MD_meth_free(*d);
+//     EVP_MD_meth_free(d);
+//     // *d = NULL;
+//     // printf("\nerror in digest method\n");
     
-    return 0;
-}
+//     return 0;
+// }
 
 static int bind(ENGINE *e, const char *id){
     int ret = 0;
@@ -168,14 +168,14 @@ static int bind(ENGINE *e, const char *id){
         goto end;
     }
     //  || !EVP_add_digest(md_obj)
-    if(!ENGINE_register_digests(e)){
-        printf("failed\n");
-        goto end;
-    }
-    if (!ENGINE_set_digests(e, digest)){
-        printf("ENGINE_set_digests failed\n");
-        goto end;
-    }
+    // if(!ENGINE_register_digests(e)){
+    //     printf("failed\n");
+    //     goto end;
+    // }
+    // if (!ENGINE_set_digests(e, digest)){
+    //     printf("ENGINE_set_digests failed\n");
+    //     goto end;
+    // }
     // else{
     //     if(md_obj){
     //         printf("\nnot null\n");
@@ -213,7 +213,7 @@ static int register_pmeth(int id, EVP_PKEY_METHOD **pmeth, int flags){
         return 0;
     if (id == NID_ROUND5){
         pki_register_round5(*pmeth);
-        pki_register_dilithium(*pmeth);
+        // pki_register_dilithium(*pmeth);
         // EVP_PKEY_meth_set_sign(pmeth, NULL, dilithium_sign);
     }
     else{
@@ -246,53 +246,53 @@ static int register_ameth(int id, EVP_PKEY_ASN1_METHOD **ameth, int flags){
     return _register_asn1_meth(id, ameth, pem_str, info);
 }
 
-int register_md_identity(EVP_MD *md){
-    // printf("\nreached register_md_identify\n");
-    if ((md = EVP_MD_meth_new(NID_KECCAK, NID_undef)) == NULL
-        || !EVP_MD_meth_set_result_size(md, sizeof(struct digest_init_ctx))
-        //|| !EVP_MD_meth_set_input_blocksize(md, sizeof(struct digest_init_ctx))
-        || !EVP_MD_meth_set_app_datasize(md, sizeof(struct digest_init_ctx))
-        || !EVP_MD_meth_set_init(md, keccak_digest_init)
-        || !EVP_MD_meth_set_update(md, keccak_digest_update)
-        || !EVP_MD_meth_set_final(md, keccak_digest_final)
-        || !EVP_MD_meth_set_copy(md, keccak_digest_copy)
-        || !EVP_MD_meth_set_cleanup(md, keccak_digest_cleanup)) {
-        EVP_MD_meth_free(md);
-        md = NULL;
-        // printf("\nregistration failed\n");
-        return 0;
-    }
-    // printf("\nregistration succeeded\n");
-    return 1;
-}
+// int register_md_identity(EVP_MD *md){
+//     // printf("\nreached register_md_identify\n");
+//     if ((md = EVP_MD_meth_new(NID_KECCAK, NID_undef)) == NULL
+//         || !EVP_MD_meth_set_result_size(md, sizeof(struct digest_init_ctx))
+//         //|| !EVP_MD_meth_set_input_blocksize(md, sizeof(struct digest_init_ctx))
+//         || !EVP_MD_meth_set_app_datasize(md, sizeof(struct digest_init_ctx))
+//         || !EVP_MD_meth_set_init(md, keccak_digest_init)
+//         || !EVP_MD_meth_set_update(md, keccak_digest_update)
+//         || !EVP_MD_meth_set_final(md, keccak_digest_final)
+//         || !EVP_MD_meth_set_copy(md, keccak_digest_copy)
+//         || !EVP_MD_meth_set_cleanup(md, keccak_digest_cleanup)) {
+//         EVP_MD_meth_free(md);
+//         md = NULL;
+//         // printf("\nregistration failed\n");
+//         return 0;
+//     }
+//     // printf("\nregistration succeeded\n");
+//     return 1;
+// }
 
-static int register_md(int md_id, int pkey_type, EVP_MD **md, int flags)
-{
-    int ret = 0;
-    // printf("registering md method for '%s' with md_id=%d, pkey_type=%d, flags=%08x\n",
-            // OBJ_nid2ln(md_id), md_id, pkey_type, flags);
+// static int register_md(int md_id, int pkey_type, EVP_MD **md, int flags)
+// {
+//     int ret = 0;
+//     // printf("registering md method for '%s' with md_id=%d, pkey_type=%d, flags=%08x\n",
+//             // OBJ_nid2ln(md_id), md_id, pkey_type, flags);
 
-    *md = EVP_MD_meth_new(md_id, pkey_type);
+//     *md = EVP_MD_meth_new(md_id, pkey_type);
 
-    if (*md == NULL)
-        return 0;
-    //printf("\nmd is not null\n");
-    if ( md_id == NID_KECCAK ) {
-        register_md_identity(*md);
-        // printf("\nmd: %s\n", OBJ_nid2ln(NID_KECCAK));
-        ret = 1;
-    }
+//     if (*md == NULL)
+//         return 0;
+//     //printf("\nmd is not null\n");
+//     if ( md_id == NID_KECCAK ) {
+//         register_md_identity(*md);
+//         // printf("\nmd: %s\n", OBJ_nid2ln(NID_KECCAK));
+//         ret = 1;
+//     }
 
-    if (ret == 1) {
-        //printf("\n\n\n\n\n\n\n\n\n\n\nworked\n\n\n\n\n\n\n\n\n\n\n\n");
-        ret = EVP_add_digest(*md);
-        //free(*md);
-        return ret;
-    }
-    EVP_MD_meth_free(*md);
-    /* Unsupported md type */
-    return 0;
-}
+//     if (ret == 1) {
+//         //printf("\n\n\n\n\n\n\n\n\n\n\nworked\n\n\n\n\n\n\n\n\n\n\n\n");
+//         ret = EVP_add_digest(*md);
+//         //free(*md);
+//         return ret;
+//     }
+//     EVP_MD_meth_free(*md);
+//     /* Unsupported md type */
+//     return 0;
+// }
 
 static int register_methods(){
     if (!register_ameth(NID_ROUND5, &ameth_round5, 0)){

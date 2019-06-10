@@ -34,16 +34,17 @@ struct certKey{
   EVP_PKEY *key;
 };
 
-static void generateSimpleRawMaterial(unsigned char *data, unsigned int length, unsigned char seed1, unsigned int seed2){
-  unsigned int i;
-  for(i = 0; i < length; i++){
-    unsigned char iRolled;
-    unsigned char byte;
-    seed2 = seed2 % 8;
-    iRolled = ((unsigned char)i << seed2) | ((unsigned char)i >> (8 - seed2));
-    byte = seed1 + 161*length - iRolled + i;
-    data[i] = byte;
-  }
+static void print_pkey(EVP_PKEY *pkey){
+  BIO *b = NULL;
+  b = BIO_new(BIO_s_mem());
+  ASN1_PCTX *pctx = NULL;
+  pctx = ASN1_PCTX_new();
+  unsigned char *private_key_text = NULL;
+  EVP_PKEY_print_public(b, pkey, 4, pctx);
+  BIO_get_mem_data(b, &private_key_text);
+  printf("%s\n", private_key_text);
+  BIO_free(b);
+  ASN1_PCTX_free(pctx);
 }
 
 /*struct certKey **/int gen_cert(struct certKey *c){
@@ -136,29 +137,31 @@ static void generateSimpleRawMaterial(unsigned char *data, unsigned int length, 
   T(X509_add_ext(x509ss, ext, 2));
   X509_EXTENSION_free(ext);
 
+  c->cert = malloc(sizeof(c->cert));
+  c->key = malloc(sizeof(c->key));
 
+  // c->cert = memset(c->cert, 0, sizeof(c->cert));
   c->cert = x509ss;
+  // memcpy(c->key, pkey, sizeof(pkey));
   c->key = pkey;
 
-  unsigned char *msg = "hellohellohellohello";
-  int len = strlen(msg);
-  EVP_PKEY_CTX *tx = NULL;
-  T(tx = EVP_PKEY_CTX_new(pkey, NULL));
-  EVP_PKEY_encrypt_init(tx);
-  size_t buflen = 1525 + len;
-  unsigned char *buf = NULL;
-  buf = malloc(1525 + len);
-  EVP_PKEY_encrypt(tx, buf, &buflen, msg, len); 
-  EVP_PKEY_decrypt_init(tx);
-  unsigned char *buf2 = NULL;
-  buf2 = malloc(len);
-  EVP_PKEY_decrypt(tx, buf2, &len, buf, buflen);
+  // unsigned char *msg = "hellohellohellohello";
+  // int len = strlen(msg);
+  // EVP_PKEY_CTX *tx = NULL;
+  // T(tx = EVP_PKEY_CTX_new(pkey, NULL));
+  // EVP_PKEY_encrypt_init(tx);
+  // size_t buflen = 1525 + len;
+  // unsigned char *buf = NULL;
+  // buf = malloc(1525 + len);
+  // EVP_PKEY_encrypt(tx, buf, &buflen, msg, len); 
+  // EVP_PKEY_decrypt_init(tx);
+  // unsigned char *buf2 = NULL;
+  // buf2 = malloc(len);
+  // EVP_PKEY_decrypt(tx, buf2, &len, buf, buflen);
 
   // struct certKey *c = NULL;
   // c = OPENSSL_malloc(sizeof(*c));
-  // c->cert = malloc(sizeof(c->cert));
-  // c->key = malloc(sizeof(c->key));
-
+  
 
    
   
@@ -201,9 +204,9 @@ static void generateSimpleRawMaterial(unsigned char *data, unsigned int length, 
 
   cleanup:
   EVP_PKEY_CTX_free(ctx);
-  EVP_PKEY_CTX_free(tx);
-  free(buf);
-  free(buf2);
+  // EVP_PKEY_CTX_free(tx);
+  // free(buf);
+  // free(buf2);
   EVP_PKEY_free(pkey);
   //EVP_PKEY_CTX_free(ctx);
   // EVP_MD_CTX_free(cx);
@@ -213,7 +216,7 @@ static void generateSimpleRawMaterial(unsigned char *data, unsigned int length, 
 
 int main(int argc, const char* argv[]){
   // signature();
-  // return 0;
+  //return 0;
   OPENSSL_add_all_algorithms_conf();
   ERR_load_crypto_strings();
   ENGINE_load_dynamic();
@@ -275,6 +278,9 @@ int main(int argc, const char* argv[]){
   EVP_MD_CTX_free(mctx);
   // printf("\nreturn: %d\n", ret);
   X509_print_fp(stdout, c->cert);
+  // print_pkey(pkey);
+  // printf("\ndone\n");
+  // return 0;
   FILE * f = fopen("key.pem", "wb");
   PEM_write_PrivateKey(
     f,                  /* write the key to the file we've opened */
@@ -294,12 +300,10 @@ int main(int argc, const char* argv[]){
   fclose(f2);
   BN_free(bne);
   EVP_PKEY_free(pkey);
-  X509_free(c->cert);
+  // X509_free(c->cert);
   EVP_PKEY_free(c->key);
   free(c);
   ENGINE_finish(round5_engine);
   ENGINE_free(round5_engine);
   ENGINE_cleanup();
 }
-
-

@@ -16,13 +16,14 @@
 #include <openssl/ec.h>
 #include "../keypair.h"
 #include "../ossl/objects.h"
-#include "dilithium_meth.h"
+// #include "dilithium_meth.h"
 
 
 parameters *params;
 
 
 int round5_sk_to_pk(unsigned char *pk, const unsigned char *sk, parameters *params){
+    // printf("\nupdate\n");
     if (r5_cca_pke_keygen(pk, sk, params) != 0){
         return 0;
     }
@@ -36,18 +37,35 @@ static int keygen(EVP_PKEY_CTX *ctx, EVP_PKEY *pkey){
     struct ROUND5 *kpair = NULL;
     kpair = EVP_PKEY_get0(pkey);
     params = set_parameters_from_api();
+    
+    
+    
+    #ifndef PKLEN
+    #define PKLEN get_crypto_public_key_bytes(params)
+    #endif
+    #ifndef SKLEN
+    #define SKLEN get_crypto_secret_key_bytes(params, 1)
+    #endif
+    // memset(kpair->pk, 0, pk_len);
+    // memset(kpair->sk, 0, sk_len);
     // printf("\nparams->ct_size: %d\n",params->ct_size);
     if (!kpair){
-        kpair = OPENSSL_malloc(sizeof(*kpair));
+        kpair = round5_new();
         EVP_PKEY_assign(pkey, NID_ROUND5, kpair);
     }
+    printf("\nPKLEN: %d\n\nSKLEN: %d\n", PKLEN, SKLEN);
+    unsigned char *pk = malloc(PKLEN);
+    unsigned char *sk = malloc(SKLEN);
     
-    
-    if (!round5_sk_to_pk(kpair->pk, kpair->sk, params))
+    if (!round5_sk_to_pk(pk, sk, params))
         goto err;
+    kpair->pk = pk;
+    kpair->sk = sk;
+    // memcpy(kpair->pk, pk, pk_len);
+    // memcpy(kpair->sk, sk, sk_len);
     //test_func(kpair->sk);
     //exit(0);
-    // printf("\n\nFinished printing: %d\n\n", sizeof(kpair->pk));
+    // printf("\n\nFinished printing: %d\n\n", get_crypto_public_key_bytes(params));
     //EVP_PKEY_assign(pkey, NID_ROUND5, kpair);
     //printf("\n\n\n\n%d\n\n\n\n", sizeof(kpair->sk));
     // free(kpair);
