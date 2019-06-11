@@ -32,20 +32,28 @@ int round5_sk_to_pk(unsigned char *pk, const unsigned char *sk, parameters *para
     }
 }
 
+// static int init_round5(){
+//     #ifndef PKLEN
+//     #define PKLEN get_crypto_public_key_bytes(params)
+//     #endif
+//     #ifndef SKLEN
+//     #define SKLEN get_crypto_secret_key_bytes(params, 1)
+//     #endif
+//     return 1;
+// }
+
 static int keygen(EVP_PKEY_CTX *ctx, EVP_PKEY *pkey){
     // printf("\nkeygen\n");
     struct ROUND5 *kpair = NULL;
     kpair = EVP_PKEY_get0(pkey);
     params = set_parameters_from_api();
-    
-    
-    
-    #ifndef PKLEN
-    #define PKLEN get_crypto_public_key_bytes(params)
-    #endif
-    #ifndef SKLEN
-    #define SKLEN get_crypto_secret_key_bytes(params, 1)
-    #endif
+    // #ifndef PKLEN
+    // #define PKLEN get_crypto_public_key_bytes(params)
+    // #endif
+    // #ifndef SKLEN
+    // #define SKLEN get_crypto_secret_key_bytes(params, 1)
+    // #endif
+    // return 1;
     // memset(kpair->pk, 0, pk_len);
     // memset(kpair->sk, 0, sk_len);
     // printf("\nparams->ct_size: %d\n",params->ct_size);
@@ -53,14 +61,15 @@ static int keygen(EVP_PKEY_CTX *ctx, EVP_PKEY *pkey){
         kpair = round5_new();
         EVP_PKEY_assign(pkey, NID_ROUND5, kpair);
     }
-    printf("\nPKLEN: %d\n\nSKLEN: %d\n", PKLEN, SKLEN);
-    unsigned char *pk = malloc(PKLEN);
-    unsigned char *sk = malloc(SKLEN);
-    
-    if (!round5_sk_to_pk(pk, sk, params))
+    // printf("\nPKLEN: %d\n\nSKLEN: %d\n", PKLEN, SKLEN);
+    // unsigned char *pk = malloc(PKLEN);
+    // unsigned char *sk = malloc(SKLEN);
+    // kpair->pk = malloc(PKLEN);
+    // kpair->sk = malloc(SKLEN);
+    if (!round5_sk_to_pk(kpair->pk, kpair->sk, params))
         goto err;
-    kpair->pk = pk;
-    kpair->sk = sk;
+    // kpair->pk = &pk;
+    // kpair->sk = &sk;
     // memcpy(kpair->pk, pk, pk_len);
     // memcpy(kpair->sk, sk, sk_len);
     //test_func(kpair->sk);

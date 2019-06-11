@@ -25,24 +25,34 @@ inline const struct round5_nid_data_st *round5_get_nid_data(int nid){
     return NULL;
 }
 
-struct ROUND5 *round5_new(){
+int set_key_size(){
     params = set_parameters_from_api();
-    #undef PKLEN
-    #undef SKLEN
-    size_t pk_len = get_crypto_public_key_bytes(params);
-    size_t sk_len = get_crypto_secret_key_bytes(params, 1);
-    #define PKLEN pk_len
-    #define SKLEN sk_len
-    printf("\nPKLEN: %d\n\nSKLEN: %d\n", PKLEN, SKLEN);
+    PKLEN = get_crypto_public_key_bytes(params);
+    SKLEN = get_crypto_secret_key_bytes(params, 1);
+    return 1;
+}
+
+struct ROUND5 *round5_new(){
+    set_key_size();
+    // params = set_parameters_from_api();
+    // size_t pk_len = get_crypto_public_key_bytes(params);
+    // size_t sk_len = get_crypto_secret_key_bytes(params, 1);
+    // PKLEN = pk_len;
+    // SKLEN = sk_len;
+    // printf("\nPKLEN: %d\n\nSKLEN: %d\n", PKLEN, SKLEN);
     int nid = NID_ROUND5;
     struct ROUND5 *kpair = NULL;
     // const struct round5_nid_data_st *nid_data = round5_get_nid_data(nid);
     // if (nid_data == NULL)
         // goto err;
     kpair = OPENSSL_secure_malloc(sizeof(*kpair));
+    kpair->pk = OPENSSL_secure_malloc(PKLEN);
+    kpair->sk = OPENSSL_secure_malloc(SKLEN);
     if (kpair == NULL)
         goto err;
     kpair->nid = nid;
+    // printf("\nPKLEN: %d\n\nSKLEN: %d\n", PKLEN, SKLEN);
+
     //free(nid_data);
     return kpair;
     err:
@@ -51,10 +61,12 @@ struct ROUND5 *round5_new(){
     return NULL;
 }
 
-int round5_free(struct ROUND5 *keypair){
-    if (!keypair)
+int round5_free(struct ROUND5 *kpair){
+    if (!kpair)
         return 0;
-    OPENSSL_secure_free(keypair);
+    OPENSSL_secure_free(kpair->pk);
+    OPENSSL_secure_free(kpair->sk);
+    OPENSSL_secure_free(kpair);
     return 1;
 }
 

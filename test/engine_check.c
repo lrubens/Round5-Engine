@@ -25,10 +25,6 @@
 	    } \
         })
 
-typedef struct{
-  unsigned char *sk;
-  unsigned char *pk;
-} Round5;
 struct certKey{
   X509 *cert;
   EVP_PKEY *key;
@@ -47,26 +43,7 @@ static void print_pkey(EVP_PKEY *pkey){
   ASN1_PCTX_free(pctx);
 }
 
-/*struct certKey **/int gen_cert(struct certKey *c){
-  // parameters *params;
-  // params = set_parameters_from_api();
-  // Round5 *kpair = NULL;
-  // kpair = OPENSSL_secure_malloc(sizeof(*kpair));
-  // kpair->sk = checked_malloc(get_crypto_secret_key_bytes(params, 1));
-  // kpair->pk = checked_malloc(get_crypto_public_key_bytes(params));
-  // r5_cca_pke_keygen(kpair->pk, kpair->sk, params);
-  //Round5 *kpair = NULL;
-  
-  //round5_sk_to_pk(kpair->key.pk, kpair->key.sk);
-  //kpair->key.pk = pk;
-  //kpair->key.sk = sk;
-  //OPENSSL_config(NULL);
-  // SSL_library_init();
-  // SSL_load_error_strings();
-  
-	// T(ENGINE_set_default(round5_engine, ENGINE_METHOD_PKEY_METHS));
-  // T(ENGINE_set_default(round5_engine, ENGINE_METHOD_PKEY_ASN1_METHS));
-
+struct certKey *gen_cert(){
   // Testing Engine functions
   char *algname = "Round5";
   EVP_PKEY *tkey;
@@ -75,25 +52,11 @@ static void print_pkey(EVP_PKEY *pkey){
   EVP_PKEY_CTX *ctx;
   T(ctx = EVP_PKEY_CTX_new(tkey, NULL));
   T(EVP_PKEY_keygen_init(ctx));
-  //if (paramset)
-	//T(EVP_PKEY_CTX_ctrl_str(ctx, "paramset", paramset));
+
   EVP_PKEY *pkey = NULL;
   pkey = EVP_PKEY_new();
   T((EVP_PKEY_keygen(ctx, &pkey)) == 1);
-  
-  // BIO *b = NULL;
-  // b = BIO_new(BIO_s_mem());
-  // ASN1_PCTX *pctx = NULL;
-  // pctx = ASN1_PCTX_new();
-  // unsigned char *private_key_text = NULL;
-  // EVP_PKEY_print_public(b, pkey, 4, pctx);
-  // BIO_get_mem_data(b, &private_key_text);
-  // printf("%s\n", private_key_text);
-  // BIO_free(b);
-  // ASN1_PCTX_free(pctx);
-  // EVP_PKEY_set1_engine(pkey, round5_engine);
   EVP_PKEY_free(tkey);
-  //EVP_PKEY_CTX_free(ctx);
 
   X509_REQ *req = NULL;
   T(req = X509_REQ_new());
@@ -137,8 +100,9 @@ static void print_pkey(EVP_PKEY *pkey){
   T(X509_add_ext(x509ss, ext, 2));
   X509_EXTENSION_free(ext);
 
-  c->cert = malloc(sizeof(c->cert));
-  c->key = malloc(sizeof(c->key));
+  struct certKey *c = malloc(sizeof(struct certKey));
+  c->cert = malloc(sizeof(x509ss));
+  c->key = malloc(sizeof(pkey));
 
   // c->cert = memset(c->cert, 0, sizeof(c->cert));
   c->cert = x509ss;
@@ -201,7 +165,7 @@ static void print_pkey(EVP_PKEY *pkey){
   //X509_sign(x509ss, pkey, EVP_sha1());
   //EVP_DigestSignUpdate(cx, "hello", 5);
   //client();
-
+  return c;
   cleanup:
   EVP_PKEY_CTX_free(ctx);
   // EVP_PKEY_CTX_free(tx);
@@ -211,7 +175,6 @@ static void print_pkey(EVP_PKEY *pkey){
   //EVP_PKEY_CTX_free(ctx);
   // EVP_MD_CTX_free(cx);
   // printf("\nfinished\n");
-  return 1;
 }
 
 int main(int argc, const char* argv[]){
@@ -224,31 +187,7 @@ int main(int argc, const char* argv[]){
 	T(round5_engine = ENGINE_by_id("round5"));
 	T(ENGINE_init(round5_engine));
   T(ENGINE_set_default(round5_engine, ENGINE_METHOD_ALL));
-  struct certKey *c = NULL;
-  c = OPENSSL_malloc(sizeof(*c));
-  // c->cert = NULL;
-  // c->cert = malloc(sizeof(c->cert));
-  // c->key = NULL;
-  // c->key = malloc(sizeof(c->key));
-  // printf("\n%d\n", sizeof(struct certKey));
-  gen_cert(c);
-  // printf("\npast gen_cert\n");
-  // BIO *b = NULL;
-  // b = BIO_new(BIO_s_mem());
-  // ASN1_PCTX *pctx = NULL;
-  // pctx = ASN1_PCTX_new();
-  // unsigned char *private_key_text = NULL;
-  // private_key_text = malloc(2048);
-  // EVP_PKEY_print_public(b, c->key, 4, pctx);
-  // BIO_get_mem_data(b, &private_key_text);
-  // printf("\nhello1\n");
-  // printf("%s\n", private_key_text);
-  // printf("\nhello\n");
-  // //BIO_free(b);
-  // ASN1_PCTX_free(pctx);
-  // /c = gen_cert();
-  // int ret = X509_sign(c->cert, c->key, (EVP_MD *)EVP_sha256());
-  //T(EVP_PKEY_set_type_str(c->key, "RSA", 3));
+  struct certKey *c = gen_cert();
   EVP_PKEY * pkey;
   pkey = EVP_PKEY_new();
   RSA *rsa = NULL;
@@ -293,6 +232,8 @@ int main(int argc, const char* argv[]){
   );
   fclose(f);
   FILE * f2 = fopen("cert.pem", "wb");
+  if (!f2)
+    printf("\n\nf2 not working\n\n");
   PEM_write_X509(
       f2,   /* write the certificate to the file we've opened */
       c->cert /* our certificate */

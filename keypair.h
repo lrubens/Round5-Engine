@@ -16,27 +16,14 @@
 // #ifdef SKLEN
 // #undef SKLEN
 // #endif
-extern int PKLEN;
-extern int SKLEN;
-
-// typedef struct {
-//     union {
-//         // uint8_t sk[SKLEN];
-//         // uint8_t pk[PKLEN];
-//         unsigned char sk[SKLEN];
-//         unsigned char pk[PKLEN];
-//     } key;
-//     int nid;
-//     char has_private;
-// } ROUND5_KEYPAIR;
+extern int PKLEN = 0;
+extern int SKLEN = 0;
 
 struct ROUND5{
     unsigned char *sk;
     unsigned char *pk;
     int nid;
 };
-
-
 
 typedef enum {
     NO_FLAG=0,
@@ -47,6 +34,8 @@ struct ROUND5 *round5_new();
 
 int round5_free(struct ROUND5 *keypair);
 
+int set_key_size();
+
 struct round5_nid_data_st {
     const char *name;
     size_t sk_bytes;
@@ -55,7 +44,6 @@ struct round5_nid_data_st {
 };
 
 const struct round5_nid_data_st *round5_get_nid_data(int nid);
-
 
 #endif //ROUND5_KEYPAIR_H
 

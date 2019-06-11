@@ -1,6 +1,11 @@
 {
     "files.associations": {
         "r5_cpa_kem.h": "c",
-        "parameters.h": "c"
+        "parameters.h": "c",
+        "dilithium_meth.h": "c",
+        "keccakhash.h": "c",
+        "params.h": "c",
+        "objects.h": "c",
+        "packing.h": "c"
     }
 }
