@@ -42,6 +42,7 @@ int round5_sk_to_pk(unsigned char *pk, const unsigned char *sk, parameters *para
 //     return 1;
 // }
 
+
 static int keygen(EVP_PKEY_CTX *ctx, EVP_PKEY *pkey){
     // printf("\nkeygen\n");
     struct ROUND5 *kpair = NULL;
@@ -61,11 +62,6 @@ static int keygen(EVP_PKEY_CTX *ctx, EVP_PKEY *pkey){
         kpair = round5_new();
         EVP_PKEY_assign(pkey, NID_ROUND5, kpair);
     }
-    // printf("\nPKLEN: %d\n\nSKLEN: %d\n", PKLEN, SKLEN);
-    // unsigned char *pk = malloc(PKLEN);
-    // unsigned char *sk = malloc(SKLEN);
-    // kpair->pk = malloc(PKLEN);
-    // kpair->sk = malloc(SKLEN);
     if (!round5_sk_to_pk(kpair->pk, kpair->sk, params))
         goto err;
     // kpair->pk = &pk;

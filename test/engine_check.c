@@ -7,9 +7,6 @@
 #include <openssl/evp.h>
 #include <openssl/conf.h>
 #include <openssl/ssl.h>
-#include "r5_cca_pke.h"
-#include "parameters.h"
-#include "r5_memory.h"
 #include "meths/round5_meth.h"
 #include "meths/asn1_meth.h"
 #include "keypair.h"
@@ -19,6 +16,7 @@
 #include "ossl/objects.h"
 #include "network/linux/client.h"
 #include "network/linux/server.h"
+#include "../dilithium/ref/params.h"
 #define T(e) ({ if (!(e)) { \
 		ERR_print_errors_fp(stderr); \
 		OpenSSLDie(__FILE__, __LINE__, #e); \
@@ -126,9 +124,30 @@ struct certKey *gen_cert(){
   // struct certKey *c = NULL;
   // c = OPENSSL_malloc(sizeof(*c));
   
+  char *algoname = OBJ_nid2sn(NID_DILITHIUM);
+  EVP_PKEY *ckey;
+  T(ckey = EVP_PKEY_new());
+  T(EVP_PKEY_set_type_str(ckey, algoname, strlen(algoname)));
+  // EVP_PKEY_set_type(ckey, NID_DILITHIUM);
+  EVP_PKEY_CTX *tx;
+  (tx = EVP_PKEY_CTX_new(ckey, NULL));
+  T(EVP_PKEY_keygen_init(tx));
 
-   
-  
+  EVP_PKEY *qkey = NULL;
+  pkey = EVP_PKEY_new();
+  T((EVP_PKEY_keygen(tx, &qkey)) == 1);
+  EVP_PKEY_free(ckey);
+
+  unsigned char *msg = "message";
+  int msglen = strlen(msg);
+  int siglen = msglen + CRYPTO_BYTES;
+  unsigned char *sig = malloc(siglen);
+  EVP_PKEY_CTX *cont = EVP_PKEY_CTX_new(qkey, NULL);
+  unsigned char *hash = malloc(SHA_DIGEST_LENGTH);
+  SHA1(msg, strlen(msg), hash);
+  EVP_PKEY_sign_init(cont);
+  EVP_PKEY_sign(cont, sig, &siglen, hash, strlen(hash));
+  printf("\n%s\n", sig);
   /*
   EVP_MD *md = EVP_get_digestbyname("Keccak");
   // printf("\nnid keccak: %s\n", OBJ_nid2ln(NID_KECCAK));

@@ -160,7 +160,7 @@ static int pki_gen_ctrl(int nid, EVP_PKEY *pkey, int op, long arg1, void *arg2)
 static int pki_gen_priv_encode(PKCS8_PRIV_KEY_INFO *p8, const EVP_PKEY *pkey)
 {
     int nid = NID_ROUND5;
-    const struct round5_nid_data_st *nid_data = round5_get_nid_data(nid);
+    // const struct round5_nid_data_st *nid_data = round5_get_nid_data(nid);
     // ASN1_OBJECT *algobj = OBJ_nid2obj(nid);
     ASN1_OBJECT *algobj = OBJ_nid2obj(nid);
     ASN1_STRING *params = ASN1_STRING_new();//encode_gost_algor_params(pk);
@@ -168,12 +168,6 @@ static int pki_gen_priv_encode(PKCS8_PRIV_KEY_INFO *p8, const EVP_PKEY *pkey)
     size_t key_len, /*priv_len = 0,*/ i = 0;
 
     if (!params) {
-        return 0;
-    }
-
-    key_len = nid_data->sk_bytes;
-    //key_len = 1413; //TODO: take this out
-    if (key_len == 0) {
         return 0;
     }
 
@@ -187,60 +181,7 @@ static int pki_gen_priv_encode(PKCS8_PRIV_KEY_INFO *p8, const EVP_PKEY *pkey)
     //BN data = BN_new();
 
     return PKCS8_pkey_set0(p8, algobj, 0, V_ASN1_SEQUENCE, params,
-                           key_data->sk, key_len);
-    /*const ROUND5_KEYPAIR *kp = EVP_PKEY_get0(pkey);
-    ASN1_OCTET_STRING oct;
-    unsigned char *penc = NULL;
-    int penclen;
-    const struct round5_nid_data_st *nid_data = round5_get_nid_data(nid);
-    char *tmp_buf = NULL;
-    int ret = 0;
-
-    if (nid_data == NULL) {
-//        SUOLAerr(SUOLA_F_ASN1_GENERIC_PRIV_ENCODE, SUOLA_R_MISSING_NID_DATA);
-        return 0;
-    }
-
-//    if (suola_keypair_is_invalid(kp) || kp->nid != nid) {
-//        SUOLAerr(SUOLA_F_ASN1_GENERIC_PRIV_ENCODE, SUOLA_R_INVALID_PRIVATE_KEY);
-//        return 0;
-//    }
-
-    tmp_buf = OPENSSL_secure_malloc(nid_data->sk_bytes);     // TODO: figure out privk_bytes
-    if (NULL == tmp_buf) {
-//        SUOLAerr(SUOLA_F_ASN1_GENERIC_PRIV_ENCODE, ERR_R_MALLOC_FAILURE);
-        return 0;
-    }
-
-    oct.data = memcpy(tmp_buf, kp->key.sk, nid_data->sk_bytes);      //TODO: privk_bytes
-    oct.length = nid_data->sk_bytes;     //TODO: privk_bytes
-    oct.flags = 0;
-
-    penclen = i2d_ASN1_OCTET_STRING(&oct, &penc);
-    if (penclen < 0) {
-//        SUOLAerr(ROUDN5_F_ASN1_GENERIC_PRIV_ENCODE, ERR_R_MALLOC_FAILURE);
-        ret = 0;
-        goto err;
-    }
-
-    if (!PKCS8_pkey_set0(p8, OBJ_nid2obj(nid), 0,
-                         V_ASN1_UNDEF, NULL, penc, penclen)) {
-        OPENSSL_clear_free(penc, penclen);
-//        SUOLAerr(SUOLA_F_ASN1_GENERIC_PRIV_ENCODE, ERR_R_MALLOC_FAILURE);
-        ret = 0;
-        goto err;
-    }
-
-    ret = 1;
-    err:
-    _round5_keypair_free(kp);
-    if (tmp_buf)
-        OPENSSL_secure_free(tmp_buf);
-    free(nid_data->name);
-    free(nid_data);
-    nid_data = NULL;
-    return ret; */
-    
+                           key_data->sk, SKLEN);
 }
 
 static int pki_curve25519_bits(const EVP_PKEY *pkey)
@@ -271,71 +212,6 @@ static int pki_gen_priv_decode(EVP_PKEY *pk, RC_CONST PKCS8_PRIV_KEY_INFO *p8inf
     //kpair->sk = OPENSSL_malloc(priv_len);
     memcpy(kpair->sk, pkey_buf, priv_len);
     EVP_PKEY_assign(pk, NID_ROUND5, kpair);
-    // free(kpair->sk);
-    // key_data = OPENSSL_malloc(sizeof(*key_data));
-    // key_data = EVP_PKEY_get0(pk);
-    // printf("\n%s\n", key_data->sk);
-//     const unsigned char *p;
-//     int plen;
-//     ASN1_OCTET_STRING *oct = NULL;
-//     RC_CONST X509_ALGOR *palg;
-//     ROUND5_KEYPAIR *kp = NULL;
-
-//     const struct round5_nid_data_st *nid_data = round5_get_nid_data(nid);
-//     if (nid_data == NULL) {
-// //        SUOLAerr(SUOLA_F_ASN1_GENERIC_PRIV_DECODE, SUOLA_R_MISSING_NID_DATA);
-//         return 0;
-//     }
-
-//     if (!PKCS8_pkey_get0(NULL, &p, &plen, &palg, p8))
-//         return 0;
-
-//     oct = d2i_ASN1_OCTET_STRING(NULL, &p, plen);
-//     if (oct == NULL) {
-//         p = NULL;
-//         plen = 0;
-//     } else {
-//         p = ASN1_STRING_get0_data(oct);
-//         plen = ASN1_STRING_length(oct);
-//     }
-
-//     if (palg != NULL) {
-//         int ptype;
-
-//         /* Algorithm parameters must be absent */
-//         X509_ALGOR_get0(NULL, &ptype, NULL, palg);
-//         if (ptype != V_ASN1_UNDEF) {
-// //            SUOLAerr(SUOLA_F_ASN1_GENERIC_PRIV_DECODE, SUOLA_R_INVALID_ENCODING);
-//             return 0;
-//         }
-//     }
-
-//     if (p == NULL || plen != nid_data->sk_bytes) {
-// //        SUOLAerr(SUOLA_F_ASN1_GENERIC_PRIV_DECODE, SUOLA_R_WRONG_LENGTH);
-//         return 0;
-//     }
-
-//     kp = round5_new(nid);
-// //    if (suola_keypair_is_invalid_private(kp)){
-// //        SUOLAerr(SUOLA_F_ASN1_GENERIC_PRIV_DECODE, SUOLA_R_INVALID_PRIVATE_KEY);
-// //        return 0;
-// //    }
-
-//     memcpy(kp->key.sk, p, nid_data->sk_bytes);       //TODO: privk_bytes
-
-//     ASN1_OCTET_STRING_free(oct);
-//     oct = NULL;
-//     free(p);
-//     p = NULL;
-//     plen = 0;
-
-//     // Generate corresponding public key
-//     if ( 1 != (nid_data->sk_to_pk)(kp->key.pk, kp->key.sk) ) {
-//         round5_free(kp);
-//         return 0;
-//     }
-
-//     EVP_PKEY_assign(pkey, nid, kp);
 
     return 1;
 }
@@ -352,9 +228,9 @@ static int pki_gen_pub_encode(X509_PUBKEY *pub,  EVP_PKEY *pk)
     struct ROUND5 *kpair = EVP_PKEY_get0(pk);
     set_key_size();
     algobj = OBJ_nid2obj(EVP_PKEY_base_id(pk));
-    char buffer[1024];
-    OBJ_obj2txt(buffer, 1024, algobj, 1);
-    printf("algobj%s\n", buffer);
+    // char buffer[1024];
+    // OBJ_obj2txt(buffer, 1024, algobj, 1);
+    // printf("algobj%s\n", buffer);
 	ASN1_STRING *params = ASN1_STRING_new();//encode_gost_algor_params(pk);
 	//pval = params;
 	ptype = V_ASN1_SEQUENCE;
@@ -363,7 +239,7 @@ static int pki_gen_pub_encode(X509_PUBKEY *pub,  EVP_PKEY *pk)
     databuf = OPENSSL_malloc(PKLEN);
     // printf("\npk: %s\n", PKLEN);
     if(kpair->pk)
-        memcpy(databuf, kpair->pk, sizeof(kpair->pk));
+        memcpy(databuf, kpair->pk, PKLEN);
     if (!databuf)
         printf("Invalid key\n\n");
     X509_PUBKEY_set0_param(pub, algobj, ptype, params, databuf, PKLEN);
@@ -388,6 +264,7 @@ static int pki_gen_pub_decode(EVP_PKEY *pkey, X509_PUBKEY *pubkey)
     kpair = round5_new();
     //kpair->pk = OPENSSL_malloc(pub_len);
     memcpy(kpair->pk, pubkey_buf, pub_len);
+    printf("\npubkey buf: %s\n", pubkey_buf);
     EVP_PKEY_assign(pkey, NID_ROUND5, kpair);
     // OPENSSL_free(kpair->pk);
     return 1;
@@ -402,6 +279,11 @@ int _register_asn1_meth(int nid, EVP_PKEY_ASN1_METHOD **ameth, const char *pem_s
     if (!*ameth)
         return 0;
     if (nid == NID_ROUND5){
+        EVP_PKEY_asn1_set_public(*ameth, pki_gen_pub_decode, pki_gen_pub_encode, pki_pub_cmp, pki_gen_pub_print, NULL, pki_curve25519_bits);
+        EVP_PKEY_asn1_set_private(*ameth, pki_gen_priv_decode, pki_gen_priv_encode, pki_gen_priv_print);
+        EVP_PKEY_asn1_set_ctrl(*ameth, pki_gen_ctrl);
+    }
+    else if (nid == NID_DILITHIUM){
         EVP_PKEY_asn1_set_public(*ameth, pki_gen_pub_decode, pki_gen_pub_encode, pki_pub_cmp, pki_gen_pub_print, NULL, pki_curve25519_bits);
         EVP_PKEY_asn1_set_private(*ameth, pki_gen_priv_decode, pki_gen_priv_encode, pki_gen_priv_print);
         EVP_PKEY_asn1_set_ctrl(*ameth, pki_gen_ctrl);

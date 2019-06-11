@@ -83,8 +83,8 @@ set(METHODS_SOURCE_FILES
     meths/round5_meth.h
     meths/asn1_meth.c
     meths/asn1_meth.h
-    # meths/dilithium_meth.c
-    # meths/dilithium_meth.h
+    meths/dilithium_meth.c
+    meths/dilithium_meth.h
 )
 
 set(OSSL_SOURCE_FILES
@@ -128,7 +128,7 @@ set(TEST
 include_directories(${CMAKE_SOURCE_DIR})
 include_directories(meths)
 include_directories(ossl)
-# include_directories(dilithium/ref)
+include_directories(dilithium/ref)
 include_directories(Round5/reference/src)
 include_directories(XKCP/bin/generic64/libkeccak.a.headers)
 
@@ -148,7 +148,7 @@ add_library(round5_engine SHARED ${ROUND5_ENGINE_SOURCE_FILES})
 # set_target_properties(round5_engine PROPERTIES COMPILE_FLAGS "-fPIC -lkeccak -lcrypto -lssl -Xlinker -zmuldefs")
 # <<<<<<< Updated upstream
 # target_link_libraries(round5_engine dilithium ${OPENSSL_CRYPTO_LIBRARY})
-target_link_libraries(round5_engine round5 ${OPENSSL_CRYPTO_LIBRARY} -Xlinker -zmuldefs)
+target_link_libraries(round5_engine round5 dilithium ${OPENSSL_CRYPTO_LIBRARY} -Xlinker -zmuldefs)
 # >>>>>>> Stashed changes
 # target_include_directories(round5_engine PUBLIC Round5/reference/src)
 target_compile_definitions(round5_engine PUBLIC R5ND_5PKE_5d)
@@ -157,7 +157,7 @@ set_target_properties(round5_engine PROPERTIES COMPILE_FLAGS "-lkeccak -lcrypto 
 # run test
 add_executable(engine_check ${TEST})
 # set_target_properties(engine_check PROPERTIES COMPILE_FLAGS "-lcrypto -lssl -lkeccak")
-target_link_libraries(engine_check ${OPENSSL_CRYPTO_LIBRARY} round5_engine) #round5 round5_engine dilithium)
+target_link_libraries(engine_check ${OPENSSL_CRYPTO_LIBRARY} round5_engine dilithium) #round5 round5_engine dilithium)
 target_compile_definitions(engine_check PUBLIC R5ND_5PKE_5d)
 set_target_properties(engine_check PROPERTIES COMPILE_FLAGS "-lcrypto -lssl")
 

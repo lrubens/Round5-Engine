@@ -25,6 +25,7 @@ struct ROUND5{
     int nid;
 };
 
+
 typedef enum {
     NO_FLAG=0,
     NO_PRIV_KEY=1,
