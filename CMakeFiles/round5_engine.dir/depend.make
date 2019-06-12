@@ -31,8 +31,6 @@ CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.o: /home/gfleming/dilithium/
 CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.o: /home/gfleming/dilithium/ref/sign.h
 CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.o: /home/gfleming/dilithium/ref/test/cpucycles.h
 CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.o: /home/gfleming/dilithium/ref/test/speed.h
-CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.o: Round5/reference/src/parameters.h
-CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.o: Round5/reference/src/r5_cca_pke.h
 CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.o: XKCP/bin/generic64/libkeccak.a.headers/KeccakHash.h
 CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.o: XKCP/bin/generic64/libkeccak.a.headers/KeccakP-1600-SnP.h
 CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.o: XKCP/bin/generic64/libkeccak.a.headers/KeccakP-1600-opt64-config.h

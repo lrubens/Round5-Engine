@@ -42,17 +42,13 @@ static int _register_nid(const char *oid_str, const char *sn, const char *ln) {
         return 0; \
     }
 
-
-int get_nid(){
-    return NID_ROUND5;
-}
-
-
+ 
 int _register_nids()
 {
-    _REGISTER_NID(ROUND5);
-    _REGISTER_NID(KECCAK);
     _REGISTER_NID(DILITHIUM);
+
+    _REGISTER_NID(ROUND5);
+    // _REGISTER_NID(KECCAK);
 
 //    SUOLA_REGISTER_NID(ED25519);
 

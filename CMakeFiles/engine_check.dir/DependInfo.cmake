@@ -25,7 +25,7 @@ set(CMAKE_C_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/gfleming/Post-Quantum-PKI/CMakeFiles/round5_engine.dir/DependInfo.cmake"
+  "/home/gfleming/Post-Quantum-PKI/CMakeFiles/dilithium_d.dir/DependInfo.cmake"
   "/home/gfleming/Post-Quantum-PKI/CMakeFiles/dilithium.dir/DependInfo.cmake"
   "/home/gfleming/Post-Quantum-PKI/CMakeFiles/round5.dir/DependInfo.cmake"
   )

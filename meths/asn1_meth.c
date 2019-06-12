@@ -49,10 +49,10 @@ static int pki_key_print( BIO *bp, const EVP_PKEY *pkey,
 {
     if (!pkey)
         return 0;
-
-    struct ROUND5 *kpair = NULL;
-    //kpair = OPENSSL_malloc(sizeof(*kpair));
+    int nid = EVP_PKEY_base_id(pkey);
+    struct DILITHIUM *kpair = NULL;    
     kpair = EVP_PKEY_get0(pkey);
+    //kpair = OPENSSL_malloc(sizeof(*kpair));
     //const struct round5_nid_data_st *nid_data = NULL;
     if (!kpair){
         printf("<Undefined Key>\n");
@@ -69,7 +69,7 @@ static int pki_key_print( BIO *bp, const EVP_PKEY *pkey,
         if (BIO_printf(bp, "%*s%s Private-Key:\n", indent, "", "") <= 0)
             return 0;
         // if (ASN1_buf_print(bp, kpair->sk, nid_data->sk_bytes, indent + 4) == 0)
-        if (ASN1_buf_print(bp, kpair->sk, SKLEN, indent + 4) == 0)
+        if (ASN1_buf_print(bp, kpair->sk, (nid == NID_ROUND5 ? SKLEN : CRYPTO_SECRETKEYBYTES), indent + 4) == 0)
             return 0;
     } else {
        if (!kpair) {
@@ -80,7 +80,7 @@ static int pki_key_print( BIO *bp, const EVP_PKEY *pkey,
         //nid_data = round5_get_nid_data(1061);
         if (BIO_printf(bp, "%*s%sPublic-Key:\n", indent, "", "") <= 0) //change last parameter back to nid_data->name
             return 0;
-        if (!ASN1_buf_print(bp, kpair->pk, PKLEN, indent + 4))
+        if (!ASN1_buf_print(bp, kpair->pk, (nid == NID_ROUND5 ? SKLEN : CRYPTO_PUBLICKEYBYTES), indent + 4))
             return 0;
     }
     // if (BIO_printf(bp, "%*s", indent, "") <= 0)
@@ -275,7 +275,7 @@ static int pki_pub_cmp(const EVP_PKEY *a, const EVP_PKEY *b){
 }
 
 int _register_asn1_meth(int nid, EVP_PKEY_ASN1_METHOD **ameth, const char *pem_str, const char *info){
-    *ameth = EVP_PKEY_asn1_new(nid, 0, pem_str, info);
+    *ameth = EVP_PKEY_asn1_new(nid, ASN1_PKEY_SIGPARAM_NULL, pem_str, info);
     if (!*ameth)
         return 0;
     if (nid == NID_ROUND5){

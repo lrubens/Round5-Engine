@@ -12,12 +12,6 @@ struct MD_DATA{
     unsigned char *data;
 };
 
-struct DILITHIUM{
-    int nid;
-    unsigned char *pk;
-    unsigned char *sk;
-};
-
 // struct digest_init_ctx{
 //     Keccak_HashInstance *instance;
 //     unsigned char * data;

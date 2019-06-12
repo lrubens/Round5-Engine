@@ -49,10 +49,16 @@ CMakeFiles/dilithium.dir/dilithium/ref/polyvec.c.o: dilithium/ref/poly.h
 CMakeFiles/dilithium.dir/dilithium/ref/polyvec.c.o: dilithium/ref/polyvec.c
 CMakeFiles/dilithium.dir/dilithium/ref/polyvec.c.o: dilithium/ref/polyvec.h
 
+CMakeFiles/dilithium.dir/dilithium/ref/randombytes.c.o: dilithium/ref/randombytes.c
+CMakeFiles/dilithium.dir/dilithium/ref/randombytes.c.o: dilithium/ref/randombytes.h
+
 CMakeFiles/dilithium.dir/dilithium/ref/reduce.c.o: dilithium/ref/config.h
 CMakeFiles/dilithium.dir/dilithium/ref/reduce.c.o: dilithium/ref/params.h
 CMakeFiles/dilithium.dir/dilithium/ref/reduce.c.o: dilithium/ref/reduce.c
 CMakeFiles/dilithium.dir/dilithium/ref/reduce.c.o: dilithium/ref/reduce.h
+
+CMakeFiles/dilithium.dir/dilithium/ref/rng.c.o: dilithium/ref/rng.c
+CMakeFiles/dilithium.dir/dilithium/ref/rng.c.o: dilithium/ref/rng.h
 
 CMakeFiles/dilithium.dir/dilithium/ref/rounding.c.o: dilithium/ref/config.h
 CMakeFiles/dilithium.dir/dilithium/ref/rounding.c.o: dilithium/ref/params.h

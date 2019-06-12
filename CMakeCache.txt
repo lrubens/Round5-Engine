@@ -224,10 +224,13 @@ Round5_SOURCE_DIR:STATIC=/home/gfleming/Post-Quantum-PKI
 dilithium_LIB_DEPENDS:STATIC=
 
 //Dependencies for target
+dilithium_d_LIB_DEPENDS:STATIC=
+
+//Dependencies for target
 round5_LIB_DEPENDS:STATIC=
 
 //Dependencies for the target
-round5_engine_LIB_DEPENDS:STATIC=general;round5;general;dilithium;general;/usr/lib/x86_64-linux-gnu/libcrypto.so;general;-Xlinker;general;-zmuldefs;
+round5_engine_LIB_DEPENDS:STATIC=general;dilithium;general;round5;general;/usr/lib/x86_64-linux-gnu/libcrypto.so;general;-Xlinker;general;-zmuldefs;
 
 
 ########################

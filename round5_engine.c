@@ -46,7 +46,8 @@ static int pkey_asn1_meths(ENGINE *e, EVP_PKEY_ASN1_METHOD **ameth, const int **
 static int pkey_meths(ENGINE *e, EVP_PKEY_METHOD **pmeth, const int **nids, int nid);
 static int pkey_meth_nids[] = {
         0,   //NID_ROUND5
-        0    //NID_DILITHIUM to be integrated later
+        0,    //NID_DILITHIUM to be integrated later
+        0
 };
 static int md_meth_nids[] = {
         0,   //NID_ROUND5
@@ -71,6 +72,7 @@ static EVP_PKEY_METHOD *pmeth_dilithium = NULL;
 static int register_ameth(int id, EVP_PKEY_ASN1_METHOD **ameth, int flags);
 
 static int pkey_asn1_meth_nids[] = {
+        0,
         0,
         0
 };
@@ -235,16 +237,18 @@ static int register_pmeth(int id, EVP_PKEY_METHOD **pmeth, int flags){
 
 static int pkey_asn1_meths(ENGINE *e, EVP_PKEY_ASN1_METHOD **ameth, const int **nids, int nid){
     if (!ameth){
+        pkey_asn1_meth_nids_init();
         *nids = pkey_asn1_meth_nids;
-        return sizeof_static_array(pkey_asn1_meth_nids) - 1;
+        // printf("\nsize: %d\n", sizeof_static_array(pkey_asn1_meth_nids));
+        // printf("\nnids[0]: %d\n", *nids[0]);
+        // printf("\nnids[1]: %d\n", *nids[1]);
+        return sizeof_static_array(pkey_asn1_meth_nids);
     }
     if (nid == NID_ROUND5){
         *ameth = ameth_round5;
-        printf("\nnid round5\n");
         return 1;
     }
     else if(nid == NID_DILITHIUM){
-        printf("\nnid dilithium\n");
         *ameth = ameth_dilithium;
         return 1;
     }

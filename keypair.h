@@ -25,6 +25,11 @@ struct ROUND5{
     int nid;
 };
 
+struct DILITHIUM{
+    int nid;
+    unsigned char *pk;
+    unsigned char *sk;
+};
 
 typedef enum {
     NO_FLAG=0,

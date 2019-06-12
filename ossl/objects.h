@@ -22,6 +22,5 @@ extern int NID_KECCAK;
 extern int NID_DILITHIUM;
 
 int _register_nids();
-int get_nid();
 
 #endif //ROUND5_OBJECTS_H

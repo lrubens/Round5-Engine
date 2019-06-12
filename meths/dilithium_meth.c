@@ -1,3 +1,6 @@
+#undef CRYPTO_PUBLICKEYBYTES
+#undef CRYPTO_SECRETKEYBYTES
+#include "../keypair.h"
 #include "dilithium_meth.h"
 #include <openssl/crypto.h>
 #include "../ossl/objects.h"
@@ -6,10 +9,9 @@
 #include "../../dilithium/ref/randombytes.h"
 #include "../../dilithium/ref/params.h"
 #include "../../dilithium/ref/sign.h"
-#include "../keypair.h"
 #include "../../dilithium/ref/packing.h"
 #include <inttypes.h>
-#include "../../reference/src/r5_cca_pke.h"
+// #include "../../reference/src/r5_cca_pke.h"
 //#include "KeccakHash.h"
 
 static EVP_MD *keccak = NULL;
@@ -44,6 +46,13 @@ struct DILITHIUM *dilithium_new(){
     // if (nid_data == NULL)
         // goto err;
     kpair = OPENSSL_secure_malloc(sizeof(*kpair));
+    int secret = 0;
+    int public = 0;
+    // #ifdef CRYPTO_PUBLICKEYBYTES
+    // secret = crypto_get_bytes("secret");
+    // public = crypto_get_bytes("public");
+    // #endif
+    // printf("\npublic: %d\n", public);
     kpair->pk = OPENSSL_secure_malloc(CRYPTO_PUBLICKEYBYTES);
     kpair->sk = OPENSSL_secure_malloc(CRYPTO_SECRETKEYBYTES);
     if (kpair == NULL)
@@ -66,10 +75,12 @@ static int dilithium_keygen(EVP_PKEY_CTX *ctx, EVP_PKEY *pkey)
         kpair = dilithium_new();
         EVP_PKEY_assign(pkey, NID_DILITHIUM, kpair);
     }
-    if (!crypto_sign_keypair(kpair->pk, kpair->sk))
+    if (crypto_sign_keypair(kpair->pk, kpair->sk))
         goto err;
+    printf("\nkpair pk: %s\n", kpair->pk);
     return 1;
     err:
+    printf("\nerr in dilithium\n");
     return 0;
 }
 
@@ -114,117 +125,6 @@ static int dilithium_signctx(EVP_PKEY_CTX *ctx, unsigned char *sig,
     return ret;
 }
 
-// int keccak_digest_init(EVP_MD_CTX *ctx){
-//     Keccak_HashInstance *inst;
-//     struct digest_init_ctx *c = EVP_MD_CTX_md_data(ctx);
-//     Keccak_HashInitialize_SHA3_256(c->instance); 
-//     return 1;
-// }
-// int keccak_digest_init(EVP_MD_CTX *ctx){
-    
-//     struct hash_ctx *c = EVP_MD_CTX_md_data(ctx);
-//     memset(&(c->dgst), 0, sizeof(struct digest_init_ctx));
-//     Keccak_HashInstance h;
-//     // Keccak_HashInitialize_SHAKE256(&(c->inst));
-//     Keccak_HashInitialize_SHAKE256(&h);
-//     // gost_init(&(c->cctx), &GostR3411_94_CryptoProParamSet);
-//     c->dgst.instance = &(h);
-//     return 1;
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    // printf("\nstarted digest_init\n");
-    // struct digest_init_ctx *c = EVP_MD_CTX_md_data(ctx);;
-    // // c = malloc(sizeof(*c));
-    // // c = EVP_MD_CTX_md_data(ctx);
-    // Keccak_HashInstance h; 
-    // // memset(&(c->instance), 0, sizeof(Keccak_HashInstance));
-    // // c->instance = h;
-
-    // // Keccak_HashInitialize_SHAKE256((Keccak_HashInstance *)EVP_MD_CTX_md_data(ctx));
-    // Keccak_HashInitialize_SHAKE256((EVP_MD_CTX_md_data(ctx)));
-
-    // return 1;
-// }
-
-// int keccak_digest_update(EVP_MD_CTX *ctx, void *data, size_t count){
-//     // Keccak_HashInstance *inst = EVP_MD_CTX_md_data(ctx);
-//     // Keccak_HashInstance anything;
-//     printf("started digest_update");
-//     struct hash_ctx *c = EVP_MD_CTX_md_data(ctx);
-//     // struct digest_init_ctx *c = EVP_MD_CTX_md_data(ctx);
-//     // c->instance = malloc(sizeof(*(c->instance)));
-//     // memset((c->instance), 0, sizeof(*(c->instance)));
-//     Keccak_HashUpdate(c->dgst.instance, data, count);
-//     printf("\nafter hashupdate\n");
-//     // Keccak_HashUpdate(&anything, data, count);
-
-//     //exit(0);
-//     return 1;
-// }
-// int keccak_digest_final(EVP_MD_CTX *ctx, unsigned char *digest){
-//     // struct digest_init_ctx *c = malloc(sizeof(struct digest_init_ctx));
-//     // c = EVP_MD_CTX_md_data(ctx);
-//     printf("\nstarted digest_final\n");
-//     struct hash_ctx *c = NULL;
-//     // c = malloc(sizeof(*c));
-//     // c->instance = malloc(sizeof(*(c->instance)));
-//     c = EVP_MD_CTX_md_data(ctx);
-//     // digest = malloc(64);
-//     // memset((c->instance), 0, sizeof(*(c->instance)));
-//     // Keccak_HashFinal(&(c->instance), digest);
-//     Keccak_HashFinal(c->dgst.instance, digest);
-//     //Keccak_HashSqueeze(&(c->instance), digest, 64);
-//     printf("\ndigest:  %s\n", digest);
-//     return 1;
-// }
-
-// int keccak_digest_copy(EVP_MD_CTX *to, const EVP_MD_CTX *from){
-//     struct digest_init_ctx *md_ctx = EVP_MD_CTX_md_data(to);
-//     if (EVP_MD_CTX_md_data(to) && EVP_MD_CTX_md_data(from)) {
-//         memcpy(EVP_MD_CTX_md_data(to), EVP_MD_CTX_md_data(from),
-//                sizeof(struct digest_init_ctx));
-//         //md_ctx->dctx.cipher_ctx = &(md_ctx->cctx);
-//     }
-//     return 1;
-// }
-
-// int keccak_digest_cleanup(EVP_MD_CTX *ctx)
-// {
-//     if (EVP_MD_CTX_md_data(ctx))
-//         memset(EVP_MD_CTX_md_data(ctx), 0,
-//                sizeof(struct digest_init_ctx));
-//     return 1;
-// }
-
-// EVP_MD *keccak_digest(void){
-//     if(keccak == NULL){
-//         EVP_MD *md;
-//         if ((md = EVP_MD_meth_new(NID_KECCAK, NID_undef)) == NULL
-//             // || !EVP_MD_meth_set_result_size(md, sizeof(struct digest_init_ctx))
-//             || !EVP_MD_meth_set_result_size(md, 64)
-//             || !EVP_MD_meth_set_input_blocksize(md, 24)
-//             // || !EVP_MD_meth_set_app_datasize(md, sizeof(struct digest_init_ctx))
-//             || !EVP_MD_meth_set_app_datasize(md, 64)
-//             || !EVP_MD_meth_set_init(md, keccak_digest_init)
-//             || !EVP_MD_meth_set_update(md, keccak_digest_update)
-//             || !EVP_MD_meth_set_final(md, keccak_digest_final)
-//             || !EVP_MD_meth_set_copy(md, keccak_digest_copy)
-//             || !EVP_MD_meth_set_cleanup(md, keccak_digest_cleanup)) {
-//             EVP_MD_meth_free(md);
-//             md = NULL;
-//         }
-//         keccak = md;
-//         EVP_MD_meth_free(md);
-//     }
-//     return keccak;
-// }
 
 void pki_register_dilithium(EVP_PKEY_METHOD *pmeth){
     EVP_PKEY_meth_set_sign(pmeth, NULL, dilithium_sign);
@@ -263,4 +163,14 @@ int dilithium_verify(EVP_PKEY_CTX *ctx, unsigned char *sig, size_t *siglen, cons
     struct DILITHIUM *kpair = EVP_PKEY_get0(pkey);
     return crypto_sign_open(tbs, &tbs_len, sig, *siglen, kpair->pk);
 }
+
+int dilithium_sign_ctx_init(EVP_PKEY_CTX *ctx, EVP_MD_CTX *md){
+    return 1;
+}
+
+int dilithium_sign_ctx(EVP_PKEY_CTX *ctx, unsigned char *sig, size_t *siglen, EVP_MD_CTX *md){
+    return 1;
+}
+
+
 

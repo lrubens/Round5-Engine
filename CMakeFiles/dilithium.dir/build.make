@@ -225,9 +225,33 @@ CMakeFiles/dilithium.dir/dilithium/ref/polyvec.c.o.provides: CMakeFiles/dilithiu
 CMakeFiles/dilithium.dir/dilithium/ref/polyvec.c.o.provides.build: CMakeFiles/dilithium.dir/dilithium/ref/polyvec.c.o
 
 
+CMakeFiles/dilithium.dir/dilithium/ref/randombytes.c.o: CMakeFiles/dilithium.dir/flags.make
+CMakeFiles/dilithium.dir/dilithium/ref/randombytes.c.o: dilithium/ref/randombytes.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/dilithium.dir/dilithium/ref/randombytes.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/dilithium.dir/dilithium/ref/randombytes.c.o   -c /home/gfleming/Post-Quantum-PKI/dilithium/ref/randombytes.c
+
+CMakeFiles/dilithium.dir/dilithium/ref/randombytes.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/dilithium.dir/dilithium/ref/randombytes.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/dilithium/ref/randombytes.c > CMakeFiles/dilithium.dir/dilithium/ref/randombytes.c.i
+
+CMakeFiles/dilithium.dir/dilithium/ref/randombytes.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/dilithium.dir/dilithium/ref/randombytes.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/dilithium/ref/randombytes.c -o CMakeFiles/dilithium.dir/dilithium/ref/randombytes.c.s
+
+CMakeFiles/dilithium.dir/dilithium/ref/randombytes.c.o.requires:
+
+.PHONY : CMakeFiles/dilithium.dir/dilithium/ref/randombytes.c.o.requires
+
+CMakeFiles/dilithium.dir/dilithium/ref/randombytes.c.o.provides: CMakeFiles/dilithium.dir/dilithium/ref/randombytes.c.o.requires
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/randombytes.c.o.provides.build
+.PHONY : CMakeFiles/dilithium.dir/dilithium/ref/randombytes.c.o.provides
+
+CMakeFiles/dilithium.dir/dilithium/ref/randombytes.c.o.provides.build: CMakeFiles/dilithium.dir/dilithium/ref/randombytes.c.o
+
+
 CMakeFiles/dilithium.dir/dilithium/ref/reduce.c.o: CMakeFiles/dilithium.dir/flags.make
 CMakeFiles/dilithium.dir/dilithium/ref/reduce.c.o: dilithium/ref/reduce.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/dilithium.dir/dilithium/ref/reduce.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/dilithium.dir/dilithium/ref/reduce.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/dilithium.dir/dilithium/ref/reduce.c.o   -c /home/gfleming/Post-Quantum-PKI/dilithium/ref/reduce.c
 
 CMakeFiles/dilithium.dir/dilithium/ref/reduce.c.i: cmake_force
@@ -249,9 +273,33 @@ CMakeFiles/dilithium.dir/dilithium/ref/reduce.c.o.provides: CMakeFiles/dilithium
 CMakeFiles/dilithium.dir/dilithium/ref/reduce.c.o.provides.build: CMakeFiles/dilithium.dir/dilithium/ref/reduce.c.o
 
 
+CMakeFiles/dilithium.dir/dilithium/ref/rng.c.o: CMakeFiles/dilithium.dir/flags.make
+CMakeFiles/dilithium.dir/dilithium/ref/rng.c.o: dilithium/ref/rng.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/dilithium.dir/dilithium/ref/rng.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/dilithium.dir/dilithium/ref/rng.c.o   -c /home/gfleming/Post-Quantum-PKI/dilithium/ref/rng.c
+
+CMakeFiles/dilithium.dir/dilithium/ref/rng.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/dilithium.dir/dilithium/ref/rng.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/dilithium/ref/rng.c > CMakeFiles/dilithium.dir/dilithium/ref/rng.c.i
+
+CMakeFiles/dilithium.dir/dilithium/ref/rng.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/dilithium.dir/dilithium/ref/rng.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/dilithium/ref/rng.c -o CMakeFiles/dilithium.dir/dilithium/ref/rng.c.s
+
+CMakeFiles/dilithium.dir/dilithium/ref/rng.c.o.requires:
+
+.PHONY : CMakeFiles/dilithium.dir/dilithium/ref/rng.c.o.requires
+
+CMakeFiles/dilithium.dir/dilithium/ref/rng.c.o.provides: CMakeFiles/dilithium.dir/dilithium/ref/rng.c.o.requires
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/rng.c.o.provides.build
+.PHONY : CMakeFiles/dilithium.dir/dilithium/ref/rng.c.o.provides
+
+CMakeFiles/dilithium.dir/dilithium/ref/rng.c.o.provides.build: CMakeFiles/dilithium.dir/dilithium/ref/rng.c.o
+
+
 CMakeFiles/dilithium.dir/dilithium/ref/rounding.c.o: CMakeFiles/dilithium.dir/flags.make
 CMakeFiles/dilithium.dir/dilithium/ref/rounding.c.o: dilithium/ref/rounding.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/dilithium.dir/dilithium/ref/rounding.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building C object CMakeFiles/dilithium.dir/dilithium/ref/rounding.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/dilithium.dir/dilithium/ref/rounding.c.o   -c /home/gfleming/Post-Quantum-PKI/dilithium/ref/rounding.c
 
 CMakeFiles/dilithium.dir/dilithium/ref/rounding.c.i: cmake_force
@@ -275,7 +323,7 @@ CMakeFiles/dilithium.dir/dilithium/ref/rounding.c.o.provides.build: CMakeFiles/d
 
 CMakeFiles/dilithium.dir/dilithium/ref/sign.c.o: CMakeFiles/dilithium.dir/flags.make
 CMakeFiles/dilithium.dir/dilithium/ref/sign.c.o: dilithium/ref/sign.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/dilithium.dir/dilithium/ref/sign.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building C object CMakeFiles/dilithium.dir/dilithium/ref/sign.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/dilithium.dir/dilithium/ref/sign.c.o   -c /home/gfleming/Post-Quantum-PKI/dilithium/ref/sign.c
 
 CMakeFiles/dilithium.dir/dilithium/ref/sign.c.i: cmake_force
@@ -306,7 +354,9 @@ dilithium_OBJECTS = \
 "CMakeFiles/dilithium.dir/dilithium/ref/packing.c.o" \
 "CMakeFiles/dilithium.dir/dilithium/ref/poly.c.o" \
 "CMakeFiles/dilithium.dir/dilithium/ref/polyvec.c.o" \
+"CMakeFiles/dilithium.dir/dilithium/ref/randombytes.c.o" \
 "CMakeFiles/dilithium.dir/dilithium/ref/reduce.c.o" \
+"CMakeFiles/dilithium.dir/dilithium/ref/rng.c.o" \
 "CMakeFiles/dilithium.dir/dilithium/ref/rounding.c.o" \
 "CMakeFiles/dilithium.dir/dilithium/ref/sign.c.o"
 
@@ -320,12 +370,14 @@ libdilithium.a: CMakeFiles/dilithium.dir/dilithium/ref/ntt.c.o
 libdilithium.a: CMakeFiles/dilithium.dir/dilithium/ref/packing.c.o
 libdilithium.a: CMakeFiles/dilithium.dir/dilithium/ref/poly.c.o
 libdilithium.a: CMakeFiles/dilithium.dir/dilithium/ref/polyvec.c.o
+libdilithium.a: CMakeFiles/dilithium.dir/dilithium/ref/randombytes.c.o
 libdilithium.a: CMakeFiles/dilithium.dir/dilithium/ref/reduce.c.o
+libdilithium.a: CMakeFiles/dilithium.dir/dilithium/ref/rng.c.o
 libdilithium.a: CMakeFiles/dilithium.dir/dilithium/ref/rounding.c.o
 libdilithium.a: CMakeFiles/dilithium.dir/dilithium/ref/sign.c.o
 libdilithium.a: CMakeFiles/dilithium.dir/build.make
 libdilithium.a: CMakeFiles/dilithium.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking C static library libdilithium.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Linking C static library libdilithium.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/dilithium.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/dilithium.dir/link.txt --verbose=$(VERBOSE)
 
@@ -341,7 +393,9 @@ CMakeFiles/dilithium.dir/requires: CMakeFiles/dilithium.dir/dilithium/ref/ntt.c.
 CMakeFiles/dilithium.dir/requires: CMakeFiles/dilithium.dir/dilithium/ref/packing.c.o.requires
 CMakeFiles/dilithium.dir/requires: CMakeFiles/dilithium.dir/dilithium/ref/poly.c.o.requires
 CMakeFiles/dilithium.dir/requires: CMakeFiles/dilithium.dir/dilithium/ref/polyvec.c.o.requires
+CMakeFiles/dilithium.dir/requires: CMakeFiles/dilithium.dir/dilithium/ref/randombytes.c.o.requires
 CMakeFiles/dilithium.dir/requires: CMakeFiles/dilithium.dir/dilithium/ref/reduce.c.o.requires
+CMakeFiles/dilithium.dir/requires: CMakeFiles/dilithium.dir/dilithium/ref/rng.c.o.requires
 CMakeFiles/dilithium.dir/requires: CMakeFiles/dilithium.dir/dilithium/ref/rounding.c.o.requires
 CMakeFiles/dilithium.dir/requires: CMakeFiles/dilithium.dir/dilithium/ref/sign.c.o.requires
 

@@ -1,1 +1,1 @@
-/usr/bin/cc   -rdynamic CMakeFiles/engine_check.dir/test/engine_check.c.o  -o engine_check -Wl,-rpath,/home/gfleming/Post-Quantum-PKI -lcrypto libround5_engine.so libdilithium.a -lcrypto libround5.a -Xlinker -zmuldefs 
+/usr/bin/cc   -static-libgcc -static-libstdc++ -rdynamic CMakeFiles/engine_check.dir/test/engine_check.c.o  -o engine_check -lcrypto libdilithium_d.a libdilithium.a libround5.a 

@@ -45,8 +45,9 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/round5.dir/DependInfo.cmake"
+  "CMakeFiles/dilithium_d.dir/DependInfo.cmake"
   "CMakeFiles/dilithium.dir/DependInfo.cmake"
-  "CMakeFiles/engine_check.dir/DependInfo.cmake"
+  "CMakeFiles/round5.dir/DependInfo.cmake"
   "CMakeFiles/round5_engine.dir/DependInfo.cmake"
+  "CMakeFiles/engine_check.dir/DependInfo.cmake"
   )

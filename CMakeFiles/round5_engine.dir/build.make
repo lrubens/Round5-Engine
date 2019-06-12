@@ -246,8 +246,8 @@ libround5_engine.so: CMakeFiles/round5_engine.dir/ossl/objects.c.o
 libround5_engine.so: CMakeFiles/round5_engine.dir/ossl/ossl_compat.c.o
 libround5_engine.so: CMakeFiles/round5_engine.dir/keypair.c.o
 libround5_engine.so: CMakeFiles/round5_engine.dir/build.make
-libround5_engine.so: libround5.a
 libround5_engine.so: libdilithium.a
+libround5_engine.so: libround5.a
 libround5_engine.so: /usr/lib/x86_64-linux-gnu/libcrypto.so
 libround5_engine.so: CMakeFiles/round5_engine.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking C shared library libround5_engine.so"

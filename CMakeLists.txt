@@ -9,31 +9,32 @@ include_directories(${OPENSSL_INCLUDE_DIR})
 
 add_compile_options(-g -lcrypto -lssl -lm -Xlinker -zmuldefs)
 set(BIN_DIRECTORY bin)
-
+file(GLOB dilithium_core dilithium/ref/*.c dilithium/ref/*.h)
 set(DILITHIUM_SOURCE_FILES
-    dilithium/ref/PQCgenKAT_sign.c 
-    dilithium/ref/aes256ctr.c 
-    dilithium/ref/fips202.c 
-    dilithium/ref/ntt.c 
-    dilithium/ref/packing.c 
-    dilithium/ref/poly.c 
-    dilithium/ref/polyvec.c 
-    dilithium/ref/reduce.c 
-    dilithium/ref/rounding.c 
-    dilithium/ref/sign.c
-    dilithium/ref/aes256ctr.h 
-    dilithium/ref/api.h 
-    dilithium/ref/config.h 
-    dilithium/ref/ntt.h 
-    dilithium/ref/packing.h 
-    dilithium/ref/params.h 
-    dilithium/ref/poly.h 
-    dilithium/ref/polyvec.h 
-    dilithium/ref/randombytes.h 
-    dilithium/ref/reduce.h 
-    dilithium/ref/rounding.h 
-    dilithium/ref/sign.h 
-    dilithium/ref/symmetric.h
+    ${dilithium_core}
+    # dilithium/ref/PQCgenKAT_sign.c 
+    # dilithium/ref/aes256ctr.c 
+    # dilithium/ref/fips202.c 
+    # dilithium/ref/ntt.c 
+    # dilithium/ref/packing.c 
+    # dilithium/ref/poly.c 
+    # dilithium/ref/polyvec.c 
+    # dilithium/ref/reduce.c 
+    # dilithium/ref/rounding.c 
+    # dilithium/ref/sign.c
+    # dilithium/ref/aes256ctr.h 
+    # dilithium/ref/api.h 
+    # dilithium/ref/config.h 
+    # dilithium/ref/ntt.h 
+    # dilithium/ref/packing.h 
+    # dilithium/ref/params.h 
+    # dilithium/ref/poly.h 
+    # dilithium/ref/polyvec.h 
+    # dilithium/ref/randombytes.h 
+    # dilithium/ref/reduce.h 
+    # dilithium/ref/rounding.h 
+    # dilithium/ref/sign.h 
+    # dilithium/ref/symmetric.h
 )
 
 file(GLOB XKCP_CORE1 
@@ -110,6 +111,12 @@ set(ROUND5_LIB_SOURCE
     ${ROUND5_SOURCE_FILES}
 )
 
+set(DILITHIUM_DEPENDENCIES
+    ${METHODS_SOURCE_FILES}
+    ${OSSL_SOURCE_FILES}
+    ${UTIL_SOURCE_FILES}
+)
+
 set(ROUND5_ENGINE_SOURCE_FILES
     ${ENGINE_SOURCE}
     ${METHODS_SOURCE_FILES}
@@ -135,6 +142,10 @@ include_directories(XKCP/bin/generic64/libkeccak.a.headers)
 add_library(dilithium STATIC ${DILITHIUM_SOURCE_FILES})
 set_target_properties(dilithium PROPERTIES POSITION_INDEPENDENT_CODE ON)
 
+add_library(dilithium_d STATIC ${DILITHIUM_DEPENDENCIES})
+set_target_properties(dilithium_d PROPERTIES POSITION_INDEPENDENT_CODE ON)
+target_compile_definitions(dilithium_d PUBLIC R5ND_5PKE_5d)
+
 add_library(round5 STATIC ${ROUND5_LIB_SOURCE})
 set_target_properties(round5 PROPERTIES POSITION_INDEPENDENT_CODE ON)
 target_compile_definitions(round5 PUBLIC R5ND_5PKE_5d)
@@ -148,7 +159,7 @@ add_library(round5_engine SHARED ${ROUND5_ENGINE_SOURCE_FILES})
 # set_target_properties(round5_engine PROPERTIES COMPILE_FLAGS "-fPIC -lkeccak -lcrypto -lssl -Xlinker -zmuldefs")
 # <<<<<<< Updated upstream
 # target_link_libraries(round5_engine dilithium ${OPENSSL_CRYPTO_LIBRARY})
-target_link_libraries(round5_engine round5 dilithium ${OPENSSL_CRYPTO_LIBRARY} -Xlinker -zmuldefs)
+target_link_libraries(round5_engine dilithium round5 ${OPENSSL_CRYPTO_LIBRARY} -Xlinker -zmuldefs)
 # >>>>>>> Stashed changes
 # target_include_directories(round5_engine PUBLIC Round5/reference/src)
 target_compile_definitions(round5_engine PUBLIC R5ND_5PKE_5d)
@@ -157,7 +168,8 @@ set_target_properties(round5_engine PROPERTIES COMPILE_FLAGS "-lkeccak -lcrypto 
 # run test
 add_executable(engine_check ${TEST})
 # set_target_properties(engine_check PROPERTIES COMPILE_FLAGS "-lcrypto -lssl -lkeccak")
-target_link_libraries(engine_check ${OPENSSL_CRYPTO_LIBRARY} round5_engine dilithium) #round5 round5_engine dilithium)
+set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc -static-libstdc++")
+target_link_libraries(engine_check ${OPENSSL_CRYPTO_LIBRARY} dilithium_d dilithium round5) #round5 round5_engine dilithium)
 target_compile_definitions(engine_check PUBLIC R5ND_5PKE_5d)
 set_target_properties(engine_check PROPERTIES COMPILE_FLAGS "-lcrypto -lssl")
 

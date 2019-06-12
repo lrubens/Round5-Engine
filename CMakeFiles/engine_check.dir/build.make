@@ -91,9 +91,8 @@ engine_check_EXTERNAL_OBJECTS =
 engine_check: CMakeFiles/engine_check.dir/test/engine_check.c.o
 engine_check: CMakeFiles/engine_check.dir/build.make
 engine_check: /usr/lib/x86_64-linux-gnu/libcrypto.so
-engine_check: libround5_engine.so
+engine_check: libdilithium_d.a
 engine_check: libdilithium.a
-engine_check: /usr/lib/x86_64-linux-gnu/libcrypto.so
 engine_check: libround5.a
 engine_check: CMakeFiles/engine_check.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable engine_check"

@@ -29,21 +29,52 @@ struct certKey{
 };
 
 static void print_pkey(EVP_PKEY *pkey){
+
   BIO *b = NULL;
   b = BIO_new(BIO_s_mem());
   ASN1_PCTX *pctx = NULL;
   pctx = ASN1_PCTX_new();
+
   unsigned char *private_key_text = NULL;
-  EVP_PKEY_print_public(b, pkey, 4, pctx);
+  if(!pkey){
+    printf("\n!pkey\n");
+  }
+
+  EVP_PKEY_print_private(b, pkey, 4, pctx);
+  printf("\ny tho\n");
+
   BIO_get_mem_data(b, &private_key_text);
+
   printf("%s\n", private_key_text);
   BIO_free(b);
   ASN1_PCTX_free(pctx);
 }
 
+void test_dilithium(){
+  char *algoname = OBJ_nid2sn(NID_DILITHIUM);
+  EVP_PKEY *ckey;
+  T(ckey = EVP_PKEY_new());
+
+  T(EVP_PKEY_set_type_str(ckey, algoname, strlen(algoname)));
+  // EVP_PKEY_set_type(ckey, NID_DILITHIUM);
+
+  EVP_PKEY_CTX *tx;
+  (tx = EVP_PKEY_CTX_new(ckey, NULL));
+  T(EVP_PKEY_keygen_init(tx));
+
+  EVP_PKEY *qkey = NULL;
+  qkey = EVP_PKEY_new();
+  ((EVP_PKEY_keygen(tx, &qkey)));
+  if(!qkey){
+    printf("\n!qkey\n");
+  }
+  print_pkey(qkey);
+  EVP_PKEY_free(ckey);
+}
+
 struct certKey *gen_cert(){
   // Testing Engine functions
-  char *algname = "Round5";
+  char *algname = "Dilithium";
   EVP_PKEY *tkey;
   T(tkey = EVP_PKEY_new());
   T(EVP_PKEY_set_type_str(tkey, algname, strlen(algname)));
@@ -61,7 +92,7 @@ struct certKey *gen_cert(){
   T(X509_REQ_set_version(req, 0L));
   X509_NAME *name;
   T(name = X509_NAME_new());
-  X509_NAME_add_entry_by_txt(name, "C",  MBSTRING_ASC, (unsigned char *)"USA", -1, -1, 0);
+  X509_NAME_add_entry_by_txt(name, "C",  MBSTRING_ASC, (unsigned char *)"US", -1, -1, 0);
   X509_NAME_add_entry_by_txt(name, "ST",  MBSTRING_ASC, (unsigned char *)"MA", -1, -1, 0);
   X509_NAME_add_entry_by_txt(name, "L",  MBSTRING_ASC, (unsigned char *)"Cambridge", -1, -1, 0);
   X509_NAME_add_entry_by_txt(name, "O",  MBSTRING_ASC, (unsigned char *)"Draper", -1, -1, 0);
@@ -101,6 +132,7 @@ struct certKey *gen_cert(){
   struct certKey *c = malloc(sizeof(struct certKey));
   c->cert = malloc(sizeof(x509ss));
   c->key = malloc(sizeof(pkey));
+  printf("\nsize of pkey: %d\n", sizeof(pkey));
 
   // c->cert = memset(c->cert, 0, sizeof(c->cert));
   c->cert = x509ss;
@@ -123,19 +155,24 @@ struct certKey *gen_cert(){
 
   // struct certKey *c = NULL;
   // c = OPENSSL_malloc(sizeof(*c));
-  
   char *algoname = OBJ_nid2sn(NID_DILITHIUM);
   EVP_PKEY *ckey;
   T(ckey = EVP_PKEY_new());
+
   T(EVP_PKEY_set_type_str(ckey, algoname, strlen(algoname)));
   // EVP_PKEY_set_type(ckey, NID_DILITHIUM);
+
   EVP_PKEY_CTX *tx;
   (tx = EVP_PKEY_CTX_new(ckey, NULL));
   T(EVP_PKEY_keygen_init(tx));
 
   EVP_PKEY *qkey = NULL;
-  pkey = EVP_PKEY_new();
-  T((EVP_PKEY_keygen(tx, &qkey)) == 1);
+  qkey = EVP_PKEY_new();
+  ((EVP_PKEY_keygen(tx, &qkey)));
+  if(!qkey){
+    printf("\n!qkey\n");
+  }
+  print_pkey(qkey);
   EVP_PKEY_free(ckey);
 
   unsigned char *msg = "message";
@@ -145,9 +182,11 @@ struct certKey *gen_cert(){
   EVP_PKEY_CTX *cont = EVP_PKEY_CTX_new(qkey, NULL);
   unsigned char *hash = malloc(SHA_DIGEST_LENGTH);
   SHA1(msg, strlen(msg), hash);
+  printf("\nhash: %s\n", hash);
   EVP_PKEY_sign_init(cont);
   EVP_PKEY_sign(cont, sig, &siglen, hash, strlen(hash));
-  printf("\n%s\n", sig);
+  printf("\nsig: %s\n", sig);
+
   /*
   EVP_MD *md = EVP_get_digestbyname("Keccak");
   // printf("\nnid keccak: %s\n", OBJ_nid2ln(NID_KECCAK));
@@ -184,16 +223,19 @@ struct certKey *gen_cert(){
   //X509_sign(x509ss, pkey, EVP_sha1());
   //EVP_DigestSignUpdate(cx, "hello", 5);
   //client();
-  return c;
+  
   cleanup:
   EVP_PKEY_CTX_free(ctx);
   // EVP_PKEY_CTX_free(tx);
   // free(buf);
   // free(buf2);
+
   EVP_PKEY_free(pkey);
+
   //EVP_PKEY_CTX_free(ctx);
   // EVP_MD_CTX_free(cx);
   // printf("\nfinished\n");
+  return c;
 }
 
 int main(int argc, const char* argv[]){
@@ -206,11 +248,14 @@ int main(int argc, const char* argv[]){
 	T(round5_engine = ENGINE_by_id("round5"));
 	T(ENGINE_init(round5_engine));
   T(ENGINE_set_default(round5_engine, ENGINE_METHOD_ALL));
+  
   struct certKey *c = gen_cert();
+  
   EVP_PKEY * pkey;
   pkey = EVP_PKEY_new();
   RSA *rsa = NULL;
   BIGNUM *bne = NULL;
+
   //BIO *bp_public = NULL, *bp_private = NULL;
 
   int bits = 1024;
@@ -227,15 +272,20 @@ int main(int argc, const char* argv[]){
   if(ret != 1){
       //do something
   }
-  EVP_PKEY_assign_RSA(pkey, rsa);
+  // EVP_PKEY_assign_RSA(pkey, rsa);
   EVP_MD_CTX *mctx = NULL;
   T(mctx = EVP_MD_CTX_new());
-  T(EVP_DigestSignInit(mctx, NULL, EVP_sha512(), NULL, pkey));
-  // printf("\nbefore x509 sign\n");
-  T(X509_sign_ctx(c->cert, mctx));
-  EVP_MD_CTX_free(mctx);
+  // (EVP_DigestSignInit(mctx, NULL, EVP_sha512(), NULL, c->key));
+  // // printf("\nbefore x509 sign\n");
+  // (X509_sign_ctx(c->cert, mctx));
+  // EVP_MD_CTX_free(mctx);
+
+  // print_pkey(c->key);
+  // X509_sign(c->cert, c->key, EVP_sha1());
+
   // printf("\nreturn: %d\n", ret);
   X509_print_fp(stdout, c->cert);
+
   // print_pkey(pkey);
   // printf("\ndone\n");
   // return 0;

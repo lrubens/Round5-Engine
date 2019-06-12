@@ -1,0 +1,2 @@
+/usr/bin/ar qc libdilithium_d.a  CMakeFiles/dilithium_d.dir/meths/round5_meth.c.o CMakeFiles/dilithium_d.dir/meths/asn1_meth.c.o CMakeFiles/dilithium_d.dir/meths/dilithium_meth.c.o CMakeFiles/dilithium_d.dir/ossl/objects.c.o CMakeFiles/dilithium_d.dir/ossl/ossl_compat.c.o CMakeFiles/dilithium_d.dir/keypair.c.o
+/usr/bin/ranlib libdilithium_d.a
