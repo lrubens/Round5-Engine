@@ -68,16 +68,6 @@ install/strip/fast: preinstall/fast
 	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip/fast
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
-
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
@@ -89,6 +79,16 @@ install/local/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
 	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
 
 # Special rule for the target rebuild_cache
 rebuild_cache:
@@ -157,17 +157,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named dilithium_d
+# Target rules for targets named round5
 
 # Build rule for target.
-dilithium_d: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 dilithium_d
-.PHONY : dilithium_d
+round5: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 round5
+.PHONY : round5
 
 # fast build rule for target.
-dilithium_d/fast:
-	$(MAKE) -f CMakeFiles/dilithium_d.dir/build.make CMakeFiles/dilithium_d.dir/build
-.PHONY : dilithium_d/fast
+round5/fast:
+	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/build
+.PHONY : round5/fast
 
 #=============================================================================
 # Target rules for targets named dilithium
@@ -183,17 +183,17 @@ dilithium/fast:
 .PHONY : dilithium/fast
 
 #=============================================================================
-# Target rules for targets named round5
+# Target rules for targets named engine_lib
 
 # Build rule for target.
-round5: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 round5
-.PHONY : round5
+engine_lib: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 engine_lib
+.PHONY : engine_lib
 
 # fast build rule for target.
-round5/fast:
-	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/build
-.PHONY : round5/fast
+engine_lib/fast:
+	$(MAKE) -f CMakeFiles/engine_lib.dir/build.make CMakeFiles/engine_lib.dir/build
+.PHONY : engine_lib/fast
 
 #=============================================================================
 # Target rules for targets named round5_engine
@@ -228,6 +228,7 @@ Round5/reference/src/a_fixed.o: Round5/reference/src/a_fixed.c.o
 # target to build an object file
 Round5/reference/src/a_fixed.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/a_fixed.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/a_fixed.c.o
 .PHONY : Round5/reference/src/a_fixed.c.o
 
 Round5/reference/src/a_fixed.i: Round5/reference/src/a_fixed.c.i
@@ -237,6 +238,7 @@ Round5/reference/src/a_fixed.i: Round5/reference/src/a_fixed.c.i
 # target to preprocess a source file
 Round5/reference/src/a_fixed.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/a_fixed.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/a_fixed.c.i
 .PHONY : Round5/reference/src/a_fixed.c.i
 
 Round5/reference/src/a_fixed.s: Round5/reference/src/a_fixed.c.s
@@ -246,6 +248,7 @@ Round5/reference/src/a_fixed.s: Round5/reference/src/a_fixed.c.s
 # target to generate assembly for a file
 Round5/reference/src/a_fixed.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/a_fixed.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/a_fixed.c.s
 .PHONY : Round5/reference/src/a_fixed.c.s
 
 Round5/reference/src/a_random.o: Round5/reference/src/a_random.c.o
@@ -255,6 +258,7 @@ Round5/reference/src/a_random.o: Round5/reference/src/a_random.c.o
 # target to build an object file
 Round5/reference/src/a_random.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/a_random.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/a_random.c.o
 .PHONY : Round5/reference/src/a_random.c.o
 
 Round5/reference/src/a_random.i: Round5/reference/src/a_random.c.i
@@ -264,6 +268,7 @@ Round5/reference/src/a_random.i: Round5/reference/src/a_random.c.i
 # target to preprocess a source file
 Round5/reference/src/a_random.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/a_random.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/a_random.c.i
 .PHONY : Round5/reference/src/a_random.c.i
 
 Round5/reference/src/a_random.s: Round5/reference/src/a_random.c.s
@@ -273,6 +278,7 @@ Round5/reference/src/a_random.s: Round5/reference/src/a_random.c.s
 # target to generate assembly for a file
 Round5/reference/src/a_random.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/a_random.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/a_random.c.s
 .PHONY : Round5/reference/src/a_random.c.s
 
 Round5/reference/src/cca_encrypt.o: Round5/reference/src/cca_encrypt.c.o
@@ -282,6 +288,7 @@ Round5/reference/src/cca_encrypt.o: Round5/reference/src/cca_encrypt.c.o
 # target to build an object file
 Round5/reference/src/cca_encrypt.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/cca_encrypt.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/cca_encrypt.c.o
 .PHONY : Round5/reference/src/cca_encrypt.c.o
 
 Round5/reference/src/cca_encrypt.i: Round5/reference/src/cca_encrypt.c.i
@@ -291,6 +298,7 @@ Round5/reference/src/cca_encrypt.i: Round5/reference/src/cca_encrypt.c.i
 # target to preprocess a source file
 Round5/reference/src/cca_encrypt.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/cca_encrypt.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/cca_encrypt.c.i
 .PHONY : Round5/reference/src/cca_encrypt.c.i
 
 Round5/reference/src/cca_encrypt.s: Round5/reference/src/cca_encrypt.c.s
@@ -300,6 +308,7 @@ Round5/reference/src/cca_encrypt.s: Round5/reference/src/cca_encrypt.c.s
 # target to generate assembly for a file
 Round5/reference/src/cca_encrypt.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/cca_encrypt.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/cca_encrypt.c.s
 .PHONY : Round5/reference/src/cca_encrypt.c.s
 
 Round5/reference/src/cpa_kem.o: Round5/reference/src/cpa_kem.c.o
@@ -309,6 +318,7 @@ Round5/reference/src/cpa_kem.o: Round5/reference/src/cpa_kem.c.o
 # target to build an object file
 Round5/reference/src/cpa_kem.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/cpa_kem.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/cpa_kem.c.o
 .PHONY : Round5/reference/src/cpa_kem.c.o
 
 Round5/reference/src/cpa_kem.i: Round5/reference/src/cpa_kem.c.i
@@ -318,6 +328,7 @@ Round5/reference/src/cpa_kem.i: Round5/reference/src/cpa_kem.c.i
 # target to preprocess a source file
 Round5/reference/src/cpa_kem.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/cpa_kem.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/cpa_kem.c.i
 .PHONY : Round5/reference/src/cpa_kem.c.i
 
 Round5/reference/src/cpa_kem.s: Round5/reference/src/cpa_kem.c.s
@@ -327,6 +338,7 @@ Round5/reference/src/cpa_kem.s: Round5/reference/src/cpa_kem.c.s
 # target to generate assembly for a file
 Round5/reference/src/cpa_kem.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/cpa_kem.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/cpa_kem.c.s
 .PHONY : Round5/reference/src/cpa_kem.c.s
 
 Round5/reference/src/drbg.o: Round5/reference/src/drbg.c.o
@@ -336,6 +348,7 @@ Round5/reference/src/drbg.o: Round5/reference/src/drbg.c.o
 # target to build an object file
 Round5/reference/src/drbg.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/drbg.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/drbg.c.o
 .PHONY : Round5/reference/src/drbg.c.o
 
 Round5/reference/src/drbg.i: Round5/reference/src/drbg.c.i
@@ -345,6 +358,7 @@ Round5/reference/src/drbg.i: Round5/reference/src/drbg.c.i
 # target to preprocess a source file
 Round5/reference/src/drbg.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/drbg.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/drbg.c.i
 .PHONY : Round5/reference/src/drbg.c.i
 
 Round5/reference/src/drbg.s: Round5/reference/src/drbg.c.s
@@ -354,6 +368,7 @@ Round5/reference/src/drbg.s: Round5/reference/src/drbg.c.s
 # target to generate assembly for a file
 Round5/reference/src/drbg.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/drbg.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/drbg.c.s
 .PHONY : Round5/reference/src/drbg.c.s
 
 Round5/reference/src/little_endian.o: Round5/reference/src/little_endian.c.o
@@ -363,6 +378,7 @@ Round5/reference/src/little_endian.o: Round5/reference/src/little_endian.c.o
 # target to build an object file
 Round5/reference/src/little_endian.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/little_endian.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/little_endian.c.o
 .PHONY : Round5/reference/src/little_endian.c.o
 
 Round5/reference/src/little_endian.i: Round5/reference/src/little_endian.c.i
@@ -372,6 +388,7 @@ Round5/reference/src/little_endian.i: Round5/reference/src/little_endian.c.i
 # target to preprocess a source file
 Round5/reference/src/little_endian.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/little_endian.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/little_endian.c.i
 .PHONY : Round5/reference/src/little_endian.c.i
 
 Round5/reference/src/little_endian.s: Round5/reference/src/little_endian.c.s
@@ -381,6 +398,7 @@ Round5/reference/src/little_endian.s: Round5/reference/src/little_endian.c.s
 # target to generate assembly for a file
 Round5/reference/src/little_endian.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/little_endian.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/little_endian.c.s
 .PHONY : Round5/reference/src/little_endian.c.s
 
 Round5/reference/src/misc.o: Round5/reference/src/misc.c.o
@@ -390,6 +408,7 @@ Round5/reference/src/misc.o: Round5/reference/src/misc.c.o
 # target to build an object file
 Round5/reference/src/misc.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/misc.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/misc.c.o
 .PHONY : Round5/reference/src/misc.c.o
 
 Round5/reference/src/misc.i: Round5/reference/src/misc.c.i
@@ -399,6 +418,7 @@ Round5/reference/src/misc.i: Round5/reference/src/misc.c.i
 # target to preprocess a source file
 Round5/reference/src/misc.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/misc.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/misc.c.i
 .PHONY : Round5/reference/src/misc.c.i
 
 Round5/reference/src/misc.s: Round5/reference/src/misc.c.s
@@ -408,6 +428,7 @@ Round5/reference/src/misc.s: Round5/reference/src/misc.c.s
 # target to generate assembly for a file
 Round5/reference/src/misc.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/misc.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/misc.c.s
 .PHONY : Round5/reference/src/misc.c.s
 
 Round5/reference/src/nist_rng.o: Round5/reference/src/nist_rng.c.o
@@ -417,6 +438,7 @@ Round5/reference/src/nist_rng.o: Round5/reference/src/nist_rng.c.o
 # target to build an object file
 Round5/reference/src/nist_rng.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/nist_rng.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/nist_rng.c.o
 .PHONY : Round5/reference/src/nist_rng.c.o
 
 Round5/reference/src/nist_rng.i: Round5/reference/src/nist_rng.c.i
@@ -426,6 +448,7 @@ Round5/reference/src/nist_rng.i: Round5/reference/src/nist_rng.c.i
 # target to preprocess a source file
 Round5/reference/src/nist_rng.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/nist_rng.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/nist_rng.c.i
 .PHONY : Round5/reference/src/nist_rng.c.i
 
 Round5/reference/src/nist_rng.s: Round5/reference/src/nist_rng.c.s
@@ -435,6 +458,7 @@ Round5/reference/src/nist_rng.s: Round5/reference/src/nist_rng.c.s
 # target to generate assembly for a file
 Round5/reference/src/nist_rng.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/nist_rng.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/nist_rng.c.s
 .PHONY : Round5/reference/src/nist_rng.c.s
 
 Round5/reference/src/pack.o: Round5/reference/src/pack.c.o
@@ -444,6 +468,7 @@ Round5/reference/src/pack.o: Round5/reference/src/pack.c.o
 # target to build an object file
 Round5/reference/src/pack.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/pack.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/pack.c.o
 .PHONY : Round5/reference/src/pack.c.o
 
 Round5/reference/src/pack.i: Round5/reference/src/pack.c.i
@@ -453,6 +478,7 @@ Round5/reference/src/pack.i: Round5/reference/src/pack.c.i
 # target to preprocess a source file
 Round5/reference/src/pack.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/pack.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/pack.c.i
 .PHONY : Round5/reference/src/pack.c.i
 
 Round5/reference/src/pack.s: Round5/reference/src/pack.c.s
@@ -462,6 +488,7 @@ Round5/reference/src/pack.s: Round5/reference/src/pack.c.s
 # target to generate assembly for a file
 Round5/reference/src/pack.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/pack.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/pack.c.s
 .PHONY : Round5/reference/src/pack.c.s
 
 Round5/reference/src/parameters.o: Round5/reference/src/parameters.c.o
@@ -471,6 +498,7 @@ Round5/reference/src/parameters.o: Round5/reference/src/parameters.c.o
 # target to build an object file
 Round5/reference/src/parameters.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/parameters.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/parameters.c.o
 .PHONY : Round5/reference/src/parameters.c.o
 
 Round5/reference/src/parameters.i: Round5/reference/src/parameters.c.i
@@ -480,6 +508,7 @@ Round5/reference/src/parameters.i: Round5/reference/src/parameters.c.i
 # target to preprocess a source file
 Round5/reference/src/parameters.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/parameters.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/parameters.c.i
 .PHONY : Round5/reference/src/parameters.c.i
 
 Round5/reference/src/parameters.s: Round5/reference/src/parameters.c.s
@@ -489,6 +518,7 @@ Round5/reference/src/parameters.s: Round5/reference/src/parameters.c.s
 # target to generate assembly for a file
 Round5/reference/src/parameters.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/parameters.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/parameters.c.s
 .PHONY : Round5/reference/src/parameters.c.s
 
 Round5/reference/src/r5_cca_kem.o: Round5/reference/src/r5_cca_kem.c.o
@@ -498,6 +528,7 @@ Round5/reference/src/r5_cca_kem.o: Round5/reference/src/r5_cca_kem.c.o
 # target to build an object file
 Round5/reference/src/r5_cca_kem.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/r5_cca_kem.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/r5_cca_kem.c.o
 .PHONY : Round5/reference/src/r5_cca_kem.c.o
 
 Round5/reference/src/r5_cca_kem.i: Round5/reference/src/r5_cca_kem.c.i
@@ -507,6 +538,7 @@ Round5/reference/src/r5_cca_kem.i: Round5/reference/src/r5_cca_kem.c.i
 # target to preprocess a source file
 Round5/reference/src/r5_cca_kem.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/r5_cca_kem.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/r5_cca_kem.c.i
 .PHONY : Round5/reference/src/r5_cca_kem.c.i
 
 Round5/reference/src/r5_cca_kem.s: Round5/reference/src/r5_cca_kem.c.s
@@ -516,6 +548,7 @@ Round5/reference/src/r5_cca_kem.s: Round5/reference/src/r5_cca_kem.c.s
 # target to generate assembly for a file
 Round5/reference/src/r5_cca_kem.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/r5_cca_kem.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/r5_cca_kem.c.s
 .PHONY : Round5/reference/src/r5_cca_kem.c.s
 
 Round5/reference/src/r5_cca_pke.o: Round5/reference/src/r5_cca_pke.c.o
@@ -525,6 +558,7 @@ Round5/reference/src/r5_cca_pke.o: Round5/reference/src/r5_cca_pke.c.o
 # target to build an object file
 Round5/reference/src/r5_cca_pke.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/r5_cca_pke.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/r5_cca_pke.c.o
 .PHONY : Round5/reference/src/r5_cca_pke.c.o
 
 Round5/reference/src/r5_cca_pke.i: Round5/reference/src/r5_cca_pke.c.i
@@ -534,6 +568,7 @@ Round5/reference/src/r5_cca_pke.i: Round5/reference/src/r5_cca_pke.c.i
 # target to preprocess a source file
 Round5/reference/src/r5_cca_pke.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/r5_cca_pke.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/r5_cca_pke.c.i
 .PHONY : Round5/reference/src/r5_cca_pke.c.i
 
 Round5/reference/src/r5_cca_pke.s: Round5/reference/src/r5_cca_pke.c.s
@@ -543,6 +578,7 @@ Round5/reference/src/r5_cca_pke.s: Round5/reference/src/r5_cca_pke.c.s
 # target to generate assembly for a file
 Round5/reference/src/r5_cca_pke.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/r5_cca_pke.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/r5_cca_pke.c.s
 .PHONY : Round5/reference/src/r5_cca_pke.c.s
 
 Round5/reference/src/r5_core.o: Round5/reference/src/r5_core.c.o
@@ -552,6 +588,7 @@ Round5/reference/src/r5_core.o: Round5/reference/src/r5_core.c.o
 # target to build an object file
 Round5/reference/src/r5_core.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/r5_core.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/r5_core.c.o
 .PHONY : Round5/reference/src/r5_core.c.o
 
 Round5/reference/src/r5_core.i: Round5/reference/src/r5_core.c.i
@@ -561,6 +598,7 @@ Round5/reference/src/r5_core.i: Round5/reference/src/r5_core.c.i
 # target to preprocess a source file
 Round5/reference/src/r5_core.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/r5_core.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/r5_core.c.i
 .PHONY : Round5/reference/src/r5_core.c.i
 
 Round5/reference/src/r5_core.s: Round5/reference/src/r5_core.c.s
@@ -570,6 +608,7 @@ Round5/reference/src/r5_core.s: Round5/reference/src/r5_core.c.s
 # target to generate assembly for a file
 Round5/reference/src/r5_core.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/r5_core.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/r5_core.c.s
 .PHONY : Round5/reference/src/r5_core.c.s
 
 Round5/reference/src/r5_cpa_kem.o: Round5/reference/src/r5_cpa_kem.c.o
@@ -579,6 +618,7 @@ Round5/reference/src/r5_cpa_kem.o: Round5/reference/src/r5_cpa_kem.c.o
 # target to build an object file
 Round5/reference/src/r5_cpa_kem.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/r5_cpa_kem.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/r5_cpa_kem.c.o
 .PHONY : Round5/reference/src/r5_cpa_kem.c.o
 
 Round5/reference/src/r5_cpa_kem.i: Round5/reference/src/r5_cpa_kem.c.i
@@ -588,6 +628,7 @@ Round5/reference/src/r5_cpa_kem.i: Round5/reference/src/r5_cpa_kem.c.i
 # target to preprocess a source file
 Round5/reference/src/r5_cpa_kem.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/r5_cpa_kem.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/r5_cpa_kem.c.i
 .PHONY : Round5/reference/src/r5_cpa_kem.c.i
 
 Round5/reference/src/r5_cpa_kem.s: Round5/reference/src/r5_cpa_kem.c.s
@@ -597,6 +638,7 @@ Round5/reference/src/r5_cpa_kem.s: Round5/reference/src/r5_cpa_kem.c.s
 # target to generate assembly for a file
 Round5/reference/src/r5_cpa_kem.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/r5_cpa_kem.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/r5_cpa_kem.c.s
 .PHONY : Round5/reference/src/r5_cpa_kem.c.s
 
 Round5/reference/src/r5_cpa_pke.o: Round5/reference/src/r5_cpa_pke.c.o
@@ -606,6 +648,7 @@ Round5/reference/src/r5_cpa_pke.o: Round5/reference/src/r5_cpa_pke.c.o
 # target to build an object file
 Round5/reference/src/r5_cpa_pke.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/r5_cpa_pke.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/r5_cpa_pke.c.o
 .PHONY : Round5/reference/src/r5_cpa_pke.c.o
 
 Round5/reference/src/r5_cpa_pke.i: Round5/reference/src/r5_cpa_pke.c.i
@@ -615,6 +658,7 @@ Round5/reference/src/r5_cpa_pke.i: Round5/reference/src/r5_cpa_pke.c.i
 # target to preprocess a source file
 Round5/reference/src/r5_cpa_pke.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/r5_cpa_pke.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/r5_cpa_pke.c.i
 .PHONY : Round5/reference/src/r5_cpa_pke.c.i
 
 Round5/reference/src/r5_cpa_pke.s: Round5/reference/src/r5_cpa_pke.c.s
@@ -624,6 +668,7 @@ Round5/reference/src/r5_cpa_pke.s: Round5/reference/src/r5_cpa_pke.c.s
 # target to generate assembly for a file
 Round5/reference/src/r5_cpa_pke.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/r5_cpa_pke.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/r5_cpa_pke.c.s
 .PHONY : Round5/reference/src/r5_cpa_pke.c.s
 
 Round5/reference/src/r5_dem.o: Round5/reference/src/r5_dem.c.o
@@ -633,6 +678,7 @@ Round5/reference/src/r5_dem.o: Round5/reference/src/r5_dem.c.o
 # target to build an object file
 Round5/reference/src/r5_dem.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/r5_dem.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/r5_dem.c.o
 .PHONY : Round5/reference/src/r5_dem.c.o
 
 Round5/reference/src/r5_dem.i: Round5/reference/src/r5_dem.c.i
@@ -642,6 +688,7 @@ Round5/reference/src/r5_dem.i: Round5/reference/src/r5_dem.c.i
 # target to preprocess a source file
 Round5/reference/src/r5_dem.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/r5_dem.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/r5_dem.c.i
 .PHONY : Round5/reference/src/r5_dem.c.i
 
 Round5/reference/src/r5_dem.s: Round5/reference/src/r5_dem.c.s
@@ -651,6 +698,7 @@ Round5/reference/src/r5_dem.s: Round5/reference/src/r5_dem.c.s
 # target to generate assembly for a file
 Round5/reference/src/r5_dem.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/r5_dem.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/r5_dem.c.s
 .PHONY : Round5/reference/src/r5_dem.c.s
 
 Round5/reference/src/r5_hash.o: Round5/reference/src/r5_hash.c.o
@@ -660,6 +708,7 @@ Round5/reference/src/r5_hash.o: Round5/reference/src/r5_hash.c.o
 # target to build an object file
 Round5/reference/src/r5_hash.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/r5_hash.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/r5_hash.c.o
 .PHONY : Round5/reference/src/r5_hash.c.o
 
 Round5/reference/src/r5_hash.i: Round5/reference/src/r5_hash.c.i
@@ -669,6 +718,7 @@ Round5/reference/src/r5_hash.i: Round5/reference/src/r5_hash.c.i
 # target to preprocess a source file
 Round5/reference/src/r5_hash.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/r5_hash.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/r5_hash.c.i
 .PHONY : Round5/reference/src/r5_hash.c.i
 
 Round5/reference/src/r5_hash.s: Round5/reference/src/r5_hash.c.s
@@ -678,6 +728,7 @@ Round5/reference/src/r5_hash.s: Round5/reference/src/r5_hash.c.s
 # target to generate assembly for a file
 Round5/reference/src/r5_hash.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/r5_hash.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/r5_hash.c.s
 .PHONY : Round5/reference/src/r5_hash.c.s
 
 Round5/reference/src/r5_memory.o: Round5/reference/src/r5_memory.c.o
@@ -687,6 +738,7 @@ Round5/reference/src/r5_memory.o: Round5/reference/src/r5_memory.c.o
 # target to build an object file
 Round5/reference/src/r5_memory.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/r5_memory.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/r5_memory.c.o
 .PHONY : Round5/reference/src/r5_memory.c.o
 
 Round5/reference/src/r5_memory.i: Round5/reference/src/r5_memory.c.i
@@ -696,6 +748,7 @@ Round5/reference/src/r5_memory.i: Round5/reference/src/r5_memory.c.i
 # target to preprocess a source file
 Round5/reference/src/r5_memory.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/r5_memory.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/r5_memory.c.i
 .PHONY : Round5/reference/src/r5_memory.c.i
 
 Round5/reference/src/r5_memory.s: Round5/reference/src/r5_memory.c.s
@@ -705,6 +758,7 @@ Round5/reference/src/r5_memory.s: Round5/reference/src/r5_memory.c.s
 # target to generate assembly for a file
 Round5/reference/src/r5_memory.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/r5_memory.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/r5_memory.c.s
 .PHONY : Round5/reference/src/r5_memory.c.s
 
 Round5/reference/src/r5_parameter_sets.o: Round5/reference/src/r5_parameter_sets.c.o
@@ -714,6 +768,7 @@ Round5/reference/src/r5_parameter_sets.o: Round5/reference/src/r5_parameter_sets
 # target to build an object file
 Round5/reference/src/r5_parameter_sets.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/r5_parameter_sets.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/r5_parameter_sets.c.o
 .PHONY : Round5/reference/src/r5_parameter_sets.c.o
 
 Round5/reference/src/r5_parameter_sets.i: Round5/reference/src/r5_parameter_sets.c.i
@@ -723,6 +778,7 @@ Round5/reference/src/r5_parameter_sets.i: Round5/reference/src/r5_parameter_sets
 # target to preprocess a source file
 Round5/reference/src/r5_parameter_sets.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/r5_parameter_sets.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/r5_parameter_sets.c.i
 .PHONY : Round5/reference/src/r5_parameter_sets.c.i
 
 Round5/reference/src/r5_parameter_sets.s: Round5/reference/src/r5_parameter_sets.c.s
@@ -732,6 +788,7 @@ Round5/reference/src/r5_parameter_sets.s: Round5/reference/src/r5_parameter_sets
 # target to generate assembly for a file
 Round5/reference/src/r5_parameter_sets.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/r5_parameter_sets.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/r5_parameter_sets.c.s
 .PHONY : Round5/reference/src/r5_parameter_sets.c.s
 
 Round5/reference/src/shake.o: Round5/reference/src/shake.c.o
@@ -741,6 +798,7 @@ Round5/reference/src/shake.o: Round5/reference/src/shake.c.o
 # target to build an object file
 Round5/reference/src/shake.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/shake.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/shake.c.o
 .PHONY : Round5/reference/src/shake.c.o
 
 Round5/reference/src/shake.i: Round5/reference/src/shake.c.i
@@ -750,6 +808,7 @@ Round5/reference/src/shake.i: Round5/reference/src/shake.c.i
 # target to preprocess a source file
 Round5/reference/src/shake.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/shake.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/shake.c.i
 .PHONY : Round5/reference/src/shake.c.i
 
 Round5/reference/src/shake.s: Round5/reference/src/shake.c.s
@@ -759,6 +818,7 @@ Round5/reference/src/shake.s: Round5/reference/src/shake.c.s
 # target to generate assembly for a file
 Round5/reference/src/shake.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/shake.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/shake.c.s
 .PHONY : Round5/reference/src/shake.c.s
 
 Round5/reference/src/xef_ref.o: Round5/reference/src/xef_ref.c.o
@@ -768,6 +828,7 @@ Round5/reference/src/xef_ref.o: Round5/reference/src/xef_ref.c.o
 # target to build an object file
 Round5/reference/src/xef_ref.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/xef_ref.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/xef_ref.c.o
 .PHONY : Round5/reference/src/xef_ref.c.o
 
 Round5/reference/src/xef_ref.i: Round5/reference/src/xef_ref.c.i
@@ -777,6 +838,7 @@ Round5/reference/src/xef_ref.i: Round5/reference/src/xef_ref.c.i
 # target to preprocess a source file
 Round5/reference/src/xef_ref.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/xef_ref.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/xef_ref.c.i
 .PHONY : Round5/reference/src/xef_ref.c.i
 
 Round5/reference/src/xef_ref.s: Round5/reference/src/xef_ref.c.s
@@ -786,6 +848,7 @@ Round5/reference/src/xef_ref.s: Round5/reference/src/xef_ref.c.s
 # target to generate assembly for a file
 Round5/reference/src/xef_ref.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/Round5/reference/src/xef_ref.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/Round5/reference/src/xef_ref.c.s
 .PHONY : Round5/reference/src/xef_ref.c.s
 
 XKCP/lib/high/KangarooTwelve/KangarooTwelve.o: XKCP/lib/high/KangarooTwelve/KangarooTwelve.c.o
@@ -795,6 +858,7 @@ XKCP/lib/high/KangarooTwelve/KangarooTwelve.o: XKCP/lib/high/KangarooTwelve/Kang
 # target to build an object file
 XKCP/lib/high/KangarooTwelve/KangarooTwelve.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/KangarooTwelve/KangarooTwelve.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/KangarooTwelve/KangarooTwelve.c.o
 .PHONY : XKCP/lib/high/KangarooTwelve/KangarooTwelve.c.o
 
 XKCP/lib/high/KangarooTwelve/KangarooTwelve.i: XKCP/lib/high/KangarooTwelve/KangarooTwelve.c.i
@@ -804,6 +868,7 @@ XKCP/lib/high/KangarooTwelve/KangarooTwelve.i: XKCP/lib/high/KangarooTwelve/Kang
 # target to preprocess a source file
 XKCP/lib/high/KangarooTwelve/KangarooTwelve.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/KangarooTwelve/KangarooTwelve.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/KangarooTwelve/KangarooTwelve.c.i
 .PHONY : XKCP/lib/high/KangarooTwelve/KangarooTwelve.c.i
 
 XKCP/lib/high/KangarooTwelve/KangarooTwelve.s: XKCP/lib/high/KangarooTwelve/KangarooTwelve.c.s
@@ -813,6 +878,7 @@ XKCP/lib/high/KangarooTwelve/KangarooTwelve.s: XKCP/lib/high/KangarooTwelve/Kang
 # target to generate assembly for a file
 XKCP/lib/high/KangarooTwelve/KangarooTwelve.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/KangarooTwelve/KangarooTwelve.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/KangarooTwelve/KangarooTwelve.c.s
 .PHONY : XKCP/lib/high/KangarooTwelve/KangarooTwelve.c.s
 
 XKCP/lib/high/Keccak/FIPS202/KeccakHash.o: XKCP/lib/high/Keccak/FIPS202/KeccakHash.c.o
@@ -822,6 +888,7 @@ XKCP/lib/high/Keccak/FIPS202/KeccakHash.o: XKCP/lib/high/Keccak/FIPS202/KeccakHa
 # target to build an object file
 XKCP/lib/high/Keccak/FIPS202/KeccakHash.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keccak/FIPS202/KeccakHash.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keccak/FIPS202/KeccakHash.c.o
 .PHONY : XKCP/lib/high/Keccak/FIPS202/KeccakHash.c.o
 
 XKCP/lib/high/Keccak/FIPS202/KeccakHash.i: XKCP/lib/high/Keccak/FIPS202/KeccakHash.c.i
@@ -831,6 +898,7 @@ XKCP/lib/high/Keccak/FIPS202/KeccakHash.i: XKCP/lib/high/Keccak/FIPS202/KeccakHa
 # target to preprocess a source file
 XKCP/lib/high/Keccak/FIPS202/KeccakHash.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keccak/FIPS202/KeccakHash.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keccak/FIPS202/KeccakHash.c.i
 .PHONY : XKCP/lib/high/Keccak/FIPS202/KeccakHash.c.i
 
 XKCP/lib/high/Keccak/FIPS202/KeccakHash.s: XKCP/lib/high/Keccak/FIPS202/KeccakHash.c.s
@@ -840,6 +908,7 @@ XKCP/lib/high/Keccak/FIPS202/KeccakHash.s: XKCP/lib/high/Keccak/FIPS202/KeccakHa
 # target to generate assembly for a file
 XKCP/lib/high/Keccak/FIPS202/KeccakHash.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keccak/FIPS202/KeccakHash.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keccak/FIPS202/KeccakHash.c.s
 .PHONY : XKCP/lib/high/Keccak/FIPS202/KeccakHash.c.s
 
 XKCP/lib/high/Keccak/FIPS202/SimpleFIPS202.o: XKCP/lib/high/Keccak/FIPS202/SimpleFIPS202.c.o
@@ -849,6 +918,7 @@ XKCP/lib/high/Keccak/FIPS202/SimpleFIPS202.o: XKCP/lib/high/Keccak/FIPS202/Simpl
 # target to build an object file
 XKCP/lib/high/Keccak/FIPS202/SimpleFIPS202.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keccak/FIPS202/SimpleFIPS202.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keccak/FIPS202/SimpleFIPS202.c.o
 .PHONY : XKCP/lib/high/Keccak/FIPS202/SimpleFIPS202.c.o
 
 XKCP/lib/high/Keccak/FIPS202/SimpleFIPS202.i: XKCP/lib/high/Keccak/FIPS202/SimpleFIPS202.c.i
@@ -858,6 +928,7 @@ XKCP/lib/high/Keccak/FIPS202/SimpleFIPS202.i: XKCP/lib/high/Keccak/FIPS202/Simpl
 # target to preprocess a source file
 XKCP/lib/high/Keccak/FIPS202/SimpleFIPS202.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keccak/FIPS202/SimpleFIPS202.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keccak/FIPS202/SimpleFIPS202.c.i
 .PHONY : XKCP/lib/high/Keccak/FIPS202/SimpleFIPS202.c.i
 
 XKCP/lib/high/Keccak/FIPS202/SimpleFIPS202.s: XKCP/lib/high/Keccak/FIPS202/SimpleFIPS202.c.s
@@ -867,6 +938,7 @@ XKCP/lib/high/Keccak/FIPS202/SimpleFIPS202.s: XKCP/lib/high/Keccak/FIPS202/Simpl
 # target to generate assembly for a file
 XKCP/lib/high/Keccak/FIPS202/SimpleFIPS202.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keccak/FIPS202/SimpleFIPS202.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keccak/FIPS202/SimpleFIPS202.c.s
 .PHONY : XKCP/lib/high/Keccak/FIPS202/SimpleFIPS202.c.s
 
 XKCP/lib/high/Keccak/KeccakDuplexWidth1600.o: XKCP/lib/high/Keccak/KeccakDuplexWidth1600.c.o
@@ -876,6 +948,7 @@ XKCP/lib/high/Keccak/KeccakDuplexWidth1600.o: XKCP/lib/high/Keccak/KeccakDuplexW
 # target to build an object file
 XKCP/lib/high/Keccak/KeccakDuplexWidth1600.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth1600.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth1600.c.o
 .PHONY : XKCP/lib/high/Keccak/KeccakDuplexWidth1600.c.o
 
 XKCP/lib/high/Keccak/KeccakDuplexWidth1600.i: XKCP/lib/high/Keccak/KeccakDuplexWidth1600.c.i
@@ -885,6 +958,7 @@ XKCP/lib/high/Keccak/KeccakDuplexWidth1600.i: XKCP/lib/high/Keccak/KeccakDuplexW
 # target to preprocess a source file
 XKCP/lib/high/Keccak/KeccakDuplexWidth1600.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth1600.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth1600.c.i
 .PHONY : XKCP/lib/high/Keccak/KeccakDuplexWidth1600.c.i
 
 XKCP/lib/high/Keccak/KeccakDuplexWidth1600.s: XKCP/lib/high/Keccak/KeccakDuplexWidth1600.c.s
@@ -894,6 +968,7 @@ XKCP/lib/high/Keccak/KeccakDuplexWidth1600.s: XKCP/lib/high/Keccak/KeccakDuplexW
 # target to generate assembly for a file
 XKCP/lib/high/Keccak/KeccakDuplexWidth1600.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth1600.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth1600.c.s
 .PHONY : XKCP/lib/high/Keccak/KeccakDuplexWidth1600.c.s
 
 XKCP/lib/high/Keccak/KeccakDuplexWidth200.o: XKCP/lib/high/Keccak/KeccakDuplexWidth200.c.o
@@ -903,6 +978,7 @@ XKCP/lib/high/Keccak/KeccakDuplexWidth200.o: XKCP/lib/high/Keccak/KeccakDuplexWi
 # target to build an object file
 XKCP/lib/high/Keccak/KeccakDuplexWidth200.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth200.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth200.c.o
 .PHONY : XKCP/lib/high/Keccak/KeccakDuplexWidth200.c.o
 
 XKCP/lib/high/Keccak/KeccakDuplexWidth200.i: XKCP/lib/high/Keccak/KeccakDuplexWidth200.c.i
@@ -912,6 +988,7 @@ XKCP/lib/high/Keccak/KeccakDuplexWidth200.i: XKCP/lib/high/Keccak/KeccakDuplexWi
 # target to preprocess a source file
 XKCP/lib/high/Keccak/KeccakDuplexWidth200.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth200.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth200.c.i
 .PHONY : XKCP/lib/high/Keccak/KeccakDuplexWidth200.c.i
 
 XKCP/lib/high/Keccak/KeccakDuplexWidth200.s: XKCP/lib/high/Keccak/KeccakDuplexWidth200.c.s
@@ -921,6 +998,7 @@ XKCP/lib/high/Keccak/KeccakDuplexWidth200.s: XKCP/lib/high/Keccak/KeccakDuplexWi
 # target to generate assembly for a file
 XKCP/lib/high/Keccak/KeccakDuplexWidth200.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth200.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth200.c.s
 .PHONY : XKCP/lib/high/Keccak/KeccakDuplexWidth200.c.s
 
 XKCP/lib/high/Keccak/KeccakDuplexWidth400.o: XKCP/lib/high/Keccak/KeccakDuplexWidth400.c.o
@@ -930,6 +1008,7 @@ XKCP/lib/high/Keccak/KeccakDuplexWidth400.o: XKCP/lib/high/Keccak/KeccakDuplexWi
 # target to build an object file
 XKCP/lib/high/Keccak/KeccakDuplexWidth400.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth400.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth400.c.o
 .PHONY : XKCP/lib/high/Keccak/KeccakDuplexWidth400.c.o
 
 XKCP/lib/high/Keccak/KeccakDuplexWidth400.i: XKCP/lib/high/Keccak/KeccakDuplexWidth400.c.i
@@ -939,6 +1018,7 @@ XKCP/lib/high/Keccak/KeccakDuplexWidth400.i: XKCP/lib/high/Keccak/KeccakDuplexWi
 # target to preprocess a source file
 XKCP/lib/high/Keccak/KeccakDuplexWidth400.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth400.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth400.c.i
 .PHONY : XKCP/lib/high/Keccak/KeccakDuplexWidth400.c.i
 
 XKCP/lib/high/Keccak/KeccakDuplexWidth400.s: XKCP/lib/high/Keccak/KeccakDuplexWidth400.c.s
@@ -948,6 +1028,7 @@ XKCP/lib/high/Keccak/KeccakDuplexWidth400.s: XKCP/lib/high/Keccak/KeccakDuplexWi
 # target to generate assembly for a file
 XKCP/lib/high/Keccak/KeccakDuplexWidth400.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth400.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth400.c.s
 .PHONY : XKCP/lib/high/Keccak/KeccakDuplexWidth400.c.s
 
 XKCP/lib/high/Keccak/KeccakDuplexWidth800.o: XKCP/lib/high/Keccak/KeccakDuplexWidth800.c.o
@@ -957,6 +1038,7 @@ XKCP/lib/high/Keccak/KeccakDuplexWidth800.o: XKCP/lib/high/Keccak/KeccakDuplexWi
 # target to build an object file
 XKCP/lib/high/Keccak/KeccakDuplexWidth800.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth800.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth800.c.o
 .PHONY : XKCP/lib/high/Keccak/KeccakDuplexWidth800.c.o
 
 XKCP/lib/high/Keccak/KeccakDuplexWidth800.i: XKCP/lib/high/Keccak/KeccakDuplexWidth800.c.i
@@ -966,6 +1048,7 @@ XKCP/lib/high/Keccak/KeccakDuplexWidth800.i: XKCP/lib/high/Keccak/KeccakDuplexWi
 # target to preprocess a source file
 XKCP/lib/high/Keccak/KeccakDuplexWidth800.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth800.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth800.c.i
 .PHONY : XKCP/lib/high/Keccak/KeccakDuplexWidth800.c.i
 
 XKCP/lib/high/Keccak/KeccakDuplexWidth800.s: XKCP/lib/high/Keccak/KeccakDuplexWidth800.c.s
@@ -975,6 +1058,7 @@ XKCP/lib/high/Keccak/KeccakDuplexWidth800.s: XKCP/lib/high/Keccak/KeccakDuplexWi
 # target to generate assembly for a file
 XKCP/lib/high/Keccak/KeccakDuplexWidth800.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth800.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth800.c.s
 .PHONY : XKCP/lib/high/Keccak/KeccakDuplexWidth800.c.s
 
 XKCP/lib/high/Keccak/KeccakSpongeWidth1600.o: XKCP/lib/high/Keccak/KeccakSpongeWidth1600.c.o
@@ -984,6 +1068,7 @@ XKCP/lib/high/Keccak/KeccakSpongeWidth1600.o: XKCP/lib/high/Keccak/KeccakSpongeW
 # target to build an object file
 XKCP/lib/high/Keccak/KeccakSpongeWidth1600.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth1600.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth1600.c.o
 .PHONY : XKCP/lib/high/Keccak/KeccakSpongeWidth1600.c.o
 
 XKCP/lib/high/Keccak/KeccakSpongeWidth1600.i: XKCP/lib/high/Keccak/KeccakSpongeWidth1600.c.i
@@ -993,6 +1078,7 @@ XKCP/lib/high/Keccak/KeccakSpongeWidth1600.i: XKCP/lib/high/Keccak/KeccakSpongeW
 # target to preprocess a source file
 XKCP/lib/high/Keccak/KeccakSpongeWidth1600.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth1600.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth1600.c.i
 .PHONY : XKCP/lib/high/Keccak/KeccakSpongeWidth1600.c.i
 
 XKCP/lib/high/Keccak/KeccakSpongeWidth1600.s: XKCP/lib/high/Keccak/KeccakSpongeWidth1600.c.s
@@ -1002,6 +1088,7 @@ XKCP/lib/high/Keccak/KeccakSpongeWidth1600.s: XKCP/lib/high/Keccak/KeccakSpongeW
 # target to generate assembly for a file
 XKCP/lib/high/Keccak/KeccakSpongeWidth1600.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth1600.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth1600.c.s
 .PHONY : XKCP/lib/high/Keccak/KeccakSpongeWidth1600.c.s
 
 XKCP/lib/high/Keccak/KeccakSpongeWidth200.o: XKCP/lib/high/Keccak/KeccakSpongeWidth200.c.o
@@ -1011,6 +1098,7 @@ XKCP/lib/high/Keccak/KeccakSpongeWidth200.o: XKCP/lib/high/Keccak/KeccakSpongeWi
 # target to build an object file
 XKCP/lib/high/Keccak/KeccakSpongeWidth200.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth200.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth200.c.o
 .PHONY : XKCP/lib/high/Keccak/KeccakSpongeWidth200.c.o
 
 XKCP/lib/high/Keccak/KeccakSpongeWidth200.i: XKCP/lib/high/Keccak/KeccakSpongeWidth200.c.i
@@ -1020,6 +1108,7 @@ XKCP/lib/high/Keccak/KeccakSpongeWidth200.i: XKCP/lib/high/Keccak/KeccakSpongeWi
 # target to preprocess a source file
 XKCP/lib/high/Keccak/KeccakSpongeWidth200.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth200.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth200.c.i
 .PHONY : XKCP/lib/high/Keccak/KeccakSpongeWidth200.c.i
 
 XKCP/lib/high/Keccak/KeccakSpongeWidth200.s: XKCP/lib/high/Keccak/KeccakSpongeWidth200.c.s
@@ -1029,6 +1118,7 @@ XKCP/lib/high/Keccak/KeccakSpongeWidth200.s: XKCP/lib/high/Keccak/KeccakSpongeWi
 # target to generate assembly for a file
 XKCP/lib/high/Keccak/KeccakSpongeWidth200.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth200.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth200.c.s
 .PHONY : XKCP/lib/high/Keccak/KeccakSpongeWidth200.c.s
 
 XKCP/lib/high/Keccak/KeccakSpongeWidth400.o: XKCP/lib/high/Keccak/KeccakSpongeWidth400.c.o
@@ -1038,6 +1128,7 @@ XKCP/lib/high/Keccak/KeccakSpongeWidth400.o: XKCP/lib/high/Keccak/KeccakSpongeWi
 # target to build an object file
 XKCP/lib/high/Keccak/KeccakSpongeWidth400.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth400.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth400.c.o
 .PHONY : XKCP/lib/high/Keccak/KeccakSpongeWidth400.c.o
 
 XKCP/lib/high/Keccak/KeccakSpongeWidth400.i: XKCP/lib/high/Keccak/KeccakSpongeWidth400.c.i
@@ -1047,6 +1138,7 @@ XKCP/lib/high/Keccak/KeccakSpongeWidth400.i: XKCP/lib/high/Keccak/KeccakSpongeWi
 # target to preprocess a source file
 XKCP/lib/high/Keccak/KeccakSpongeWidth400.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth400.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth400.c.i
 .PHONY : XKCP/lib/high/Keccak/KeccakSpongeWidth400.c.i
 
 XKCP/lib/high/Keccak/KeccakSpongeWidth400.s: XKCP/lib/high/Keccak/KeccakSpongeWidth400.c.s
@@ -1056,6 +1148,7 @@ XKCP/lib/high/Keccak/KeccakSpongeWidth400.s: XKCP/lib/high/Keccak/KeccakSpongeWi
 # target to generate assembly for a file
 XKCP/lib/high/Keccak/KeccakSpongeWidth400.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth400.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth400.c.s
 .PHONY : XKCP/lib/high/Keccak/KeccakSpongeWidth400.c.s
 
 XKCP/lib/high/Keccak/KeccakSpongeWidth800.o: XKCP/lib/high/Keccak/KeccakSpongeWidth800.c.o
@@ -1065,6 +1158,7 @@ XKCP/lib/high/Keccak/KeccakSpongeWidth800.o: XKCP/lib/high/Keccak/KeccakSpongeWi
 # target to build an object file
 XKCP/lib/high/Keccak/KeccakSpongeWidth800.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth800.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth800.c.o
 .PHONY : XKCP/lib/high/Keccak/KeccakSpongeWidth800.c.o
 
 XKCP/lib/high/Keccak/KeccakSpongeWidth800.i: XKCP/lib/high/Keccak/KeccakSpongeWidth800.c.i
@@ -1074,6 +1168,7 @@ XKCP/lib/high/Keccak/KeccakSpongeWidth800.i: XKCP/lib/high/Keccak/KeccakSpongeWi
 # target to preprocess a source file
 XKCP/lib/high/Keccak/KeccakSpongeWidth800.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth800.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth800.c.i
 .PHONY : XKCP/lib/high/Keccak/KeccakSpongeWidth800.c.i
 
 XKCP/lib/high/Keccak/KeccakSpongeWidth800.s: XKCP/lib/high/Keccak/KeccakSpongeWidth800.c.s
@@ -1083,6 +1178,7 @@ XKCP/lib/high/Keccak/KeccakSpongeWidth800.s: XKCP/lib/high/Keccak/KeccakSpongeWi
 # target to generate assembly for a file
 XKCP/lib/high/Keccak/KeccakSpongeWidth800.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth800.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth800.c.s
 .PHONY : XKCP/lib/high/Keccak/KeccakSpongeWidth800.c.s
 
 XKCP/lib/high/Keccak/PRG/KeccakPRGWidth1600.o: XKCP/lib/high/Keccak/PRG/KeccakPRGWidth1600.c.o
@@ -1092,6 +1188,7 @@ XKCP/lib/high/Keccak/PRG/KeccakPRGWidth1600.o: XKCP/lib/high/Keccak/PRG/KeccakPR
 # target to build an object file
 XKCP/lib/high/Keccak/PRG/KeccakPRGWidth1600.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth1600.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth1600.c.o
 .PHONY : XKCP/lib/high/Keccak/PRG/KeccakPRGWidth1600.c.o
 
 XKCP/lib/high/Keccak/PRG/KeccakPRGWidth1600.i: XKCP/lib/high/Keccak/PRG/KeccakPRGWidth1600.c.i
@@ -1101,6 +1198,7 @@ XKCP/lib/high/Keccak/PRG/KeccakPRGWidth1600.i: XKCP/lib/high/Keccak/PRG/KeccakPR
 # target to preprocess a source file
 XKCP/lib/high/Keccak/PRG/KeccakPRGWidth1600.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth1600.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth1600.c.i
 .PHONY : XKCP/lib/high/Keccak/PRG/KeccakPRGWidth1600.c.i
 
 XKCP/lib/high/Keccak/PRG/KeccakPRGWidth1600.s: XKCP/lib/high/Keccak/PRG/KeccakPRGWidth1600.c.s
@@ -1110,6 +1208,7 @@ XKCP/lib/high/Keccak/PRG/KeccakPRGWidth1600.s: XKCP/lib/high/Keccak/PRG/KeccakPR
 # target to generate assembly for a file
 XKCP/lib/high/Keccak/PRG/KeccakPRGWidth1600.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth1600.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth1600.c.s
 .PHONY : XKCP/lib/high/Keccak/PRG/KeccakPRGWidth1600.c.s
 
 XKCP/lib/high/Keccak/PRG/KeccakPRGWidth200.o: XKCP/lib/high/Keccak/PRG/KeccakPRGWidth200.c.o
@@ -1119,6 +1218,7 @@ XKCP/lib/high/Keccak/PRG/KeccakPRGWidth200.o: XKCP/lib/high/Keccak/PRG/KeccakPRG
 # target to build an object file
 XKCP/lib/high/Keccak/PRG/KeccakPRGWidth200.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth200.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth200.c.o
 .PHONY : XKCP/lib/high/Keccak/PRG/KeccakPRGWidth200.c.o
 
 XKCP/lib/high/Keccak/PRG/KeccakPRGWidth200.i: XKCP/lib/high/Keccak/PRG/KeccakPRGWidth200.c.i
@@ -1128,6 +1228,7 @@ XKCP/lib/high/Keccak/PRG/KeccakPRGWidth200.i: XKCP/lib/high/Keccak/PRG/KeccakPRG
 # target to preprocess a source file
 XKCP/lib/high/Keccak/PRG/KeccakPRGWidth200.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth200.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth200.c.i
 .PHONY : XKCP/lib/high/Keccak/PRG/KeccakPRGWidth200.c.i
 
 XKCP/lib/high/Keccak/PRG/KeccakPRGWidth200.s: XKCP/lib/high/Keccak/PRG/KeccakPRGWidth200.c.s
@@ -1137,6 +1238,7 @@ XKCP/lib/high/Keccak/PRG/KeccakPRGWidth200.s: XKCP/lib/high/Keccak/PRG/KeccakPRG
 # target to generate assembly for a file
 XKCP/lib/high/Keccak/PRG/KeccakPRGWidth200.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth200.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth200.c.s
 .PHONY : XKCP/lib/high/Keccak/PRG/KeccakPRGWidth200.c.s
 
 XKCP/lib/high/Keccak/PRG/KeccakPRGWidth400.o: XKCP/lib/high/Keccak/PRG/KeccakPRGWidth400.c.o
@@ -1146,6 +1248,7 @@ XKCP/lib/high/Keccak/PRG/KeccakPRGWidth400.o: XKCP/lib/high/Keccak/PRG/KeccakPRG
 # target to build an object file
 XKCP/lib/high/Keccak/PRG/KeccakPRGWidth400.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth400.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth400.c.o
 .PHONY : XKCP/lib/high/Keccak/PRG/KeccakPRGWidth400.c.o
 
 XKCP/lib/high/Keccak/PRG/KeccakPRGWidth400.i: XKCP/lib/high/Keccak/PRG/KeccakPRGWidth400.c.i
@@ -1155,6 +1258,7 @@ XKCP/lib/high/Keccak/PRG/KeccakPRGWidth400.i: XKCP/lib/high/Keccak/PRG/KeccakPRG
 # target to preprocess a source file
 XKCP/lib/high/Keccak/PRG/KeccakPRGWidth400.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth400.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth400.c.i
 .PHONY : XKCP/lib/high/Keccak/PRG/KeccakPRGWidth400.c.i
 
 XKCP/lib/high/Keccak/PRG/KeccakPRGWidth400.s: XKCP/lib/high/Keccak/PRG/KeccakPRGWidth400.c.s
@@ -1164,6 +1268,7 @@ XKCP/lib/high/Keccak/PRG/KeccakPRGWidth400.s: XKCP/lib/high/Keccak/PRG/KeccakPRG
 # target to generate assembly for a file
 XKCP/lib/high/Keccak/PRG/KeccakPRGWidth400.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth400.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth400.c.s
 .PHONY : XKCP/lib/high/Keccak/PRG/KeccakPRGWidth400.c.s
 
 XKCP/lib/high/Keccak/PRG/KeccakPRGWidth800.o: XKCP/lib/high/Keccak/PRG/KeccakPRGWidth800.c.o
@@ -1173,6 +1278,7 @@ XKCP/lib/high/Keccak/PRG/KeccakPRGWidth800.o: XKCP/lib/high/Keccak/PRG/KeccakPRG
 # target to build an object file
 XKCP/lib/high/Keccak/PRG/KeccakPRGWidth800.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth800.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth800.c.o
 .PHONY : XKCP/lib/high/Keccak/PRG/KeccakPRGWidth800.c.o
 
 XKCP/lib/high/Keccak/PRG/KeccakPRGWidth800.i: XKCP/lib/high/Keccak/PRG/KeccakPRGWidth800.c.i
@@ -1182,6 +1288,7 @@ XKCP/lib/high/Keccak/PRG/KeccakPRGWidth800.i: XKCP/lib/high/Keccak/PRG/KeccakPRG
 # target to preprocess a source file
 XKCP/lib/high/Keccak/PRG/KeccakPRGWidth800.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth800.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth800.c.i
 .PHONY : XKCP/lib/high/Keccak/PRG/KeccakPRGWidth800.c.i
 
 XKCP/lib/high/Keccak/PRG/KeccakPRGWidth800.s: XKCP/lib/high/Keccak/PRG/KeccakPRGWidth800.c.s
@@ -1191,6 +1298,7 @@ XKCP/lib/high/Keccak/PRG/KeccakPRGWidth800.s: XKCP/lib/high/Keccak/PRG/KeccakPRG
 # target to generate assembly for a file
 XKCP/lib/high/Keccak/PRG/KeccakPRGWidth800.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth800.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth800.c.s
 .PHONY : XKCP/lib/high/Keccak/PRG/KeccakPRGWidth800.c.s
 
 XKCP/lib/high/Keccak/SP800-185/SP800-185.o: XKCP/lib/high/Keccak/SP800-185/SP800-185.c.o
@@ -1200,6 +1308,7 @@ XKCP/lib/high/Keccak/SP800-185/SP800-185.o: XKCP/lib/high/Keccak/SP800-185/SP800
 # target to build an object file
 XKCP/lib/high/Keccak/SP800-185/SP800-185.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keccak/SP800-185/SP800-185.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keccak/SP800-185/SP800-185.c.o
 .PHONY : XKCP/lib/high/Keccak/SP800-185/SP800-185.c.o
 
 XKCP/lib/high/Keccak/SP800-185/SP800-185.i: XKCP/lib/high/Keccak/SP800-185/SP800-185.c.i
@@ -1209,6 +1318,7 @@ XKCP/lib/high/Keccak/SP800-185/SP800-185.i: XKCP/lib/high/Keccak/SP800-185/SP800
 # target to preprocess a source file
 XKCP/lib/high/Keccak/SP800-185/SP800-185.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keccak/SP800-185/SP800-185.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keccak/SP800-185/SP800-185.c.i
 .PHONY : XKCP/lib/high/Keccak/SP800-185/SP800-185.c.i
 
 XKCP/lib/high/Keccak/SP800-185/SP800-185.s: XKCP/lib/high/Keccak/SP800-185/SP800-185.c.s
@@ -1218,6 +1328,7 @@ XKCP/lib/high/Keccak/SP800-185/SP800-185.s: XKCP/lib/high/Keccak/SP800-185/SP800
 # target to generate assembly for a file
 XKCP/lib/high/Keccak/SP800-185/SP800-185.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keccak/SP800-185/SP800-185.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keccak/SP800-185/SP800-185.c.s
 .PHONY : XKCP/lib/high/Keccak/SP800-185/SP800-185.c.s
 
 XKCP/lib/high/Ketje/KetjeJr.o: XKCP/lib/high/Ketje/KetjeJr.c.o
@@ -1227,6 +1338,7 @@ XKCP/lib/high/Ketje/KetjeJr.o: XKCP/lib/high/Ketje/KetjeJr.c.o
 # target to build an object file
 XKCP/lib/high/Ketje/KetjeJr.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeJr.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Ketje/KetjeJr.c.o
 .PHONY : XKCP/lib/high/Ketje/KetjeJr.c.o
 
 XKCP/lib/high/Ketje/KetjeJr.i: XKCP/lib/high/Ketje/KetjeJr.c.i
@@ -1236,6 +1348,7 @@ XKCP/lib/high/Ketje/KetjeJr.i: XKCP/lib/high/Ketje/KetjeJr.c.i
 # target to preprocess a source file
 XKCP/lib/high/Ketje/KetjeJr.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeJr.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Ketje/KetjeJr.c.i
 .PHONY : XKCP/lib/high/Ketje/KetjeJr.c.i
 
 XKCP/lib/high/Ketje/KetjeJr.s: XKCP/lib/high/Ketje/KetjeJr.c.s
@@ -1245,6 +1358,7 @@ XKCP/lib/high/Ketje/KetjeJr.s: XKCP/lib/high/Ketje/KetjeJr.c.s
 # target to generate assembly for a file
 XKCP/lib/high/Ketje/KetjeJr.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeJr.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Ketje/KetjeJr.c.s
 .PHONY : XKCP/lib/high/Ketje/KetjeJr.c.s
 
 XKCP/lib/high/Ketje/KetjeMj.o: XKCP/lib/high/Ketje/KetjeMj.c.o
@@ -1254,6 +1368,7 @@ XKCP/lib/high/Ketje/KetjeMj.o: XKCP/lib/high/Ketje/KetjeMj.c.o
 # target to build an object file
 XKCP/lib/high/Ketje/KetjeMj.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeMj.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Ketje/KetjeMj.c.o
 .PHONY : XKCP/lib/high/Ketje/KetjeMj.c.o
 
 XKCP/lib/high/Ketje/KetjeMj.i: XKCP/lib/high/Ketje/KetjeMj.c.i
@@ -1263,6 +1378,7 @@ XKCP/lib/high/Ketje/KetjeMj.i: XKCP/lib/high/Ketje/KetjeMj.c.i
 # target to preprocess a source file
 XKCP/lib/high/Ketje/KetjeMj.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeMj.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Ketje/KetjeMj.c.i
 .PHONY : XKCP/lib/high/Ketje/KetjeMj.c.i
 
 XKCP/lib/high/Ketje/KetjeMj.s: XKCP/lib/high/Ketje/KetjeMj.c.s
@@ -1272,6 +1388,7 @@ XKCP/lib/high/Ketje/KetjeMj.s: XKCP/lib/high/Ketje/KetjeMj.c.s
 # target to generate assembly for a file
 XKCP/lib/high/Ketje/KetjeMj.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeMj.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Ketje/KetjeMj.c.s
 .PHONY : XKCP/lib/high/Ketje/KetjeMj.c.s
 
 XKCP/lib/high/Ketje/KetjeMn.o: XKCP/lib/high/Ketje/KetjeMn.c.o
@@ -1281,6 +1398,7 @@ XKCP/lib/high/Ketje/KetjeMn.o: XKCP/lib/high/Ketje/KetjeMn.c.o
 # target to build an object file
 XKCP/lib/high/Ketje/KetjeMn.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeMn.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Ketje/KetjeMn.c.o
 .PHONY : XKCP/lib/high/Ketje/KetjeMn.c.o
 
 XKCP/lib/high/Ketje/KetjeMn.i: XKCP/lib/high/Ketje/KetjeMn.c.i
@@ -1290,6 +1408,7 @@ XKCP/lib/high/Ketje/KetjeMn.i: XKCP/lib/high/Ketje/KetjeMn.c.i
 # target to preprocess a source file
 XKCP/lib/high/Ketje/KetjeMn.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeMn.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Ketje/KetjeMn.c.i
 .PHONY : XKCP/lib/high/Ketje/KetjeMn.c.i
 
 XKCP/lib/high/Ketje/KetjeMn.s: XKCP/lib/high/Ketje/KetjeMn.c.s
@@ -1299,6 +1418,7 @@ XKCP/lib/high/Ketje/KetjeMn.s: XKCP/lib/high/Ketje/KetjeMn.c.s
 # target to generate assembly for a file
 XKCP/lib/high/Ketje/KetjeMn.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeMn.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Ketje/KetjeMn.c.s
 .PHONY : XKCP/lib/high/Ketje/KetjeMn.c.s
 
 XKCP/lib/high/Ketje/KetjeSr.o: XKCP/lib/high/Ketje/KetjeSr.c.o
@@ -1308,6 +1428,7 @@ XKCP/lib/high/Ketje/KetjeSr.o: XKCP/lib/high/Ketje/KetjeSr.c.o
 # target to build an object file
 XKCP/lib/high/Ketje/KetjeSr.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeSr.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Ketje/KetjeSr.c.o
 .PHONY : XKCP/lib/high/Ketje/KetjeSr.c.o
 
 XKCP/lib/high/Ketje/KetjeSr.i: XKCP/lib/high/Ketje/KetjeSr.c.i
@@ -1317,6 +1438,7 @@ XKCP/lib/high/Ketje/KetjeSr.i: XKCP/lib/high/Ketje/KetjeSr.c.i
 # target to preprocess a source file
 XKCP/lib/high/Ketje/KetjeSr.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeSr.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Ketje/KetjeSr.c.i
 .PHONY : XKCP/lib/high/Ketje/KetjeSr.c.i
 
 XKCP/lib/high/Ketje/KetjeSr.s: XKCP/lib/high/Ketje/KetjeSr.c.s
@@ -1326,6 +1448,7 @@ XKCP/lib/high/Ketje/KetjeSr.s: XKCP/lib/high/Ketje/KetjeSr.c.s
 # target to generate assembly for a file
 XKCP/lib/high/Ketje/KetjeSr.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeSr.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Ketje/KetjeSr.c.s
 .PHONY : XKCP/lib/high/Ketje/KetjeSr.c.s
 
 XKCP/lib/high/Keyak/LakeKeyak.o: XKCP/lib/high/Keyak/LakeKeyak.c.o
@@ -1335,6 +1458,7 @@ XKCP/lib/high/Keyak/LakeKeyak.o: XKCP/lib/high/Keyak/LakeKeyak.c.o
 # target to build an object file
 XKCP/lib/high/Keyak/LakeKeyak.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keyak/LakeKeyak.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keyak/LakeKeyak.c.o
 .PHONY : XKCP/lib/high/Keyak/LakeKeyak.c.o
 
 XKCP/lib/high/Keyak/LakeKeyak.i: XKCP/lib/high/Keyak/LakeKeyak.c.i
@@ -1344,6 +1468,7 @@ XKCP/lib/high/Keyak/LakeKeyak.i: XKCP/lib/high/Keyak/LakeKeyak.c.i
 # target to preprocess a source file
 XKCP/lib/high/Keyak/LakeKeyak.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keyak/LakeKeyak.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keyak/LakeKeyak.c.i
 .PHONY : XKCP/lib/high/Keyak/LakeKeyak.c.i
 
 XKCP/lib/high/Keyak/LakeKeyak.s: XKCP/lib/high/Keyak/LakeKeyak.c.s
@@ -1353,6 +1478,7 @@ XKCP/lib/high/Keyak/LakeKeyak.s: XKCP/lib/high/Keyak/LakeKeyak.c.s
 # target to generate assembly for a file
 XKCP/lib/high/Keyak/LakeKeyak.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keyak/LakeKeyak.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keyak/LakeKeyak.c.s
 .PHONY : XKCP/lib/high/Keyak/LakeKeyak.c.s
 
 XKCP/lib/high/Keyak/LunarKeyak.o: XKCP/lib/high/Keyak/LunarKeyak.c.o
@@ -1362,6 +1488,7 @@ XKCP/lib/high/Keyak/LunarKeyak.o: XKCP/lib/high/Keyak/LunarKeyak.c.o
 # target to build an object file
 XKCP/lib/high/Keyak/LunarKeyak.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keyak/LunarKeyak.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keyak/LunarKeyak.c.o
 .PHONY : XKCP/lib/high/Keyak/LunarKeyak.c.o
 
 XKCP/lib/high/Keyak/LunarKeyak.i: XKCP/lib/high/Keyak/LunarKeyak.c.i
@@ -1371,6 +1498,7 @@ XKCP/lib/high/Keyak/LunarKeyak.i: XKCP/lib/high/Keyak/LunarKeyak.c.i
 # target to preprocess a source file
 XKCP/lib/high/Keyak/LunarKeyak.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keyak/LunarKeyak.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keyak/LunarKeyak.c.i
 .PHONY : XKCP/lib/high/Keyak/LunarKeyak.c.i
 
 XKCP/lib/high/Keyak/LunarKeyak.s: XKCP/lib/high/Keyak/LunarKeyak.c.s
@@ -1380,6 +1508,7 @@ XKCP/lib/high/Keyak/LunarKeyak.s: XKCP/lib/high/Keyak/LunarKeyak.c.s
 # target to generate assembly for a file
 XKCP/lib/high/Keyak/LunarKeyak.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keyak/LunarKeyak.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keyak/LunarKeyak.c.s
 .PHONY : XKCP/lib/high/Keyak/LunarKeyak.c.s
 
 XKCP/lib/high/Keyak/OceanKeyak.o: XKCP/lib/high/Keyak/OceanKeyak.c.o
@@ -1389,6 +1518,7 @@ XKCP/lib/high/Keyak/OceanKeyak.o: XKCP/lib/high/Keyak/OceanKeyak.c.o
 # target to build an object file
 XKCP/lib/high/Keyak/OceanKeyak.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keyak/OceanKeyak.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keyak/OceanKeyak.c.o
 .PHONY : XKCP/lib/high/Keyak/OceanKeyak.c.o
 
 XKCP/lib/high/Keyak/OceanKeyak.i: XKCP/lib/high/Keyak/OceanKeyak.c.i
@@ -1398,6 +1528,7 @@ XKCP/lib/high/Keyak/OceanKeyak.i: XKCP/lib/high/Keyak/OceanKeyak.c.i
 # target to preprocess a source file
 XKCP/lib/high/Keyak/OceanKeyak.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keyak/OceanKeyak.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keyak/OceanKeyak.c.i
 .PHONY : XKCP/lib/high/Keyak/OceanKeyak.c.i
 
 XKCP/lib/high/Keyak/OceanKeyak.s: XKCP/lib/high/Keyak/OceanKeyak.c.s
@@ -1407,6 +1538,7 @@ XKCP/lib/high/Keyak/OceanKeyak.s: XKCP/lib/high/Keyak/OceanKeyak.c.s
 # target to generate assembly for a file
 XKCP/lib/high/Keyak/OceanKeyak.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keyak/OceanKeyak.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keyak/OceanKeyak.c.s
 .PHONY : XKCP/lib/high/Keyak/OceanKeyak.c.s
 
 XKCP/lib/high/Keyak/RiverKeyak.o: XKCP/lib/high/Keyak/RiverKeyak.c.o
@@ -1416,6 +1548,7 @@ XKCP/lib/high/Keyak/RiverKeyak.o: XKCP/lib/high/Keyak/RiverKeyak.c.o
 # target to build an object file
 XKCP/lib/high/Keyak/RiverKeyak.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keyak/RiverKeyak.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keyak/RiverKeyak.c.o
 .PHONY : XKCP/lib/high/Keyak/RiverKeyak.c.o
 
 XKCP/lib/high/Keyak/RiverKeyak.i: XKCP/lib/high/Keyak/RiverKeyak.c.i
@@ -1425,6 +1558,7 @@ XKCP/lib/high/Keyak/RiverKeyak.i: XKCP/lib/high/Keyak/RiverKeyak.c.i
 # target to preprocess a source file
 XKCP/lib/high/Keyak/RiverKeyak.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keyak/RiverKeyak.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keyak/RiverKeyak.c.i
 .PHONY : XKCP/lib/high/Keyak/RiverKeyak.c.i
 
 XKCP/lib/high/Keyak/RiverKeyak.s: XKCP/lib/high/Keyak/RiverKeyak.c.s
@@ -1434,6 +1568,7 @@ XKCP/lib/high/Keyak/RiverKeyak.s: XKCP/lib/high/Keyak/RiverKeyak.c.s
 # target to generate assembly for a file
 XKCP/lib/high/Keyak/RiverKeyak.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keyak/RiverKeyak.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keyak/RiverKeyak.c.s
 .PHONY : XKCP/lib/high/Keyak/RiverKeyak.c.s
 
 XKCP/lib/high/Keyak/SeaKeyak.o: XKCP/lib/high/Keyak/SeaKeyak.c.o
@@ -1443,6 +1578,7 @@ XKCP/lib/high/Keyak/SeaKeyak.o: XKCP/lib/high/Keyak/SeaKeyak.c.o
 # target to build an object file
 XKCP/lib/high/Keyak/SeaKeyak.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keyak/SeaKeyak.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keyak/SeaKeyak.c.o
 .PHONY : XKCP/lib/high/Keyak/SeaKeyak.c.o
 
 XKCP/lib/high/Keyak/SeaKeyak.i: XKCP/lib/high/Keyak/SeaKeyak.c.i
@@ -1452,6 +1588,7 @@ XKCP/lib/high/Keyak/SeaKeyak.i: XKCP/lib/high/Keyak/SeaKeyak.c.i
 # target to preprocess a source file
 XKCP/lib/high/Keyak/SeaKeyak.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keyak/SeaKeyak.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keyak/SeaKeyak.c.i
 .PHONY : XKCP/lib/high/Keyak/SeaKeyak.c.i
 
 XKCP/lib/high/Keyak/SeaKeyak.s: XKCP/lib/high/Keyak/SeaKeyak.c.s
@@ -1461,6 +1598,7 @@ XKCP/lib/high/Keyak/SeaKeyak.s: XKCP/lib/high/Keyak/SeaKeyak.c.s
 # target to generate assembly for a file
 XKCP/lib/high/Keyak/SeaKeyak.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/high/Keyak/SeaKeyak.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/high/Keyak/SeaKeyak.c.s
 .PHONY : XKCP/lib/high/Keyak/SeaKeyak.c.s
 
 XKCP/lib/low/KeccakP-1600-times2/FallbackOn1/KeccakP-1600-times2-on1.o: XKCP/lib/low/KeccakP-1600-times2/FallbackOn1/KeccakP-1600-times2-on1.c.o
@@ -1470,6 +1608,7 @@ XKCP/lib/low/KeccakP-1600-times2/FallbackOn1/KeccakP-1600-times2-on1.o: XKCP/lib
 # target to build an object file
 XKCP/lib/low/KeccakP-1600-times2/FallbackOn1/KeccakP-1600-times2-on1.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times2/FallbackOn1/KeccakP-1600-times2-on1.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/low/KeccakP-1600-times2/FallbackOn1/KeccakP-1600-times2-on1.c.o
 .PHONY : XKCP/lib/low/KeccakP-1600-times2/FallbackOn1/KeccakP-1600-times2-on1.c.o
 
 XKCP/lib/low/KeccakP-1600-times2/FallbackOn1/KeccakP-1600-times2-on1.i: XKCP/lib/low/KeccakP-1600-times2/FallbackOn1/KeccakP-1600-times2-on1.c.i
@@ -1479,6 +1618,7 @@ XKCP/lib/low/KeccakP-1600-times2/FallbackOn1/KeccakP-1600-times2-on1.i: XKCP/lib
 # target to preprocess a source file
 XKCP/lib/low/KeccakP-1600-times2/FallbackOn1/KeccakP-1600-times2-on1.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times2/FallbackOn1/KeccakP-1600-times2-on1.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/low/KeccakP-1600-times2/FallbackOn1/KeccakP-1600-times2-on1.c.i
 .PHONY : XKCP/lib/low/KeccakP-1600-times2/FallbackOn1/KeccakP-1600-times2-on1.c.i
 
 XKCP/lib/low/KeccakP-1600-times2/FallbackOn1/KeccakP-1600-times2-on1.s: XKCP/lib/low/KeccakP-1600-times2/FallbackOn1/KeccakP-1600-times2-on1.c.s
@@ -1488,6 +1628,7 @@ XKCP/lib/low/KeccakP-1600-times2/FallbackOn1/KeccakP-1600-times2-on1.s: XKCP/lib
 # target to generate assembly for a file
 XKCP/lib/low/KeccakP-1600-times2/FallbackOn1/KeccakP-1600-times2-on1.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times2/FallbackOn1/KeccakP-1600-times2-on1.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/low/KeccakP-1600-times2/FallbackOn1/KeccakP-1600-times2-on1.c.s
 .PHONY : XKCP/lib/low/KeccakP-1600-times2/FallbackOn1/KeccakP-1600-times2-on1.c.s
 
 XKCP/lib/low/KeccakP-1600-times4/FallbackOn1/KeccakP-1600-times4-on1.o: XKCP/lib/low/KeccakP-1600-times4/FallbackOn1/KeccakP-1600-times4-on1.c.o
@@ -1497,6 +1638,7 @@ XKCP/lib/low/KeccakP-1600-times4/FallbackOn1/KeccakP-1600-times4-on1.o: XKCP/lib
 # target to build an object file
 XKCP/lib/low/KeccakP-1600-times4/FallbackOn1/KeccakP-1600-times4-on1.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times4/FallbackOn1/KeccakP-1600-times4-on1.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/low/KeccakP-1600-times4/FallbackOn1/KeccakP-1600-times4-on1.c.o
 .PHONY : XKCP/lib/low/KeccakP-1600-times4/FallbackOn1/KeccakP-1600-times4-on1.c.o
 
 XKCP/lib/low/KeccakP-1600-times4/FallbackOn1/KeccakP-1600-times4-on1.i: XKCP/lib/low/KeccakP-1600-times4/FallbackOn1/KeccakP-1600-times4-on1.c.i
@@ -1506,6 +1648,7 @@ XKCP/lib/low/KeccakP-1600-times4/FallbackOn1/KeccakP-1600-times4-on1.i: XKCP/lib
 # target to preprocess a source file
 XKCP/lib/low/KeccakP-1600-times4/FallbackOn1/KeccakP-1600-times4-on1.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times4/FallbackOn1/KeccakP-1600-times4-on1.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/low/KeccakP-1600-times4/FallbackOn1/KeccakP-1600-times4-on1.c.i
 .PHONY : XKCP/lib/low/KeccakP-1600-times4/FallbackOn1/KeccakP-1600-times4-on1.c.i
 
 XKCP/lib/low/KeccakP-1600-times4/FallbackOn1/KeccakP-1600-times4-on1.s: XKCP/lib/low/KeccakP-1600-times4/FallbackOn1/KeccakP-1600-times4-on1.c.s
@@ -1515,6 +1658,7 @@ XKCP/lib/low/KeccakP-1600-times4/FallbackOn1/KeccakP-1600-times4-on1.s: XKCP/lib
 # target to generate assembly for a file
 XKCP/lib/low/KeccakP-1600-times4/FallbackOn1/KeccakP-1600-times4-on1.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times4/FallbackOn1/KeccakP-1600-times4-on1.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/low/KeccakP-1600-times4/FallbackOn1/KeccakP-1600-times4-on1.c.s
 .PHONY : XKCP/lib/low/KeccakP-1600-times4/FallbackOn1/KeccakP-1600-times4-on1.c.s
 
 XKCP/lib/low/KeccakP-1600-times8/FallbackOn1/KeccakP-1600-times8-on1.o: XKCP/lib/low/KeccakP-1600-times8/FallbackOn1/KeccakP-1600-times8-on1.c.o
@@ -1524,6 +1668,7 @@ XKCP/lib/low/KeccakP-1600-times8/FallbackOn1/KeccakP-1600-times8-on1.o: XKCP/lib
 # target to build an object file
 XKCP/lib/low/KeccakP-1600-times8/FallbackOn1/KeccakP-1600-times8-on1.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times8/FallbackOn1/KeccakP-1600-times8-on1.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/low/KeccakP-1600-times8/FallbackOn1/KeccakP-1600-times8-on1.c.o
 .PHONY : XKCP/lib/low/KeccakP-1600-times8/FallbackOn1/KeccakP-1600-times8-on1.c.o
 
 XKCP/lib/low/KeccakP-1600-times8/FallbackOn1/KeccakP-1600-times8-on1.i: XKCP/lib/low/KeccakP-1600-times8/FallbackOn1/KeccakP-1600-times8-on1.c.i
@@ -1533,6 +1678,7 @@ XKCP/lib/low/KeccakP-1600-times8/FallbackOn1/KeccakP-1600-times8-on1.i: XKCP/lib
 # target to preprocess a source file
 XKCP/lib/low/KeccakP-1600-times8/FallbackOn1/KeccakP-1600-times8-on1.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times8/FallbackOn1/KeccakP-1600-times8-on1.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/low/KeccakP-1600-times8/FallbackOn1/KeccakP-1600-times8-on1.c.i
 .PHONY : XKCP/lib/low/KeccakP-1600-times8/FallbackOn1/KeccakP-1600-times8-on1.c.i
 
 XKCP/lib/low/KeccakP-1600-times8/FallbackOn1/KeccakP-1600-times8-on1.s: XKCP/lib/low/KeccakP-1600-times8/FallbackOn1/KeccakP-1600-times8-on1.c.s
@@ -1542,6 +1688,7 @@ XKCP/lib/low/KeccakP-1600-times8/FallbackOn1/KeccakP-1600-times8-on1.s: XKCP/lib
 # target to generate assembly for a file
 XKCP/lib/low/KeccakP-1600-times8/FallbackOn1/KeccakP-1600-times8-on1.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times8/FallbackOn1/KeccakP-1600-times8-on1.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/low/KeccakP-1600-times8/FallbackOn1/KeccakP-1600-times8-on1.c.s
 .PHONY : XKCP/lib/low/KeccakP-1600-times8/FallbackOn1/KeccakP-1600-times8-on1.c.s
 
 XKCP/lib/low/KeccakP-1600/Optimized64/KeccakP-1600-opt64.o: XKCP/lib/low/KeccakP-1600/Optimized64/KeccakP-1600-opt64.c.o
@@ -1551,6 +1698,7 @@ XKCP/lib/low/KeccakP-1600/Optimized64/KeccakP-1600-opt64.o: XKCP/lib/low/KeccakP
 # target to build an object file
 XKCP/lib/low/KeccakP-1600/Optimized64/KeccakP-1600-opt64.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600/Optimized64/KeccakP-1600-opt64.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/low/KeccakP-1600/Optimized64/KeccakP-1600-opt64.c.o
 .PHONY : XKCP/lib/low/KeccakP-1600/Optimized64/KeccakP-1600-opt64.c.o
 
 XKCP/lib/low/KeccakP-1600/Optimized64/KeccakP-1600-opt64.i: XKCP/lib/low/KeccakP-1600/Optimized64/KeccakP-1600-opt64.c.i
@@ -1560,6 +1708,7 @@ XKCP/lib/low/KeccakP-1600/Optimized64/KeccakP-1600-opt64.i: XKCP/lib/low/KeccakP
 # target to preprocess a source file
 XKCP/lib/low/KeccakP-1600/Optimized64/KeccakP-1600-opt64.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600/Optimized64/KeccakP-1600-opt64.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/low/KeccakP-1600/Optimized64/KeccakP-1600-opt64.c.i
 .PHONY : XKCP/lib/low/KeccakP-1600/Optimized64/KeccakP-1600-opt64.c.i
 
 XKCP/lib/low/KeccakP-1600/Optimized64/KeccakP-1600-opt64.s: XKCP/lib/low/KeccakP-1600/Optimized64/KeccakP-1600-opt64.c.s
@@ -1569,6 +1718,7 @@ XKCP/lib/low/KeccakP-1600/Optimized64/KeccakP-1600-opt64.s: XKCP/lib/low/KeccakP
 # target to generate assembly for a file
 XKCP/lib/low/KeccakP-1600/Optimized64/KeccakP-1600-opt64.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600/Optimized64/KeccakP-1600-opt64.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/low/KeccakP-1600/Optimized64/KeccakP-1600-opt64.c.s
 .PHONY : XKCP/lib/low/KeccakP-1600/Optimized64/KeccakP-1600-opt64.c.s
 
 XKCP/lib/low/KeccakP-200/Compact/KeccakP-200-compact.o: XKCP/lib/low/KeccakP-200/Compact/KeccakP-200-compact.c.o
@@ -1578,6 +1728,7 @@ XKCP/lib/low/KeccakP-200/Compact/KeccakP-200-compact.o: XKCP/lib/low/KeccakP-200
 # target to build an object file
 XKCP/lib/low/KeccakP-200/Compact/KeccakP-200-compact.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-200/Compact/KeccakP-200-compact.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/low/KeccakP-200/Compact/KeccakP-200-compact.c.o
 .PHONY : XKCP/lib/low/KeccakP-200/Compact/KeccakP-200-compact.c.o
 
 XKCP/lib/low/KeccakP-200/Compact/KeccakP-200-compact.i: XKCP/lib/low/KeccakP-200/Compact/KeccakP-200-compact.c.i
@@ -1587,6 +1738,7 @@ XKCP/lib/low/KeccakP-200/Compact/KeccakP-200-compact.i: XKCP/lib/low/KeccakP-200
 # target to preprocess a source file
 XKCP/lib/low/KeccakP-200/Compact/KeccakP-200-compact.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-200/Compact/KeccakP-200-compact.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/low/KeccakP-200/Compact/KeccakP-200-compact.c.i
 .PHONY : XKCP/lib/low/KeccakP-200/Compact/KeccakP-200-compact.c.i
 
 XKCP/lib/low/KeccakP-200/Compact/KeccakP-200-compact.s: XKCP/lib/low/KeccakP-200/Compact/KeccakP-200-compact.c.s
@@ -1596,6 +1748,7 @@ XKCP/lib/low/KeccakP-200/Compact/KeccakP-200-compact.s: XKCP/lib/low/KeccakP-200
 # target to generate assembly for a file
 XKCP/lib/low/KeccakP-200/Compact/KeccakP-200-compact.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-200/Compact/KeccakP-200-compact.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/low/KeccakP-200/Compact/KeccakP-200-compact.c.s
 .PHONY : XKCP/lib/low/KeccakP-200/Compact/KeccakP-200-compact.c.s
 
 XKCP/lib/low/KeccakP-400/Reference/KeccakP-400-reference.o: XKCP/lib/low/KeccakP-400/Reference/KeccakP-400-reference.c.o
@@ -1605,6 +1758,7 @@ XKCP/lib/low/KeccakP-400/Reference/KeccakP-400-reference.o: XKCP/lib/low/KeccakP
 # target to build an object file
 XKCP/lib/low/KeccakP-400/Reference/KeccakP-400-reference.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-400/Reference/KeccakP-400-reference.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/low/KeccakP-400/Reference/KeccakP-400-reference.c.o
 .PHONY : XKCP/lib/low/KeccakP-400/Reference/KeccakP-400-reference.c.o
 
 XKCP/lib/low/KeccakP-400/Reference/KeccakP-400-reference.i: XKCP/lib/low/KeccakP-400/Reference/KeccakP-400-reference.c.i
@@ -1614,6 +1768,7 @@ XKCP/lib/low/KeccakP-400/Reference/KeccakP-400-reference.i: XKCP/lib/low/KeccakP
 # target to preprocess a source file
 XKCP/lib/low/KeccakP-400/Reference/KeccakP-400-reference.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-400/Reference/KeccakP-400-reference.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/low/KeccakP-400/Reference/KeccakP-400-reference.c.i
 .PHONY : XKCP/lib/low/KeccakP-400/Reference/KeccakP-400-reference.c.i
 
 XKCP/lib/low/KeccakP-400/Reference/KeccakP-400-reference.s: XKCP/lib/low/KeccakP-400/Reference/KeccakP-400-reference.c.s
@@ -1623,6 +1778,7 @@ XKCP/lib/low/KeccakP-400/Reference/KeccakP-400-reference.s: XKCP/lib/low/KeccakP
 # target to generate assembly for a file
 XKCP/lib/low/KeccakP-400/Reference/KeccakP-400-reference.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-400/Reference/KeccakP-400-reference.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/low/KeccakP-400/Reference/KeccakP-400-reference.c.s
 .PHONY : XKCP/lib/low/KeccakP-400/Reference/KeccakP-400-reference.c.s
 
 XKCP/lib/low/KeccakP-800/Optimized32/KeccakP-800-opt32.o: XKCP/lib/low/KeccakP-800/Optimized32/KeccakP-800-opt32.c.o
@@ -1632,6 +1788,7 @@ XKCP/lib/low/KeccakP-800/Optimized32/KeccakP-800-opt32.o: XKCP/lib/low/KeccakP-8
 # target to build an object file
 XKCP/lib/low/KeccakP-800/Optimized32/KeccakP-800-opt32.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-800/Optimized32/KeccakP-800-opt32.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/low/KeccakP-800/Optimized32/KeccakP-800-opt32.c.o
 .PHONY : XKCP/lib/low/KeccakP-800/Optimized32/KeccakP-800-opt32.c.o
 
 XKCP/lib/low/KeccakP-800/Optimized32/KeccakP-800-opt32.i: XKCP/lib/low/KeccakP-800/Optimized32/KeccakP-800-opt32.c.i
@@ -1641,6 +1798,7 @@ XKCP/lib/low/KeccakP-800/Optimized32/KeccakP-800-opt32.i: XKCP/lib/low/KeccakP-8
 # target to preprocess a source file
 XKCP/lib/low/KeccakP-800/Optimized32/KeccakP-800-opt32.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-800/Optimized32/KeccakP-800-opt32.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/low/KeccakP-800/Optimized32/KeccakP-800-opt32.c.i
 .PHONY : XKCP/lib/low/KeccakP-800/Optimized32/KeccakP-800-opt32.c.i
 
 XKCP/lib/low/KeccakP-800/Optimized32/KeccakP-800-opt32.s: XKCP/lib/low/KeccakP-800/Optimized32/KeccakP-800-opt32.c.s
@@ -1650,6 +1808,7 @@ XKCP/lib/low/KeccakP-800/Optimized32/KeccakP-800-opt32.s: XKCP/lib/low/KeccakP-8
 # target to generate assembly for a file
 XKCP/lib/low/KeccakP-800/Optimized32/KeccakP-800-opt32.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-800/Optimized32/KeccakP-800-opt32.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/low/KeccakP-800/Optimized32/KeccakP-800-opt32.c.s
 .PHONY : XKCP/lib/low/KeccakP-800/Optimized32/KeccakP-800-opt32.c.s
 
 XKCP/lib/low/Ketje/SnP-compliant/KetJr.o: XKCP/lib/low/Ketje/SnP-compliant/KetJr.c.o
@@ -1659,6 +1818,7 @@ XKCP/lib/low/Ketje/SnP-compliant/KetJr.o: XKCP/lib/low/Ketje/SnP-compliant/KetJr
 # target to build an object file
 XKCP/lib/low/Ketje/SnP-compliant/KetJr.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetJr.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/low/Ketje/SnP-compliant/KetJr.c.o
 .PHONY : XKCP/lib/low/Ketje/SnP-compliant/KetJr.c.o
 
 XKCP/lib/low/Ketje/SnP-compliant/KetJr.i: XKCP/lib/low/Ketje/SnP-compliant/KetJr.c.i
@@ -1668,6 +1828,7 @@ XKCP/lib/low/Ketje/SnP-compliant/KetJr.i: XKCP/lib/low/Ketje/SnP-compliant/KetJr
 # target to preprocess a source file
 XKCP/lib/low/Ketje/SnP-compliant/KetJr.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetJr.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/low/Ketje/SnP-compliant/KetJr.c.i
 .PHONY : XKCP/lib/low/Ketje/SnP-compliant/KetJr.c.i
 
 XKCP/lib/low/Ketje/SnP-compliant/KetJr.s: XKCP/lib/low/Ketje/SnP-compliant/KetJr.c.s
@@ -1677,6 +1838,7 @@ XKCP/lib/low/Ketje/SnP-compliant/KetJr.s: XKCP/lib/low/Ketje/SnP-compliant/KetJr
 # target to generate assembly for a file
 XKCP/lib/low/Ketje/SnP-compliant/KetJr.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetJr.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/low/Ketje/SnP-compliant/KetJr.c.s
 .PHONY : XKCP/lib/low/Ketje/SnP-compliant/KetJr.c.s
 
 XKCP/lib/low/Ketje/SnP-compliant/KetMj.o: XKCP/lib/low/Ketje/SnP-compliant/KetMj.c.o
@@ -1686,6 +1848,7 @@ XKCP/lib/low/Ketje/SnP-compliant/KetMj.o: XKCP/lib/low/Ketje/SnP-compliant/KetMj
 # target to build an object file
 XKCP/lib/low/Ketje/SnP-compliant/KetMj.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetMj.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/low/Ketje/SnP-compliant/KetMj.c.o
 .PHONY : XKCP/lib/low/Ketje/SnP-compliant/KetMj.c.o
 
 XKCP/lib/low/Ketje/SnP-compliant/KetMj.i: XKCP/lib/low/Ketje/SnP-compliant/KetMj.c.i
@@ -1695,6 +1858,7 @@ XKCP/lib/low/Ketje/SnP-compliant/KetMj.i: XKCP/lib/low/Ketje/SnP-compliant/KetMj
 # target to preprocess a source file
 XKCP/lib/low/Ketje/SnP-compliant/KetMj.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetMj.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/low/Ketje/SnP-compliant/KetMj.c.i
 .PHONY : XKCP/lib/low/Ketje/SnP-compliant/KetMj.c.i
 
 XKCP/lib/low/Ketje/SnP-compliant/KetMj.s: XKCP/lib/low/Ketje/SnP-compliant/KetMj.c.s
@@ -1704,6 +1868,7 @@ XKCP/lib/low/Ketje/SnP-compliant/KetMj.s: XKCP/lib/low/Ketje/SnP-compliant/KetMj
 # target to generate assembly for a file
 XKCP/lib/low/Ketje/SnP-compliant/KetMj.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetMj.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/low/Ketje/SnP-compliant/KetMj.c.s
 .PHONY : XKCP/lib/low/Ketje/SnP-compliant/KetMj.c.s
 
 XKCP/lib/low/Ketje/SnP-compliant/KetMn.o: XKCP/lib/low/Ketje/SnP-compliant/KetMn.c.o
@@ -1713,6 +1878,7 @@ XKCP/lib/low/Ketje/SnP-compliant/KetMn.o: XKCP/lib/low/Ketje/SnP-compliant/KetMn
 # target to build an object file
 XKCP/lib/low/Ketje/SnP-compliant/KetMn.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetMn.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/low/Ketje/SnP-compliant/KetMn.c.o
 .PHONY : XKCP/lib/low/Ketje/SnP-compliant/KetMn.c.o
 
 XKCP/lib/low/Ketje/SnP-compliant/KetMn.i: XKCP/lib/low/Ketje/SnP-compliant/KetMn.c.i
@@ -1722,6 +1888,7 @@ XKCP/lib/low/Ketje/SnP-compliant/KetMn.i: XKCP/lib/low/Ketje/SnP-compliant/KetMn
 # target to preprocess a source file
 XKCP/lib/low/Ketje/SnP-compliant/KetMn.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetMn.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/low/Ketje/SnP-compliant/KetMn.c.i
 .PHONY : XKCP/lib/low/Ketje/SnP-compliant/KetMn.c.i
 
 XKCP/lib/low/Ketje/SnP-compliant/KetMn.s: XKCP/lib/low/Ketje/SnP-compliant/KetMn.c.s
@@ -1731,6 +1898,7 @@ XKCP/lib/low/Ketje/SnP-compliant/KetMn.s: XKCP/lib/low/Ketje/SnP-compliant/KetMn
 # target to generate assembly for a file
 XKCP/lib/low/Ketje/SnP-compliant/KetMn.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetMn.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/low/Ketje/SnP-compliant/KetMn.c.s
 .PHONY : XKCP/lib/low/Ketje/SnP-compliant/KetMn.c.s
 
 XKCP/lib/low/Ketje/SnP-compliant/KetSr.o: XKCP/lib/low/Ketje/SnP-compliant/KetSr.c.o
@@ -1740,6 +1908,7 @@ XKCP/lib/low/Ketje/SnP-compliant/KetSr.o: XKCP/lib/low/Ketje/SnP-compliant/KetSr
 # target to build an object file
 XKCP/lib/low/Ketje/SnP-compliant/KetSr.c.o:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetSr.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/low/Ketje/SnP-compliant/KetSr.c.o
 .PHONY : XKCP/lib/low/Ketje/SnP-compliant/KetSr.c.o
 
 XKCP/lib/low/Ketje/SnP-compliant/KetSr.i: XKCP/lib/low/Ketje/SnP-compliant/KetSr.c.i
@@ -1749,6 +1918,7 @@ XKCP/lib/low/Ketje/SnP-compliant/KetSr.i: XKCP/lib/low/Ketje/SnP-compliant/KetSr
 # target to preprocess a source file
 XKCP/lib/low/Ketje/SnP-compliant/KetSr.c.i:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetSr.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/low/Ketje/SnP-compliant/KetSr.c.i
 .PHONY : XKCP/lib/low/Ketje/SnP-compliant/KetSr.c.i
 
 XKCP/lib/low/Ketje/SnP-compliant/KetSr.s: XKCP/lib/low/Ketje/SnP-compliant/KetSr.c.s
@@ -1758,6 +1928,7 @@ XKCP/lib/low/Ketje/SnP-compliant/KetSr.s: XKCP/lib/low/Ketje/SnP-compliant/KetSr
 # target to generate assembly for a file
 XKCP/lib/low/Ketje/SnP-compliant/KetSr.c.s:
 	$(MAKE) -f CMakeFiles/round5.dir/build.make CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetSr.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/XKCP/lib/low/Ketje/SnP-compliant/KetSr.c.s
 .PHONY : XKCP/lib/low/Ketje/SnP-compliant/KetSr.c.s
 
 dilithium/ref/PQCgenKAT_sign.o: dilithium/ref/PQCgenKAT_sign.c.o
@@ -1767,6 +1938,7 @@ dilithium/ref/PQCgenKAT_sign.o: dilithium/ref/PQCgenKAT_sign.c.o
 # target to build an object file
 dilithium/ref/PQCgenKAT_sign.c.o:
 	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/PQCgenKAT_sign.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/dilithium/ref/PQCgenKAT_sign.c.o
 .PHONY : dilithium/ref/PQCgenKAT_sign.c.o
 
 dilithium/ref/PQCgenKAT_sign.i: dilithium/ref/PQCgenKAT_sign.c.i
@@ -1776,6 +1948,7 @@ dilithium/ref/PQCgenKAT_sign.i: dilithium/ref/PQCgenKAT_sign.c.i
 # target to preprocess a source file
 dilithium/ref/PQCgenKAT_sign.c.i:
 	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/PQCgenKAT_sign.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/dilithium/ref/PQCgenKAT_sign.c.i
 .PHONY : dilithium/ref/PQCgenKAT_sign.c.i
 
 dilithium/ref/PQCgenKAT_sign.s: dilithium/ref/PQCgenKAT_sign.c.s
@@ -1785,6 +1958,7 @@ dilithium/ref/PQCgenKAT_sign.s: dilithium/ref/PQCgenKAT_sign.c.s
 # target to generate assembly for a file
 dilithium/ref/PQCgenKAT_sign.c.s:
 	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/PQCgenKAT_sign.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/dilithium/ref/PQCgenKAT_sign.c.s
 .PHONY : dilithium/ref/PQCgenKAT_sign.c.s
 
 dilithium/ref/aes256ctr.o: dilithium/ref/aes256ctr.c.o
@@ -1794,6 +1968,7 @@ dilithium/ref/aes256ctr.o: dilithium/ref/aes256ctr.c.o
 # target to build an object file
 dilithium/ref/aes256ctr.c.o:
 	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/aes256ctr.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/dilithium/ref/aes256ctr.c.o
 .PHONY : dilithium/ref/aes256ctr.c.o
 
 dilithium/ref/aes256ctr.i: dilithium/ref/aes256ctr.c.i
@@ -1803,6 +1978,7 @@ dilithium/ref/aes256ctr.i: dilithium/ref/aes256ctr.c.i
 # target to preprocess a source file
 dilithium/ref/aes256ctr.c.i:
 	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/aes256ctr.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/dilithium/ref/aes256ctr.c.i
 .PHONY : dilithium/ref/aes256ctr.c.i
 
 dilithium/ref/aes256ctr.s: dilithium/ref/aes256ctr.c.s
@@ -1812,6 +1988,7 @@ dilithium/ref/aes256ctr.s: dilithium/ref/aes256ctr.c.s
 # target to generate assembly for a file
 dilithium/ref/aes256ctr.c.s:
 	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/aes256ctr.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/dilithium/ref/aes256ctr.c.s
 .PHONY : dilithium/ref/aes256ctr.c.s
 
 dilithium/ref/fips202.o: dilithium/ref/fips202.c.o
@@ -1821,6 +1998,7 @@ dilithium/ref/fips202.o: dilithium/ref/fips202.c.o
 # target to build an object file
 dilithium/ref/fips202.c.o:
 	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/fips202.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/dilithium/ref/fips202.c.o
 .PHONY : dilithium/ref/fips202.c.o
 
 dilithium/ref/fips202.i: dilithium/ref/fips202.c.i
@@ -1830,6 +2008,7 @@ dilithium/ref/fips202.i: dilithium/ref/fips202.c.i
 # target to preprocess a source file
 dilithium/ref/fips202.c.i:
 	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/fips202.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/dilithium/ref/fips202.c.i
 .PHONY : dilithium/ref/fips202.c.i
 
 dilithium/ref/fips202.s: dilithium/ref/fips202.c.s
@@ -1839,6 +2018,7 @@ dilithium/ref/fips202.s: dilithium/ref/fips202.c.s
 # target to generate assembly for a file
 dilithium/ref/fips202.c.s:
 	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/fips202.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/dilithium/ref/fips202.c.s
 .PHONY : dilithium/ref/fips202.c.s
 
 dilithium/ref/ntt.o: dilithium/ref/ntt.c.o
@@ -1848,6 +2028,7 @@ dilithium/ref/ntt.o: dilithium/ref/ntt.c.o
 # target to build an object file
 dilithium/ref/ntt.c.o:
 	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/ntt.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/dilithium/ref/ntt.c.o
 .PHONY : dilithium/ref/ntt.c.o
 
 dilithium/ref/ntt.i: dilithium/ref/ntt.c.i
@@ -1857,6 +2038,7 @@ dilithium/ref/ntt.i: dilithium/ref/ntt.c.i
 # target to preprocess a source file
 dilithium/ref/ntt.c.i:
 	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/ntt.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/dilithium/ref/ntt.c.i
 .PHONY : dilithium/ref/ntt.c.i
 
 dilithium/ref/ntt.s: dilithium/ref/ntt.c.s
@@ -1866,6 +2048,7 @@ dilithium/ref/ntt.s: dilithium/ref/ntt.c.s
 # target to generate assembly for a file
 dilithium/ref/ntt.c.s:
 	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/ntt.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/dilithium/ref/ntt.c.s
 .PHONY : dilithium/ref/ntt.c.s
 
 dilithium/ref/packing.o: dilithium/ref/packing.c.o
@@ -1875,6 +2058,7 @@ dilithium/ref/packing.o: dilithium/ref/packing.c.o
 # target to build an object file
 dilithium/ref/packing.c.o:
 	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/packing.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/dilithium/ref/packing.c.o
 .PHONY : dilithium/ref/packing.c.o
 
 dilithium/ref/packing.i: dilithium/ref/packing.c.i
@@ -1884,6 +2068,7 @@ dilithium/ref/packing.i: dilithium/ref/packing.c.i
 # target to preprocess a source file
 dilithium/ref/packing.c.i:
 	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/packing.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/dilithium/ref/packing.c.i
 .PHONY : dilithium/ref/packing.c.i
 
 dilithium/ref/packing.s: dilithium/ref/packing.c.s
@@ -1893,6 +2078,7 @@ dilithium/ref/packing.s: dilithium/ref/packing.c.s
 # target to generate assembly for a file
 dilithium/ref/packing.c.s:
 	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/packing.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/dilithium/ref/packing.c.s
 .PHONY : dilithium/ref/packing.c.s
 
 dilithium/ref/poly.o: dilithium/ref/poly.c.o
@@ -1902,6 +2088,7 @@ dilithium/ref/poly.o: dilithium/ref/poly.c.o
 # target to build an object file
 dilithium/ref/poly.c.o:
 	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/poly.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/dilithium/ref/poly.c.o
 .PHONY : dilithium/ref/poly.c.o
 
 dilithium/ref/poly.i: dilithium/ref/poly.c.i
@@ -1911,6 +2098,7 @@ dilithium/ref/poly.i: dilithium/ref/poly.c.i
 # target to preprocess a source file
 dilithium/ref/poly.c.i:
 	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/poly.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/dilithium/ref/poly.c.i
 .PHONY : dilithium/ref/poly.c.i
 
 dilithium/ref/poly.s: dilithium/ref/poly.c.s
@@ -1920,6 +2108,7 @@ dilithium/ref/poly.s: dilithium/ref/poly.c.s
 # target to generate assembly for a file
 dilithium/ref/poly.c.s:
 	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/poly.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/dilithium/ref/poly.c.s
 .PHONY : dilithium/ref/poly.c.s
 
 dilithium/ref/polyvec.o: dilithium/ref/polyvec.c.o
@@ -1929,6 +2118,7 @@ dilithium/ref/polyvec.o: dilithium/ref/polyvec.c.o
 # target to build an object file
 dilithium/ref/polyvec.c.o:
 	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/polyvec.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/dilithium/ref/polyvec.c.o
 .PHONY : dilithium/ref/polyvec.c.o
 
 dilithium/ref/polyvec.i: dilithium/ref/polyvec.c.i
@@ -1938,6 +2128,7 @@ dilithium/ref/polyvec.i: dilithium/ref/polyvec.c.i
 # target to preprocess a source file
 dilithium/ref/polyvec.c.i:
 	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/polyvec.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/dilithium/ref/polyvec.c.i
 .PHONY : dilithium/ref/polyvec.c.i
 
 dilithium/ref/polyvec.s: dilithium/ref/polyvec.c.s
@@ -1947,6 +2138,7 @@ dilithium/ref/polyvec.s: dilithium/ref/polyvec.c.s
 # target to generate assembly for a file
 dilithium/ref/polyvec.c.s:
 	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/polyvec.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/dilithium/ref/polyvec.c.s
 .PHONY : dilithium/ref/polyvec.c.s
 
 dilithium/ref/randombytes.o: dilithium/ref/randombytes.c.o
@@ -1956,6 +2148,7 @@ dilithium/ref/randombytes.o: dilithium/ref/randombytes.c.o
 # target to build an object file
 dilithium/ref/randombytes.c.o:
 	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/randombytes.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/dilithium/ref/randombytes.c.o
 .PHONY : dilithium/ref/randombytes.c.o
 
 dilithium/ref/randombytes.i: dilithium/ref/randombytes.c.i
@@ -1965,6 +2158,7 @@ dilithium/ref/randombytes.i: dilithium/ref/randombytes.c.i
 # target to preprocess a source file
 dilithium/ref/randombytes.c.i:
 	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/randombytes.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/dilithium/ref/randombytes.c.i
 .PHONY : dilithium/ref/randombytes.c.i
 
 dilithium/ref/randombytes.s: dilithium/ref/randombytes.c.s
@@ -1974,6 +2168,7 @@ dilithium/ref/randombytes.s: dilithium/ref/randombytes.c.s
 # target to generate assembly for a file
 dilithium/ref/randombytes.c.s:
 	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/randombytes.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/dilithium/ref/randombytes.c.s
 .PHONY : dilithium/ref/randombytes.c.s
 
 dilithium/ref/reduce.o: dilithium/ref/reduce.c.o
@@ -1983,6 +2178,7 @@ dilithium/ref/reduce.o: dilithium/ref/reduce.c.o
 # target to build an object file
 dilithium/ref/reduce.c.o:
 	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/reduce.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/dilithium/ref/reduce.c.o
 .PHONY : dilithium/ref/reduce.c.o
 
 dilithium/ref/reduce.i: dilithium/ref/reduce.c.i
@@ -1992,6 +2188,7 @@ dilithium/ref/reduce.i: dilithium/ref/reduce.c.i
 # target to preprocess a source file
 dilithium/ref/reduce.c.i:
 	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/reduce.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/dilithium/ref/reduce.c.i
 .PHONY : dilithium/ref/reduce.c.i
 
 dilithium/ref/reduce.s: dilithium/ref/reduce.c.s
@@ -2001,6 +2198,7 @@ dilithium/ref/reduce.s: dilithium/ref/reduce.c.s
 # target to generate assembly for a file
 dilithium/ref/reduce.c.s:
 	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/reduce.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/dilithium/ref/reduce.c.s
 .PHONY : dilithium/ref/reduce.c.s
 
 dilithium/ref/rng.o: dilithium/ref/rng.c.o
@@ -2010,6 +2208,7 @@ dilithium/ref/rng.o: dilithium/ref/rng.c.o
 # target to build an object file
 dilithium/ref/rng.c.o:
 	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/rng.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/dilithium/ref/rng.c.o
 .PHONY : dilithium/ref/rng.c.o
 
 dilithium/ref/rng.i: dilithium/ref/rng.c.i
@@ -2019,6 +2218,7 @@ dilithium/ref/rng.i: dilithium/ref/rng.c.i
 # target to preprocess a source file
 dilithium/ref/rng.c.i:
 	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/rng.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/dilithium/ref/rng.c.i
 .PHONY : dilithium/ref/rng.c.i
 
 dilithium/ref/rng.s: dilithium/ref/rng.c.s
@@ -2028,6 +2228,7 @@ dilithium/ref/rng.s: dilithium/ref/rng.c.s
 # target to generate assembly for a file
 dilithium/ref/rng.c.s:
 	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/rng.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/dilithium/ref/rng.c.s
 .PHONY : dilithium/ref/rng.c.s
 
 dilithium/ref/rounding.o: dilithium/ref/rounding.c.o
@@ -2037,6 +2238,7 @@ dilithium/ref/rounding.o: dilithium/ref/rounding.c.o
 # target to build an object file
 dilithium/ref/rounding.c.o:
 	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/rounding.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/dilithium/ref/rounding.c.o
 .PHONY : dilithium/ref/rounding.c.o
 
 dilithium/ref/rounding.i: dilithium/ref/rounding.c.i
@@ -2046,6 +2248,7 @@ dilithium/ref/rounding.i: dilithium/ref/rounding.c.i
 # target to preprocess a source file
 dilithium/ref/rounding.c.i:
 	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/rounding.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/dilithium/ref/rounding.c.i
 .PHONY : dilithium/ref/rounding.c.i
 
 dilithium/ref/rounding.s: dilithium/ref/rounding.c.s
@@ -2055,6 +2258,7 @@ dilithium/ref/rounding.s: dilithium/ref/rounding.c.s
 # target to generate assembly for a file
 dilithium/ref/rounding.c.s:
 	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/rounding.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/dilithium/ref/rounding.c.s
 .PHONY : dilithium/ref/rounding.c.s
 
 dilithium/ref/sign.o: dilithium/ref/sign.c.o
@@ -2064,6 +2268,7 @@ dilithium/ref/sign.o: dilithium/ref/sign.c.o
 # target to build an object file
 dilithium/ref/sign.c.o:
 	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/sign.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/dilithium/ref/sign.c.o
 .PHONY : dilithium/ref/sign.c.o
 
 dilithium/ref/sign.i: dilithium/ref/sign.c.i
@@ -2073,6 +2278,7 @@ dilithium/ref/sign.i: dilithium/ref/sign.c.i
 # target to preprocess a source file
 dilithium/ref/sign.c.i:
 	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/sign.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/dilithium/ref/sign.c.i
 .PHONY : dilithium/ref/sign.c.i
 
 dilithium/ref/sign.s: dilithium/ref/sign.c.s
@@ -2082,6 +2288,7 @@ dilithium/ref/sign.s: dilithium/ref/sign.c.s
 # target to generate assembly for a file
 dilithium/ref/sign.c.s:
 	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/sign.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/dilithium/ref/sign.c.s
 .PHONY : dilithium/ref/sign.c.s
 
 keypair.o: keypair.c.o
@@ -2090,7 +2297,7 @@ keypair.o: keypair.c.o
 
 # target to build an object file
 keypair.c.o:
-	$(MAKE) -f CMakeFiles/dilithium_d.dir/build.make CMakeFiles/dilithium_d.dir/keypair.c.o
+	$(MAKE) -f CMakeFiles/engine_lib.dir/build.make CMakeFiles/engine_lib.dir/keypair.c.o
 	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/keypair.c.o
 .PHONY : keypair.c.o
 
@@ -2100,7 +2307,7 @@ keypair.i: keypair.c.i
 
 # target to preprocess a source file
 keypair.c.i:
-	$(MAKE) -f CMakeFiles/dilithium_d.dir/build.make CMakeFiles/dilithium_d.dir/keypair.c.i
+	$(MAKE) -f CMakeFiles/engine_lib.dir/build.make CMakeFiles/engine_lib.dir/keypair.c.i
 	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/keypair.c.i
 .PHONY : keypair.c.i
 
@@ -2110,7 +2317,7 @@ keypair.s: keypair.c.s
 
 # target to generate assembly for a file
 keypair.c.s:
-	$(MAKE) -f CMakeFiles/dilithium_d.dir/build.make CMakeFiles/dilithium_d.dir/keypair.c.s
+	$(MAKE) -f CMakeFiles/engine_lib.dir/build.make CMakeFiles/engine_lib.dir/keypair.c.s
 	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/keypair.c.s
 .PHONY : keypair.c.s
 
@@ -2120,7 +2327,7 @@ meths/asn1_meth.o: meths/asn1_meth.c.o
 
 # target to build an object file
 meths/asn1_meth.c.o:
-	$(MAKE) -f CMakeFiles/dilithium_d.dir/build.make CMakeFiles/dilithium_d.dir/meths/asn1_meth.c.o
+	$(MAKE) -f CMakeFiles/engine_lib.dir/build.make CMakeFiles/engine_lib.dir/meths/asn1_meth.c.o
 	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/meths/asn1_meth.c.o
 .PHONY : meths/asn1_meth.c.o
 
@@ -2130,7 +2337,7 @@ meths/asn1_meth.i: meths/asn1_meth.c.i
 
 # target to preprocess a source file
 meths/asn1_meth.c.i:
-	$(MAKE) -f CMakeFiles/dilithium_d.dir/build.make CMakeFiles/dilithium_d.dir/meths/asn1_meth.c.i
+	$(MAKE) -f CMakeFiles/engine_lib.dir/build.make CMakeFiles/engine_lib.dir/meths/asn1_meth.c.i
 	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/meths/asn1_meth.c.i
 .PHONY : meths/asn1_meth.c.i
 
@@ -2140,7 +2347,7 @@ meths/asn1_meth.s: meths/asn1_meth.c.s
 
 # target to generate assembly for a file
 meths/asn1_meth.c.s:
-	$(MAKE) -f CMakeFiles/dilithium_d.dir/build.make CMakeFiles/dilithium_d.dir/meths/asn1_meth.c.s
+	$(MAKE) -f CMakeFiles/engine_lib.dir/build.make CMakeFiles/engine_lib.dir/meths/asn1_meth.c.s
 	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/meths/asn1_meth.c.s
 .PHONY : meths/asn1_meth.c.s
 
@@ -2150,7 +2357,7 @@ meths/dilithium_meth.o: meths/dilithium_meth.c.o
 
 # target to build an object file
 meths/dilithium_meth.c.o:
-	$(MAKE) -f CMakeFiles/dilithium_d.dir/build.make CMakeFiles/dilithium_d.dir/meths/dilithium_meth.c.o
+	$(MAKE) -f CMakeFiles/engine_lib.dir/build.make CMakeFiles/engine_lib.dir/meths/dilithium_meth.c.o
 	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.o
 .PHONY : meths/dilithium_meth.c.o
 
@@ -2160,7 +2367,7 @@ meths/dilithium_meth.i: meths/dilithium_meth.c.i
 
 # target to preprocess a source file
 meths/dilithium_meth.c.i:
-	$(MAKE) -f CMakeFiles/dilithium_d.dir/build.make CMakeFiles/dilithium_d.dir/meths/dilithium_meth.c.i
+	$(MAKE) -f CMakeFiles/engine_lib.dir/build.make CMakeFiles/engine_lib.dir/meths/dilithium_meth.c.i
 	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.i
 .PHONY : meths/dilithium_meth.c.i
 
@@ -2170,7 +2377,7 @@ meths/dilithium_meth.s: meths/dilithium_meth.c.s
 
 # target to generate assembly for a file
 meths/dilithium_meth.c.s:
-	$(MAKE) -f CMakeFiles/dilithium_d.dir/build.make CMakeFiles/dilithium_d.dir/meths/dilithium_meth.c.s
+	$(MAKE) -f CMakeFiles/engine_lib.dir/build.make CMakeFiles/engine_lib.dir/meths/dilithium_meth.c.s
 	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.s
 .PHONY : meths/dilithium_meth.c.s
 
@@ -2180,7 +2387,7 @@ meths/round5_meth.o: meths/round5_meth.c.o
 
 # target to build an object file
 meths/round5_meth.c.o:
-	$(MAKE) -f CMakeFiles/dilithium_d.dir/build.make CMakeFiles/dilithium_d.dir/meths/round5_meth.c.o
+	$(MAKE) -f CMakeFiles/engine_lib.dir/build.make CMakeFiles/engine_lib.dir/meths/round5_meth.c.o
 	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/meths/round5_meth.c.o
 .PHONY : meths/round5_meth.c.o
 
@@ -2190,7 +2397,7 @@ meths/round5_meth.i: meths/round5_meth.c.i
 
 # target to preprocess a source file
 meths/round5_meth.c.i:
-	$(MAKE) -f CMakeFiles/dilithium_d.dir/build.make CMakeFiles/dilithium_d.dir/meths/round5_meth.c.i
+	$(MAKE) -f CMakeFiles/engine_lib.dir/build.make CMakeFiles/engine_lib.dir/meths/round5_meth.c.i
 	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/meths/round5_meth.c.i
 .PHONY : meths/round5_meth.c.i
 
@@ -2200,7 +2407,7 @@ meths/round5_meth.s: meths/round5_meth.c.s
 
 # target to generate assembly for a file
 meths/round5_meth.c.s:
-	$(MAKE) -f CMakeFiles/dilithium_d.dir/build.make CMakeFiles/dilithium_d.dir/meths/round5_meth.c.s
+	$(MAKE) -f CMakeFiles/engine_lib.dir/build.make CMakeFiles/engine_lib.dir/meths/round5_meth.c.s
 	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/meths/round5_meth.c.s
 .PHONY : meths/round5_meth.c.s
 
@@ -2210,7 +2417,7 @@ ossl/objects.o: ossl/objects.c.o
 
 # target to build an object file
 ossl/objects.c.o:
-	$(MAKE) -f CMakeFiles/dilithium_d.dir/build.make CMakeFiles/dilithium_d.dir/ossl/objects.c.o
+	$(MAKE) -f CMakeFiles/engine_lib.dir/build.make CMakeFiles/engine_lib.dir/ossl/objects.c.o
 	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/ossl/objects.c.o
 .PHONY : ossl/objects.c.o
 
@@ -2220,7 +2427,7 @@ ossl/objects.i: ossl/objects.c.i
 
 # target to preprocess a source file
 ossl/objects.c.i:
-	$(MAKE) -f CMakeFiles/dilithium_d.dir/build.make CMakeFiles/dilithium_d.dir/ossl/objects.c.i
+	$(MAKE) -f CMakeFiles/engine_lib.dir/build.make CMakeFiles/engine_lib.dir/ossl/objects.c.i
 	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/ossl/objects.c.i
 .PHONY : ossl/objects.c.i
 
@@ -2230,7 +2437,7 @@ ossl/objects.s: ossl/objects.c.s
 
 # target to generate assembly for a file
 ossl/objects.c.s:
-	$(MAKE) -f CMakeFiles/dilithium_d.dir/build.make CMakeFiles/dilithium_d.dir/ossl/objects.c.s
+	$(MAKE) -f CMakeFiles/engine_lib.dir/build.make CMakeFiles/engine_lib.dir/ossl/objects.c.s
 	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/ossl/objects.c.s
 .PHONY : ossl/objects.c.s
 
@@ -2240,7 +2447,7 @@ ossl/ossl_compat.o: ossl/ossl_compat.c.o
 
 # target to build an object file
 ossl/ossl_compat.c.o:
-	$(MAKE) -f CMakeFiles/dilithium_d.dir/build.make CMakeFiles/dilithium_d.dir/ossl/ossl_compat.c.o
+	$(MAKE) -f CMakeFiles/engine_lib.dir/build.make CMakeFiles/engine_lib.dir/ossl/ossl_compat.c.o
 	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/ossl/ossl_compat.c.o
 .PHONY : ossl/ossl_compat.c.o
 
@@ -2250,7 +2457,7 @@ ossl/ossl_compat.i: ossl/ossl_compat.c.i
 
 # target to preprocess a source file
 ossl/ossl_compat.c.i:
-	$(MAKE) -f CMakeFiles/dilithium_d.dir/build.make CMakeFiles/dilithium_d.dir/ossl/ossl_compat.c.i
+	$(MAKE) -f CMakeFiles/engine_lib.dir/build.make CMakeFiles/engine_lib.dir/ossl/ossl_compat.c.i
 	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/ossl/ossl_compat.c.i
 .PHONY : ossl/ossl_compat.c.i
 
@@ -2260,7 +2467,7 @@ ossl/ossl_compat.s: ossl/ossl_compat.c.s
 
 # target to generate assembly for a file
 ossl/ossl_compat.c.s:
-	$(MAKE) -f CMakeFiles/dilithium_d.dir/build.make CMakeFiles/dilithium_d.dir/ossl/ossl_compat.c.s
+	$(MAKE) -f CMakeFiles/engine_lib.dir/build.make CMakeFiles/engine_lib.dir/ossl/ossl_compat.c.s
 	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/ossl/ossl_compat.c.s
 .PHONY : ossl/ossl_compat.c.s
 
@@ -2325,11 +2532,11 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... install/strip"
-	@echo "... list_install_components"
 	@echo "... install/local"
-	@echo "... dilithium_d"
-	@echo "... dilithium"
+	@echo "... list_install_components"
 	@echo "... round5"
+	@echo "... dilithium"
+	@echo "... engine_lib"
 	@echo "... rebuild_cache"
 	@echo "... round5_engine"
 	@echo "... edit_cache"

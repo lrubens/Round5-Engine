@@ -45,6 +45,7 @@ int round5_sk_to_pk(unsigned char *pk, const unsigned char *sk, parameters *para
 
 static int keygen(EVP_PKEY_CTX *ctx, EVP_PKEY *pkey){
     // printf("\nkeygen\n");
+    set_key_size();
     struct ROUND5 *kpair = NULL;
     kpair = EVP_PKEY_get0(pkey);
     params = set_parameters_from_api();

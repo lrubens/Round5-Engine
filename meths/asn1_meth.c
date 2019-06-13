@@ -50,7 +50,7 @@ static int pki_key_print( BIO *bp, const EVP_PKEY *pkey,
     if (!pkey)
         return 0;
     int nid = EVP_PKEY_base_id(pkey);
-    struct DILITHIUM *kpair = NULL;    
+    struct ROUND5 *kpair = NULL;
     kpair = EVP_PKEY_get0(pkey);
     //kpair = OPENSSL_malloc(sizeof(*kpair));
     //const struct round5_nid_data_st *nid_data = NULL;
@@ -80,7 +80,7 @@ static int pki_key_print( BIO *bp, const EVP_PKEY *pkey,
         //nid_data = round5_get_nid_data(1061);
         if (BIO_printf(bp, "%*s%sPublic-Key:\n", indent, "", "") <= 0) //change last parameter back to nid_data->name
             return 0;
-        if (!ASN1_buf_print(bp, kpair->pk, (nid == NID_ROUND5 ? SKLEN : CRYPTO_PUBLICKEYBYTES), indent + 4))
+        if (!ASN1_buf_print(bp, kpair->pk, (nid == NID_ROUND5 ? PKLEN : CRYPTO_PUBLICKEYBYTES), indent + 4))
             return 0;
     }
     // if (BIO_printf(bp, "%*s", indent, "") <= 0)
@@ -112,6 +112,9 @@ static int pki_gen_ctrl(int nid, EVP_PKEY *pkey, int op, long arg1, void *arg2)
     const unsigned char *p = NULL;
     const struct round5_nid_data_st *nid_data = round5_get_nid_data(nid);
     int pklen = 0;
+    X509_ALGOR *alg1 = NULL;
+    X509_ALGOR *alg2 = NULL;
+
 
     switch (op) {
 
@@ -141,12 +144,20 @@ static int pki_gen_ctrl(int nid, EVP_PKEY *pkey, int op, long arg1, void *arg2)
             kp = EVP_PKEY_get0(pkey);
             if (kp == NULL && nid == kp->nid) {
                 unsigned char **ppt = arg2;
-                *ppt = OPENSSL_memdup(kp->sk, nid_data->pk_bytes);    // TODO: figure out pubk_bytes
+                *ppt = OPENSSL_memdup(kp->sk, PKLEN);
                 if (*ppt != NULL)
                     return nid_data->pk_bytes;
             }
             return 0;
-        case EVP_PKEY_CTRL_PKCS7_SIGN:
+        case ASN1_PKEY_CTRL_PKCS7_SIGN:
+            if(arg1 == 0){
+                PKCS7_SIGNER_INFO_get0_algs((PKCS7_SIGNER_INFO *)arg2, NULL, &alg1, &alg2);
+                X509_ALGOR_set0(alg1, OBJ_nid2obj(EVP_PKEY_base_id(pkey)), V_ASN1_NULL, 0);
+                X509_ALGOR_set0(alg2, OBJ_nid2obj(EVP_MD_type(EVP_sha256())), V_ASN1_NULL, 0);
+            }
+            return 1;
+        case EVP_PKEY_CTRL_DIGESTINIT:
+            printf("\nEVP_PKEY_CTRL_DIGESTINIT\n");
             return 1;
 #endif
         default:
@@ -178,8 +189,8 @@ static int pki_gen_priv_encode(PKCS8_PRIV_KEY_INFO *p8, const EVP_PKEY *pkey)
     key_data = EVP_PKEY_get0(pkey);
     // key_data = OPENSSL_secure_malloc(sizeof(*key_data));
     // key_data = EVP_PKEY_get0(pkey);
-    //BN data = BN_new();
-
+    //BN data = BN_new();  
+    printf("\nkey_data->sk: %s\n", key_data->sk);
     return PKCS8_pkey_set0(p8, algobj, 0, V_ASN1_SEQUENCE, params,
                            key_data->sk, SKLEN);
 }

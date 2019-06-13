@@ -16,7 +16,7 @@
 #include "ossl/objects.h"
 #include "network/linux/client.h"
 #include "network/linux/server.h"
-#include "../dilithium/ref/params.h"
+// #include "../dilithium/ref/params.h"
 #define T(e) ({ if (!(e)) { \
 		ERR_print_errors_fp(stderr); \
 		OpenSSLDie(__FILE__, __LINE__, #e); \
@@ -40,8 +40,7 @@ static void print_pkey(EVP_PKEY *pkey){
     printf("\n!pkey\n");
   }
 
-  EVP_PKEY_print_private(b, pkey, 4, pctx);
-  printf("\ny tho\n");
+  EVP_PKEY_print_public(b, pkey, 4, pctx);
 
   BIO_get_mem_data(b, &private_key_text);
 
@@ -50,7 +49,7 @@ static void print_pkey(EVP_PKEY *pkey){
   ASN1_PCTX_free(pctx);
 }
 
-void test_dilithium(){
+EVP_PKEY *test_dilithium(){
   char *algoname = OBJ_nid2sn(NID_DILITHIUM);
   EVP_PKEY *ckey;
   T(ckey = EVP_PKEY_new());
@@ -70,15 +69,17 @@ void test_dilithium(){
   }
   print_pkey(qkey);
   EVP_PKEY_free(ckey);
+
+  return qkey;
 }
 
 struct certKey *gen_cert(){
   // Testing Engine functions
-  char *algname = "Dilithium";
+  char *algname = "Round5";
   EVP_PKEY *tkey;
   T(tkey = EVP_PKEY_new());
   T(EVP_PKEY_set_type_str(tkey, algname, strlen(algname)));
-  EVP_PKEY_CTX *ctx;
+  EVP_PKEY_CTX *ctx = NULL;
   T(ctx = EVP_PKEY_CTX_new(tkey, NULL));
   T(EVP_PKEY_keygen_init(ctx));
 
@@ -138,7 +139,18 @@ struct certKey *gen_cert(){
   c->cert = x509ss;
   // memcpy(c->key, pkey, sizeof(pkey));
   c->key = pkey;
+  EVP_MD_CTX *mctx = NULL;
+  T(mctx = EVP_MD_CTX_new());
+  if(!ctx){
+    printf("\n!ctx\n");
+  }
+  (EVP_DigestSignInit(mctx, &ctx, NULL, NULL, c->key));
+  // // printf("\nbefore x509 sign\n");
+  // EVP_PKEY_CTX_set_rsa_padding()
+  (X509_sign_ctx(c->cert, mctx));
+  EVP_MD_CTX_free(mctx);
 
+  print_pkey(c->key);
   // unsigned char *msg = "hellohellohellohello";
   // int len = strlen(msg);
   // EVP_PKEY_CTX *tx = NULL;
@@ -155,37 +167,38 @@ struct certKey *gen_cert(){
 
   // struct certKey *c = NULL;
   // c = OPENSSL_malloc(sizeof(*c));
-  char *algoname = OBJ_nid2sn(NID_DILITHIUM);
-  EVP_PKEY *ckey;
-  T(ckey = EVP_PKEY_new());
 
-  T(EVP_PKEY_set_type_str(ckey, algoname, strlen(algoname)));
-  // EVP_PKEY_set_type(ckey, NID_DILITHIUM);
+  // char *algoname = OBJ_nid2sn(NID_DILITHIUM);
+  // EVP_PKEY *ckey;
+  // T(ckey = EVP_PKEY_new());
 
-  EVP_PKEY_CTX *tx;
-  (tx = EVP_PKEY_CTX_new(ckey, NULL));
-  T(EVP_PKEY_keygen_init(tx));
+  // T(EVP_PKEY_set_type_str(ckey, algoname, strlen(algoname)));
+  // // EVP_PKEY_set_type(ckey, NID_DILITHIUM);
 
-  EVP_PKEY *qkey = NULL;
-  qkey = EVP_PKEY_new();
-  ((EVP_PKEY_keygen(tx, &qkey)));
-  if(!qkey){
-    printf("\n!qkey\n");
-  }
-  print_pkey(qkey);
-  EVP_PKEY_free(ckey);
+  // EVP_PKEY_CTX *tx;
+  // (tx = EVP_PKEY_CTX_new(ckey, NULL));
+  // T(EVP_PKEY_keygen_init(tx));
 
-  unsigned char *msg = "message";
-  int msglen = strlen(msg);
-  int siglen = msglen + CRYPTO_BYTES;
-  unsigned char *sig = malloc(siglen);
-  EVP_PKEY_CTX *cont = EVP_PKEY_CTX_new(qkey, NULL);
-  unsigned char *hash = malloc(SHA_DIGEST_LENGTH);
-  SHA1(msg, strlen(msg), hash);
-  printf("\nhash: %s\n", hash);
-  EVP_PKEY_sign_init(cont);
-  EVP_PKEY_sign(cont, sig, &siglen, hash, strlen(hash));
-  printf("\nsig: %s\n", sig);
+  // EVP_PKEY *qkey = NULL;
+  // qkey = EVP_PKEY_new();
+  // ((EVP_PKEY_keygen(tx, &qkey)));
+  // if(!qkey){
+  //   printf("\n!qkey\n");
+  // }
+  // // print_pkey(qkey);
+  // EVP_PKEY_free(ckey);
+
+  // unsigned char *msg = "message";
+  // int msglen = strlen(msg);
+  // int siglen = msglen + CRYPTO_BYTES;
+  // unsigned char *sig = malloc(siglen);
+  // EVP_PKEY_CTX *cont = EVP_PKEY_CTX_new(qkey, NULL);
+  // unsigned char *hash = malloc(SHA_DIGEST_LENGTH);
+  // SHA1(msg, strlen(msg), hash);
+  // printf("\nhash: %s\n", hash);
+  // EVP_PKEY_sign_init(cont);
+  // EVP_PKEY_sign(cont, sig, &siglen, hash, strlen(hash));
+  // printf("\nsig: %s\n", sig);
 
   /*
   EVP_MD *md = EVP_get_digestbyname("Keccak");
@@ -230,7 +243,7 @@ struct certKey *gen_cert(){
   // free(buf);
   // free(buf2);
 
-  EVP_PKEY_free(pkey);
+  // EVP_PKEY_free(pkey);
 
   //EVP_PKEY_CTX_free(ctx);
   // EVP_MD_CTX_free(cx);
@@ -247,38 +260,38 @@ int main(int argc, const char* argv[]){
   ENGINE *round5_engine;
 	T(round5_engine = ENGINE_by_id("round5"));
 	T(ENGINE_init(round5_engine));
-  T(ENGINE_set_default(round5_engine, ENGINE_METHOD_ALL));
+  // T(ENGINE_set_default(round5_engine, ENGINE_METHOD_ALL));
+  ENGINE_set_default_pkey_asn1_meths(round5_engine);
+  ENGINE_set_default_pkey_meths(round5_engine);
+
   
   struct certKey *c = gen_cert();
-  
-  EVP_PKEY * pkey;
-  pkey = EVP_PKEY_new();
-  RSA *rsa = NULL;
-  BIGNUM *bne = NULL;
+  EVP_PKEY *pkey = test_dilithium();
+  X509_sign(c->cert, pkey, EVP_sha1());
+  print_pkey(c->key);
+  // EVP_PKEY * pkey;
+  // pkey = EVP_PKEY_new();
+  // RSA *rsa = NULL;
+  // BIGNUM *bne = NULL;
 
-  //BIO *bp_public = NULL, *bp_private = NULL;
+  // //BIO *bp_public = NULL, *bp_private = NULL;
 
-  int bits = 1024;
-  unsigned long e = RSA_F4;
+  // int bits = 1024;
+  // unsigned long e = RSA_F4;
 
-  bne = BN_new();
-  int ret = BN_set_word(bne,e);
-  if(ret != 1){
-      //do something
-  }
+  // bne = BN_new();
+  // int ret = BN_set_word(bne,e);
+  // if(ret != 1){
+  //     //do something
+  // }
 
-  rsa = RSA_new();
-  ret = RSA_generate_key_ex(rsa, bits, bne, NULL);
-  if(ret != 1){
-      //do something
-  }
+  // rsa = RSA_new();
+  // ret = RSA_generate_key_ex(rsa, bits, bne, NULL);
+  // if(ret != 1){
+  //     //do something
+  // }
   // EVP_PKEY_assign_RSA(pkey, rsa);
-  EVP_MD_CTX *mctx = NULL;
-  T(mctx = EVP_MD_CTX_new());
-  // (EVP_DigestSignInit(mctx, NULL, EVP_sha512(), NULL, c->key));
-  // // printf("\nbefore x509 sign\n");
-  // (X509_sign_ctx(c->cert, mctx));
-  // EVP_MD_CTX_free(mctx);
+  
 
   // print_pkey(c->key);
   // X509_sign(c->cert, c->key, EVP_sha1());
@@ -289,6 +302,10 @@ int main(int argc, const char* argv[]){
   // print_pkey(pkey);
   // printf("\ndone\n");
   // return 0;
+  if(!c->key){
+    printf("\n!c->key\n");
+    return 1;
+  }
   FILE * f = fopen("key.pem", "wb");
   PEM_write_PrivateKey(
     f,                  /* write the key to the file we've opened */
@@ -308,12 +325,11 @@ int main(int argc, const char* argv[]){
       c->cert /* our certificate */
   );
   fclose(f2);
-  BN_free(bne);
-  EVP_PKEY_free(pkey);
-  // X509_free(c->cert);
+  X509_free(c->cert);
   EVP_PKEY_free(c->key);
   free(c);
   ENGINE_finish(round5_engine);
   ENGINE_free(round5_engine);
   ENGINE_cleanup();
+  return 0;
 }

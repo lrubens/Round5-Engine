@@ -77,7 +77,6 @@ static int dilithium_keygen(EVP_PKEY_CTX *ctx, EVP_PKEY *pkey)
     }
     if (crypto_sign_keypair(kpair->pk, kpair->sk))
         goto err;
-    printf("\nkpair pk: %s\n", kpair->pk);
     return 1;
     err:
     printf("\nerr in dilithium\n");
@@ -130,6 +129,7 @@ void pki_register_dilithium(EVP_PKEY_METHOD *pmeth){
     EVP_PKEY_meth_set_sign(pmeth, NULL, dilithium_sign);
     EVP_PKEY_meth_set_keygen(pmeth, NULL, dilithium_keygen);
     EVP_PKEY_meth_set_verify(pmeth, NULL, dilithium_verify);
+    EVP_PKEY_meth_set_signctx(pmeth, NULL, dilithium_sign_ctx);
 }
 
 
@@ -164,11 +164,26 @@ int dilithium_verify(EVP_PKEY_CTX *ctx, unsigned char *sig, size_t *siglen, cons
     return crypto_sign_open(tbs, &tbs_len, sig, *siglen, kpair->pk);
 }
 
-int dilithium_sign_ctx_init(EVP_PKEY_CTX *ctx, EVP_MD_CTX *md){
-    return 1;
-}
+// int dilithium_sign_ctx_init(EVP_PKEY_CTX *ctx, EVP_MD_CTX *md){
+//     struct gost_mac_pmeth_data *data = EVP_PKEY_CTX_get_data(ctx);
+
+//     if (data == NULL) {
+//         pkey_gost_mac_init(ctx);
+//     }
+
+//     data = EVP_PKEY_CTX_get_data(ctx);
+//     if (!data) {
+//         GOSTerr(GOST_F_PKEY_GOST_MAC_SIGNCTX_INIT, GOST_R_MAC_KEY_NOT_SET);
+//         return 0;
+//     }
+
+//     return 1;
+// }
+
 
 int dilithium_sign_ctx(EVP_PKEY_CTX *ctx, unsigned char *sig, size_t *siglen, EVP_MD_CTX *md){
+    int nid = EVP_MD_CTX_type(md);
+    printf("\nnid: %d\n", nid);
     return 1;
 }
 
