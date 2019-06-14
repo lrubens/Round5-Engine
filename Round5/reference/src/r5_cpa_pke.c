@@ -91,6 +91,19 @@ static int diff_msg(uint16_t *result, const size_t len, const uint16_t *matrix_a
  * Public functions
  ******************************************************************************/
 
+size_t test_func(unsigned char *packed_pk, const unsigned char *sigma, size_t sigma_len, const uint16_t *B, size_t elements, uint8_t nr_bits) {
+    size_t packed_idx = 0;
+
+    /* Pack sigma */
+    memcpy(packed_pk + packed_idx, sigma, sigma_len);
+    packed_idx += sigma_len;
+    /* Pack B */
+    packed_idx += pack((packed_pk + packed_idx), B, elements, nr_bits);
+
+    return packed_idx;
+}
+
+
 int r5_cpa_pke_keygen(unsigned char *pk, unsigned char *sk, const parameters *params) {
     unsigned char *sigma;
     uint16_t *A;
@@ -145,7 +158,10 @@ int r5_cpa_pke_keygen(unsigned char *pk, unsigned char *sk, const parameters *pa
     round_matrix(B, (size_t) (params->k * params->n_bar), params->n, params->q_bits, params->p_bits, params->h1);
 
     /* Serializing and packing */
-    pack_pk(pk, sigma, params->kappa_bytes, B, len_b, params->p_bits);
+    // pack_pk(pk, sigma, params->kappa_bytes, B, len_b, params->p_bits);
+    printf("\n\n\n\nwhy\n\n\n\n");
+
+    test_func(pk, sigma, params->kappa_bytes, B, len_b, params->p_bits);
 
     free(sigma);
     free(A);

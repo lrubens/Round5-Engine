@@ -108,11 +108,12 @@ set(ROUND5_LIB_SOURCE
 )
 
 set(DILITHIUM_DEPENDENCIES
-    ${METHODS_SOURCE_FILES}
-    ${OSSL_SOURCE_FILES}
-    ${UTIL_SOURCE_FILES}
-    ${XKCP_SOURCE_FILES}
-    ${ROUND5_SOURCE_FILES}
+    # ${METHODS_SOURCE_FILES}
+    # ${OSSL_SOURCE_FILES}
+    # ${UTIL_SOURCE_FILES}
+    # ${XKCP_SOURCE_FILES}
+    # ${ROUND5_SOURCE_FILES}
+    ${DILITHIUM_SOURCE_FILES}
 )
 
 set(ROUND5_ENGINE_SOURCE_FILES
@@ -139,8 +140,8 @@ set(TEST
 include_directories(${CMAKE_SOURCE_DIR})
 include_directories(meths)
 include_directories(ossl)
-# include_directories(dilithium/ref)
-# include_directories(Round5/reference/src)
+include_directories(dilithium/ref)
+include_directories(Round5/reference/src)
 include_directories(XKCP/bin/generic64/libkeccak.a.headers)
 
 add_library(dilithium STATIC ${DILITHIUM_SOURCE_FILES})
@@ -162,10 +163,10 @@ target_include_directories(engine_lib PUBLIC Round5/reference/src)
 target_compile_definitions(engine_lib PUBLIC R5ND_5PKE_5d)
 
 # Create shared library
-add_library(round5_engine SHARED ${ROUND5_ENGINE_SOURCE_FILES} ${ROUND5_LIB_SOURCE} ${DILITHIUM_SOURCE_FILES})
+add_library(round5_engine SHARED ${ROUND5_ENGINE_SOURCE_FILES})
 # set_target_properties(round5_engine PROPERTIES COMPILE_FLAGS "-fPIC -lkeccak -lcrypto -lssl -Xlinker -zmuldefs")
 # <<<<<<< Updated upstream
-# target_link_libraries(round5_engine dilithium ${OPENSSL_CRYPTO_LIBRARY})
+target_link_libraries(round5_engine dilithium round5 engine_lib ${OPENSSL_CRYPTO_LIBRARY} -Xlinker -zmuldefs)
 target_link_libraries(round5_engine ${OPENSSL_CRYPTO_LIBRARY} -Xlinker -zmuldefs)
 target_include_directories(round5_engine PUBLIC Round5/reference/src)
 
@@ -175,10 +176,10 @@ target_compile_definitions(round5_engine PUBLIC R5ND_5PKE_5d)
 set_target_properties(round5_engine PROPERTIES COMPILE_FLAGS "-lkeccak -lcrypto -lssl -DR5ND_5PKE_5d -Xlinker -zmuldefs")
 
 # run test
-add_executable(engine_check ${TEST})
+add_executable(engine_check ${TEST} ${DILITHIUM_DEPENDENCIES})
 # set_target_properties(engine_check PROPERTIES COMPILE_FLAGS "-lcrypto -lssl -lkeccak")
 # set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc -static-libstdc++")
-target_link_libraries(engine_check ${OPENSSL_CRYPTO_LIBRARY} round5 dilithium engine_lib)
+target_link_libraries(engine_check dilithium round5 engine_lib ${OPENSSL_CRYPTO_LIBRARY}  -Xlinker -zmuldefs)
 target_compile_definitions(engine_check PUBLIC R5ND_5PKE_5d)
 set_target_properties(engine_check PROPERTIES COMPILE_FLAGS "-lcrypto -lssl")
 

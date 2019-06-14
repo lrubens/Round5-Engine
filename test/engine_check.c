@@ -63,6 +63,7 @@ EVP_PKEY *test_dilithium(){
 
   EVP_PKEY *qkey = NULL;
   qkey = EVP_PKEY_new();
+  printf("\nhello\n");
   ((EVP_PKEY_keygen(tx, &qkey)));
   if(!qkey){
     printf("\n!qkey\n");
@@ -267,8 +268,6 @@ int main(int argc, const char* argv[]){
   
   struct certKey *c = gen_cert();
   EVP_PKEY *pkey = test_dilithium();
-  X509_sign(c->cert, pkey, EVP_sha1());
-  print_pkey(c->key);
   // EVP_PKEY * pkey;
   // pkey = EVP_PKEY_new();
   // RSA *rsa = NULL;

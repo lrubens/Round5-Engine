@@ -1,1 +1,0 @@
-/usr/bin/cc   -rdynamic CMakeFiles/engine_check.dir/test/engine_check.c.o  -o engine_check -lcrypto libround5.a libdilithium.a libengine_lib.a 
