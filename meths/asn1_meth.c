@@ -12,6 +12,7 @@
 #include <openssl/bn.h>
 #include <string.h>
 #include "round5_meth.h"
+// #include "dilithium_meth.h"
 
 #ifndef OPENSSL_V102_COMPAT
 #define RC_CONST const
@@ -190,7 +191,6 @@ static int pki_gen_priv_encode(PKCS8_PRIV_KEY_INFO *p8, const EVP_PKEY *pkey)
     // key_data = OPENSSL_secure_malloc(sizeof(*key_data));
     // key_data = EVP_PKEY_get0(pkey);
     //BN data = BN_new();  
-    printf("\nkey_data->sk: %s\n", key_data->sk);
     return PKCS8_pkey_set0(p8, algobj, 0, V_ASN1_SEQUENCE, params,
                            key_data->sk, SKLEN);
 }
@@ -297,7 +297,7 @@ int _register_asn1_meth(int nid, EVP_PKEY_ASN1_METHOD **ameth, const char *pem_s
     else if (nid == NID_DILITHIUM){
         EVP_PKEY_asn1_set_public(*ameth, pki_gen_pub_decode, pki_gen_pub_encode, pki_pub_cmp, pki_gen_pub_print, NULL, pki_curve25519_bits);
         EVP_PKEY_asn1_set_private(*ameth, pki_gen_priv_decode, pki_gen_priv_encode, pki_gen_priv_print);
-        EVP_PKEY_asn1_set_ctrl(*ameth, pki_gen_ctrl);
+        // EVP_PKEY_asn1_set_ctrl(*ameth, dilithium_ctrl);
     }
     EVP_PKEY_asn1_set_param(*ameth, 0, 0, 0, 0, pki_pub_cmp, 0);
 #ifndef OPENSSL_V102_COMPAT

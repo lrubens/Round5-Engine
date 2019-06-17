@@ -30,5 +30,6 @@ static int dilithium_sign(EVP_PKEY_CTX *ctx, unsigned char *sig, size_t *siglen,
 int dilithium_verify(EVP_PKEY_CTX *ctx, unsigned char *sig, size_t *siglen, const unsigned char *tbs, size_t tbs_len);
 int dilithium_sign_ctx(EVP_PKEY_CTX *ctx, unsigned char *sig, size_t *siglen, EVP_MD_CTX *md);
 //unsigned char *h(const unsigned char *dgst, int dlen, struct ROUND5 *key);
+int dilithium_ctrl(EVP_PKEY *pkey, int op, long arg1, void *arg2);
 
 #endif //DILITHIUM_METH_H

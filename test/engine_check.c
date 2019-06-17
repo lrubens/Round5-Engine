@@ -63,12 +63,11 @@ EVP_PKEY *test_dilithium(){
 
   EVP_PKEY *qkey = NULL;
   qkey = EVP_PKEY_new();
-  printf("\nhello\n");
   ((EVP_PKEY_keygen(tx, &qkey)));
   if(!qkey){
     printf("\n!qkey\n");
   }
-  print_pkey(qkey);
+  // print_pkey(qkey);
   EVP_PKEY_free(ckey);
 
   return qkey;
@@ -134,7 +133,6 @@ struct certKey *gen_cert(){
   struct certKey *c = malloc(sizeof(struct certKey));
   c->cert = malloc(sizeof(x509ss));
   c->key = malloc(sizeof(pkey));
-  printf("\nsize of pkey: %d\n", sizeof(pkey));
 
   // c->cert = memset(c->cert, 0, sizeof(c->cert));
   c->cert = x509ss;
@@ -151,7 +149,7 @@ struct certKey *gen_cert(){
   (X509_sign_ctx(c->cert, mctx));
   EVP_MD_CTX_free(mctx);
 
-  print_pkey(c->key);
+  // print_pkey(c->key);
   // unsigned char *msg = "hellohellohellohello";
   // int len = strlen(msg);
   // EVP_PKEY_CTX *tx = NULL;
@@ -261,9 +259,9 @@ int main(int argc, const char* argv[]){
   ENGINE *round5_engine;
 	T(round5_engine = ENGINE_by_id("round5"));
 	T(ENGINE_init(round5_engine));
-  // T(ENGINE_set_default(round5_engine, ENGINE_METHOD_ALL));
-  ENGINE_set_default_pkey_asn1_meths(round5_engine);
-  ENGINE_set_default_pkey_meths(round5_engine);
+  T(ENGINE_set_default(round5_engine, ENGINE_METHOD_ALL));
+  // ENGINE_set_default_pkey_asn1_meths(round5_engine);
+  // ENGINE_set_default_pkey_meths(round5_engine);
 
   
   struct certKey *c = gen_cert();
@@ -291,10 +289,14 @@ int main(int argc, const char* argv[]){
   // }
   // EVP_PKEY_assign_RSA(pkey, rsa);
   
+  EVP_MD_CTX *mctx;
+  T(mctx = EVP_MD_CTX_new());
+  T(EVP_DigestSignInit(mctx, NULL, EVP_sha256(), round5_engine, pkey));
+  T(X509_sign_ctx(c->cert, mctx));
+  EVP_MD_CTX_free(mctx);
 
-  // print_pkey(c->key);
+
   // X509_sign(c->cert, c->key, EVP_sha1());
-
   // printf("\nreturn: %d\n", ret);
   X509_print_fp(stdout, c->cert);
 

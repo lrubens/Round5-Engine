@@ -159,7 +159,6 @@ int r5_cpa_pke_keygen(unsigned char *pk, unsigned char *sk, const parameters *pa
 
     /* Serializing and packing */
     // pack_pk(pk, sigma, params->kappa_bytes, B, len_b, params->p_bits);
-    printf("\n\n\n\nwhy\n\n\n\n");
 
     test_func(pk, sigma, params->kappa_bytes, B, len_b, params->p_bits);
 
