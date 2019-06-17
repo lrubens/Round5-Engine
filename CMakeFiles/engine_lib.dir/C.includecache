@@ -63,6 +63,8 @@ string.h
 -
 round5_meth.h
 /home/gfleming/Post-Quantum-PKI/meths/round5_meth.h
+dilithium_meth.h
+/home/gfleming/Post-Quantum-PKI/meths/dilithium_meth.h
 
 /home/gfleming/Post-Quantum-PKI/meths/asn1_meth.h
 openssl/evp.h
@@ -92,8 +94,6 @@ openssl/crypto.h
 inttypes.h
 -
 openssl/evp.h
--
-openssl/cms.h
 -
 openssl/asn1.h
 -

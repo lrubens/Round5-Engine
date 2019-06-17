@@ -13,8 +13,16 @@ CMakeFiles/engine_lib.dir/meths/asn1_meth.c.o: Round5/reference/src/r5_parameter
 CMakeFiles/engine_lib.dir/meths/asn1_meth.c.o: keypair.h
 CMakeFiles/engine_lib.dir/meths/asn1_meth.c.o: meths/asn1_meth.c
 CMakeFiles/engine_lib.dir/meths/asn1_meth.c.o: meths/asn1_meth.h
+CMakeFiles/engine_lib.dir/meths/asn1_meth.c.o: meths/dilithium_meth.h
 CMakeFiles/engine_lib.dir/meths/asn1_meth.c.o: meths/round5_meth.h
 CMakeFiles/engine_lib.dir/meths/asn1_meth.c.o: ossl/objects.h
+CMakeFiles/engine_lib.dir/meths/asn1_meth.c.o: XKCP/bin/generic64/libkeccak.a.headers/KeccakHash.h
+CMakeFiles/engine_lib.dir/meths/asn1_meth.c.o: XKCP/bin/generic64/libkeccak.a.headers/KeccakP-1600-SnP.h
+CMakeFiles/engine_lib.dir/meths/asn1_meth.c.o: XKCP/bin/generic64/libkeccak.a.headers/KeccakP-1600-opt64-config.h
+CMakeFiles/engine_lib.dir/meths/asn1_meth.c.o: XKCP/bin/generic64/libkeccak.a.headers/KeccakSponge-common.h
+CMakeFiles/engine_lib.dir/meths/asn1_meth.c.o: XKCP/bin/generic64/libkeccak.a.headers/KeccakSpongeWidth1600.h
+CMakeFiles/engine_lib.dir/meths/asn1_meth.c.o: XKCP/bin/generic64/libkeccak.a.headers/align.h
+CMakeFiles/engine_lib.dir/meths/asn1_meth.c.o: XKCP/bin/generic64/libkeccak.a.headers/brg_endian.h
 
 CMakeFiles/engine_lib.dir/meths/dilithium_meth.c.o: Round5/reference/src/parameters.h
 CMakeFiles/engine_lib.dir/meths/dilithium_meth.c.o: Round5/reference/src/r5_parameter_sets.h

@@ -23,6 +23,7 @@
 	    } \
         })
 
+
 struct certKey{
   X509 *cert;
   EVP_PKEY *key;
@@ -143,10 +144,11 @@ struct certKey *gen_cert(){
   if(!ctx){
     printf("\n!ctx\n");
   }
-  (EVP_DigestSignInit(mctx, &ctx, NULL, NULL, c->key));
+  // (EVP_DigestSignInit(mctx, &ctx, NULL, NULL, c->key));
+
   // // printf("\nbefore x509 sign\n");
   // EVP_PKEY_CTX_set_rsa_padding()
-  (X509_sign_ctx(c->cert, mctx));
+  // (X509_sign_ctx(c->cert, mctx));
   EVP_MD_CTX_free(mctx);
 
   // print_pkey(c->key);
@@ -291,12 +293,11 @@ int main(int argc, const char* argv[]){
   
   EVP_MD_CTX *mctx;
   T(mctx = EVP_MD_CTX_new());
-  T(EVP_DigestSignInit(mctx, NULL, EVP_sha256(), round5_engine, pkey));
+  T(EVP_DigestSignInit(mctx, NULL, EVP_sha256(), NULL, pkey));
   T(X509_sign_ctx(c->cert, mctx));
   EVP_MD_CTX_free(mctx);
 
-
-  // X509_sign(c->cert, c->key, EVP_sha1());
+  // T(X509_sign(c->cert, pkey, EVP_sha256()));
   // printf("\nreturn: %d\n", ret);
   X509_print_fp(stdout, c->cert);
 

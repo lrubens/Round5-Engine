@@ -12,7 +12,7 @@
 #include "../../dilithium/ref/packing.h"
 #include <inttypes.h>
 #include <openssl/evp.h>
-#include <openssl/cms.h>
+// #include <openssl/cms.h>
 #include <openssl/asn1.h>
 
 // #include "../../reference/src/r5_cca_pke.h"
@@ -130,13 +130,7 @@ static int dilithium_signctx(EVP_PKEY_CTX *ctx, unsigned char *sig,
 }
 
 
-void pki_register_dilithium(EVP_PKEY_METHOD *pmeth){
-    EVP_PKEY_meth_set_sign(pmeth, NULL, dilithium_sign);
-    EVP_PKEY_meth_set_keygen(pmeth, NULL, dilithium_keygen);
-    EVP_PKEY_meth_set_verify(pmeth, NULL, dilithium_verify);
-    EVP_PKEY_meth_set_signctx(pmeth, NULL, dilithium_sign_ctx);
-    // EVP_PKEY_meth_set_ctrl(pmeth, NULL, dilithium_ctrl);
-}
+
 
 
 
@@ -188,71 +182,127 @@ int dilithium_verify(EVP_PKEY_CTX *ctx, unsigned char *sig, size_t *siglen, cons
 //     return 1;
 // }
 
-
-int dilithium_ctrl(EVP_PKEY *pkey, int op, long arg1, void *arg2)
+static int dilithium_ctx_init(EVP_PKEY_CTX *ctx)
 {
-    int nid = EVP_PKEY_base_id(pkey), md_nid = NID_undef;
-    X509_ALGOR *alg1 = NULL, *alg2 = NULL;
+    struct MD_DATA *data;
+    EVP_PKEY *pkey = EVP_PKEY_CTX_get0_pkey(ctx);
 
-    if(nid == NID_DILITHIUM){
-        md_nid = EVP_MD_type((const EVP_MD *)arg2);
-        printf("\nevp md type: %d\n", md_nid);
-    }
-    else{
-        return -1;
-    }
-
-    switch (op) {
-    case ASN1_PKEY_CTRL_PKCS7_SIGN:
-        if (arg1 == 0) {
-            PKCS7_SIGNER_INFO_get0_algs((PKCS7_SIGNER_INFO *)arg2, NULL,
-                                        &alg1, &alg2);
-            X509_ALGOR_set0(alg1, OBJ_nid2obj(md_nid), V_ASN1_NULL, 0);
-            X509_ALGOR_set0(alg2, OBJ_nid2obj(nid), V_ASN1_NULL, 0);
-        }
-        return 1;
-#ifndef OPENSSL_NO_CMS
-    case ASN1_PKEY_CTRL_CMS_SIGN:
-        if (arg1 == 0) {
-            CMS_SignerInfo_get0_algs((CMS_SignerInfo *)arg2, NULL, NULL,
-                                     &alg1, &alg2);
-            X509_ALGOR_set0(alg1, OBJ_nid2obj(md_nid), V_ASN1_NULL, 0);
-            X509_ALGOR_set0(alg2, OBJ_nid2obj(nid), V_ASN1_NULL, 0);
-        }
-        return 1;
-#endif
-    case ASN1_PKEY_CTRL_PKCS7_ENCRYPT:
-        if (arg1 == 0) {
-            // ASN1_STRING *params = encode_gost_algor_params(pkey);
-            // if (!params) {
-            //     return -1;
-            // }
-            PKCS7_RECIP_INFO_get0_alg((PKCS7_RECIP_INFO *)arg2, &alg1);
-            X509_ALGOR_set0(alg1, OBJ_nid2obj(EVP_PKEY_id(pkey)),
-                            V_ASN1_SEQUENCE, "params");
-        }
-        return 1;
-#ifndef OPENSSL_NO_CMS
-    case ASN1_PKEY_CTRL_CMS_ENVELOPE:
-        if (arg1 == 0) {
-            // ASN1_STRING *params = encode_gost_algor_params(pkey);
-            // if (!params) {
-            //     return -1;
-            // }
-            CMS_RecipientInfo_ktri_get0_algs((CMS_RecipientInfo *)arg2, NULL,
-                                             NULL, &alg1);
-            X509_ALGOR_set0(alg1, OBJ_nid2obj(EVP_PKEY_id(pkey)),
-                            V_ASN1_SEQUENCE, "params");
-        }
-        return 1;
-#endif
-    case ASN1_PKEY_CTRL_DEFAULT_MD_NID:
-        *(int *)arg2 = md_nid;
-        return 2;
-    }
-
-    return -2;
+    data = OPENSSL_malloc(sizeof(*data));
+    if (!data)
+        return 0;
+    memset(data, 0, sizeof(*data));
+    // if (pkey && EVP_PKEY_get0(pkey)) {
+    //     switch (EVP_PKEY_base_id(pkey)) {
+    //     case NID_id_GostR3410_2001:
+    //     case NID_id_GostR3410_2012_256:
+    //     case NID_id_GostR3410_2012_512:
+    //         {
+    //             const EC_GROUP *group =
+    //                 EC_KEY_get0_group(EVP_PKEY_get0((EVP_PKEY *)pkey));
+    //             if (group != NULL) {
+    //                 data->sign_param_nid = EC_GROUP_get_curve_name(group);
+    //                 break;
+    //             }
+    //             /* else */
+    //         }
+    //     default:
+    //         OPENSSL_free(data);
+    //         return 0;
+    //     }
+    // }
+    EVP_PKEY_CTX_set_data(ctx, data);
+    return 1;
 }
+
+int dilithium_ctrl(EVP_PKEY_CTX *ctx, int type, int p1, void *p2){
+    int md_nid = NID_undef;
+    struct MD_DATA *md = NULL;
+    md = (struct MD_DATA *)EVP_PKEY_CTX_get_data(ctx);
+    md_nid = EVP_MD_type((const EVP_MD *)p2);
+    pd(md_nid);
+    pd(type);
+    switch(type){
+        case EVP_PKEY_CTRL_MD:
+            printf("\nEVP_PKEY_CTRL_MD\n");
+            md->md = (EVP_MD *)p2;
+            return 1;
+        case EVP_PKEY_CTRL_GET_MD:
+            printf("\nEVP_PKEY_CTRL_GET_MD\n");
+            *(const EVP_MD **)p2 = md->md;
+            return 1;
+        case EVP_PKEY_CTRL_DIGESTINIT:
+            printf("\nEVP_PKEY_CTRL_DIGESTINIT\n");
+            return 1;
+        default:
+            printf("\ndefault\n");
+            return 0;
+    }
+}
+
+// int dilithium_ctrl(EVP_PKEY *pkey, int op, long arg1, void *arg2)
+// {
+//     int nid = EVP_PKEY_base_id(pkey), md_nid = NID_undef;
+//     X509_ALGOR *alg1 = NULL, *alg2 = NULL;
+
+//     if(nid == NID_DILITHIUM){
+//         md_nid = EVP_MD_type((const EVP_MD *)arg2);
+//         printf("\nevp md type: %d\n", md_nid);
+//     }
+//     else{
+//         return -1;
+//     }
+
+//     switch (op) {
+//     case ASN1_PKEY_CTRL_PKCS7_SIGN:
+//         if (arg1 == 0) {
+//             // PKCS7_SIGNER_INFO_get0_algs((PKCS7_SIGNER_INFO *)arg2, NULL,
+//                                         // &alg1, &alg2);
+//             X509_ALGOR_set0(alg1, OBJ_nid2obj(md_nid), V_ASN1_NULL, 0);
+//             X509_ALGOR_set0(alg2, OBJ_nid2obj(nid), V_ASN1_NULL, 0);
+//         }
+//         return 1;
+// #ifndef OPENSSL_NO_CMS
+//     case ASN1_PKEY_CTRL_CMS_SIGN:
+//         if (arg1 == 0) {
+//             // CMS_SignerInfo_get0_algs((CMS_SignerInfo *)arg2, NULL, NULL,
+//                                     //  &alg1, &alg2);
+//             X509_ALGOR_set0(alg1, OBJ_nid2obj(md_nid), V_ASN1_NULL, 0);
+//             X509_ALGOR_set0(alg2, OBJ_nid2obj(nid), V_ASN1_NULL, 0);
+//         }
+//         return 1;
+// #endif
+//     case ASN1_PKEY_CTRL_PKCS7_ENCRYPT:
+//         if (arg1 == 0) {
+//             // ASN1_STRING *params = encode_gost_algor_params(pkey);
+//             // if (!params) {
+//             //     return -1;
+//             // }
+//             // PKCS7_RECIP_INFO_get0_alg((PKCS7_RECIP_INFO *)arg2, &alg1);
+//             X509_ALGOR_set0(alg1, OBJ_nid2obj(EVP_PKEY_id(pkey)),
+//                             V_ASN1_SEQUENCE, "params");
+//         }
+//         return 1;
+// #ifndef OPENSSL_NO_CMS
+//     case ASN1_PKEY_CTRL_CMS_ENVELOPE:
+//         if (arg1 == 0) {
+//             // ASN1_STRING *params = encode_gost_algor_params(pkey);
+//             // if (!params) {
+//             //     return -1;
+//             // }
+//             // CMS_RecipientInfo_ktri_get0_algs((CMS_RecipientInfo *)arg2, NULL,
+//             //                                  NULL, &alg1);
+//             X509_ALGOR_set0(alg1, OBJ_nid2obj(EVP_PKEY_id(pkey)),
+//                             V_ASN1_SEQUENCE, "params");
+//         }
+//         return 1;
+// #endif
+//     case ASN1_PKEY_CTRL_DEFAULT_MD_NID:
+//         *(int *)arg2 = md_nid;
+//         return 2;
+//     }
+
+//     return -2;
+// }
 
 int dilithium_sign_ctx(EVP_PKEY_CTX *ctx, unsigned char *sig, size_t *siglen, EVP_MD_CTX *md){
     int nid = EVP_MD_CTX_type(md);
@@ -262,3 +312,11 @@ int dilithium_sign_ctx(EVP_PKEY_CTX *ctx, unsigned char *sig, size_t *siglen, EV
 
 
 
+void pki_register_dilithium(EVP_PKEY_METHOD *pmeth){
+    EVP_PKEY_meth_set_init(pmeth, dilithium_ctx_init);
+    EVP_PKEY_meth_set_ctrl(pmeth, dilithium_ctrl, NULL);
+    EVP_PKEY_meth_set_sign(pmeth, NULL, dilithium_sign);
+    EVP_PKEY_meth_set_keygen(pmeth, NULL, dilithium_keygen);
+    EVP_PKEY_meth_set_verify(pmeth, NULL, dilithium_verify);
+    EVP_PKEY_meth_set_signctx(pmeth, NULL, dilithium_sign_ctx);
+}

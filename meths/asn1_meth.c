@@ -12,7 +12,7 @@
 #include <openssl/bn.h>
 #include <string.h>
 #include "round5_meth.h"
-// #include "dilithium_meth.h"
+#include "dilithium_meth.h"
 
 #ifndef OPENSSL_V102_COMPAT
 #define RC_CONST const
@@ -107,64 +107,137 @@ static int pki_gen_pub_print(BIO *bp, const EVP_PKEY *pkey, int indent, ASN1_PCT
 //    int
 //}
 
-static int pki_gen_ctrl(int nid, EVP_PKEY *pkey, int op, long arg1, void *arg2)
+static int pki_gen_ctrl(/*int nid,*/ EVP_PKEY *pkey, int op, long arg1, void *arg2)
 {
-    struct ROUND5 *kp = NULL;
-    const unsigned char *p = NULL;
-    const struct round5_nid_data_st *nid_data = round5_get_nid_data(nid);
-    int pklen = 0;
-    X509_ALGOR *alg1 = NULL;
-    X509_ALGOR *alg2 = NULL;
+//     struct ROUND5 *kp = NULL;
+//     const unsigned char *p = NULL;
+//     const struct round5_nid_data_st *nid_data = round5_get_nid_data(nid);
+//     int pklen = 0;
+//     X509_ALGOR *alg1 = NULL;
+//     X509_ALGOR *alg2 = NULL;
 
 
-    switch (op) {
+//     switch (op) {
 
-#ifndef OPENSSL_V102_COMPAT
-        // FIXME: check if/how this control signals should be handled in 1.0.2
-        case ASN1_PKEY_CTRL_SET1_TLS_ENCPT:
-            p = arg2;
-            pklen = arg1;
+// #ifndef OPENSSL_V102_COMPAT
+//         // FIXME: check if/how this control signals should be handled in 1.0.2
+//         case ASN1_PKEY_CTRL_SET1_TLS_ENCPT:
+//             p = arg2;
+//             pklen = arg1;
 
-//            if (p == NULL || pklen != nid_data->pubk_bytes ) {
-//                SUOLAerr(SUOLA_F_ASN1_GENERIC_CTRL, SUOLA_R_WRONG_LENGTH);
-//                return 0;
-//            }
+// //            if (p == NULL || pklen != nid_data->pubk_bytes ) {
+// //                SUOLAerr(SUOLA_F_ASN1_GENERIC_CTRL, SUOLA_R_WRONG_LENGTH);
+// //                return 0;
+// //            }
 
-            kp = round5_new();
-//            if (suola_keypair_is_invalid(kp)) {
-//                return 0;
-//            }
+//             kp = round5_new();
+// //            if (suola_keypair_is_invalid(kp)) {
+// //                return 0;
+// //            }
 
-            memcpy(kp->pk, p, pklen);
+//             memcpy(kp->pk, p, pklen);
 
-            EVP_PKEY_assign(pkey, nid, kp);
-            return 1;
+//             EVP_PKEY_assign(pkey, nid, kp);
+//             return 1;
 
 
-        case ASN1_PKEY_CTRL_GET1_TLS_ENCPT:
-            kp = EVP_PKEY_get0(pkey);
-            if (kp == NULL && nid == kp->nid) {
-                unsigned char **ppt = arg2;
-                *ppt = OPENSSL_memdup(kp->sk, PKLEN);
-                if (*ppt != NULL)
-                    return nid_data->pk_bytes;
-            }
-            return 0;
-        case ASN1_PKEY_CTRL_PKCS7_SIGN:
-            if(arg1 == 0){
-                PKCS7_SIGNER_INFO_get0_algs((PKCS7_SIGNER_INFO *)arg2, NULL, &alg1, &alg2);
-                X509_ALGOR_set0(alg1, OBJ_nid2obj(EVP_PKEY_base_id(pkey)), V_ASN1_NULL, 0);
-                X509_ALGOR_set0(alg2, OBJ_nid2obj(EVP_MD_type(EVP_sha256())), V_ASN1_NULL, 0);
-            }
-            return 1;
-        case EVP_PKEY_CTRL_DIGESTINIT:
-            printf("\nEVP_PKEY_CTRL_DIGESTINIT\n");
-            return 1;
-#endif
-        default:
-            return -2;
+//         case ASN1_PKEY_CTRL_GET1_TLS_ENCPT:
+//             kp = EVP_PKEY_get0(pkey);
+//             if (kp == NULL && nid == kp->nid) {
+//                 unsigned char **ppt = arg2;
+//                 *ppt = OPENSSL_memdup(kp->sk, PKLEN);
+//                 if (*ppt != NULL)
+//                     return nid_data->pk_bytes;
+//             }
+//             return 0;
+//         case ASN1_PKEY_CTRL_PKCS7_SIGN:
+//             if(arg1 == 0){
+//                 PKCS7_SIGNER_INFO_get0_algs((PKCS7_SIGNER_INFO *)arg2, NULL, &alg1, &alg2);
+//                 X509_ALGOR_set0(alg1, OBJ_nid2obj(EVP_PKEY_base_id(pkey)), V_ASN1_NULL, 0);
+//                 X509_ALGOR_set0(alg2, OBJ_nid2obj(EVP_MD_type(EVP_sha256())), V_ASN1_NULL, 0);
+//             }
+//             return 1;
+//         case EVP_PKEY_CTRL_DIGESTINIT:
+//             printf("\nEVP_PKEY_CTRL_DIGESTINIT\n");
+//             return 1;
+// #endif
+//         default:
+//             return -2;
 
+//     }
+    if(!pkey){
+        printf("\n!pkey\n");
     }
+    printf("\npkey\n");
+    int nid2 = EVP_PKEY_base_id(pkey);
+    int md_nid = NID_undef;
+    X509_ALGOR *alg1 = NULL, *alg2 = NULL;
+    printf("\nnid: %d\n", nid2);
+    if(nid2 == NID_DILITHIUM){
+        md_nid = EVP_MD_type((const EVP_MD *)arg2);
+        printf("\nevp md type: %d\n", md_nid);
+    }
+    else{
+        printf("\nelse\n");
+
+        return -1;
+    }
+    printf("\nentering switch\n");
+    switch (op) {
+    case ASN1_PKEY_CTRL_PKCS7_SIGN:
+        printf("\ncase 1\n");
+        if (arg1 == 0) {
+            PKCS7_SIGNER_INFO_get0_algs((PKCS7_SIGNER_INFO *)arg2, NULL,
+                                        &alg1, &alg2);
+            X509_ALGOR_set0(alg1, OBJ_nid2obj(md_nid), V_ASN1_NULL, 0);
+            X509_ALGOR_set0(alg2, OBJ_nid2obj(nid2), V_ASN1_NULL, 0);
+        }
+        return 1;
+// #ifndef OPENSSL_NO_CMS
+//     case ASN1_PKEY_CTRL_CMS_SIGN:
+//         printf("\ncase 2\n");
+//         if (arg1 == 0) {
+//             CMS_SignerInfo_get0_algs((CMS_SignerInfo *)arg2, NULL, NULL,
+//                                      &alg1, &alg2);
+//             X509_ALGOR_set0(alg1, OBJ_nid2obj(md_nid), V_ASN1_NULL, 0);
+//             X509_ALGOR_set0(alg2, OBJ_nid2obj(nid2), V_ASN1_NULL, 0);
+//         }
+//         return 1;
+// #endif
+    case ASN1_PKEY_CTRL_PKCS7_ENCRYPT:
+        printf("\ncase 3\n");
+        if (arg1 == 0) {
+            // ASN1_STRING *params = encode_gost_algor_params(pkey);
+            // if (!params) {
+            //     return -1;
+            // }
+            PKCS7_RECIP_INFO_get0_alg((PKCS7_RECIP_INFO *)arg2, &alg1);
+            X509_ALGOR_set0(alg1, OBJ_nid2obj(EVP_PKEY_id(pkey)),
+                            V_ASN1_SEQUENCE, "params");
+        }
+        return 1;
+#ifndef OPENSSL_NO_CMS
+    case ASN1_PKEY_CTRL_CMS_ENVELOPE:
+        printf("\ncase 4\n");
+        if (arg1 == 0) {
+            // ASN1_STRING *params = encode_gost_algor_params(pkey);
+            // if (!params) {
+            //     return -1;
+            // }
+            // CMS_RecipientInfo_ktri_get0_algs((CMS_RecipientInfo *)arg2, NULL,
+            //                                  NULL, &alg1);
+            X509_ALGOR_set0(alg1, OBJ_nid2obj(EVP_PKEY_id(pkey)),
+                            V_ASN1_SEQUENCE, "params");
+        }
+        return 1;
+#endif
+    case ASN1_PKEY_CTRL_DEFAULT_MD_NID:
+        printf("\ncase 5\n");
+        *(int *)arg2 = md_nid;
+        return 2;
+    }
+    printf("\nbase case\n");
+    return -2;
 }
 
 
@@ -297,7 +370,7 @@ int _register_asn1_meth(int nid, EVP_PKEY_ASN1_METHOD **ameth, const char *pem_s
     else if (nid == NID_DILITHIUM){
         EVP_PKEY_asn1_set_public(*ameth, pki_gen_pub_decode, pki_gen_pub_encode, pki_pub_cmp, pki_gen_pub_print, NULL, pki_curve25519_bits);
         EVP_PKEY_asn1_set_private(*ameth, pki_gen_priv_decode, pki_gen_priv_encode, pki_gen_priv_print);
-        // EVP_PKEY_asn1_set_ctrl(*ameth, dilithium_ctrl);
+        EVP_PKEY_asn1_set_ctrl(*ameth, pki_gen_ctrl);
     }
     EVP_PKEY_asn1_set_param(*ameth, 0, 0, 0, 0, pki_pub_cmp, 0);
 #ifndef OPENSSL_V102_COMPAT

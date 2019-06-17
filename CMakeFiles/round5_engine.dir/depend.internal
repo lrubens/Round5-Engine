@@ -14,24 +14,9 @@ CMakeFiles/round5_engine.dir/meths/asn1_meth.c.o
  /home/gfleming/Post-Quantum-PKI/keypair.h
  /home/gfleming/Post-Quantum-PKI/meths/asn1_meth.c
  /home/gfleming/Post-Quantum-PKI/meths/asn1_meth.h
+ /home/gfleming/Post-Quantum-PKI/meths/dilithium_meth.h
  /home/gfleming/Post-Quantum-PKI/meths/round5_meth.h
  /home/gfleming/Post-Quantum-PKI/ossl/objects.h
-CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.o
- /home/gfleming/Post-Quantum-PKI/Round5/reference/src/parameters.h
- /home/gfleming/Post-Quantum-PKI/Round5/reference/src/r5_parameter_sets.h
- /home/gfleming/Post-Quantum-PKI/keypair.h
- /home/gfleming/Post-Quantum-PKI/meths/dilithium_meth.c
- /home/gfleming/Post-Quantum-PKI/meths/dilithium_meth.h
- /home/gfleming/Post-Quantum-PKI/ossl/objects.h
- /home/gfleming/dilithium/ref/config.h
- /home/gfleming/dilithium/ref/packing.h
- /home/gfleming/dilithium/ref/params.h
- /home/gfleming/dilithium/ref/poly.h
- /home/gfleming/dilithium/ref/polyvec.h
- /home/gfleming/dilithium/ref/randombytes.h
- /home/gfleming/dilithium/ref/sign.h
- /home/gfleming/dilithium/ref/test/cpucycles.h
- /home/gfleming/dilithium/ref/test/speed.h
  XKCP/bin/generic64/libkeccak.a.headers/KeccakHash.h
  XKCP/bin/generic64/libkeccak.a.headers/KeccakP-1600-SnP.h
  XKCP/bin/generic64/libkeccak.a.headers/KeccakP-1600-opt64-config.h
@@ -39,6 +24,29 @@ CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.o
  XKCP/bin/generic64/libkeccak.a.headers/KeccakSpongeWidth1600.h
  XKCP/bin/generic64/libkeccak.a.headers/align.h
  XKCP/bin/generic64/libkeccak.a.headers/brg_endian.h
+CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.o
+ /home/gfleming/Post-Quantum-PKI/Round5/reference/src/parameters.h
+ /home/gfleming/Post-Quantum-PKI/Round5/reference/src/r5_parameter_sets.h
+ /home/gfleming/Post-Quantum-PKI/keypair.h
+ /home/gfleming/Post-Quantum-PKI/meths/dilithium_meth.c
+ /home/gfleming/Post-Quantum-PKI/meths/dilithium_meth.h
+ /home/gfleming/Post-Quantum-PKI/ossl/objects.h
+ XKCP/bin/generic64/libkeccak.a.headers/KeccakHash.h
+ XKCP/bin/generic64/libkeccak.a.headers/KeccakP-1600-SnP.h
+ XKCP/bin/generic64/libkeccak.a.headers/KeccakP-1600-opt64-config.h
+ XKCP/bin/generic64/libkeccak.a.headers/KeccakSponge-common.h
+ XKCP/bin/generic64/libkeccak.a.headers/KeccakSpongeWidth1600.h
+ XKCP/bin/generic64/libkeccak.a.headers/align.h
+ XKCP/bin/generic64/libkeccak.a.headers/brg_endian.h
+ dilithium/ref/config.h
+ dilithium/ref/packing.h
+ dilithium/ref/params.h
+ dilithium/ref/poly.h
+ dilithium/ref/polyvec.h
+ dilithium/ref/randombytes.h
+ dilithium/ref/sign.h
+ dilithium/ref/test/cpucycles.h
+ dilithium/ref/test/speed.h
 CMakeFiles/round5_engine.dir/meths/round5_meth.c.o
  /home/gfleming/Post-Quantum-PKI/Round5/reference/src/parameters.h
  /home/gfleming/Post-Quantum-PKI/keypair.h
