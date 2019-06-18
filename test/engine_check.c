@@ -252,6 +252,7 @@ struct certKey *gen_cert(){
   return c;
 }
 
+
 int main(int argc, const char* argv[]){
   // signature();
   //return 0;
@@ -261,13 +262,25 @@ int main(int argc, const char* argv[]){
   ENGINE *round5_engine;
 	T(round5_engine = ENGINE_by_id("round5"));
 	T(ENGINE_init(round5_engine));
-  T(ENGINE_set_default(round5_engine, ENGINE_METHOD_ALL));
-  // ENGINE_set_default_pkey_asn1_meths(round5_engine);
-  // ENGINE_set_default_pkey_meths(round5_engine);
+  // T(ENGINE_set_default(round5_engine, ENGINE_METHOD_ALL));
+  ENGINE_set_default_pkey_asn1_meths(round5_engine);
+  ENGINE_set_default_pkey_meths(round5_engine);
 
   
   struct certKey *c = gen_cert();
   EVP_PKEY *pkey = test_dilithium();
+  EVP_PKEY_ASN1_METHOD *pk_ameth = EVP_PKEY_get0_asn1(pkey);
+  int *ppkey_id = NULL;
+  ppkey_id = malloc(sizeof(*ppkey_id));
+  int *ppkey_base_id = NULL;
+  int *ppkey_flags = NULL;
+  const char **pinfo = NULL;
+  const char **ppem_str = NULL;
+  ppem_str = malloc(sizeof(*ppem_str));
+  if(!EVP_PKEY_asn1_get0_info(ppkey_id, ppkey_base_id, ppkey_flags, pinfo, ppem_str, pk_ameth)){
+    ps("function bad");
+  }
+  
   // EVP_PKEY * pkey;
   // pkey = EVP_PKEY_new();
   // RSA *rsa = NULL;
@@ -293,7 +306,9 @@ int main(int argc, const char* argv[]){
   
   EVP_MD_CTX *mctx;
   T(mctx = EVP_MD_CTX_new());
-  T(EVP_DigestSignInit(mctx, NULL, EVP_sha256(), NULL, pkey));
+  EVP_PKEY_CTX *pkctx = NULL;
+  EVP_MD_CTX_init(mctx);
+  T(EVP_DigestSignInit(mctx, &pkctx, NULL, NULL, pkey));
   T(X509_sign_ctx(c->cert, mctx));
   EVP_MD_CTX_free(mctx);
 

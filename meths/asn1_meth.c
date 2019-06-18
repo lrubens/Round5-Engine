@@ -173,37 +173,44 @@ static int pki_gen_ctrl(/*int nid,*/ EVP_PKEY *pkey, int op, long arg1, void *ar
     int md_nid = NID_undef;
     X509_ALGOR *alg1 = NULL, *alg2 = NULL;
     printf("\nnid: %d\n", nid2);
-    if(nid2 == NID_DILITHIUM){
-        md_nid = EVP_MD_type((const EVP_MD *)arg2);
-        printf("\nevp md type: %d\n", md_nid);
-    }
-    else{
-        printf("\nelse\n");
+    // if(nid2 == NID_DILITHIUM){
+    //     md_nid = EVP_MD_type((const EVP_MD *)arg2);
+    //     printf("\nevp md type: %d\n", md_nid);
+    // }
+    // else{
+    //     printf("\nelse\n");
 
-        return -1;
-    }
-    printf("\nentering switch\n");
+    //     return -1;
+    // }
+    pd(op);
     switch (op) {
     case ASN1_PKEY_CTRL_PKCS7_SIGN:
-        printf("\ncase 1\n");
+        ps("case 1");
         if (arg1 == 0) {
-            PKCS7_SIGNER_INFO_get0_algs((PKCS7_SIGNER_INFO *)arg2, NULL,
-                                        &alg1, &alg2);
+            int snid, hnid;
+            X509_ALGOR *alg1, *alg2;
+            PKCS7_SIGNER_INFO_get0_algs(arg2, NULL, &alg1, &alg2);
+            if (alg1 == NULL || alg1->algorithm == NULL)
+                return -1;
+            hnid = OBJ_obj2nid(alg1->algorithm);
+            if (hnid == NID_undef)
+                return -1;
+            if (!OBJ_find_sigid_by_algs(&snid, hnid, EVP_PKEY_id(pkey)))
+                return -1;
+            X509_ALGOR_set0(alg2, OBJ_nid2obj(snid), V_ASN1_UNDEF, 0);
+        }
+        return 1;
+#ifndef OPENSSL_NO_CMS
+    case ASN1_PKEY_CTRL_CMS_SIGN:
+        printf("\ncase 2\n");
+        if (arg1 == 0) {
+            // CMS_SignerInfo_get0_algs((CMS_SignerInfo *)arg2, NULL, NULL,
+            //                          &alg1, &alg2);
             X509_ALGOR_set0(alg1, OBJ_nid2obj(md_nid), V_ASN1_NULL, 0);
             X509_ALGOR_set0(alg2, OBJ_nid2obj(nid2), V_ASN1_NULL, 0);
         }
         return 1;
-// #ifndef OPENSSL_NO_CMS
-//     case ASN1_PKEY_CTRL_CMS_SIGN:
-//         printf("\ncase 2\n");
-//         if (arg1 == 0) {
-//             CMS_SignerInfo_get0_algs((CMS_SignerInfo *)arg2, NULL, NULL,
-//                                      &alg1, &alg2);
-//             X509_ALGOR_set0(alg1, OBJ_nid2obj(md_nid), V_ASN1_NULL, 0);
-//             X509_ALGOR_set0(alg2, OBJ_nid2obj(nid2), V_ASN1_NULL, 0);
-//         }
-//         return 1;
-// #endif
+#endif
     case ASN1_PKEY_CTRL_PKCS7_ENCRYPT:
         printf("\ncase 3\n");
         if (arg1 == 0) {
@@ -233,7 +240,7 @@ static int pki_gen_ctrl(/*int nid,*/ EVP_PKEY *pkey, int op, long arg1, void *ar
 #endif
     case ASN1_PKEY_CTRL_DEFAULT_MD_NID:
         printf("\ncase 5\n");
-        *(int *)arg2 = md_nid;
+        *(int *)arg2 = NID_sha256;
         return 2;
     }
     printf("\nbase case\n");
@@ -336,6 +343,7 @@ static int pki_gen_pub_encode(X509_PUBKEY *pub,  EVP_PKEY *pk)
 
 static int pki_gen_pub_decode(EVP_PKEY *pkey, X509_PUBKEY *pubkey)
 {
+    ps("pki_gen_pub_decode");
     X509_ALGOR *palg = NULL;
     const unsigned char *pubkey_buf = NULL;
     unsigned char *databuf;
@@ -379,4 +387,3 @@ int _register_asn1_meth(int nid, EVP_PKEY_ASN1_METHOD **ameth, const char *pem_s
     EVP_PKEY_asn1_set_free(*ameth, pki_free);
     return 1;
 }
-

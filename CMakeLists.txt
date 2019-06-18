@@ -7,7 +7,7 @@ include(CheckFunctionExists)
 find_package(OpenSSL 1.1.0 REQUIRED)
 include_directories(${OPENSSL_INCLUDE_DIR})
 
-add_compile_options(-g -lcrypto -lssl -lm -Xlinker -zmuldefs)
+add_compile_options(-g -lcrypto -lssl -lm -Xlinker -zmuldefs -finstrument-functions)
 set(BIN_DIRECTORY bin)
 file(GLOB dilithium_core dilithium/ref/*.c)# dilithium/ref/*.h)
 set(DILITHIUM_SOURCE_FILES

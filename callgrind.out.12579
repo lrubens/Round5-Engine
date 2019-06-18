@@ -1,0 +1,578 @@
+# callgrind format
+version: 1
+creator: callgrind-3.13.0
+pid: 12579
+cmd:  ./engine_check
+part: 1
+
+
+desc: I1 cache: 
+desc: D1 cache: 
+desc: LL cache: 
+
+desc: Timerange: Basic block 0 - 9270652
+desc: Trigger: Program termination
+
+positions: line
+events: Ir
+summary: 9519
+
+
+ob=(6) /usr/lib/x86_64-linux-gnu/libcrypto.so.1.1
+fl=(102) ???
+fn=(7694) EVP_PKEY_CTX_get_data
+0 4
+
+fn=(7264) EVP_DigestInit_ex
+cfn=(7688) EVP_PKEY_CTX_ctrl
+calls=1 0 
+0 5492
+
+fn=(7636) EVP_DigestSignInit
+cfn=(7688)
+calls=1 0 
+0 4027
+cfn=(7264)
+calls=1 0 
+0 5492
+
+fn=(7688)
+cob=(9) /home/gfleming/Post-Quantum-PKI/libround5_engine.so
+cfi=(179) /home/gfleming/Post-Quantum-PKI/meths/dilithium_meth.c
+cfn=(7690) dilithium_ctrl
+calls=2 217 
+0 9519
+
+fn=(7706) EVP_MD_type
+0 2
+
+ob=(8) /home/gfleming/Post-Quantum-PKI/engine_check
+fl=(106) ???
+fn=(460) _start
+cob=(3) /lib/x86_64-linux-gnu/libc-2.27.so
+cfi=(107) /build/glibc-OTsEL5/glibc-2.27/csu/../csu/libc-start.c
+cfn=(462) (below main)
+calls=1 137 
+0 9519
+
+fl=(112) /home/gfleming/Post-Quantum-PKI/test/engine_check.c
+fn=(486) main
+cob=(6)
+cfi=(102)
+cfn=(7636)
+calls=1 0 
+299 9519
+
+ob=(1) /lib/x86_64-linux-gnu/ld-2.27.so
+fl=(1) ???
+fn=(0) 0x0000000000001090
+cob=(8)
+cfi=(106)
+cfn=(460)
+calls=1 0 
+0 9519
+
+ob=(9)
+fl=(179)
+fn=(7690)
+217 26
+cob=(3)
+cfi=(113) /build/glibc-OTsEL5/glibc-2.27/debug/noophooks.c
+cfn=(490) __cyg_profile_func_exit
+calls=2 25 
+* 2
+* 2
++1 2
++1 2
++1 6
+cob=(6)
+cfi=(102)
+cfn=(7694)
+calls=2 0 
+* 4
+* 2
+* 2
++2 12
+cob=(3)
+cfi=(225) /build/glibc-OTsEL5/glibc-2.27/stdio-common/printf.c
+cfn=(7658) printf
+calls=2 28 
+* 2606
+* 2
++1 12
+cob=(3)
+cfi=(225)
+cfn=(7658)
+calls=2 28 
+* 2570
+* 2
++1 20
++2 5
+cob=(3)
+cfi=(225)
+cfn=(7658)
+calls=1 28 
+* 1368
+* 1
++1 3
++2 2
++6 5
+cob=(3)
+cfi=(225)
+cfn=(7658)
+calls=1 28 
+* 1460
+* 1
++1 3
++1 3
+cob=(6)
+cfi=(102)
+cfn=(7706)
+calls=1 0 
+* 2
+* 1
+* 1
++1 6
+cob=(3)
+cfi=(225)
+cfn=(7658)
+calls=1 28 
+* 1359
+* 1
++1 2
++9 10
+cob=(3)
+cfi=(113)
+cfn=(490)
+calls=2 25 
+* 2
+* 2
+* 2
++2 8
+
+ob=(4) /lib/x86_64-linux-gnu/libpthread-2.27.so
+fl=(150) /build/glibc-OTsEL5/glibc-2.27/nptl/cleanup_defer_compat.c
+fn=(2532) _pthread_cleanup_pop_restore
+62 7
++3 14
++3 21
++23 14
++1 7
+
+fn=(2530) _pthread_cleanup_push_defer
+28 7
++1 7
++1 14
++2 7
++3 14
++17 21
++2 7
++1 7
+
+ob=(3)
+fl=(134) /build/glibc-OTsEL5/glibc-2.27/string/../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S
+fn=(2124) __mempcpy_avx_unaligned_erms
+204 35
++1 35
++1 35
++13 35
++1 35
++44 35
++1 35
++2 31
++1 31
++1 31
++1 31
++1 27
++1 27
++1 18
++1 18
++1 18
++2 18
++14 4
++1 4
++1 4
++1 4
++1 4
++11 4
++1 4
++1 4
++1 4
++1 4
++3 9
++1 9
++1 9
++1 9
++1 9
+
+fl=(107)
+fn=(462)
+cob=(8)
+cfi=(112)
+cfn=(486)
+calls=1 256 
+310 9519
+
+fl=(225)
+fn=(7658)
+28 77
++4 7
++1 14
+-1 35
++1 21
+cfi=(226) /build/glibc-OTsEL5/glibc-2.27/stdio-common/vfprintf.c
+cfn=(7660) vfprintf
+calls=8 1244 
+* 9174
++4 35
+
+fl=(226)
+fn=(7660)
+1244 98
++31 21
++8 21
++4 35
++11 28
++11 7
+fi=(236) /build/glibc-OTsEL5/glibc-2.27/stdio-common/printf-parse.h
+108 14
+fe=(226)
+1309 21
+fi=(236)
+108 7
+cfi=(153) /build/glibc-OTsEL5/glibc-2.27/string/../sysdeps/x86_64/multiarch/strchr-avx2.S
+cfn=(7664) __strchrnul_avx2
+calls=8 -63 
+* 154
+* 7
+fe=(226)
+1324 7
+fi=(236)
+108 7
+fe=(226)
+1324 91
+cob=(4)
+cfi=(150)
+cfn=(2530)
+calls=8 28 
+* 84
++1 105
++3 7
+fi=(237) /build/glibc-OTsEL5/glibc-2.27/stdio-common/../libio/libioP.h
+870 21
++2 7
+-2 7
++2 7
+-2 7
++3 14
+fe=(226)
+1328 42
+cfi=(149) /build/glibc-OTsEL5/glibc-2.27/libio/fileops.c
+cfn=(7666) _IO_file_xsputn@@GLIBC_2.2.5
+calls=8 1220 
+* 1596
+* 14
+1696 35
++1 63
+cob=(4)
+cfi=(150)
+cfn=(2532)
+calls=8 62 
+* 63
++3 84
+1283 14
++45 14
++4 21
++4 56
+-57 7
++34 7
+-8 7
+-59 14
+1378 210
+-3 14
+-5 14
+-4 14
+-1 14
+-1 14
+-1 14
+-1 14
+-1 14
+-1 14
++15 14
+-16 14
+-1 14
+-1 14
++14 14
+-4 14
++8 14
+-1 28
+1696 42
+-36 14
++2 28
++8 14
+fi=(236)
+108 56
+cfi=(153)
+cfn=(7664)
+calls=16 -63 
+* 268
+* 14
+fe=(226)
+1674 14
+fi=(236)
+108 14
+fe=(226)
+1674 42
+fi=(237)
+872 42
++1 28
+fe=(226)
+1674 98
+cfi=(149)
+cfn=(7666)
+calls=16 1220 
+* 2142
+* 98
++2 14
+-2 14
++2 35
+-33 225
+-1 60
+cfi=(145) /build/glibc-OTsEL5/glibc-2.27/stdio-common/_itoa.c
+cfn=(2130) _itoa_word
+calls=5 168 
+* 146
+* 248
+fi=(237)
+872 15
++1 10
+fe=(226)
+1642 25
+cfi=(149)
+cfn=(7666)
+calls=5 1220 
+* 374
+* 100
++1 27
+fi=(237)
+872 27
++1 18
+fe=(226)
+1643 63
+cfi=(149)
+cfn=(7666)
+calls=11 1220 
+* 1092
+* 108
+-1 30
++1 9
+-1 71
++1 45
+cfi=(104) /build/glibc-OTsEL5/glibc-2.27/string/../sysdeps/x86_64/multiarch/strlen-avx2.S
+cfn=(396) __strlen_avx2
+calls=11 52 
+* 155
+* 9
+* 9
+-1 55
+
+fl=(229) /build/glibc-OTsEL5/glibc-2.27/io/../sysdeps/unix/sysv/linux/write.c
+fn=(7682) write
+27 112
++1 14
+
+fl=(149)
+fn=(7680) _IO_file_write@@GLIBC_2.2.5
+1196 84
++2 84
++5 14
+cfi=(229)
+cfn=(7682)
+calls=18 27 
+* 126
++1 28
++5 14
++1 14
+-12 28
++5 70
++10 42
++3 126
+
+fn=(7668) _IO_file_overflow@@GLIBC_2.2.5
+747 42
++7 14
+-8 84
++8 56
++35 28
++1 14
++1 14
++11 42
+-12 14
+cfn=(7674) _IO_do_write@@GLIBC_2.2.5
+calls=18 433 
+* 1484
+
+fn=(7674)
+433 42
+-2 224
++11 28
++7 56
+fi=(160) /build/glibc-OTsEL5/glibc-2.27/libio/libioP.h
+873 28
+fe=(149)
+457 56
+cfn=(7680)
+calls=16 1196 
+* 630
+* 14
++1 70
++6 14
+-4 14
++4 14
+-4 42
++1 28
++3 14
+-2 14
+-29 56
++1 112
++29 28
+
+fn=(7666)
+1220 140
++7 35
+-7 105
++6 175
++7 175
++21 42
++4 21
++2 63
+-1 21
++1 21
+-2 21
+cfi=(134)
+cfn=(2124)
+calls=24 204 
+* 342
+* 21
+-4 14
++4 14
++2 42
+-1 14
++1 14
+-2 14
+cfi=(134)
+cfn=(2124)
+calls=15 204 
+* 238
+* 14
+* 35
++4 70
++18 42
++10 315
+-24 14
+fi=(160)
+870 42
++2 28
++1 28
+fe=(149)
+1266 42
+cfn=(7668)
+calls=18 747 
+* 1792
+* 28
++6 28
++1 98
++2 28
++11 42
+-51 70
++1 70
++3 105
++2 428
+-2 269
++4 14
++11 70
+
+fl=(113)
+fn=(490)
+25 4
+
+fl=(153)
+fn=(7664)
+45 21
++2 21
++1 21
++1 21
++2 21
++1 21
++1 21
++4 10
++1 10
++1 10
++1 10
++1 10
++1 10
++1 10
++11 11
++1 11
++1 11
++1 11
++1 11
++1 11
++1 11
++2 11
++1 11
++1 11
++2 11
++1 11
++2 11
++7 11
++1 11
++87 10
++2 10
++7 10
++1 10
+
+fl=(104)
+fn=(396)
+52 9
++1 9
++1 9
++3 9
++1 9
++1 9
++3 5
++1 5
++1 5
++8 5
++19 4
++1 4
++1 4
++1 4
++2 4
++1 4
++1 4
++1 3
++6 3
++1 3
++1 3
++4 3
++1 3
++16 1
++10 1
++1 1
++1 1
++1 1
+332 6
++1 6
++1 6
++4 6
++1 6
+
+fl=(145)
+fn=(2130)
+168 20
++2 10
++9 106
++9 10
+
+totals: 9519
