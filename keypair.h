@@ -36,8 +36,8 @@ typedef enum {
     NO_PRIV_KEY=1,
 } round5_keypair_flags_t;
 
-#define ps(s) printf("\n%s: %s\n", #s, s)
-#define pd(s) printf("\n%s: %d\n", #s, s)
+#define ps(s) printf("\n%s: %s:%d\n     %s: %s\n", __FILE__, __func__, __LINE__, #s, s)
+#define pd(s) printf("\n%s: %s:%d\n     %s: %d\n", __FILE__, __func__, __LINE__, #s, s)
 
 struct ROUND5 *round5_new();
 
