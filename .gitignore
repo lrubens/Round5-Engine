@@ -1,7 +1,16 @@
-CMakeFiles/
-build/
-*.a
-*.so
-CMakeCache.txt
-Makefile
+# Prerequisites
+*.d
 
+# Object files
+*.o
+*.obj
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Shared objects 
+*.so
+*.so.*
