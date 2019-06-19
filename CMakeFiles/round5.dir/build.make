@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/gfleming/Post-Quantum-PKI
+CMAKE_SOURCE_DIR = /home/rubensl/Post-Quantum-PKI
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/gfleming/Post-Quantum-PKI
+CMAKE_BINARY_DIR = /home/rubensl/Post-Quantum-PKI
 
 # Include any dependencies generated for this target.
 include CMakeFiles/round5.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/round5.dir/flags.make
 
 CMakeFiles/round5.dir/XKCP/lib/high/KangarooTwelve/KangarooTwelve.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/XKCP/lib/high/KangarooTwelve/KangarooTwelve.c.o: XKCP/lib/high/KangarooTwelve/KangarooTwelve.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/KangarooTwelve/KangarooTwelve.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/KangarooTwelve/KangarooTwelve.c.o   -c /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/KangarooTwelve/KangarooTwelve.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/KangarooTwelve/KangarooTwelve.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/KangarooTwelve/KangarooTwelve.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/KangarooTwelve/KangarooTwelve.c
 
 CMakeFiles/round5.dir/XKCP/lib/high/KangarooTwelve/KangarooTwelve.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/XKCP/lib/high/KangarooTwelve/KangarooTwelve.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/KangarooTwelve/KangarooTwelve.c > CMakeFiles/round5.dir/XKCP/lib/high/KangarooTwelve/KangarooTwelve.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/KangarooTwelve/KangarooTwelve.c > CMakeFiles/round5.dir/XKCP/lib/high/KangarooTwelve/KangarooTwelve.c.i
 
 CMakeFiles/round5.dir/XKCP/lib/high/KangarooTwelve/KangarooTwelve.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/XKCP/lib/high/KangarooTwelve/KangarooTwelve.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/KangarooTwelve/KangarooTwelve.c -o CMakeFiles/round5.dir/XKCP/lib/high/KangarooTwelve/KangarooTwelve.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/KangarooTwelve/KangarooTwelve.c -o CMakeFiles/round5.dir/XKCP/lib/high/KangarooTwelve/KangarooTwelve.c.s
 
 CMakeFiles/round5.dir/XKCP/lib/high/KangarooTwelve/KangarooTwelve.c.o.requires:
 
@@ -83,16 +83,16 @@ CMakeFiles/round5.dir/XKCP/lib/high/KangarooTwelve/KangarooTwelve.c.o.provides.b
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth1600.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth1600.c.o: XKCP/lib/high/Keccak/KeccakDuplexWidth1600.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth1600.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth1600.c.o   -c /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakDuplexWidth1600.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth1600.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth1600.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakDuplexWidth1600.c
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth1600.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth1600.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakDuplexWidth1600.c > CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth1600.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakDuplexWidth1600.c > CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth1600.c.i
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth1600.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth1600.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakDuplexWidth1600.c -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth1600.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakDuplexWidth1600.c -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth1600.c.s
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth1600.c.o.requires:
 
@@ -107,16 +107,16 @@ CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth1600.c.o.provides.bu
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth200.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth200.c.o: XKCP/lib/high/Keccak/KeccakDuplexWidth200.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth200.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth200.c.o   -c /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakDuplexWidth200.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth200.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth200.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakDuplexWidth200.c
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth200.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth200.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakDuplexWidth200.c > CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth200.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakDuplexWidth200.c > CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth200.c.i
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth200.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth200.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakDuplexWidth200.c -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth200.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakDuplexWidth200.c -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth200.c.s
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth200.c.o.requires:
 
@@ -131,16 +131,16 @@ CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth200.c.o.provides.bui
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth400.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth400.c.o: XKCP/lib/high/Keccak/KeccakDuplexWidth400.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth400.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth400.c.o   -c /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakDuplexWidth400.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth400.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth400.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakDuplexWidth400.c
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth400.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth400.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakDuplexWidth400.c > CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth400.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakDuplexWidth400.c > CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth400.c.i
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth400.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth400.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakDuplexWidth400.c -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth400.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakDuplexWidth400.c -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth400.c.s
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth400.c.o.requires:
 
@@ -155,16 +155,16 @@ CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth400.c.o.provides.bui
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth800.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth800.c.o: XKCP/lib/high/Keccak/KeccakDuplexWidth800.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth800.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth800.c.o   -c /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakDuplexWidth800.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth800.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth800.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakDuplexWidth800.c
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth800.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth800.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakDuplexWidth800.c > CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth800.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakDuplexWidth800.c > CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth800.c.i
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth800.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth800.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakDuplexWidth800.c -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth800.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakDuplexWidth800.c -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth800.c.s
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth800.c.o.requires:
 
@@ -179,16 +179,16 @@ CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakDuplexWidth800.c.o.provides.bui
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth1600.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth1600.c.o: XKCP/lib/high/Keccak/KeccakSpongeWidth1600.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth1600.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth1600.c.o   -c /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakSpongeWidth1600.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth1600.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth1600.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakSpongeWidth1600.c
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth1600.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth1600.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakSpongeWidth1600.c > CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth1600.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakSpongeWidth1600.c > CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth1600.c.i
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth1600.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth1600.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakSpongeWidth1600.c -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth1600.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakSpongeWidth1600.c -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth1600.c.s
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth1600.c.o.requires:
 
@@ -203,16 +203,16 @@ CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth1600.c.o.provides.bu
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth200.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth200.c.o: XKCP/lib/high/Keccak/KeccakSpongeWidth200.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth200.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth200.c.o   -c /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakSpongeWidth200.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth200.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth200.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakSpongeWidth200.c
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth200.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth200.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakSpongeWidth200.c > CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth200.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakSpongeWidth200.c > CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth200.c.i
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth200.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth200.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakSpongeWidth200.c -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth200.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakSpongeWidth200.c -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth200.c.s
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth200.c.o.requires:
 
@@ -227,16 +227,16 @@ CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth200.c.o.provides.bui
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth400.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth400.c.o: XKCP/lib/high/Keccak/KeccakSpongeWidth400.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth400.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth400.c.o   -c /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakSpongeWidth400.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth400.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth400.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakSpongeWidth400.c
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth400.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth400.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakSpongeWidth400.c > CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth400.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakSpongeWidth400.c > CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth400.c.i
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth400.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth400.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakSpongeWidth400.c -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth400.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakSpongeWidth400.c -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth400.c.s
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth400.c.o.requires:
 
@@ -251,16 +251,16 @@ CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth400.c.o.provides.bui
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth800.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth800.c.o: XKCP/lib/high/Keccak/KeccakSpongeWidth800.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth800.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth800.c.o   -c /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakSpongeWidth800.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth800.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth800.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakSpongeWidth800.c
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth800.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth800.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakSpongeWidth800.c > CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth800.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakSpongeWidth800.c > CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth800.c.i
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth800.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth800.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakSpongeWidth800.c -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth800.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/KeccakSpongeWidth800.c -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth800.c.s
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth800.c.o.requires:
 
@@ -275,16 +275,16 @@ CMakeFiles/round5.dir/XKCP/lib/high/Keccak/KeccakSpongeWidth800.c.o.provides.bui
 
 CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeJr.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeJr.c.o: XKCP/lib/high/Ketje/KetjeJr.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeJr.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeJr.c.o   -c /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Ketje/KetjeJr.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeJr.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeJr.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Ketje/KetjeJr.c
 
 CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeJr.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeJr.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Ketje/KetjeJr.c > CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeJr.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Ketje/KetjeJr.c > CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeJr.c.i
 
 CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeJr.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeJr.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Ketje/KetjeJr.c -o CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeJr.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Ketje/KetjeJr.c -o CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeJr.c.s
 
 CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeJr.c.o.requires:
 
@@ -299,16 +299,16 @@ CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeJr.c.o.provides.build: CMakeFiles
 
 CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeMj.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeMj.c.o: XKCP/lib/high/Ketje/KetjeMj.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeMj.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeMj.c.o   -c /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Ketje/KetjeMj.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeMj.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeMj.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Ketje/KetjeMj.c
 
 CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeMj.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeMj.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Ketje/KetjeMj.c > CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeMj.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Ketje/KetjeMj.c > CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeMj.c.i
 
 CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeMj.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeMj.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Ketje/KetjeMj.c -o CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeMj.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Ketje/KetjeMj.c -o CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeMj.c.s
 
 CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeMj.c.o.requires:
 
@@ -323,16 +323,16 @@ CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeMj.c.o.provides.build: CMakeFiles
 
 CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeMn.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeMn.c.o: XKCP/lib/high/Ketje/KetjeMn.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeMn.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeMn.c.o   -c /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Ketje/KetjeMn.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeMn.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeMn.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Ketje/KetjeMn.c
 
 CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeMn.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeMn.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Ketje/KetjeMn.c > CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeMn.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Ketje/KetjeMn.c > CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeMn.c.i
 
 CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeMn.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeMn.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Ketje/KetjeMn.c -o CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeMn.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Ketje/KetjeMn.c -o CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeMn.c.s
 
 CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeMn.c.o.requires:
 
@@ -347,16 +347,16 @@ CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeMn.c.o.provides.build: CMakeFiles
 
 CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeSr.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeSr.c.o: XKCP/lib/high/Ketje/KetjeSr.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeSr.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeSr.c.o   -c /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Ketje/KetjeSr.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeSr.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeSr.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Ketje/KetjeSr.c
 
 CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeSr.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeSr.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Ketje/KetjeSr.c > CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeSr.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Ketje/KetjeSr.c > CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeSr.c.i
 
 CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeSr.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeSr.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Ketje/KetjeSr.c -o CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeSr.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Ketje/KetjeSr.c -o CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeSr.c.s
 
 CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeSr.c.o.requires:
 
@@ -371,16 +371,16 @@ CMakeFiles/round5.dir/XKCP/lib/high/Ketje/KetjeSr.c.o.provides.build: CMakeFiles
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keyak/LakeKeyak.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/XKCP/lib/high/Keyak/LakeKeyak.c.o: XKCP/lib/high/Keyak/LakeKeyak.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Keyak/LakeKeyak.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Keyak/LakeKeyak.c.o   -c /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keyak/LakeKeyak.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Keyak/LakeKeyak.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Keyak/LakeKeyak.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keyak/LakeKeyak.c
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keyak/LakeKeyak.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/XKCP/lib/high/Keyak/LakeKeyak.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keyak/LakeKeyak.c > CMakeFiles/round5.dir/XKCP/lib/high/Keyak/LakeKeyak.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keyak/LakeKeyak.c > CMakeFiles/round5.dir/XKCP/lib/high/Keyak/LakeKeyak.c.i
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keyak/LakeKeyak.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/XKCP/lib/high/Keyak/LakeKeyak.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keyak/LakeKeyak.c -o CMakeFiles/round5.dir/XKCP/lib/high/Keyak/LakeKeyak.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keyak/LakeKeyak.c -o CMakeFiles/round5.dir/XKCP/lib/high/Keyak/LakeKeyak.c.s
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keyak/LakeKeyak.c.o.requires:
 
@@ -395,16 +395,16 @@ CMakeFiles/round5.dir/XKCP/lib/high/Keyak/LakeKeyak.c.o.provides.build: CMakeFil
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keyak/LunarKeyak.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/XKCP/lib/high/Keyak/LunarKeyak.c.o: XKCP/lib/high/Keyak/LunarKeyak.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Keyak/LunarKeyak.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Keyak/LunarKeyak.c.o   -c /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keyak/LunarKeyak.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Keyak/LunarKeyak.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Keyak/LunarKeyak.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keyak/LunarKeyak.c
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keyak/LunarKeyak.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/XKCP/lib/high/Keyak/LunarKeyak.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keyak/LunarKeyak.c > CMakeFiles/round5.dir/XKCP/lib/high/Keyak/LunarKeyak.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keyak/LunarKeyak.c > CMakeFiles/round5.dir/XKCP/lib/high/Keyak/LunarKeyak.c.i
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keyak/LunarKeyak.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/XKCP/lib/high/Keyak/LunarKeyak.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keyak/LunarKeyak.c -o CMakeFiles/round5.dir/XKCP/lib/high/Keyak/LunarKeyak.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keyak/LunarKeyak.c -o CMakeFiles/round5.dir/XKCP/lib/high/Keyak/LunarKeyak.c.s
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keyak/LunarKeyak.c.o.requires:
 
@@ -419,16 +419,16 @@ CMakeFiles/round5.dir/XKCP/lib/high/Keyak/LunarKeyak.c.o.provides.build: CMakeFi
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keyak/OceanKeyak.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/XKCP/lib/high/Keyak/OceanKeyak.c.o: XKCP/lib/high/Keyak/OceanKeyak.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Keyak/OceanKeyak.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Keyak/OceanKeyak.c.o   -c /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keyak/OceanKeyak.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Keyak/OceanKeyak.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Keyak/OceanKeyak.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keyak/OceanKeyak.c
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keyak/OceanKeyak.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/XKCP/lib/high/Keyak/OceanKeyak.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keyak/OceanKeyak.c > CMakeFiles/round5.dir/XKCP/lib/high/Keyak/OceanKeyak.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keyak/OceanKeyak.c > CMakeFiles/round5.dir/XKCP/lib/high/Keyak/OceanKeyak.c.i
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keyak/OceanKeyak.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/XKCP/lib/high/Keyak/OceanKeyak.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keyak/OceanKeyak.c -o CMakeFiles/round5.dir/XKCP/lib/high/Keyak/OceanKeyak.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keyak/OceanKeyak.c -o CMakeFiles/round5.dir/XKCP/lib/high/Keyak/OceanKeyak.c.s
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keyak/OceanKeyak.c.o.requires:
 
@@ -443,16 +443,16 @@ CMakeFiles/round5.dir/XKCP/lib/high/Keyak/OceanKeyak.c.o.provides.build: CMakeFi
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keyak/RiverKeyak.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/XKCP/lib/high/Keyak/RiverKeyak.c.o: XKCP/lib/high/Keyak/RiverKeyak.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Keyak/RiverKeyak.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Keyak/RiverKeyak.c.o   -c /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keyak/RiverKeyak.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Keyak/RiverKeyak.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Keyak/RiverKeyak.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keyak/RiverKeyak.c
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keyak/RiverKeyak.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/XKCP/lib/high/Keyak/RiverKeyak.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keyak/RiverKeyak.c > CMakeFiles/round5.dir/XKCP/lib/high/Keyak/RiverKeyak.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keyak/RiverKeyak.c > CMakeFiles/round5.dir/XKCP/lib/high/Keyak/RiverKeyak.c.i
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keyak/RiverKeyak.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/XKCP/lib/high/Keyak/RiverKeyak.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keyak/RiverKeyak.c -o CMakeFiles/round5.dir/XKCP/lib/high/Keyak/RiverKeyak.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keyak/RiverKeyak.c -o CMakeFiles/round5.dir/XKCP/lib/high/Keyak/RiverKeyak.c.s
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keyak/RiverKeyak.c.o.requires:
 
@@ -467,16 +467,16 @@ CMakeFiles/round5.dir/XKCP/lib/high/Keyak/RiverKeyak.c.o.provides.build: CMakeFi
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keyak/SeaKeyak.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/XKCP/lib/high/Keyak/SeaKeyak.c.o: XKCP/lib/high/Keyak/SeaKeyak.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Keyak/SeaKeyak.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Keyak/SeaKeyak.c.o   -c /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keyak/SeaKeyak.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Keyak/SeaKeyak.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Keyak/SeaKeyak.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keyak/SeaKeyak.c
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keyak/SeaKeyak.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/XKCP/lib/high/Keyak/SeaKeyak.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keyak/SeaKeyak.c > CMakeFiles/round5.dir/XKCP/lib/high/Keyak/SeaKeyak.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keyak/SeaKeyak.c > CMakeFiles/round5.dir/XKCP/lib/high/Keyak/SeaKeyak.c.i
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keyak/SeaKeyak.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/XKCP/lib/high/Keyak/SeaKeyak.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keyak/SeaKeyak.c -o CMakeFiles/round5.dir/XKCP/lib/high/Keyak/SeaKeyak.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keyak/SeaKeyak.c -o CMakeFiles/round5.dir/XKCP/lib/high/Keyak/SeaKeyak.c.s
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keyak/SeaKeyak.c.o.requires:
 
@@ -491,16 +491,16 @@ CMakeFiles/round5.dir/XKCP/lib/high/Keyak/SeaKeyak.c.o.provides.build: CMakeFile
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/FIPS202/KeccakHash.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/FIPS202/KeccakHash.c.o: XKCP/lib/high/Keccak/FIPS202/KeccakHash.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Keccak/FIPS202/KeccakHash.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/FIPS202/KeccakHash.c.o   -c /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keccak/FIPS202/KeccakHash.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Keccak/FIPS202/KeccakHash.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/FIPS202/KeccakHash.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/FIPS202/KeccakHash.c
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/FIPS202/KeccakHash.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/XKCP/lib/high/Keccak/FIPS202/KeccakHash.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keccak/FIPS202/KeccakHash.c > CMakeFiles/round5.dir/XKCP/lib/high/Keccak/FIPS202/KeccakHash.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/FIPS202/KeccakHash.c > CMakeFiles/round5.dir/XKCP/lib/high/Keccak/FIPS202/KeccakHash.c.i
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/FIPS202/KeccakHash.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/XKCP/lib/high/Keccak/FIPS202/KeccakHash.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keccak/FIPS202/KeccakHash.c -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/FIPS202/KeccakHash.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/FIPS202/KeccakHash.c -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/FIPS202/KeccakHash.c.s
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/FIPS202/KeccakHash.c.o.requires:
 
@@ -515,16 +515,16 @@ CMakeFiles/round5.dir/XKCP/lib/high/Keccak/FIPS202/KeccakHash.c.o.provides.build
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/FIPS202/SimpleFIPS202.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/FIPS202/SimpleFIPS202.c.o: XKCP/lib/high/Keccak/FIPS202/SimpleFIPS202.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Keccak/FIPS202/SimpleFIPS202.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/FIPS202/SimpleFIPS202.c.o   -c /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keccak/FIPS202/SimpleFIPS202.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Keccak/FIPS202/SimpleFIPS202.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/FIPS202/SimpleFIPS202.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/FIPS202/SimpleFIPS202.c
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/FIPS202/SimpleFIPS202.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/XKCP/lib/high/Keccak/FIPS202/SimpleFIPS202.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keccak/FIPS202/SimpleFIPS202.c > CMakeFiles/round5.dir/XKCP/lib/high/Keccak/FIPS202/SimpleFIPS202.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/FIPS202/SimpleFIPS202.c > CMakeFiles/round5.dir/XKCP/lib/high/Keccak/FIPS202/SimpleFIPS202.c.i
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/FIPS202/SimpleFIPS202.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/XKCP/lib/high/Keccak/FIPS202/SimpleFIPS202.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keccak/FIPS202/SimpleFIPS202.c -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/FIPS202/SimpleFIPS202.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/FIPS202/SimpleFIPS202.c -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/FIPS202/SimpleFIPS202.c.s
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/FIPS202/SimpleFIPS202.c.o.requires:
 
@@ -539,16 +539,16 @@ CMakeFiles/round5.dir/XKCP/lib/high/Keccak/FIPS202/SimpleFIPS202.c.o.provides.bu
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth1600.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth1600.c.o: XKCP/lib/high/Keccak/PRG/KeccakPRGWidth1600.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth1600.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth1600.c.o   -c /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth1600.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth1600.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth1600.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth1600.c
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth1600.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth1600.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth1600.c > CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth1600.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth1600.c > CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth1600.c.i
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth1600.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth1600.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth1600.c -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth1600.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth1600.c -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth1600.c.s
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth1600.c.o.requires:
 
@@ -563,16 +563,16 @@ CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth1600.c.o.provides.b
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth200.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth200.c.o: XKCP/lib/high/Keccak/PRG/KeccakPRGWidth200.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth200.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth200.c.o   -c /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth200.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth200.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth200.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth200.c
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth200.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth200.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth200.c > CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth200.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth200.c > CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth200.c.i
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth200.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth200.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth200.c -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth200.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth200.c -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth200.c.s
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth200.c.o.requires:
 
@@ -587,16 +587,16 @@ CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth200.c.o.provides.bu
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth400.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth400.c.o: XKCP/lib/high/Keccak/PRG/KeccakPRGWidth400.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth400.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth400.c.o   -c /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth400.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth400.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth400.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth400.c
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth400.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth400.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth400.c > CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth400.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth400.c > CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth400.c.i
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth400.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth400.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth400.c -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth400.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth400.c -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth400.c.s
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth400.c.o.requires:
 
@@ -611,16 +611,16 @@ CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth400.c.o.provides.bu
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth800.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth800.c.o: XKCP/lib/high/Keccak/PRG/KeccakPRGWidth800.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth800.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth800.c.o   -c /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth800.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth800.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth800.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth800.c
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth800.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth800.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth800.c > CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth800.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth800.c > CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth800.c.i
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth800.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth800.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth800.c -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth800.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth800.c -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth800.c.s
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth800.c.o.requires:
 
@@ -635,16 +635,16 @@ CMakeFiles/round5.dir/XKCP/lib/high/Keccak/PRG/KeccakPRGWidth800.c.o.provides.bu
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/SP800-185/SP800-185.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/SP800-185/SP800-185.c.o: XKCP/lib/high/Keccak/SP800-185/SP800-185.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Keccak/SP800-185/SP800-185.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/SP800-185/SP800-185.c.o   -c /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keccak/SP800-185/SP800-185.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building C object CMakeFiles/round5.dir/XKCP/lib/high/Keccak/SP800-185/SP800-185.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/SP800-185/SP800-185.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/SP800-185/SP800-185.c
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/SP800-185/SP800-185.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/XKCP/lib/high/Keccak/SP800-185/SP800-185.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keccak/SP800-185/SP800-185.c > CMakeFiles/round5.dir/XKCP/lib/high/Keccak/SP800-185/SP800-185.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/SP800-185/SP800-185.c > CMakeFiles/round5.dir/XKCP/lib/high/Keccak/SP800-185/SP800-185.c.i
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/SP800-185/SP800-185.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/XKCP/lib/high/Keccak/SP800-185/SP800-185.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/XKCP/lib/high/Keccak/SP800-185/SP800-185.c -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/SP800-185/SP800-185.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/XKCP/lib/high/Keccak/SP800-185/SP800-185.c -o CMakeFiles/round5.dir/XKCP/lib/high/Keccak/SP800-185/SP800-185.c.s
 
 CMakeFiles/round5.dir/XKCP/lib/high/Keccak/SP800-185/SP800-185.c.o.requires:
 
@@ -659,16 +659,16 @@ CMakeFiles/round5.dir/XKCP/lib/high/Keccak/SP800-185/SP800-185.c.o.provides.buil
 
 CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetJr.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetJr.c.o: XKCP/lib/low/Ketje/SnP-compliant/KetJr.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building C object CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetJr.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetJr.c.o   -c /home/gfleming/Post-Quantum-PKI/XKCP/lib/low/Ketje/SnP-compliant/KetJr.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building C object CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetJr.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetJr.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/low/Ketje/SnP-compliant/KetJr.c
 
 CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetJr.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetJr.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/XKCP/lib/low/Ketje/SnP-compliant/KetJr.c > CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetJr.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/XKCP/lib/low/Ketje/SnP-compliant/KetJr.c > CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetJr.c.i
 
 CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetJr.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetJr.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/XKCP/lib/low/Ketje/SnP-compliant/KetJr.c -o CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetJr.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/XKCP/lib/low/Ketje/SnP-compliant/KetJr.c -o CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetJr.c.s
 
 CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetJr.c.o.requires:
 
@@ -683,16 +683,16 @@ CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetJr.c.o.provides.build:
 
 CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetMj.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetMj.c.o: XKCP/lib/low/Ketje/SnP-compliant/KetMj.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building C object CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetMj.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetMj.c.o   -c /home/gfleming/Post-Quantum-PKI/XKCP/lib/low/Ketje/SnP-compliant/KetMj.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building C object CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetMj.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetMj.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/low/Ketje/SnP-compliant/KetMj.c
 
 CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetMj.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetMj.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/XKCP/lib/low/Ketje/SnP-compliant/KetMj.c > CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetMj.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/XKCP/lib/low/Ketje/SnP-compliant/KetMj.c > CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetMj.c.i
 
 CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetMj.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetMj.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/XKCP/lib/low/Ketje/SnP-compliant/KetMj.c -o CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetMj.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/XKCP/lib/low/Ketje/SnP-compliant/KetMj.c -o CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetMj.c.s
 
 CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetMj.c.o.requires:
 
@@ -707,16 +707,16 @@ CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetMj.c.o.provides.build:
 
 CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetMn.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetMn.c.o: XKCP/lib/low/Ketje/SnP-compliant/KetMn.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building C object CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetMn.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetMn.c.o   -c /home/gfleming/Post-Quantum-PKI/XKCP/lib/low/Ketje/SnP-compliant/KetMn.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building C object CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetMn.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetMn.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/low/Ketje/SnP-compliant/KetMn.c
 
 CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetMn.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetMn.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/XKCP/lib/low/Ketje/SnP-compliant/KetMn.c > CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetMn.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/XKCP/lib/low/Ketje/SnP-compliant/KetMn.c > CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetMn.c.i
 
 CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetMn.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetMn.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/XKCP/lib/low/Ketje/SnP-compliant/KetMn.c -o CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetMn.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/XKCP/lib/low/Ketje/SnP-compliant/KetMn.c -o CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetMn.c.s
 
 CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetMn.c.o.requires:
 
@@ -731,16 +731,16 @@ CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetMn.c.o.provides.build:
 
 CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetSr.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetSr.c.o: XKCP/lib/low/Ketje/SnP-compliant/KetSr.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building C object CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetSr.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetSr.c.o   -c /home/gfleming/Post-Quantum-PKI/XKCP/lib/low/Ketje/SnP-compliant/KetSr.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building C object CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetSr.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetSr.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/low/Ketje/SnP-compliant/KetSr.c
 
 CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetSr.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetSr.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/XKCP/lib/low/Ketje/SnP-compliant/KetSr.c > CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetSr.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/XKCP/lib/low/Ketje/SnP-compliant/KetSr.c > CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetSr.c.i
 
 CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetSr.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetSr.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/XKCP/lib/low/Ketje/SnP-compliant/KetSr.c -o CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetSr.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/XKCP/lib/low/Ketje/SnP-compliant/KetSr.c -o CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetSr.c.s
 
 CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetSr.c.o.requires:
 
@@ -755,16 +755,16 @@ CMakeFiles/round5.dir/XKCP/lib/low/Ketje/SnP-compliant/KetSr.c.o.provides.build:
 
 CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600/Optimized64/KeccakP-1600-opt64.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600/Optimized64/KeccakP-1600-opt64.c.o: XKCP/lib/low/KeccakP-1600/Optimized64/KeccakP-1600-opt64.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building C object CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600/Optimized64/KeccakP-1600-opt64.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600/Optimized64/KeccakP-1600-opt64.c.o   -c /home/gfleming/Post-Quantum-PKI/XKCP/lib/low/KeccakP-1600/Optimized64/KeccakP-1600-opt64.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building C object CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600/Optimized64/KeccakP-1600-opt64.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600/Optimized64/KeccakP-1600-opt64.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/low/KeccakP-1600/Optimized64/KeccakP-1600-opt64.c
 
 CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600/Optimized64/KeccakP-1600-opt64.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600/Optimized64/KeccakP-1600-opt64.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/XKCP/lib/low/KeccakP-1600/Optimized64/KeccakP-1600-opt64.c > CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600/Optimized64/KeccakP-1600-opt64.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/XKCP/lib/low/KeccakP-1600/Optimized64/KeccakP-1600-opt64.c > CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600/Optimized64/KeccakP-1600-opt64.c.i
 
 CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600/Optimized64/KeccakP-1600-opt64.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600/Optimized64/KeccakP-1600-opt64.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/XKCP/lib/low/KeccakP-1600/Optimized64/KeccakP-1600-opt64.c -o CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600/Optimized64/KeccakP-1600-opt64.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/XKCP/lib/low/KeccakP-1600/Optimized64/KeccakP-1600-opt64.c -o CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600/Optimized64/KeccakP-1600-opt64.c.s
 
 CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600/Optimized64/KeccakP-1600-opt64.c.o.requires:
 
@@ -779,16 +779,16 @@ CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600/Optimized64/KeccakP-1600-opt64.c
 
 CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-800/Optimized32/KeccakP-800-opt32.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-800/Optimized32/KeccakP-800-opt32.c.o: XKCP/lib/low/KeccakP-800/Optimized32/KeccakP-800-opt32.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building C object CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-800/Optimized32/KeccakP-800-opt32.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-800/Optimized32/KeccakP-800-opt32.c.o   -c /home/gfleming/Post-Quantum-PKI/XKCP/lib/low/KeccakP-800/Optimized32/KeccakP-800-opt32.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building C object CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-800/Optimized32/KeccakP-800-opt32.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-800/Optimized32/KeccakP-800-opt32.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/low/KeccakP-800/Optimized32/KeccakP-800-opt32.c
 
 CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-800/Optimized32/KeccakP-800-opt32.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-800/Optimized32/KeccakP-800-opt32.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/XKCP/lib/low/KeccakP-800/Optimized32/KeccakP-800-opt32.c > CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-800/Optimized32/KeccakP-800-opt32.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/XKCP/lib/low/KeccakP-800/Optimized32/KeccakP-800-opt32.c > CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-800/Optimized32/KeccakP-800-opt32.c.i
 
 CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-800/Optimized32/KeccakP-800-opt32.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-800/Optimized32/KeccakP-800-opt32.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/XKCP/lib/low/KeccakP-800/Optimized32/KeccakP-800-opt32.c -o CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-800/Optimized32/KeccakP-800-opt32.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/XKCP/lib/low/KeccakP-800/Optimized32/KeccakP-800-opt32.c -o CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-800/Optimized32/KeccakP-800-opt32.c.s
 
 CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-800/Optimized32/KeccakP-800-opt32.c.o.requires:
 
@@ -803,16 +803,16 @@ CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-800/Optimized32/KeccakP-800-opt32.c.o
 
 CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-200/Compact/KeccakP-200-compact.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-200/Compact/KeccakP-200-compact.c.o: XKCP/lib/low/KeccakP-200/Compact/KeccakP-200-compact.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building C object CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-200/Compact/KeccakP-200-compact.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-200/Compact/KeccakP-200-compact.c.o   -c /home/gfleming/Post-Quantum-PKI/XKCP/lib/low/KeccakP-200/Compact/KeccakP-200-compact.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building C object CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-200/Compact/KeccakP-200-compact.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-200/Compact/KeccakP-200-compact.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/low/KeccakP-200/Compact/KeccakP-200-compact.c
 
 CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-200/Compact/KeccakP-200-compact.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-200/Compact/KeccakP-200-compact.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/XKCP/lib/low/KeccakP-200/Compact/KeccakP-200-compact.c > CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-200/Compact/KeccakP-200-compact.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/XKCP/lib/low/KeccakP-200/Compact/KeccakP-200-compact.c > CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-200/Compact/KeccakP-200-compact.c.i
 
 CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-200/Compact/KeccakP-200-compact.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-200/Compact/KeccakP-200-compact.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/XKCP/lib/low/KeccakP-200/Compact/KeccakP-200-compact.c -o CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-200/Compact/KeccakP-200-compact.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/XKCP/lib/low/KeccakP-200/Compact/KeccakP-200-compact.c -o CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-200/Compact/KeccakP-200-compact.c.s
 
 CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-200/Compact/KeccakP-200-compact.c.o.requires:
 
@@ -827,16 +827,16 @@ CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-200/Compact/KeccakP-200-compact.c.o.p
 
 CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-400/Reference/KeccakP-400-reference.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-400/Reference/KeccakP-400-reference.c.o: XKCP/lib/low/KeccakP-400/Reference/KeccakP-400-reference.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building C object CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-400/Reference/KeccakP-400-reference.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-400/Reference/KeccakP-400-reference.c.o   -c /home/gfleming/Post-Quantum-PKI/XKCP/lib/low/KeccakP-400/Reference/KeccakP-400-reference.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building C object CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-400/Reference/KeccakP-400-reference.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-400/Reference/KeccakP-400-reference.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/low/KeccakP-400/Reference/KeccakP-400-reference.c
 
 CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-400/Reference/KeccakP-400-reference.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-400/Reference/KeccakP-400-reference.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/XKCP/lib/low/KeccakP-400/Reference/KeccakP-400-reference.c > CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-400/Reference/KeccakP-400-reference.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/XKCP/lib/low/KeccakP-400/Reference/KeccakP-400-reference.c > CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-400/Reference/KeccakP-400-reference.c.i
 
 CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-400/Reference/KeccakP-400-reference.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-400/Reference/KeccakP-400-reference.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/XKCP/lib/low/KeccakP-400/Reference/KeccakP-400-reference.c -o CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-400/Reference/KeccakP-400-reference.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/XKCP/lib/low/KeccakP-400/Reference/KeccakP-400-reference.c -o CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-400/Reference/KeccakP-400-reference.c.s
 
 CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-400/Reference/KeccakP-400-reference.c.o.requires:
 
@@ -851,16 +851,16 @@ CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-400/Reference/KeccakP-400-reference.c
 
 CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times2/FallbackOn1/KeccakP-1600-times2-on1.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times2/FallbackOn1/KeccakP-1600-times2-on1.c.o: XKCP/lib/low/KeccakP-1600-times2/FallbackOn1/KeccakP-1600-times2-on1.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building C object CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times2/FallbackOn1/KeccakP-1600-times2-on1.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times2/FallbackOn1/KeccakP-1600-times2-on1.c.o   -c /home/gfleming/Post-Quantum-PKI/XKCP/lib/low/KeccakP-1600-times2/FallbackOn1/KeccakP-1600-times2-on1.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building C object CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times2/FallbackOn1/KeccakP-1600-times2-on1.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times2/FallbackOn1/KeccakP-1600-times2-on1.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/low/KeccakP-1600-times2/FallbackOn1/KeccakP-1600-times2-on1.c
 
 CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times2/FallbackOn1/KeccakP-1600-times2-on1.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times2/FallbackOn1/KeccakP-1600-times2-on1.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/XKCP/lib/low/KeccakP-1600-times2/FallbackOn1/KeccakP-1600-times2-on1.c > CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times2/FallbackOn1/KeccakP-1600-times2-on1.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/XKCP/lib/low/KeccakP-1600-times2/FallbackOn1/KeccakP-1600-times2-on1.c > CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times2/FallbackOn1/KeccakP-1600-times2-on1.c.i
 
 CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times2/FallbackOn1/KeccakP-1600-times2-on1.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times2/FallbackOn1/KeccakP-1600-times2-on1.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/XKCP/lib/low/KeccakP-1600-times2/FallbackOn1/KeccakP-1600-times2-on1.c -o CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times2/FallbackOn1/KeccakP-1600-times2-on1.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/XKCP/lib/low/KeccakP-1600-times2/FallbackOn1/KeccakP-1600-times2-on1.c -o CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times2/FallbackOn1/KeccakP-1600-times2-on1.c.s
 
 CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times2/FallbackOn1/KeccakP-1600-times2-on1.c.o.requires:
 
@@ -875,16 +875,16 @@ CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times2/FallbackOn1/KeccakP-1600-
 
 CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times4/FallbackOn1/KeccakP-1600-times4-on1.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times4/FallbackOn1/KeccakP-1600-times4-on1.c.o: XKCP/lib/low/KeccakP-1600-times4/FallbackOn1/KeccakP-1600-times4-on1.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building C object CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times4/FallbackOn1/KeccakP-1600-times4-on1.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times4/FallbackOn1/KeccakP-1600-times4-on1.c.o   -c /home/gfleming/Post-Quantum-PKI/XKCP/lib/low/KeccakP-1600-times4/FallbackOn1/KeccakP-1600-times4-on1.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building C object CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times4/FallbackOn1/KeccakP-1600-times4-on1.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times4/FallbackOn1/KeccakP-1600-times4-on1.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/low/KeccakP-1600-times4/FallbackOn1/KeccakP-1600-times4-on1.c
 
 CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times4/FallbackOn1/KeccakP-1600-times4-on1.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times4/FallbackOn1/KeccakP-1600-times4-on1.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/XKCP/lib/low/KeccakP-1600-times4/FallbackOn1/KeccakP-1600-times4-on1.c > CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times4/FallbackOn1/KeccakP-1600-times4-on1.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/XKCP/lib/low/KeccakP-1600-times4/FallbackOn1/KeccakP-1600-times4-on1.c > CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times4/FallbackOn1/KeccakP-1600-times4-on1.c.i
 
 CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times4/FallbackOn1/KeccakP-1600-times4-on1.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times4/FallbackOn1/KeccakP-1600-times4-on1.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/XKCP/lib/low/KeccakP-1600-times4/FallbackOn1/KeccakP-1600-times4-on1.c -o CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times4/FallbackOn1/KeccakP-1600-times4-on1.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/XKCP/lib/low/KeccakP-1600-times4/FallbackOn1/KeccakP-1600-times4-on1.c -o CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times4/FallbackOn1/KeccakP-1600-times4-on1.c.s
 
 CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times4/FallbackOn1/KeccakP-1600-times4-on1.c.o.requires:
 
@@ -899,16 +899,16 @@ CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times4/FallbackOn1/KeccakP-1600-
 
 CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times8/FallbackOn1/KeccakP-1600-times8-on1.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times8/FallbackOn1/KeccakP-1600-times8-on1.c.o: XKCP/lib/low/KeccakP-1600-times8/FallbackOn1/KeccakP-1600-times8-on1.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Building C object CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times8/FallbackOn1/KeccakP-1600-times8-on1.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times8/FallbackOn1/KeccakP-1600-times8-on1.c.o   -c /home/gfleming/Post-Quantum-PKI/XKCP/lib/low/KeccakP-1600-times8/FallbackOn1/KeccakP-1600-times8-on1.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Building C object CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times8/FallbackOn1/KeccakP-1600-times8-on1.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times8/FallbackOn1/KeccakP-1600-times8-on1.c.o   -c /home/rubensl/Post-Quantum-PKI/XKCP/lib/low/KeccakP-1600-times8/FallbackOn1/KeccakP-1600-times8-on1.c
 
 CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times8/FallbackOn1/KeccakP-1600-times8-on1.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times8/FallbackOn1/KeccakP-1600-times8-on1.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/XKCP/lib/low/KeccakP-1600-times8/FallbackOn1/KeccakP-1600-times8-on1.c > CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times8/FallbackOn1/KeccakP-1600-times8-on1.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/XKCP/lib/low/KeccakP-1600-times8/FallbackOn1/KeccakP-1600-times8-on1.c > CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times8/FallbackOn1/KeccakP-1600-times8-on1.c.i
 
 CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times8/FallbackOn1/KeccakP-1600-times8-on1.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times8/FallbackOn1/KeccakP-1600-times8-on1.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/XKCP/lib/low/KeccakP-1600-times8/FallbackOn1/KeccakP-1600-times8-on1.c -o CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times8/FallbackOn1/KeccakP-1600-times8-on1.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/XKCP/lib/low/KeccakP-1600-times8/FallbackOn1/KeccakP-1600-times8-on1.c -o CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times8/FallbackOn1/KeccakP-1600-times8-on1.c.s
 
 CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times8/FallbackOn1/KeccakP-1600-times8-on1.c.o.requires:
 
@@ -923,16 +923,16 @@ CMakeFiles/round5.dir/XKCP/lib/low/KeccakP-1600-times8/FallbackOn1/KeccakP-1600-
 
 CMakeFiles/round5.dir/Round5/reference/src/a_fixed.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/Round5/reference/src/a_fixed.c.o: Round5/reference/src/a_fixed.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Building C object CMakeFiles/round5.dir/Round5/reference/src/a_fixed.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/Round5/reference/src/a_fixed.c.o   -c /home/gfleming/Post-Quantum-PKI/Round5/reference/src/a_fixed.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Building C object CMakeFiles/round5.dir/Round5/reference/src/a_fixed.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/Round5/reference/src/a_fixed.c.o   -c /home/rubensl/Post-Quantum-PKI/Round5/reference/src/a_fixed.c
 
 CMakeFiles/round5.dir/Round5/reference/src/a_fixed.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/Round5/reference/src/a_fixed.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/Round5/reference/src/a_fixed.c > CMakeFiles/round5.dir/Round5/reference/src/a_fixed.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/Round5/reference/src/a_fixed.c > CMakeFiles/round5.dir/Round5/reference/src/a_fixed.c.i
 
 CMakeFiles/round5.dir/Round5/reference/src/a_fixed.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/Round5/reference/src/a_fixed.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/Round5/reference/src/a_fixed.c -o CMakeFiles/round5.dir/Round5/reference/src/a_fixed.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/Round5/reference/src/a_fixed.c -o CMakeFiles/round5.dir/Round5/reference/src/a_fixed.c.s
 
 CMakeFiles/round5.dir/Round5/reference/src/a_fixed.c.o.requires:
 
@@ -947,16 +947,16 @@ CMakeFiles/round5.dir/Round5/reference/src/a_fixed.c.o.provides.build: CMakeFile
 
 CMakeFiles/round5.dir/Round5/reference/src/a_random.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/Round5/reference/src/a_random.c.o: Round5/reference/src/a_random.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_38) "Building C object CMakeFiles/round5.dir/Round5/reference/src/a_random.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/Round5/reference/src/a_random.c.o   -c /home/gfleming/Post-Quantum-PKI/Round5/reference/src/a_random.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_38) "Building C object CMakeFiles/round5.dir/Round5/reference/src/a_random.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/Round5/reference/src/a_random.c.o   -c /home/rubensl/Post-Quantum-PKI/Round5/reference/src/a_random.c
 
 CMakeFiles/round5.dir/Round5/reference/src/a_random.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/Round5/reference/src/a_random.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/Round5/reference/src/a_random.c > CMakeFiles/round5.dir/Round5/reference/src/a_random.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/Round5/reference/src/a_random.c > CMakeFiles/round5.dir/Round5/reference/src/a_random.c.i
 
 CMakeFiles/round5.dir/Round5/reference/src/a_random.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/Round5/reference/src/a_random.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/Round5/reference/src/a_random.c -o CMakeFiles/round5.dir/Round5/reference/src/a_random.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/Round5/reference/src/a_random.c -o CMakeFiles/round5.dir/Round5/reference/src/a_random.c.s
 
 CMakeFiles/round5.dir/Round5/reference/src/a_random.c.o.requires:
 
@@ -971,16 +971,16 @@ CMakeFiles/round5.dir/Round5/reference/src/a_random.c.o.provides.build: CMakeFil
 
 CMakeFiles/round5.dir/Round5/reference/src/cca_encrypt.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/Round5/reference/src/cca_encrypt.c.o: Round5/reference/src/cca_encrypt.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Building C object CMakeFiles/round5.dir/Round5/reference/src/cca_encrypt.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/Round5/reference/src/cca_encrypt.c.o   -c /home/gfleming/Post-Quantum-PKI/Round5/reference/src/cca_encrypt.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Building C object CMakeFiles/round5.dir/Round5/reference/src/cca_encrypt.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/Round5/reference/src/cca_encrypt.c.o   -c /home/rubensl/Post-Quantum-PKI/Round5/reference/src/cca_encrypt.c
 
 CMakeFiles/round5.dir/Round5/reference/src/cca_encrypt.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/Round5/reference/src/cca_encrypt.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/Round5/reference/src/cca_encrypt.c > CMakeFiles/round5.dir/Round5/reference/src/cca_encrypt.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/Round5/reference/src/cca_encrypt.c > CMakeFiles/round5.dir/Round5/reference/src/cca_encrypt.c.i
 
 CMakeFiles/round5.dir/Round5/reference/src/cca_encrypt.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/Round5/reference/src/cca_encrypt.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/Round5/reference/src/cca_encrypt.c -o CMakeFiles/round5.dir/Round5/reference/src/cca_encrypt.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/Round5/reference/src/cca_encrypt.c -o CMakeFiles/round5.dir/Round5/reference/src/cca_encrypt.c.s
 
 CMakeFiles/round5.dir/Round5/reference/src/cca_encrypt.c.o.requires:
 
@@ -995,16 +995,16 @@ CMakeFiles/round5.dir/Round5/reference/src/cca_encrypt.c.o.provides.build: CMake
 
 CMakeFiles/round5.dir/Round5/reference/src/cpa_kem.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/Round5/reference/src/cpa_kem.c.o: Round5/reference/src/cpa_kem.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_40) "Building C object CMakeFiles/round5.dir/Round5/reference/src/cpa_kem.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/Round5/reference/src/cpa_kem.c.o   -c /home/gfleming/Post-Quantum-PKI/Round5/reference/src/cpa_kem.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_40) "Building C object CMakeFiles/round5.dir/Round5/reference/src/cpa_kem.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/Round5/reference/src/cpa_kem.c.o   -c /home/rubensl/Post-Quantum-PKI/Round5/reference/src/cpa_kem.c
 
 CMakeFiles/round5.dir/Round5/reference/src/cpa_kem.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/Round5/reference/src/cpa_kem.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/Round5/reference/src/cpa_kem.c > CMakeFiles/round5.dir/Round5/reference/src/cpa_kem.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/Round5/reference/src/cpa_kem.c > CMakeFiles/round5.dir/Round5/reference/src/cpa_kem.c.i
 
 CMakeFiles/round5.dir/Round5/reference/src/cpa_kem.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/Round5/reference/src/cpa_kem.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/Round5/reference/src/cpa_kem.c -o CMakeFiles/round5.dir/Round5/reference/src/cpa_kem.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/Round5/reference/src/cpa_kem.c -o CMakeFiles/round5.dir/Round5/reference/src/cpa_kem.c.s
 
 CMakeFiles/round5.dir/Round5/reference/src/cpa_kem.c.o.requires:
 
@@ -1019,16 +1019,16 @@ CMakeFiles/round5.dir/Round5/reference/src/cpa_kem.c.o.provides.build: CMakeFile
 
 CMakeFiles/round5.dir/Round5/reference/src/drbg.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/Round5/reference/src/drbg.c.o: Round5/reference/src/drbg.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_41) "Building C object CMakeFiles/round5.dir/Round5/reference/src/drbg.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/Round5/reference/src/drbg.c.o   -c /home/gfleming/Post-Quantum-PKI/Round5/reference/src/drbg.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_41) "Building C object CMakeFiles/round5.dir/Round5/reference/src/drbg.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/Round5/reference/src/drbg.c.o   -c /home/rubensl/Post-Quantum-PKI/Round5/reference/src/drbg.c
 
 CMakeFiles/round5.dir/Round5/reference/src/drbg.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/Round5/reference/src/drbg.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/Round5/reference/src/drbg.c > CMakeFiles/round5.dir/Round5/reference/src/drbg.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/Round5/reference/src/drbg.c > CMakeFiles/round5.dir/Round5/reference/src/drbg.c.i
 
 CMakeFiles/round5.dir/Round5/reference/src/drbg.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/Round5/reference/src/drbg.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/Round5/reference/src/drbg.c -o CMakeFiles/round5.dir/Round5/reference/src/drbg.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/Round5/reference/src/drbg.c -o CMakeFiles/round5.dir/Round5/reference/src/drbg.c.s
 
 CMakeFiles/round5.dir/Round5/reference/src/drbg.c.o.requires:
 
@@ -1043,16 +1043,16 @@ CMakeFiles/round5.dir/Round5/reference/src/drbg.c.o.provides.build: CMakeFiles/r
 
 CMakeFiles/round5.dir/Round5/reference/src/little_endian.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/Round5/reference/src/little_endian.c.o: Round5/reference/src/little_endian.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_42) "Building C object CMakeFiles/round5.dir/Round5/reference/src/little_endian.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/Round5/reference/src/little_endian.c.o   -c /home/gfleming/Post-Quantum-PKI/Round5/reference/src/little_endian.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_42) "Building C object CMakeFiles/round5.dir/Round5/reference/src/little_endian.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/Round5/reference/src/little_endian.c.o   -c /home/rubensl/Post-Quantum-PKI/Round5/reference/src/little_endian.c
 
 CMakeFiles/round5.dir/Round5/reference/src/little_endian.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/Round5/reference/src/little_endian.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/Round5/reference/src/little_endian.c > CMakeFiles/round5.dir/Round5/reference/src/little_endian.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/Round5/reference/src/little_endian.c > CMakeFiles/round5.dir/Round5/reference/src/little_endian.c.i
 
 CMakeFiles/round5.dir/Round5/reference/src/little_endian.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/Round5/reference/src/little_endian.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/Round5/reference/src/little_endian.c -o CMakeFiles/round5.dir/Round5/reference/src/little_endian.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/Round5/reference/src/little_endian.c -o CMakeFiles/round5.dir/Round5/reference/src/little_endian.c.s
 
 CMakeFiles/round5.dir/Round5/reference/src/little_endian.c.o.requires:
 
@@ -1067,16 +1067,16 @@ CMakeFiles/round5.dir/Round5/reference/src/little_endian.c.o.provides.build: CMa
 
 CMakeFiles/round5.dir/Round5/reference/src/misc.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/Round5/reference/src/misc.c.o: Round5/reference/src/misc.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_43) "Building C object CMakeFiles/round5.dir/Round5/reference/src/misc.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/Round5/reference/src/misc.c.o   -c /home/gfleming/Post-Quantum-PKI/Round5/reference/src/misc.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_43) "Building C object CMakeFiles/round5.dir/Round5/reference/src/misc.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/Round5/reference/src/misc.c.o   -c /home/rubensl/Post-Quantum-PKI/Round5/reference/src/misc.c
 
 CMakeFiles/round5.dir/Round5/reference/src/misc.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/Round5/reference/src/misc.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/Round5/reference/src/misc.c > CMakeFiles/round5.dir/Round5/reference/src/misc.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/Round5/reference/src/misc.c > CMakeFiles/round5.dir/Round5/reference/src/misc.c.i
 
 CMakeFiles/round5.dir/Round5/reference/src/misc.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/Round5/reference/src/misc.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/Round5/reference/src/misc.c -o CMakeFiles/round5.dir/Round5/reference/src/misc.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/Round5/reference/src/misc.c -o CMakeFiles/round5.dir/Round5/reference/src/misc.c.s
 
 CMakeFiles/round5.dir/Round5/reference/src/misc.c.o.requires:
 
@@ -1091,16 +1091,16 @@ CMakeFiles/round5.dir/Round5/reference/src/misc.c.o.provides.build: CMakeFiles/r
 
 CMakeFiles/round5.dir/Round5/reference/src/nist_rng.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/Round5/reference/src/nist_rng.c.o: Round5/reference/src/nist_rng.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_44) "Building C object CMakeFiles/round5.dir/Round5/reference/src/nist_rng.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/Round5/reference/src/nist_rng.c.o   -c /home/gfleming/Post-Quantum-PKI/Round5/reference/src/nist_rng.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_44) "Building C object CMakeFiles/round5.dir/Round5/reference/src/nist_rng.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/Round5/reference/src/nist_rng.c.o   -c /home/rubensl/Post-Quantum-PKI/Round5/reference/src/nist_rng.c
 
 CMakeFiles/round5.dir/Round5/reference/src/nist_rng.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/Round5/reference/src/nist_rng.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/Round5/reference/src/nist_rng.c > CMakeFiles/round5.dir/Round5/reference/src/nist_rng.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/Round5/reference/src/nist_rng.c > CMakeFiles/round5.dir/Round5/reference/src/nist_rng.c.i
 
 CMakeFiles/round5.dir/Round5/reference/src/nist_rng.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/Round5/reference/src/nist_rng.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/Round5/reference/src/nist_rng.c -o CMakeFiles/round5.dir/Round5/reference/src/nist_rng.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/Round5/reference/src/nist_rng.c -o CMakeFiles/round5.dir/Round5/reference/src/nist_rng.c.s
 
 CMakeFiles/round5.dir/Round5/reference/src/nist_rng.c.o.requires:
 
@@ -1115,16 +1115,16 @@ CMakeFiles/round5.dir/Round5/reference/src/nist_rng.c.o.provides.build: CMakeFil
 
 CMakeFiles/round5.dir/Round5/reference/src/pack.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/Round5/reference/src/pack.c.o: Round5/reference/src/pack.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_45) "Building C object CMakeFiles/round5.dir/Round5/reference/src/pack.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/Round5/reference/src/pack.c.o   -c /home/gfleming/Post-Quantum-PKI/Round5/reference/src/pack.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_45) "Building C object CMakeFiles/round5.dir/Round5/reference/src/pack.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/Round5/reference/src/pack.c.o   -c /home/rubensl/Post-Quantum-PKI/Round5/reference/src/pack.c
 
 CMakeFiles/round5.dir/Round5/reference/src/pack.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/Round5/reference/src/pack.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/Round5/reference/src/pack.c > CMakeFiles/round5.dir/Round5/reference/src/pack.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/Round5/reference/src/pack.c > CMakeFiles/round5.dir/Round5/reference/src/pack.c.i
 
 CMakeFiles/round5.dir/Round5/reference/src/pack.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/Round5/reference/src/pack.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/Round5/reference/src/pack.c -o CMakeFiles/round5.dir/Round5/reference/src/pack.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/Round5/reference/src/pack.c -o CMakeFiles/round5.dir/Round5/reference/src/pack.c.s
 
 CMakeFiles/round5.dir/Round5/reference/src/pack.c.o.requires:
 
@@ -1139,16 +1139,16 @@ CMakeFiles/round5.dir/Round5/reference/src/pack.c.o.provides.build: CMakeFiles/r
 
 CMakeFiles/round5.dir/Round5/reference/src/parameters.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/Round5/reference/src/parameters.c.o: Round5/reference/src/parameters.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_46) "Building C object CMakeFiles/round5.dir/Round5/reference/src/parameters.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/Round5/reference/src/parameters.c.o   -c /home/gfleming/Post-Quantum-PKI/Round5/reference/src/parameters.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_46) "Building C object CMakeFiles/round5.dir/Round5/reference/src/parameters.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/Round5/reference/src/parameters.c.o   -c /home/rubensl/Post-Quantum-PKI/Round5/reference/src/parameters.c
 
 CMakeFiles/round5.dir/Round5/reference/src/parameters.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/Round5/reference/src/parameters.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/Round5/reference/src/parameters.c > CMakeFiles/round5.dir/Round5/reference/src/parameters.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/Round5/reference/src/parameters.c > CMakeFiles/round5.dir/Round5/reference/src/parameters.c.i
 
 CMakeFiles/round5.dir/Round5/reference/src/parameters.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/Round5/reference/src/parameters.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/Round5/reference/src/parameters.c -o CMakeFiles/round5.dir/Round5/reference/src/parameters.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/Round5/reference/src/parameters.c -o CMakeFiles/round5.dir/Round5/reference/src/parameters.c.s
 
 CMakeFiles/round5.dir/Round5/reference/src/parameters.c.o.requires:
 
@@ -1163,16 +1163,16 @@ CMakeFiles/round5.dir/Round5/reference/src/parameters.c.o.provides.build: CMakeF
 
 CMakeFiles/round5.dir/Round5/reference/src/r5_cca_kem.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/Round5/reference/src/r5_cca_kem.c.o: Round5/reference/src/r5_cca_kem.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_47) "Building C object CMakeFiles/round5.dir/Round5/reference/src/r5_cca_kem.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/Round5/reference/src/r5_cca_kem.c.o   -c /home/gfleming/Post-Quantum-PKI/Round5/reference/src/r5_cca_kem.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_47) "Building C object CMakeFiles/round5.dir/Round5/reference/src/r5_cca_kem.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/Round5/reference/src/r5_cca_kem.c.o   -c /home/rubensl/Post-Quantum-PKI/Round5/reference/src/r5_cca_kem.c
 
 CMakeFiles/round5.dir/Round5/reference/src/r5_cca_kem.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/Round5/reference/src/r5_cca_kem.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/Round5/reference/src/r5_cca_kem.c > CMakeFiles/round5.dir/Round5/reference/src/r5_cca_kem.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/Round5/reference/src/r5_cca_kem.c > CMakeFiles/round5.dir/Round5/reference/src/r5_cca_kem.c.i
 
 CMakeFiles/round5.dir/Round5/reference/src/r5_cca_kem.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/Round5/reference/src/r5_cca_kem.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/Round5/reference/src/r5_cca_kem.c -o CMakeFiles/round5.dir/Round5/reference/src/r5_cca_kem.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/Round5/reference/src/r5_cca_kem.c -o CMakeFiles/round5.dir/Round5/reference/src/r5_cca_kem.c.s
 
 CMakeFiles/round5.dir/Round5/reference/src/r5_cca_kem.c.o.requires:
 
@@ -1187,16 +1187,16 @@ CMakeFiles/round5.dir/Round5/reference/src/r5_cca_kem.c.o.provides.build: CMakeF
 
 CMakeFiles/round5.dir/Round5/reference/src/r5_cca_pke.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/Round5/reference/src/r5_cca_pke.c.o: Round5/reference/src/r5_cca_pke.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_48) "Building C object CMakeFiles/round5.dir/Round5/reference/src/r5_cca_pke.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/Round5/reference/src/r5_cca_pke.c.o   -c /home/gfleming/Post-Quantum-PKI/Round5/reference/src/r5_cca_pke.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_48) "Building C object CMakeFiles/round5.dir/Round5/reference/src/r5_cca_pke.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/Round5/reference/src/r5_cca_pke.c.o   -c /home/rubensl/Post-Quantum-PKI/Round5/reference/src/r5_cca_pke.c
 
 CMakeFiles/round5.dir/Round5/reference/src/r5_cca_pke.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/Round5/reference/src/r5_cca_pke.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/Round5/reference/src/r5_cca_pke.c > CMakeFiles/round5.dir/Round5/reference/src/r5_cca_pke.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/Round5/reference/src/r5_cca_pke.c > CMakeFiles/round5.dir/Round5/reference/src/r5_cca_pke.c.i
 
 CMakeFiles/round5.dir/Round5/reference/src/r5_cca_pke.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/Round5/reference/src/r5_cca_pke.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/Round5/reference/src/r5_cca_pke.c -o CMakeFiles/round5.dir/Round5/reference/src/r5_cca_pke.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/Round5/reference/src/r5_cca_pke.c -o CMakeFiles/round5.dir/Round5/reference/src/r5_cca_pke.c.s
 
 CMakeFiles/round5.dir/Round5/reference/src/r5_cca_pke.c.o.requires:
 
@@ -1211,16 +1211,16 @@ CMakeFiles/round5.dir/Round5/reference/src/r5_cca_pke.c.o.provides.build: CMakeF
 
 CMakeFiles/round5.dir/Round5/reference/src/r5_core.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/Round5/reference/src/r5_core.c.o: Round5/reference/src/r5_core.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_49) "Building C object CMakeFiles/round5.dir/Round5/reference/src/r5_core.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/Round5/reference/src/r5_core.c.o   -c /home/gfleming/Post-Quantum-PKI/Round5/reference/src/r5_core.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_49) "Building C object CMakeFiles/round5.dir/Round5/reference/src/r5_core.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/Round5/reference/src/r5_core.c.o   -c /home/rubensl/Post-Quantum-PKI/Round5/reference/src/r5_core.c
 
 CMakeFiles/round5.dir/Round5/reference/src/r5_core.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/Round5/reference/src/r5_core.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/Round5/reference/src/r5_core.c > CMakeFiles/round5.dir/Round5/reference/src/r5_core.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/Round5/reference/src/r5_core.c > CMakeFiles/round5.dir/Round5/reference/src/r5_core.c.i
 
 CMakeFiles/round5.dir/Round5/reference/src/r5_core.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/Round5/reference/src/r5_core.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/Round5/reference/src/r5_core.c -o CMakeFiles/round5.dir/Round5/reference/src/r5_core.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/Round5/reference/src/r5_core.c -o CMakeFiles/round5.dir/Round5/reference/src/r5_core.c.s
 
 CMakeFiles/round5.dir/Round5/reference/src/r5_core.c.o.requires:
 
@@ -1235,16 +1235,16 @@ CMakeFiles/round5.dir/Round5/reference/src/r5_core.c.o.provides.build: CMakeFile
 
 CMakeFiles/round5.dir/Round5/reference/src/r5_cpa_kem.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/Round5/reference/src/r5_cpa_kem.c.o: Round5/reference/src/r5_cpa_kem.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_50) "Building C object CMakeFiles/round5.dir/Round5/reference/src/r5_cpa_kem.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/Round5/reference/src/r5_cpa_kem.c.o   -c /home/gfleming/Post-Quantum-PKI/Round5/reference/src/r5_cpa_kem.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_50) "Building C object CMakeFiles/round5.dir/Round5/reference/src/r5_cpa_kem.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/Round5/reference/src/r5_cpa_kem.c.o   -c /home/rubensl/Post-Quantum-PKI/Round5/reference/src/r5_cpa_kem.c
 
 CMakeFiles/round5.dir/Round5/reference/src/r5_cpa_kem.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/Round5/reference/src/r5_cpa_kem.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/Round5/reference/src/r5_cpa_kem.c > CMakeFiles/round5.dir/Round5/reference/src/r5_cpa_kem.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/Round5/reference/src/r5_cpa_kem.c > CMakeFiles/round5.dir/Round5/reference/src/r5_cpa_kem.c.i
 
 CMakeFiles/round5.dir/Round5/reference/src/r5_cpa_kem.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/Round5/reference/src/r5_cpa_kem.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/Round5/reference/src/r5_cpa_kem.c -o CMakeFiles/round5.dir/Round5/reference/src/r5_cpa_kem.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/Round5/reference/src/r5_cpa_kem.c -o CMakeFiles/round5.dir/Round5/reference/src/r5_cpa_kem.c.s
 
 CMakeFiles/round5.dir/Round5/reference/src/r5_cpa_kem.c.o.requires:
 
@@ -1259,16 +1259,16 @@ CMakeFiles/round5.dir/Round5/reference/src/r5_cpa_kem.c.o.provides.build: CMakeF
 
 CMakeFiles/round5.dir/Round5/reference/src/r5_cpa_pke.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/Round5/reference/src/r5_cpa_pke.c.o: Round5/reference/src/r5_cpa_pke.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_51) "Building C object CMakeFiles/round5.dir/Round5/reference/src/r5_cpa_pke.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/Round5/reference/src/r5_cpa_pke.c.o   -c /home/gfleming/Post-Quantum-PKI/Round5/reference/src/r5_cpa_pke.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_51) "Building C object CMakeFiles/round5.dir/Round5/reference/src/r5_cpa_pke.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/Round5/reference/src/r5_cpa_pke.c.o   -c /home/rubensl/Post-Quantum-PKI/Round5/reference/src/r5_cpa_pke.c
 
 CMakeFiles/round5.dir/Round5/reference/src/r5_cpa_pke.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/Round5/reference/src/r5_cpa_pke.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/Round5/reference/src/r5_cpa_pke.c > CMakeFiles/round5.dir/Round5/reference/src/r5_cpa_pke.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/Round5/reference/src/r5_cpa_pke.c > CMakeFiles/round5.dir/Round5/reference/src/r5_cpa_pke.c.i
 
 CMakeFiles/round5.dir/Round5/reference/src/r5_cpa_pke.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/Round5/reference/src/r5_cpa_pke.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/Round5/reference/src/r5_cpa_pke.c -o CMakeFiles/round5.dir/Round5/reference/src/r5_cpa_pke.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/Round5/reference/src/r5_cpa_pke.c -o CMakeFiles/round5.dir/Round5/reference/src/r5_cpa_pke.c.s
 
 CMakeFiles/round5.dir/Round5/reference/src/r5_cpa_pke.c.o.requires:
 
@@ -1283,16 +1283,16 @@ CMakeFiles/round5.dir/Round5/reference/src/r5_cpa_pke.c.o.provides.build: CMakeF
 
 CMakeFiles/round5.dir/Round5/reference/src/r5_dem.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/Round5/reference/src/r5_dem.c.o: Round5/reference/src/r5_dem.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_52) "Building C object CMakeFiles/round5.dir/Round5/reference/src/r5_dem.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/Round5/reference/src/r5_dem.c.o   -c /home/gfleming/Post-Quantum-PKI/Round5/reference/src/r5_dem.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_52) "Building C object CMakeFiles/round5.dir/Round5/reference/src/r5_dem.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/Round5/reference/src/r5_dem.c.o   -c /home/rubensl/Post-Quantum-PKI/Round5/reference/src/r5_dem.c
 
 CMakeFiles/round5.dir/Round5/reference/src/r5_dem.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/Round5/reference/src/r5_dem.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/Round5/reference/src/r5_dem.c > CMakeFiles/round5.dir/Round5/reference/src/r5_dem.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/Round5/reference/src/r5_dem.c > CMakeFiles/round5.dir/Round5/reference/src/r5_dem.c.i
 
 CMakeFiles/round5.dir/Round5/reference/src/r5_dem.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/Round5/reference/src/r5_dem.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/Round5/reference/src/r5_dem.c -o CMakeFiles/round5.dir/Round5/reference/src/r5_dem.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/Round5/reference/src/r5_dem.c -o CMakeFiles/round5.dir/Round5/reference/src/r5_dem.c.s
 
 CMakeFiles/round5.dir/Round5/reference/src/r5_dem.c.o.requires:
 
@@ -1307,16 +1307,16 @@ CMakeFiles/round5.dir/Round5/reference/src/r5_dem.c.o.provides.build: CMakeFiles
 
 CMakeFiles/round5.dir/Round5/reference/src/r5_hash.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/Round5/reference/src/r5_hash.c.o: Round5/reference/src/r5_hash.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_53) "Building C object CMakeFiles/round5.dir/Round5/reference/src/r5_hash.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/Round5/reference/src/r5_hash.c.o   -c /home/gfleming/Post-Quantum-PKI/Round5/reference/src/r5_hash.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_53) "Building C object CMakeFiles/round5.dir/Round5/reference/src/r5_hash.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/Round5/reference/src/r5_hash.c.o   -c /home/rubensl/Post-Quantum-PKI/Round5/reference/src/r5_hash.c
 
 CMakeFiles/round5.dir/Round5/reference/src/r5_hash.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/Round5/reference/src/r5_hash.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/Round5/reference/src/r5_hash.c > CMakeFiles/round5.dir/Round5/reference/src/r5_hash.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/Round5/reference/src/r5_hash.c > CMakeFiles/round5.dir/Round5/reference/src/r5_hash.c.i
 
 CMakeFiles/round5.dir/Round5/reference/src/r5_hash.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/Round5/reference/src/r5_hash.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/Round5/reference/src/r5_hash.c -o CMakeFiles/round5.dir/Round5/reference/src/r5_hash.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/Round5/reference/src/r5_hash.c -o CMakeFiles/round5.dir/Round5/reference/src/r5_hash.c.s
 
 CMakeFiles/round5.dir/Round5/reference/src/r5_hash.c.o.requires:
 
@@ -1331,16 +1331,16 @@ CMakeFiles/round5.dir/Round5/reference/src/r5_hash.c.o.provides.build: CMakeFile
 
 CMakeFiles/round5.dir/Round5/reference/src/r5_memory.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/Round5/reference/src/r5_memory.c.o: Round5/reference/src/r5_memory.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_54) "Building C object CMakeFiles/round5.dir/Round5/reference/src/r5_memory.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/Round5/reference/src/r5_memory.c.o   -c /home/gfleming/Post-Quantum-PKI/Round5/reference/src/r5_memory.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_54) "Building C object CMakeFiles/round5.dir/Round5/reference/src/r5_memory.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/Round5/reference/src/r5_memory.c.o   -c /home/rubensl/Post-Quantum-PKI/Round5/reference/src/r5_memory.c
 
 CMakeFiles/round5.dir/Round5/reference/src/r5_memory.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/Round5/reference/src/r5_memory.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/Round5/reference/src/r5_memory.c > CMakeFiles/round5.dir/Round5/reference/src/r5_memory.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/Round5/reference/src/r5_memory.c > CMakeFiles/round5.dir/Round5/reference/src/r5_memory.c.i
 
 CMakeFiles/round5.dir/Round5/reference/src/r5_memory.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/Round5/reference/src/r5_memory.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/Round5/reference/src/r5_memory.c -o CMakeFiles/round5.dir/Round5/reference/src/r5_memory.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/Round5/reference/src/r5_memory.c -o CMakeFiles/round5.dir/Round5/reference/src/r5_memory.c.s
 
 CMakeFiles/round5.dir/Round5/reference/src/r5_memory.c.o.requires:
 
@@ -1355,16 +1355,16 @@ CMakeFiles/round5.dir/Round5/reference/src/r5_memory.c.o.provides.build: CMakeFi
 
 CMakeFiles/round5.dir/Round5/reference/src/r5_parameter_sets.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/Round5/reference/src/r5_parameter_sets.c.o: Round5/reference/src/r5_parameter_sets.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_55) "Building C object CMakeFiles/round5.dir/Round5/reference/src/r5_parameter_sets.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/Round5/reference/src/r5_parameter_sets.c.o   -c /home/gfleming/Post-Quantum-PKI/Round5/reference/src/r5_parameter_sets.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_55) "Building C object CMakeFiles/round5.dir/Round5/reference/src/r5_parameter_sets.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/Round5/reference/src/r5_parameter_sets.c.o   -c /home/rubensl/Post-Quantum-PKI/Round5/reference/src/r5_parameter_sets.c
 
 CMakeFiles/round5.dir/Round5/reference/src/r5_parameter_sets.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/Round5/reference/src/r5_parameter_sets.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/Round5/reference/src/r5_parameter_sets.c > CMakeFiles/round5.dir/Round5/reference/src/r5_parameter_sets.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/Round5/reference/src/r5_parameter_sets.c > CMakeFiles/round5.dir/Round5/reference/src/r5_parameter_sets.c.i
 
 CMakeFiles/round5.dir/Round5/reference/src/r5_parameter_sets.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/Round5/reference/src/r5_parameter_sets.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/Round5/reference/src/r5_parameter_sets.c -o CMakeFiles/round5.dir/Round5/reference/src/r5_parameter_sets.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/Round5/reference/src/r5_parameter_sets.c -o CMakeFiles/round5.dir/Round5/reference/src/r5_parameter_sets.c.s
 
 CMakeFiles/round5.dir/Round5/reference/src/r5_parameter_sets.c.o.requires:
 
@@ -1379,16 +1379,16 @@ CMakeFiles/round5.dir/Round5/reference/src/r5_parameter_sets.c.o.provides.build:
 
 CMakeFiles/round5.dir/Round5/reference/src/shake.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/Round5/reference/src/shake.c.o: Round5/reference/src/shake.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_56) "Building C object CMakeFiles/round5.dir/Round5/reference/src/shake.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/Round5/reference/src/shake.c.o   -c /home/gfleming/Post-Quantum-PKI/Round5/reference/src/shake.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_56) "Building C object CMakeFiles/round5.dir/Round5/reference/src/shake.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/Round5/reference/src/shake.c.o   -c /home/rubensl/Post-Quantum-PKI/Round5/reference/src/shake.c
 
 CMakeFiles/round5.dir/Round5/reference/src/shake.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/Round5/reference/src/shake.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/Round5/reference/src/shake.c > CMakeFiles/round5.dir/Round5/reference/src/shake.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/Round5/reference/src/shake.c > CMakeFiles/round5.dir/Round5/reference/src/shake.c.i
 
 CMakeFiles/round5.dir/Round5/reference/src/shake.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/Round5/reference/src/shake.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/Round5/reference/src/shake.c -o CMakeFiles/round5.dir/Round5/reference/src/shake.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/Round5/reference/src/shake.c -o CMakeFiles/round5.dir/Round5/reference/src/shake.c.s
 
 CMakeFiles/round5.dir/Round5/reference/src/shake.c.o.requires:
 
@@ -1403,16 +1403,16 @@ CMakeFiles/round5.dir/Round5/reference/src/shake.c.o.provides.build: CMakeFiles/
 
 CMakeFiles/round5.dir/Round5/reference/src/xef_ref.c.o: CMakeFiles/round5.dir/flags.make
 CMakeFiles/round5.dir/Round5/reference/src/xef_ref.c.o: Round5/reference/src/xef_ref.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_57) "Building C object CMakeFiles/round5.dir/Round5/reference/src/xef_ref.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/Round5/reference/src/xef_ref.c.o   -c /home/gfleming/Post-Quantum-PKI/Round5/reference/src/xef_ref.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_57) "Building C object CMakeFiles/round5.dir/Round5/reference/src/xef_ref.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/round5.dir/Round5/reference/src/xef_ref.c.o   -c /home/rubensl/Post-Quantum-PKI/Round5/reference/src/xef_ref.c
 
 CMakeFiles/round5.dir/Round5/reference/src/xef_ref.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/round5.dir/Round5/reference/src/xef_ref.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gfleming/Post-Quantum-PKI/Round5/reference/src/xef_ref.c > CMakeFiles/round5.dir/Round5/reference/src/xef_ref.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rubensl/Post-Quantum-PKI/Round5/reference/src/xef_ref.c > CMakeFiles/round5.dir/Round5/reference/src/xef_ref.c.i
 
 CMakeFiles/round5.dir/Round5/reference/src/xef_ref.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/round5.dir/Round5/reference/src/xef_ref.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gfleming/Post-Quantum-PKI/Round5/reference/src/xef_ref.c -o CMakeFiles/round5.dir/Round5/reference/src/xef_ref.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rubensl/Post-Quantum-PKI/Round5/reference/src/xef_ref.c -o CMakeFiles/round5.dir/Round5/reference/src/xef_ref.c.s
 
 CMakeFiles/round5.dir/Round5/reference/src/xef_ref.c.o.requires:
 
@@ -1547,7 +1547,7 @@ libround5.a: CMakeFiles/round5.dir/Round5/reference/src/shake.c.o
 libround5.a: CMakeFiles/round5.dir/Round5/reference/src/xef_ref.c.o
 libround5.a: CMakeFiles/round5.dir/build.make
 libround5.a: CMakeFiles/round5.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/gfleming/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_58) "Linking C static library libround5.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/rubensl/Post-Quantum-PKI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_58) "Linking C static library libround5.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/round5.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/round5.dir/link.txt --verbose=$(VERBOSE)
 
@@ -1621,6 +1621,6 @@ CMakeFiles/round5.dir/clean:
 .PHONY : CMakeFiles/round5.dir/clean
 
 CMakeFiles/round5.dir/depend:
-	cd /home/gfleming/Post-Quantum-PKI && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/gfleming/Post-Quantum-PKI /home/gfleming/Post-Quantum-PKI /home/gfleming/Post-Quantum-PKI /home/gfleming/Post-Quantum-PKI /home/gfleming/Post-Quantum-PKI/CMakeFiles/round5.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/rubensl/Post-Quantum-PKI && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/rubensl/Post-Quantum-PKI /home/rubensl/Post-Quantum-PKI /home/rubensl/Post-Quantum-PKI /home/rubensl/Post-Quantum-PKI /home/rubensl/Post-Quantum-PKI/CMakeFiles/round5.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/round5.dir/depend
 

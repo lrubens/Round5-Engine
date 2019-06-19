@@ -75,26 +75,23 @@ set(ROUND5_SOURCE_FILES
     ${ROUND5_CORE}
 )
 
+file(GLOB METHS meths/*.c)
+
 set(METHODS_SOURCE_FILES
-    meths/round5_meth.c
-    # meths/round5_meth.h
-    meths/asn1_meth.c
-    # meths/asn1_meth.h
-    meths/dilithium_meth.c
-    # meths/dilithium_meth.h
+    ${METHS}
 )
 
 set(OSSL_SOURCE_FILES
     ossl/objects.c
-    # ossl/objects.h
-    # ossl/objects_internal.h
+    ossl/objects.h
+    ossl/objects_internal.h
     ossl/ossl_compat.c
-    # ossl/ossl_compat.h
+    ossl/ossl_compat.h
 )
 
 set(UTIL_SOURCE_FILES
     keypair.c
-    # keypair.h
+    keypair.h
 )
 
 file(GLOB ENGINE_SOURCE round5_engine.c)

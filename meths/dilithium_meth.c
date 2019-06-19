@@ -218,14 +218,12 @@ int dilithium_ctrl(EVP_PKEY_CTX *ctx, int type, int p1, void *p2){
     int md_nid = NID_undef;
     struct MD_DATA *md = NULL;
     md = (struct MD_DATA *)EVP_PKEY_CTX_get_data(ctx);
-    
-    pd(type);
-    pd(p1);
+    // pd(type);
+    // pd(p1);
     switch(type){
         case EVP_PKEY_CTRL_MD:
             ps("EVP_PKEY_CTRL_MD");
             md->md = (EVP_MD *)p2;
-            
             return 1;
         case EVP_PKEY_CTRL_GET_MD:
             ps("EVP_PKEY_CTRL_GET_MD");
@@ -233,9 +231,6 @@ int dilithium_ctrl(EVP_PKEY_CTX *ctx, int type, int p1, void *p2){
             return 1;
         case EVP_PKEY_CTRL_DIGESTINIT:
             ps("EVP_PKEY_CTRL_DIGESTINIT");
-            p2 = md->md;
-            md_nid = EVP_MD_type((const EVP_MD *)p2);
-            pd(md_nid);
             return 1;
         case EVP_PKEY_CTRL_PKCS7_SIGN:
             ps("hello");
@@ -315,8 +310,8 @@ int dilithium_ctrl(EVP_PKEY_CTX *ctx, int type, int p1, void *p2){
 // }
 
 int dilithium_sign_ctx(EVP_PKEY_CTX *ctx, unsigned char *sig, size_t *siglen, EVP_MD_CTX *md){
-    ps("dilithium_sign_ctx");
-    struct MD_DATA *data = EVP_PKEY_CTX_get_data(ctx);
+    ps("dilithium_sign_ctxefwefwefwefewefwef");
+    struct MD_DATA *data = (struct MD_DATA *)EVP_PKEY_CTX_get_data(ctx);
     EVP_MD_meth_get_ctrl(EVP_MD_CTX_md(ctx))
         (md, 32, 32, NULL);
     int ret = EVP_DigestFinal_ex(md, sig, siglen);
@@ -325,7 +320,7 @@ int dilithium_sign_ctx(EVP_PKEY_CTX *ctx, unsigned char *sig, size_t *siglen, EV
 
 int dilithium_sign_ctx_init(EVP_PKEY_CTX *ctx, EVP_MD_CTX *md){
     ps("dilithium_sign_ctx_init");
-    struct MD_DATA *data = EVP_PKEY_CTX_get_data(ctx);
+    struct MD_DATA *data = (struct MD_DATA *)EVP_PKEY_CTX_get_data(ctx);
     if(!data){
         ps("!data");
     }

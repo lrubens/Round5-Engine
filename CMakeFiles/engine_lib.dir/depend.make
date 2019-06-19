@@ -30,6 +30,15 @@ CMakeFiles/engine_lib.dir/meths/dilithium_meth.c.o: keypair.h
 CMakeFiles/engine_lib.dir/meths/dilithium_meth.c.o: meths/dilithium_meth.c
 CMakeFiles/engine_lib.dir/meths/dilithium_meth.c.o: meths/dilithium_meth.h
 CMakeFiles/engine_lib.dir/meths/dilithium_meth.c.o: ossl/objects.h
+CMakeFiles/engine_lib.dir/meths/dilithium_meth.c.o: /home/rubensl/dilithium/ref/config.h
+CMakeFiles/engine_lib.dir/meths/dilithium_meth.c.o: /home/rubensl/dilithium/ref/packing.h
+CMakeFiles/engine_lib.dir/meths/dilithium_meth.c.o: /home/rubensl/dilithium/ref/params.h
+CMakeFiles/engine_lib.dir/meths/dilithium_meth.c.o: /home/rubensl/dilithium/ref/poly.h
+CMakeFiles/engine_lib.dir/meths/dilithium_meth.c.o: /home/rubensl/dilithium/ref/polyvec.h
+CMakeFiles/engine_lib.dir/meths/dilithium_meth.c.o: /home/rubensl/dilithium/ref/randombytes.h
+CMakeFiles/engine_lib.dir/meths/dilithium_meth.c.o: /home/rubensl/dilithium/ref/sign.h
+CMakeFiles/engine_lib.dir/meths/dilithium_meth.c.o: /home/rubensl/dilithium/ref/test/cpucycles.h
+CMakeFiles/engine_lib.dir/meths/dilithium_meth.c.o: /home/rubensl/dilithium/ref/test/speed.h
 CMakeFiles/engine_lib.dir/meths/dilithium_meth.c.o: XKCP/bin/generic64/libkeccak.a.headers/KeccakHash.h
 CMakeFiles/engine_lib.dir/meths/dilithium_meth.c.o: XKCP/bin/generic64/libkeccak.a.headers/KeccakP-1600-SnP.h
 CMakeFiles/engine_lib.dir/meths/dilithium_meth.c.o: XKCP/bin/generic64/libkeccak.a.headers/KeccakP-1600-opt64-config.h
@@ -37,15 +46,13 @@ CMakeFiles/engine_lib.dir/meths/dilithium_meth.c.o: XKCP/bin/generic64/libkeccak
 CMakeFiles/engine_lib.dir/meths/dilithium_meth.c.o: XKCP/bin/generic64/libkeccak.a.headers/KeccakSpongeWidth1600.h
 CMakeFiles/engine_lib.dir/meths/dilithium_meth.c.o: XKCP/bin/generic64/libkeccak.a.headers/align.h
 CMakeFiles/engine_lib.dir/meths/dilithium_meth.c.o: XKCP/bin/generic64/libkeccak.a.headers/brg_endian.h
-CMakeFiles/engine_lib.dir/meths/dilithium_meth.c.o: dilithium/ref/config.h
-CMakeFiles/engine_lib.dir/meths/dilithium_meth.c.o: dilithium/ref/packing.h
-CMakeFiles/engine_lib.dir/meths/dilithium_meth.c.o: dilithium/ref/params.h
-CMakeFiles/engine_lib.dir/meths/dilithium_meth.c.o: dilithium/ref/poly.h
-CMakeFiles/engine_lib.dir/meths/dilithium_meth.c.o: dilithium/ref/polyvec.h
-CMakeFiles/engine_lib.dir/meths/dilithium_meth.c.o: dilithium/ref/randombytes.h
-CMakeFiles/engine_lib.dir/meths/dilithium_meth.c.o: dilithium/ref/sign.h
-CMakeFiles/engine_lib.dir/meths/dilithium_meth.c.o: dilithium/ref/test/cpucycles.h
-CMakeFiles/engine_lib.dir/meths/dilithium_meth.c.o: dilithium/ref/test/speed.h
+
+CMakeFiles/engine_lib.dir/meths/round5_md.c.o: Round5/reference/src/parameters.h
+CMakeFiles/engine_lib.dir/meths/round5_md.c.o: Round5/reference/src/r5_parameter_sets.h
+CMakeFiles/engine_lib.dir/meths/round5_md.c.o: keypair.h
+CMakeFiles/engine_lib.dir/meths/round5_md.c.o: meths/round5_md.c
+CMakeFiles/engine_lib.dir/meths/round5_md.c.o: meths/round5_md.h
+CMakeFiles/engine_lib.dir/meths/round5_md.c.o: ossl/objects.h
 
 CMakeFiles/engine_lib.dir/meths/round5_meth.c.o: Round5/reference/src/parameters.h
 CMakeFiles/engine_lib.dir/meths/round5_meth.c.o: keypair.h

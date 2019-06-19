@@ -23,6 +23,13 @@
 	    } \
         })
 
+#define TE(e) ({ if (!(e)) { \
+		ERR_print_errors_fp(stderr); \
+		fprintf(stderr, "Error at %s:%d %s\n", __FILE__, __LINE__, #e); \
+		return -1; \
+	    } \
+        })
+
 
 struct certKey{
   X509 *cert;
@@ -262,14 +269,31 @@ int main(int argc, const char* argv[]){
   ENGINE *round5_engine;
 	T(round5_engine = ENGINE_by_id("round5"));
 	T(ENGINE_init(round5_engine));
-  // T(ENGINE_set_default(round5_engine, ENGINE_METHOD_ALL));
-  ENGINE_set_default_pkey_asn1_meths(round5_engine);
-  ENGINE_set_default_pkey_meths(round5_engine);
+  T(ENGINE_set_default(round5_engine, ENGINE_METHOD_ALL));
+  // ENGINE_set_default_pkey_asn1_meths(round5_engine);
+  // ENGINE_set_default_pkey_meths(round5_engine);
 
   
   struct certKey *c = gen_cert();
   EVP_PKEY *pkey = test_dilithium();
-  EVP_PKEY_ASN1_METHOD *pk_ameth = EVP_PKEY_get0_asn1(pkey);
+
+  // EVP_MD_CTX *cx = EVP_MD_CTX_create();
+  // const EVP_MD *keccak = EVP_get_digestbynid(NID_KECCAK);
+  // if (!keccak){
+  //   ps(keccak);
+  //   exit(0);
+  // }
+  // EVP_DigestInit(cx, keccak);
+  // const char *msg = "hello world";
+  // ps(msg);
+  // unsigned char md[256];
+  // unsigned int md_len = 256;
+  // size_t msg_len = strlen(msg);
+  // EVP_DigestUpdate(cx, msg, msg_len);
+  // EVP_DigestFinal(cx, md, &md_len);
+  // ps(md);
+
+  const EVP_PKEY_ASN1_METHOD *pk_ameth = EVP_PKEY_get0_asn1(pkey);
   int *ppkey_id = NULL;
   ppkey_id = malloc(sizeof(*ppkey_id));
   int *ppkey_base_id = NULL;
@@ -304,15 +328,15 @@ int main(int argc, const char* argv[]){
   // }
   // EVP_PKEY_assign_RSA(pkey, rsa);
   
-  EVP_MD_CTX *mctx;
-  T(mctx = EVP_MD_CTX_new());
-  EVP_PKEY_CTX *pkctx = NULL;
-  EVP_MD_CTX_init(mctx);
-  T(EVP_DigestSignInit(mctx, &pkctx, NULL, NULL, pkey));
-  T(X509_sign_ctx(c->cert, mctx));
-  EVP_MD_CTX_free(mctx);
+  // EVP_MD_CTX *mctx;
+  // T(mctx = EVP_MD_CTX_new());
+  // EVP_PKEY_CTX *pkctx = NULL;
+  // EVP_MD_CTX_init(mctx);
+  // T(EVP_DigestSignInit(mctx, NULL, NULL, NULL, pkey));
+  // T(X509_sign_ctx(c->cert, mctx));
+  // EVP_MD_CTX_free(mctx);
 
-  // T(X509_sign(c->cert, pkey, EVP_sha256()));
+  TE(X509_sign(c->cert, pkey, EVP_sha256()));
   // printf("\nreturn: %d\n", ret);
   X509_print_fp(stdout, c->cert);
 

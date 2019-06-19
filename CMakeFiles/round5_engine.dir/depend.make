@@ -30,6 +30,15 @@ CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.o: keypair.h
 CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.o: meths/dilithium_meth.c
 CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.o: meths/dilithium_meth.h
 CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.o: ossl/objects.h
+CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.o: /home/rubensl/dilithium/ref/config.h
+CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.o: /home/rubensl/dilithium/ref/packing.h
+CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.o: /home/rubensl/dilithium/ref/params.h
+CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.o: /home/rubensl/dilithium/ref/poly.h
+CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.o: /home/rubensl/dilithium/ref/polyvec.h
+CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.o: /home/rubensl/dilithium/ref/randombytes.h
+CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.o: /home/rubensl/dilithium/ref/sign.h
+CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.o: /home/rubensl/dilithium/ref/test/cpucycles.h
+CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.o: /home/rubensl/dilithium/ref/test/speed.h
 CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.o: XKCP/bin/generic64/libkeccak.a.headers/KeccakHash.h
 CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.o: XKCP/bin/generic64/libkeccak.a.headers/KeccakP-1600-SnP.h
 CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.o: XKCP/bin/generic64/libkeccak.a.headers/KeccakP-1600-opt64-config.h
@@ -37,15 +46,13 @@ CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.o: XKCP/bin/generic64/libkec
 CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.o: XKCP/bin/generic64/libkeccak.a.headers/KeccakSpongeWidth1600.h
 CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.o: XKCP/bin/generic64/libkeccak.a.headers/align.h
 CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.o: XKCP/bin/generic64/libkeccak.a.headers/brg_endian.h
-CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.o: dilithium/ref/config.h
-CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.o: dilithium/ref/packing.h
-CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.o: dilithium/ref/params.h
-CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.o: dilithium/ref/poly.h
-CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.o: dilithium/ref/polyvec.h
-CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.o: dilithium/ref/randombytes.h
-CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.o: dilithium/ref/sign.h
-CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.o: dilithium/ref/test/cpucycles.h
-CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.o: dilithium/ref/test/speed.h
+
+CMakeFiles/round5_engine.dir/meths/round5_md.c.o: Round5/reference/src/parameters.h
+CMakeFiles/round5_engine.dir/meths/round5_md.c.o: Round5/reference/src/r5_parameter_sets.h
+CMakeFiles/round5_engine.dir/meths/round5_md.c.o: keypair.h
+CMakeFiles/round5_engine.dir/meths/round5_md.c.o: meths/round5_md.c
+CMakeFiles/round5_engine.dir/meths/round5_md.c.o: meths/round5_md.h
+CMakeFiles/round5_engine.dir/meths/round5_md.c.o: ossl/objects.h
 
 CMakeFiles/round5_engine.dir/meths/round5_meth.c.o: Round5/reference/src/parameters.h
 CMakeFiles/round5_engine.dir/meths/round5_meth.c.o: keypair.h
@@ -69,8 +76,12 @@ CMakeFiles/round5_engine.dir/ossl/objects.c.o: ossl/objects_internal.h
 CMakeFiles/round5_engine.dir/ossl/ossl_compat.c.o: ossl/ossl_compat.c
 CMakeFiles/round5_engine.dir/ossl/ossl_compat.c.o: ossl/ossl_compat.h
 
+CMakeFiles/round5_engine.dir/round5_engine.c.o: Round5/reference/src/parameters.h
+CMakeFiles/round5_engine.dir/round5_engine.c.o: Round5/reference/src/r5_parameter_sets.h
+CMakeFiles/round5_engine.dir/round5_engine.c.o: keypair.h
 CMakeFiles/round5_engine.dir/round5_engine.c.o: meths/asn1_meth.h
 CMakeFiles/round5_engine.dir/round5_engine.c.o: meths/dilithium_meth.h
+CMakeFiles/round5_engine.dir/round5_engine.c.o: meths/round5_md.h
 CMakeFiles/round5_engine.dir/round5_engine.c.o: meths/round5_meth.h
 CMakeFiles/round5_engine.dir/round5_engine.c.o: ossl/objects.h
 CMakeFiles/round5_engine.dir/round5_engine.c.o: ossl/ossl_compat.h

@@ -366,6 +366,27 @@ static int pki_pub_cmp(const EVP_PKEY *a, const EVP_PKEY *b){
     return 1;
 }
 
+static int dilithium_item_sign(EVP_MD_CTX *ctx, const ASN1_ITEM *it, void *asn, X509_ALGOR *alg1, X509_ALGOR *alg2, ASN1_BIT_STRING *str){
+    X509_ALGOR_set0(alg1, OBJ_nid2obj(NID_DILITHIUM), V_ASN1_UNDEF, NULL);
+    if(alg2){
+        X509_ALGOR_set0(alg2, OBJ_nid2obj(NID_DILITHIUM), V_ASN1_UNDEF, NULL);
+    }
+    return 1;
+}
+
+static int dilithium_item_verify(EVP_MD_CTX *ctx, const ASN1_ITEM *it, void *asn, X509_ALGOR *sigalg, ASN1_BIT_STRING *str, EVP_PKEY *pkey){
+    const ASN1_OBJECT *obj;
+    int ptype;
+    X509_ALGOR_get0(&obj, &ptype, NULL, sigalg);
+    if(OBJ_obj2nid(obj) != NID_DILITHIUM || ptype != V_ASN1_UNDEF){
+        ps("Error");
+        return 0;
+    }
+    if(!EVP_DigestVerifyInit(ctx, NULL, NULL, NULL, pkey)){
+        return 0;
+    }
+    return 1;
+}
 int _register_asn1_meth(int nid, EVP_PKEY_ASN1_METHOD **ameth, const char *pem_str, const char *info){
     *ameth = EVP_PKEY_asn1_new(nid, ASN1_PKEY_SIGPARAM_NULL, pem_str, info);
     if (!*ameth)
@@ -379,6 +400,7 @@ int _register_asn1_meth(int nid, EVP_PKEY_ASN1_METHOD **ameth, const char *pem_s
         EVP_PKEY_asn1_set_public(*ameth, pki_gen_pub_decode, pki_gen_pub_encode, pki_pub_cmp, pki_gen_pub_print, NULL, pki_curve25519_bits);
         EVP_PKEY_asn1_set_private(*ameth, pki_gen_priv_decode, pki_gen_priv_encode, pki_gen_priv_print);
         EVP_PKEY_asn1_set_ctrl(*ameth, pki_gen_ctrl);
+        EVP_PKEY_asn1_set_item(*ameth, dilithium_item_verify, dilithium_item_sign);
     }
     EVP_PKEY_asn1_set_param(*ameth, 0, 0, 0, 0, pki_pub_cmp, 0);
 #ifndef OPENSSL_V102_COMPAT

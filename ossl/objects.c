@@ -12,14 +12,14 @@ int NID_DILITHIUM;
 
 static int _register_nid(const char *oid_str, const char *sn, const char *ln) {
     int new_nid = NID_undef;
-
     if (NID_undef != (new_nid = OBJ_sn2nid(sn)) ) {
         printf("%s is already registered with NID %d\n", sn, new_nid);
         return new_nid;
     }
 
     new_nid = OBJ_create(oid_str, sn, ln);
-
+    // if (sn == "Keccak")
+    //     printf("\nsn: %d\n", new_nid);
     if (new_nid == NID_undef) {
         printf("Failed to register NID for %s\n", ln);
         return 0;
@@ -49,7 +49,7 @@ int _register_nids()
     _REGISTER_NID(DILITHIUM);
 
     
-    // _REGISTER_NID(KECCAK);
+    _REGISTER_NID(KECCAK);
 
 //    SUOLA_REGISTER_NID(ED25519);
 

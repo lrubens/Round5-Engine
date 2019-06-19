@@ -1,7 +1,8 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/engine_lib.dir/meths/round5_meth.c.o"
   "CMakeFiles/engine_lib.dir/meths/asn1_meth.c.o"
   "CMakeFiles/engine_lib.dir/meths/dilithium_meth.c.o"
+  "CMakeFiles/engine_lib.dir/meths/round5_md.c.o"
+  "CMakeFiles/engine_lib.dir/meths/round5_meth.c.o"
   "CMakeFiles/engine_lib.dir/ossl/objects.c.o"
   "CMakeFiles/engine_lib.dir/ossl/ossl_compat.c.o"
   "CMakeFiles/engine_lib.dir/keypair.c.o"

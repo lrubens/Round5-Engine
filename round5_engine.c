@@ -3,6 +3,7 @@
 //
 
 #include <string.h>
+#include "keypair.h"
 #include <openssl/engine.h>
 #include <openssl/obj_mac.h>
 #include "ossl/ossl_compat.h"
@@ -10,6 +11,7 @@
 #include "meths/asn1_meth.h"
 #include "ossl/objects.h"
 #include "meths/dilithium_meth.h"
+#include "meths/round5_md.h"
 // #include "meths/dilithium_meth.h"
 #ifndef ENGINE_ID
 #define ENGINE_ID "round5"
@@ -40,7 +42,7 @@
 static const char *engine_id = ENGINE_ID;
 static const char *engine_name = ENGINE_NAME;
 
-static int digest(ENGINE *e, const EVP_MD **digest, const int **nids, int nid);
+static int setup_digest(ENGINE *e, const EVP_MD **digest, const int **nids, int nid);
 static int register_methods();
 static int pkey_asn1_meths(ENGINE *e, EVP_PKEY_ASN1_METHOD **ameth, const int **nids, int nid);
 static int pkey_meths(ENGINE *e, EVP_PKEY_METHOD **pmeth, const int **nids, int nid);
@@ -67,7 +69,7 @@ static void pkey_meth_nids_init(){
 static EVP_PKEY_METHOD *pmeth_round5 = NULL;
 static EVP_PKEY_METHOD *pmeth_dilithium = NULL;
 
-// static EVP_MD *md_obj = NULL;
+static EVP_MD *md_obj = NULL;
 
 static int register_ameth(int id, EVP_PKEY_ASN1_METHOD **ameth, int flags);
 
@@ -84,6 +86,8 @@ static void pkey_asn1_meth_nids_init(){
 
 static EVP_PKEY_ASN1_METHOD *ameth_round5 = NULL;
 static EVP_PKEY_ASN1_METHOD *ameth_dilithium = NULL;
+static EVP_PKEY_ASN1_METHOD *ameth_keccak = NULL;
+
 
 static int e_init(ENGINE *e){
     // OBJ_cleanup();
@@ -100,24 +104,23 @@ static int e_finish(ENGINE *e){
     return 1;
 }
 
-// static int digest(ENGINE *e, const EVP_MD **d, const int **nids, int nid){
-//     if(!d){
-//         // printf("\nerror in digest method, d is null\n");
-//         *nids = md_meth_nids;
-//         return sizeof_static_array(md_meth_nids) - 1; 
-//     }
-//     if(nid == NID_KECCAK){
-//         *d = keccak_digest();
-//         // printf("\ndigest method success\n");
-//         return 1;
-//     }
-//     EVP_MD_meth_free(*d);
-//     EVP_MD_meth_free(d);
-//     // *d = NULL;
-//     // printf("\nerror in digest method\n");
+static int setup_digest(ENGINE *e, const EVP_MD **d, const int **nids, int nid){
+    if(!md_obj){
+        // printf("\nerror in digest method, d is null\n");
+        *nids = md_meth_nids;
+        return sizeof_static_array(md_meth_nids) - 1; 
+    }
+    if(nid == NID_KECCAK){
+        ps("uihiu");
+        md_obj = digest();
+        // printf("\ndigest method success\n");
+        return 1;
+    }
+    // *d = NULL;
+    // printf("\nerror in digest method\n");
     
-//     return 0;
-// }
+    return 0;
+}
 
 static int bind(ENGINE *e, const char *id){
     int ret = 0;
@@ -178,15 +181,17 @@ static int bind(ENGINE *e, const char *id){
     //     printf("failed\n");
     //     goto end;
     // }
-    // if (!ENGINE_set_digests(e, digest)){
-    //     printf("ENGINE_set_digests failed\n");
-    //     goto end;
-    // }
-    // else{
-    //     if(md_obj){
-    //         printf("\nnot null\n");
-    //     }
-    // }
+    if (!ENGINE_set_digests(e, setup_digest)){
+        if (!md_obj)
+            ps(md_obj);
+        printf("ENGINE_set_digests failed\n");
+        goto end;
+    }
+    else{
+        if(md_obj){
+            printf("\nnot null\n");
+        }
+    }
     
     // ENGINE_register_all_complete();
 //    if (suola_implementation_init() != 0) {       // TODO: figure this out
@@ -263,6 +268,7 @@ static int register_ameth(int id, EVP_PKEY_ASN1_METHOD **ameth, int flags){
         return 0;
     pem_str = OBJ_nid2sn(id);
     info = OBJ_nid2ln(id);
+    // ps(pem_str);
     return _register_asn1_meth(id, ameth, pem_str, info);
 }
 
@@ -286,33 +292,33 @@ static int register_ameth(int id, EVP_PKEY_ASN1_METHOD **ameth, int flags){
 //     return 1;
 // }
 
-// static int register_md(int md_id, int pkey_type, EVP_MD **md, int flags)
-// {
-//     int ret = 0;
-//     // printf("registering md method for '%s' with md_id=%d, pkey_type=%d, flags=%08x\n",
-//             // OBJ_nid2ln(md_id), md_id, pkey_type, flags);
+static int register_md(int md_id, int pkey_type, EVP_MD **md, int flags)
+{
+    int ret = 0;
+    // printf("registering md method for '%s' with md_id=%d, pkey_type=%d, flags=%08x\n",
+            // OBJ_nid2ln(md_id), md_id, pkey_type, flags);
 
-//     *md = EVP_MD_meth_new(md_id, pkey_type);
+    *md = EVP_MD_meth_new(md_id, pkey_type);
 
-//     if (*md == NULL)
-//         return 0;
-//     //printf("\nmd is not null\n");
-//     if ( md_id == NID_KECCAK ) {
-//         register_md_identity(*md);
-//         // printf("\nmd: %s\n", OBJ_nid2ln(NID_KECCAK));
-//         ret = 1;
-//     }
+    if (*md == NULL)
+        return 0;
+    //printf("\nmd is not null\n");
+    if ( md_id == NID_KECCAK ) {
+        md_obj = digest();
+        // printf("\nmd: %s\n", OBJ_nid2ln(NID_KECCAK));
+        ret = 1;
+    }
 
-//     if (ret == 1) {
-//         //printf("\n\n\n\n\n\n\n\n\n\n\nworked\n\n\n\n\n\n\n\n\n\n\n\n");
-//         ret = EVP_add_digest(*md);
-//         //free(*md);
-//         return ret;
-//     }
-//     EVP_MD_meth_free(*md);
-//     /* Unsupported md type */
-//     return 0;
-// }
+    if (ret == 1) {
+        //printf("\n\n\n\n\n\n\n\n\n\n\nworked\n\n\n\n\n\n\n\n\n\n\n\n");
+        ret = EVP_add_digest(md_obj);
+        //free(*md);
+        return ret;
+    }
+    EVP_MD_meth_free(*md);
+    /* Unsupported md type */
+    return 0;
+}
 
 static int register_methods(){
     if (!register_ameth(NID_ROUND5, &ameth_round5, 0)){
@@ -328,6 +334,9 @@ static int register_methods(){
         return 0;
     }
     if (!register_ameth(NID_DILITHIUM, &ameth_dilithium, 0)){
+        return 0;
+    }
+    if (!register_ameth(NID_KECCAK, &ameth_keccak, 0)){
         return 0;
     }
     // EVP_MD_meth_free(md_obj);
