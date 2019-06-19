@@ -181,17 +181,17 @@ static int bind(ENGINE *e, const char *id){
     //     printf("failed\n");
     //     goto end;
     // }
-    if (!ENGINE_set_digests(e, setup_digest)){
-        if (!md_obj)
-            ps(md_obj);
-        printf("ENGINE_set_digests failed\n");
-        goto end;
-    }
-    else{
-        if(md_obj){
-            printf("\nnot null\n");
-        }
-    }
+    // if (!ENGINE_set_digests(e, setup_digest)){
+    //     if (!md_obj)
+    //         ps(md_obj);
+    //     printf("ENGINE_set_digests failed\n");
+    //     goto end;
+    // }
+    // else{
+    //     if(md_obj){
+    //         printf("\nnot null\n");
+    //     }
+    // }
     
     // ENGINE_register_all_complete();
 //    if (suola_implementation_init() != 0) {       // TODO: figure this out

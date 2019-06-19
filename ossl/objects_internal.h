@@ -5,7 +5,7 @@
 #ifndef ROUND5_OBJECTS_INTERNAL_H
 #define ROUND5_OBJECTS_INTERNAL_H
 
-#define _OID_ROUND5   "1.2.3.4.5.9"
+#define _OID_ROUND5   "1.2.3.4.5.8"
 #define _SN_ROUND5    "Round5"
 #define _LN_ROUND5    "Round5"
 #define _OID_KECCAK   "1.2.3.4.5.10"

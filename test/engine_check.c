@@ -58,12 +58,12 @@ static void print_pkey(EVP_PKEY *pkey){
 }
 
 EVP_PKEY *test_dilithium(){
-  char *algoname = OBJ_nid2sn(NID_DILITHIUM);
+  const char *algoname = OBJ_nid2sn(NID_DILITHIUM);
   EVP_PKEY *ckey;
   T(ckey = EVP_PKEY_new());
 
   T(EVP_PKEY_set_type_str(ckey, algoname, strlen(algoname)));
-  // EVP_PKEY_set_type(ckey, NID_DILITHIUM);
+  EVP_PKEY_set_type(ckey, NID_DILITHIUM);
 
   EVP_PKEY_CTX *tx;
   (tx = EVP_PKEY_CTX_new(ckey, NULL));
@@ -138,9 +138,9 @@ struct certKey *gen_cert(){
   T(X509_add_ext(x509ss, ext, 2));
   X509_EXTENSION_free(ext);
 
-  struct certKey *c = malloc(sizeof(struct certKey));
-  c->cert = malloc(sizeof(x509ss));
-  c->key = malloc(sizeof(pkey));
+  struct certKey *c = (struct certKey *)malloc(sizeof(struct certKey));
+  c->cert = (X509 *)malloc(sizeof(x509ss));
+  c->key = (EVP_PKEY *)malloc(sizeof(pkey));
 
   // c->cert = memset(c->cert, 0, sizeof(c->cert));
   c->cert = x509ss;
@@ -295,12 +295,12 @@ int main(int argc, const char* argv[]){
 
   const EVP_PKEY_ASN1_METHOD *pk_ameth = EVP_PKEY_get0_asn1(pkey);
   int *ppkey_id = NULL;
-  ppkey_id = malloc(sizeof(*ppkey_id));
+  ppkey_id = (int *)malloc(sizeof(*ppkey_id));
   int *ppkey_base_id = NULL;
   int *ppkey_flags = NULL;
   const char **pinfo = NULL;
   const char **ppem_str = NULL;
-  ppem_str = malloc(sizeof(*ppem_str));
+  ppem_str = (const char **)malloc(sizeof(*ppem_str));
   if(!EVP_PKEY_asn1_get0_info(ppkey_id, ppkey_base_id, ppkey_flags, pinfo, ppem_str, pk_ameth)){
     ps("function bad");
   }
@@ -328,15 +328,21 @@ int main(int argc, const char* argv[]){
   // }
   // EVP_PKEY_assign_RSA(pkey, rsa);
   
-  // EVP_MD_CTX *mctx;
-  // T(mctx = EVP_MD_CTX_new());
-  // EVP_PKEY_CTX *pkctx = NULL;
-  // EVP_MD_CTX_init(mctx);
-  // T(EVP_DigestSignInit(mctx, NULL, NULL, NULL, pkey));
-  // T(X509_sign_ctx(c->cert, mctx));
-  // EVP_MD_CTX_free(mctx);
+  EVP_MD_CTX *mctx;
+  T(mctx = EVP_MD_CTX_new());
+  EVP_PKEY_CTX *pkctx = NULL;
+  EVP_MD_CTX_init(mctx);
+  T(EVP_DigestSignInit(mctx, &pkctx, EVP_sha512(), NULL, pkey));
+  T(X509_sign_ctx(c->cert, mctx));
+  EVP_MD_CTX_free(mctx);
 
-  TE(X509_sign(c->cert, pkey, EVP_sha256()));
+  // if(X509_sign(c->cert, pkey, EVP_sha256()) == 0){
+  //   printf("X509_sign  failed, error 0x%lx\n", ERR_get_error());
+  //   const char* error_string = ERR_error_string(ERR_get_error(), NULL);
+  //   printf("X509_sign returns %s\n", error_string);
+  //   exit(0);
+  // } 
+  // (X509_sign(c->cert, pkey, NULL));
   // printf("\nreturn: %d\n", ret);
   X509_print_fp(stdout, c->cert);
 

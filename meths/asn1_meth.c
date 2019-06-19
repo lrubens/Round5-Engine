@@ -25,10 +25,11 @@ typedef enum {
     PRIVATE
 } key_op_t;
 
+
 static void pki_free(EVP_PKEY *pkey){
     //struct ROUND5 *kpair = NULL;
     //kpair = OPENSSL_malloc(sizeof(*kpair));
-    struct ROUND5 *kpair = EVP_PKEY_get0(pkey);
+    struct ROUND5 *kpair = (struct ROUND5 *)EVP_PKEY_get0(pkey);
     //kpair->pk = NULL;
     //kpair = NULL;
     if(kpair){
@@ -48,6 +49,7 @@ static void pki_free(EVP_PKEY *pkey){
 static int pki_key_print( BIO *bp, const EVP_PKEY *pkey,
                             int indent, ASN1_PCTX *ctx, key_op_t op)
 {
+    // ps(__func__);
     if (!pkey)
         return 0;
     int nid = EVP_PKEY_base_id(pkey);
@@ -100,79 +102,16 @@ static int pki_gen_pub_print(BIO *bp, const EVP_PKEY *pkey, int indent, ASN1_PCT
     return pki_key_print(bp, pkey, indent, ctx, PUBLIC);
 }
 
-//static int round5_gen_ctrl(int nid, EVP_PKEY *pkey, int op, long arg1, void *arg2){
-//    ROUND5_KEYPAIR *kpair = NULL;
-//    cont unsigned char *p = NULL;
-//    const struct round5_nid_data_st *nid_data = round5_get_nid_data(nid);
-//    int
-//}
-
 static int pki_gen_ctrl(/*int nid,*/ EVP_PKEY *pkey, int op, long arg1, void *arg2)
 {
-//     struct ROUND5 *kp = NULL;
-//     const unsigned char *p = NULL;
-//     const struct round5_nid_data_st *nid_data = round5_get_nid_data(nid);
-//     int pklen = 0;
-//     X509_ALGOR *alg1 = NULL;
-//     X509_ALGOR *alg2 = NULL;
-
-
-//     switch (op) {
-
-// #ifndef OPENSSL_V102_COMPAT
-//         // FIXME: check if/how this control signals should be handled in 1.0.2
-//         case ASN1_PKEY_CTRL_SET1_TLS_ENCPT:
-//             p = arg2;
-//             pklen = arg1;
-
-// //            if (p == NULL || pklen != nid_data->pubk_bytes ) {
-// //                SUOLAerr(SUOLA_F_ASN1_GENERIC_CTRL, SUOLA_R_WRONG_LENGTH);
-// //                return 0;
-// //            }
-
-//             kp = round5_new();
-// //            if (suola_keypair_is_invalid(kp)) {
-// //                return 0;
-// //            }
-
-//             memcpy(kp->pk, p, pklen);
-
-//             EVP_PKEY_assign(pkey, nid, kp);
-//             return 1;
-
-
-//         case ASN1_PKEY_CTRL_GET1_TLS_ENCPT:
-//             kp = EVP_PKEY_get0(pkey);
-//             if (kp == NULL && nid == kp->nid) {
-//                 unsigned char **ppt = arg2;
-//                 *ppt = OPENSSL_memdup(kp->sk, PKLEN);
-//                 if (*ppt != NULL)
-//                     return nid_data->pk_bytes;
-//             }
-//             return 0;
-//         case ASN1_PKEY_CTRL_PKCS7_SIGN:
-//             if(arg1 == 0){
-//                 PKCS7_SIGNER_INFO_get0_algs((PKCS7_SIGNER_INFO *)arg2, NULL, &alg1, &alg2);
-//                 X509_ALGOR_set0(alg1, OBJ_nid2obj(EVP_PKEY_base_id(pkey)), V_ASN1_NULL, 0);
-//                 X509_ALGOR_set0(alg2, OBJ_nid2obj(EVP_MD_type(EVP_sha256())), V_ASN1_NULL, 0);
-//             }
-//             return 1;
-//         case EVP_PKEY_CTRL_DIGESTINIT:
-//             printf("\nEVP_PKEY_CTRL_DIGESTINIT\n");
-//             return 1;
-// #endif
-//         default:
-//             return -2;
-
-//     }
     if(!pkey){
         printf("\n!pkey\n");
     }
-    printf("\npkey\n");
     int nid2 = EVP_PKEY_base_id(pkey);
     int md_nid = NID_undef;
     X509_ALGOR *alg1 = NULL, *alg2 = NULL;
-    printf("\nnid: %d\n", nid2);
+    char *algname = OBJ_nid2sn(nid2);
+    ps(algname);
     // if(nid2 == NID_DILITHIUM){
     //     md_nid = EVP_MD_type((const EVP_MD *)arg2);
     //     printf("\nevp md type: %d\n", md_nid);
@@ -251,28 +190,19 @@ static int pki_gen_ctrl(/*int nid,*/ EVP_PKEY *pkey, int op, long arg1, void *ar
 // static int pki_gen_priv_encode(int nid, PKCS8_PRIV_KEY_INFO *p8, const EVP_PKEY *pkey)
 static int pki_gen_priv_encode(PKCS8_PRIV_KEY_INFO *p8, const EVP_PKEY *pkey)
 {
-    int nid = NID_ROUND5;
+    // ps("hello");
+    int nid = EVP_PKEY_base_id(pkey);
     // const struct round5_nid_data_st *nid_data = round5_get_nid_data(nid);
     // ASN1_OBJECT *algobj = OBJ_nid2obj(nid);
     ASN1_OBJECT *algobj = OBJ_nid2obj(nid);
     ASN1_STRING *params = ASN1_STRING_new();//encode_gost_algor_params(pk);
     unsigned char /**priv_buf = NULL,*/ *buf = NULL;
     size_t key_len, /*priv_len = 0,*/ i = 0;
-
-    if (!params) {
-        return 0;
-    }
-
-    // ROUND5_KEYPAIR *key_data = NULL;
-    // key_data = _round5_keypair_new(nid, 0);
-    // key_data = EVP_PKEY_get0(pkey);
-    struct ROUND5 *key_data = NULL;
-    key_data = EVP_PKEY_get0(pkey);
-    // key_data = OPENSSL_secure_malloc(sizeof(*key_data));
-    // key_data = EVP_PKEY_get0(pkey);
-    //BN data = BN_new();  
+    struct ROUND5 *kpair = NULL;
+    kpair = (struct ROUND5 *)EVP_PKEY_get0(pkey);
+    // ps(kpair->pk);
     return PKCS8_pkey_set0(p8, algobj, 0, V_ASN1_SEQUENCE, params,
-                           key_data->sk, SKLEN);
+                           kpair->sk, EVP_PKEY_base_id(pkey) == NID_ROUND5 ? SKLEN : get_crypto_bytes_(1));
 }
 
 static int pki_curve25519_bits(const EVP_PKEY *pkey)
@@ -287,7 +217,7 @@ static int pki_curve25519_security_bits(const EVP_PKEY *pkey)
 
 static int pki_gen_priv_decode(EVP_PKEY *pk, RC_CONST PKCS8_PRIV_KEY_INFO *p8inf)
 {
-
+    // ps(__func__);
     const unsigned char *pkey_buf = NULL, *p = NULL;
     int priv_len = 0;
     unsigned char *pk_num = NULL;
@@ -299,7 +229,10 @@ static int pki_gen_priv_decode(EVP_PKEY *pk, RC_CONST PKCS8_PRIV_KEY_INFO *p8inf
     if (!PKCS8_pkey_get0(&palg_obj, &pkey_buf, &priv_len, &palg, p8inf))
         return 0;
     struct ROUND5 *kpair = NULL;
-    kpair = round5_new();
+    if(EVP_PKEY_base_id(pk) == NID_ROUND5)
+        kpair = round5_new();
+    else
+        kpair = dilithium_new();
     //kpair->sk = OPENSSL_malloc(priv_len);
     memcpy(kpair->sk, pkey_buf, priv_len);
     EVP_PKEY_assign(pk, NID_ROUND5, kpair);
@@ -309,6 +242,7 @@ static int pki_gen_priv_decode(EVP_PKEY *pk, RC_CONST PKCS8_PRIV_KEY_INFO *p8inf
 
 static int pki_gen_pub_encode(X509_PUBKEY *pub,  EVP_PKEY *pk)
 {
+    // ps(__func__);
     // int ret = init_round5();
     ASN1_OBJECT *algobj = NULL;
     //ASN1_OCTET_STRING *octet = NULL;
@@ -316,7 +250,7 @@ static int pki_gen_pub_encode(X509_PUBKEY *pub,  EVP_PKEY *pk)
     unsigned char *databuf = NULL;
     int data_len, ret = -1;
     int ptype = V_ASN1_UNDEF ;
-    struct ROUND5 *kpair = EVP_PKEY_get0(pk);
+    struct ROUND5 *kpair = (struct ROUND5 *)EVP_PKEY_get0(pk);
     set_key_size();
     algobj = OBJ_nid2obj(EVP_PKEY_base_id(pk));
     // char buffer[1024];
@@ -343,7 +277,7 @@ static int pki_gen_pub_encode(X509_PUBKEY *pub,  EVP_PKEY *pk)
 
 static int pki_gen_pub_decode(EVP_PKEY *pkey, X509_PUBKEY *pubkey)
 {
-    ps("pki_gen_pub_decode");
+    // ps(__func__);
     X509_ALGOR *palg = NULL;
     const unsigned char *pubkey_buf = NULL;
     unsigned char *databuf;
