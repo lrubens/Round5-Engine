@@ -1,6 +1,15 @@
 # Prerequisites
 *.d
 
+# Key and cert
+*.pem
+
+# CmakeFiles
+CMakeFiles/
+
+#cmakefiles
+CMakeCache.txt
+
 # Object files
 *.o
 *.obj
