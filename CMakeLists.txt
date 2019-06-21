@@ -170,7 +170,7 @@ target_include_directories(round5_engine PUBLIC Round5/reference/src)
 # >>>>>>> Stashed changes
 # target_include_directories(round5_engine PUBLIC Round5/reference/src)
 target_compile_definitions(round5_engine PUBLIC R5ND_5PKE_5d)
-set_target_properties(round5_engine PROPERTIES COMPILE_FLAGS "-lkeccak -lcrypto -lssl -DR5ND_5PKE_5d -Xlinker -zmuldefs")
+set_target_properties(round5_engine PROPERTIES COMPILE_FLAGS "-lkeccak -lcrypto -lssl -Xlinker -zmuldefs")
 
 # run test
 add_executable(engine_check ${TEST} ${DILITHIUM_DEPENDENCIES})
@@ -178,7 +178,7 @@ add_executable(engine_check ${TEST} ${DILITHIUM_DEPENDENCIES})
 # set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc -static-libstdc++")
 target_link_libraries(engine_check dilithium round5 engine_lib ${OPENSSL_CRYPTO_LIBRARY}  -Xlinker -zmuldefs)
 target_compile_definitions(engine_check PUBLIC R5ND_5PKE_5d)
-set_target_properties(engine_check PROPERTIES COMPILE_FLAGS "-lcrypto -lssl")
+set_target_properties(engine_check PROPERTIES COMPILE_FLAGS "-lcrypto -lssl -ggdb3 -O0")
 
 # file(MAKE_DIRECTORY )
 # Install library

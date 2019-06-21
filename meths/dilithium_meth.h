@@ -2,14 +2,13 @@
 #define ROUND5_DILITHIUM_METH_H
 #include <openssl/evp.h>
 #include "KeccakHash.h"
+#include <openssl/sha.h>
 
 struct MD_DATA{
-    short int key_set;
-    short int mac_size;
-    int mac_param_nid;
     EVP_MD *md;
-    unsigned char key[1413];
     unsigned char *data;
+    SHA256_CTX *ctx256;
+    SHA512_CTX *ctx512;
 };
 
 // struct digest_init_ctx{

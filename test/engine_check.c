@@ -342,7 +342,7 @@ int main(int argc, const char* argv[]){
   //   printf("X509_sign returns %s\n", error_string);
   //   exit(0);
   // } 
-  // (X509_sign(c->cert, pkey, NULL));
+  // T(X509_sign(c->cert, pkey, EVP_sha256()));
   // printf("\nreturn: %d\n", ret);
   X509_print_fp(stdout, c->cert);
 

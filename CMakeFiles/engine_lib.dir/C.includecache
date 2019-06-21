@@ -103,6 +103,8 @@ openssl/evp.h
 -
 KeccakHash.h
 /home/rubensl/Post-Quantum-PKI/meths/KeccakHash.h
+openssl/sha.h
+-
 
 /home/rubensl/Post-Quantum-PKI/meths/round5_md.c
 openssl/crypto.h

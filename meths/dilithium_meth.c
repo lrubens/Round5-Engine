@@ -28,8 +28,8 @@ static int dilithium_init(EVP_PKEY_CTX *ctx)
     if (!data)
         return 0;
     memset(data, 0, sizeof(*data));
-    data->mac_size = 4;
-    data->mac_param_nid = NID_undef;
+    // data->mac_size = 4;
+    // data->mac_param_nid = NID_undef;
 
     if (pkey) {
         struct DILITHIUM *key = EVP_PKEY_get0(pkey);
@@ -110,44 +110,9 @@ static int dilithium_signctx_init(EVP_PKEY_CTX *ctx, EVP_MD_CTX *mctx)
     return 1;
 }
 
-static int dilithium_signctx(EVP_PKEY_CTX *ctx, unsigned char *sig,
-                                 size_t *siglen, EVP_MD_CTX *mctx)
-{
-    unsigned int tmpsiglen;
-    int ret;
-    struct MD_DATA *data = EVP_PKEY_CTX_get_data(ctx);
-
-    if (!siglen)
-        return 0;
-    tmpsiglen = *siglen;        /* for platforms where sizeof(int) !=
-                                 * sizeof(size_t) */
-
-    if (!sig) {
-        *siglen = data->mac_size;
-        return 1;
-    }
-    printf("\n3\n");
-    EVP_MD_meth_get_ctrl(EVP_MD_CTX_md(mctx))
-        (mctx, 256, data->mac_size, NULL);
-    ret = EVP_DigestFinal_ex(mctx, sig, &tmpsiglen);
-    *siglen = data->mac_size;
-    return ret;
-}
-
-
-
-
-
-
 static int dilithium_sign(EVP_PKEY_CTX *ctx, unsigned char *sig, size_t *siglen, const unsigned char *tbs, size_t tbs_len)
 {
-    //unsigned char *unpacked_sig = NULL;
-    //unpacked_sig = OPENSSL_malloc(2713);
-    //*siglen =  tbs_len + CRYPTO_BYTES;
-    ps(__func__);
     EVP_PKEY *pkey = EVP_PKEY_CTX_get0_pkey(ctx);
-    //int order = 0;
-
     if (!siglen)
         return 0;
     if (!pkey)
@@ -160,35 +125,15 @@ static int dilithium_sign(EVP_PKEY_CTX *ctx, unsigned char *sig, size_t *siglen,
     printf("\n2\n");
     struct ROUND5 *kpair = (struct ROUND5 *)EVP_PKEY_get0(pkey);
     return crypto_sign(sig, (unsigned long long *)siglen, tbs, tbs_len, kpair->sk);
-    //int res = crypto_sign_open(tbs, &tbs_len, sig, siglen, r5s->pk);
-    //printf("\n%d\n", res);
 }
 
-int dilithium_verify(EVP_PKEY_CTX *ctx, const unsigned char *sig, size_t *siglen, unsigned char *tbs, size_t tbs_len)
-{
+int dilithium_verify(EVP_PKEY_CTX *ctx, const unsigned char *sig, size_t *siglen, unsigned char *tbs, size_t tbs_len){
     EVP_PKEY *pkey = EVP_PKEY_CTX_get0_pkey(ctx);
     struct ROUND5 *kpair = (struct ROUND5 *)EVP_PKEY_get0(pkey);
     return crypto_sign_open(tbs, (unsigned long long *)tbs_len, sig, *siglen, kpair->pk);
 }
 
-// int dilithium_sign_ctx_init(EVP_PKEY_CTX *ctx, EVP_MD_CTX *md){
-//     struct gost_mac_pmeth_data *data = EVP_PKEY_CTX_get_data(ctx);
-
-//     if (data == NULL) {
-//         pkey_gost_mac_init(ctx);
-//     }
-
-//     data = EVP_PKEY_CTX_get_data(ctx);
-//     if (!data) {
-//         GOSTerr(GOST_F_PKEY_GOST_MAC_SIGNCTX_INIT, GOST_R_MAC_KEY_NOT_SET);
-//         return 0;
-//     }
-
-//     return 1;
-// }
-
-static int dilithium_ctx_init(EVP_PKEY_CTX *ctx)
-{
+static int dilithium_ctx_init(EVP_PKEY_CTX *ctx){
     struct MD_DATA *data;
     EVP_PKEY *pkey = EVP_PKEY_CTX_get0_pkey(ctx);
 
@@ -196,6 +141,7 @@ static int dilithium_ctx_init(EVP_PKEY_CTX *ctx)
     if (!data)
         return 0;
     memset(data, 0, sizeof(*data));
+
     EVP_PKEY_CTX_set_data(ctx, data);
     return 1;
 }
@@ -208,15 +154,16 @@ int dilithium_ctrl(EVP_PKEY_CTX *ctx, int type, int p1, void *p2){
     // pd(p1);
     switch(type){
         case EVP_PKEY_CTRL_MD:
-            ps("EVP_PKEY_CTRL_MD");
+            // ps("EVP_PKEY_CTRL_MD");
             md->md = (EVP_MD *)p2;
             return 1;
         case EVP_PKEY_CTRL_GET_MD:
-            ps("EVP_PKEY_CTRL_GET_MD");
+            // ps("EVP_PKEY_CTRL_GET_MD");
             *(const EVP_MD **)p2 = md->md;
             return 1;
         case EVP_PKEY_CTRL_DIGESTINIT:
-            ps("EVP_PKEY_CTRL_DIGESTINIT");
+            // EVP_DigestInit_ex()
+            // ps("EVP_PKEY_CTRL_DIGESTINIT");
             return 1;
         case EVP_PKEY_CTRL_PKCS7_SIGN:
             ps("hello");
@@ -230,18 +177,43 @@ int dilithium_ctrl(EVP_PKEY_CTX *ctx, int type, int p1, void *p2){
     }
 }
 
-int dilithium_sign_ctx(EVP_PKEY_CTX *ctx, unsigned char *sig, size_t *siglen, EVP_MD_CTX *md){
+int dilithium_sign_ctx(EVP_PKEY_CTX *ctx, unsigned char *sig, size_t *siglen, EVP_MD_CTX *mctx){
     ps("dilithium_sign_ctxefwefwefwefewefwef");
-    struct MD_DATA *data = (struct MD_DATA *)EVP_PKEY_CTX_get_data(ctx);
-    EVP_MD_meth_get_ctrl(EVP_MD_CTX_md(md))
-        (md, 32, 32, NULL);
-    int ret = EVP_DigestFinal_ex(md, sig, (unsigned int *)siglen);
+    pd(*siglen);
+    // struct MD_DATA *data = (struct MD_DATA *)EVP_PKEY_CTX_get_data(ctx);
+    // if(!data){
+    //     ps("data empty");
+    // }
+    // ps(*(&mctx)->md_data);
+    // sig = malloc(siglen);
+    ps(EVP_MD_CTX_md_data(mctx));
+    unsigned int tmp_len = siglen;
+    struct ROUND5 *kpair = (struct ROUND5 *)EVP_PKEY_get0(EVP_PKEY_CTX_get0_pkey(ctx));
+    // EVP_MD_meth_get_ctrl(EVP_MD_CTX_md(mctx))(mctx, 64, 64, NULL);
+    // EVP_MD_CTX_size(mctx);
+    unsigned char *tbs = malloc(EVP_MD_CTX_size(mctx));
+    // unsigned char *tbs = "hello";
+    // unsigned char *tbs_len = NULL;
+    unsigned int tbs_len = 64;
+
+    // ps(tbs);
+    int r = EVP_DigestFinal_ex(mctx, tbs, &tbs_len);
+    // ps(tbs);
+    // pd(tbs_len);
+    // ps(tbs);
+    // ps(kpair->sk);
+    // unsigned int *len = NULL;
+    // sig = NULL;
+    // pd(EVP_MD_CTX_size(mctx));
+    // exit(0);
+    int ret = crypto_sign(sig, siglen, tbs, EVP_MD_CTX_size(mctx), kpair->sk);
+    // ps(*siglen);
     pd(ret);
     ps(sig);
-    return ret;
+    return 1;
 }
 
-int dilithium_sign_ctx_init(EVP_PKEY_CTX *ctx, EVP_MD_CTX *md){
+int dilithium_sign_ctx_init(EVP_PKEY_CTX *ctx, EVP_MD_CTX *mctx){
     ps("dilithium_sign_ctx_init");
     struct MD_DATA *data = (struct MD_DATA *)EVP_PKEY_CTX_get_data(ctx);
     if(!data){
@@ -257,6 +229,7 @@ int dilithium_ctrl_str(EVP_PKEY_CTX *ctx, const char *type, const char *value){
 }
 
 int dilithium_sign_init(EVP_PKEY_CTX *ctx){
+    // ps("sign_init");
     return 1;
 }
 
@@ -268,6 +241,11 @@ int dilithium_verify_init(EVP_PKEY_CTX *ctx){
     return 1;
 }
 
+int dilithium_copy(EVP_PKEY_CTX *dst, EVP_PKEY_CTX *src){
+    // ps(__func__);
+    return 1;
+}
+
 void pki_register_dilithium(EVP_PKEY_METHOD *pmeth){
     EVP_PKEY_meth_set_init(pmeth, dilithium_ctx_init);
     EVP_PKEY_meth_set_sign(pmeth, dilithium_sign_init, dilithium_sign);
@@ -275,6 +253,6 @@ void pki_register_dilithium(EVP_PKEY_METHOD *pmeth){
     EVP_PKEY_meth_set_verify(pmeth, dilithium_verify_init, dilithium_verify);
     EVP_PKEY_meth_set_signctx(pmeth, dilithium_sign_ctx_init, dilithium_sign_ctx);
     EVP_PKEY_meth_set_ctrl(pmeth, dilithium_ctrl, dilithium_ctrl_str);
-
+    EVP_PKEY_meth_set_copy(pmeth, dilithium_copy);
 
 }

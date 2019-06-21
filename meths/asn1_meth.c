@@ -110,8 +110,8 @@ static int pki_gen_ctrl(/*int nid,*/ EVP_PKEY *pkey, int op, long arg1, void *ar
     int nid2 = EVP_PKEY_base_id(pkey);
     int md_nid = NID_undef;
     X509_ALGOR *alg1 = NULL, *alg2 = NULL;
-    char *algname = OBJ_nid2sn(nid2);
-    ps(algname);
+    // char *algname = OBJ_nid2sn(nid2);
+    // ps(algname);
     // if(nid2 == NID_DILITHIUM){
     //     md_nid = EVP_MD_type((const EVP_MD *)arg2);
     //     printf("\nevp md type: %d\n", md_nid);
@@ -121,7 +121,7 @@ static int pki_gen_ctrl(/*int nid,*/ EVP_PKEY *pkey, int op, long arg1, void *ar
 
     //     return -1;
     // }
-    pd(op);
+    // pd(op);
     switch (op) {
     case ASN1_PKEY_CTRL_PKCS7_SIGN:
         ps("case 1");
@@ -305,7 +305,12 @@ static int dilithium_item_sign(EVP_MD_CTX *ctx, const ASN1_ITEM *it, void *asn, 
     if(alg2){
         X509_ALGOR_set0(alg2, OBJ_nid2obj(NID_DILITHIUM), V_ASN1_UNDEF, NULL);
     }
-    return 1;
+    return 3;
+}
+
+static int get_pkey_size(const EVP_PKEY *pkey){
+    int nid = EVP_PKEY_base_id(pkey);
+    return (nid == NID_ROUND5 ? PKLEN : get_crypto_bytes_(0));
 }
 
 static int dilithium_item_verify(EVP_MD_CTX *ctx, const ASN1_ITEM *it, void *asn, X509_ALGOR *sigalg, ASN1_BIT_STRING *str, EVP_PKEY *pkey){
@@ -326,12 +331,12 @@ int _register_asn1_meth(int nid, EVP_PKEY_ASN1_METHOD **ameth, const char *pem_s
     if (!*ameth)
         return 0;
     if (nid == NID_ROUND5){
-        EVP_PKEY_asn1_set_public(*ameth, pki_gen_pub_decode, pki_gen_pub_encode, pki_pub_cmp, pki_gen_pub_print, NULL, pki_curve25519_bits);
+        EVP_PKEY_asn1_set_public(*ameth, pki_gen_pub_decode, pki_gen_pub_encode, pki_pub_cmp, pki_gen_pub_print, get_pkey_size, pki_curve25519_bits);
         EVP_PKEY_asn1_set_private(*ameth, pki_gen_priv_decode, pki_gen_priv_encode, pki_gen_priv_print);
         EVP_PKEY_asn1_set_ctrl(*ameth, pki_gen_ctrl);
     }
     else if (nid == NID_DILITHIUM){
-        EVP_PKEY_asn1_set_public(*ameth, pki_gen_pub_decode, pki_gen_pub_encode, pki_pub_cmp, pki_gen_pub_print, NULL, pki_curve25519_bits);
+        EVP_PKEY_asn1_set_public(*ameth, pki_gen_pub_decode, pki_gen_pub_encode, pki_pub_cmp, pki_gen_pub_print, get_pkey_size, pki_curve25519_bits);
         EVP_PKEY_asn1_set_private(*ameth, pki_gen_priv_decode, pki_gen_priv_encode, pki_gen_priv_print);
         EVP_PKEY_asn1_set_ctrl(*ameth, pki_gen_ctrl);
         EVP_PKEY_asn1_set_item(*ameth, dilithium_item_verify, dilithium_item_sign);
