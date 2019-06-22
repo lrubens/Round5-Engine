@@ -25,3 +25,4 @@ CMakeCache.txt
 *.so.*
 
 engine_check
+run.sh
