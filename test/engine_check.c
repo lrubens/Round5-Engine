@@ -369,7 +369,7 @@ int main(int argc, const char* argv[]){
     printf("\n!c->key\n");
     return 1;
   }
-  FILE * f = fopen("key.pem", "wb");
+  FILE * f = fopen("certs/key.pem", "wb");
   PEM_write_PrivateKey(
     f,                  /* write the key to the file we've opened */
     c->key,               /* our key from earlier */
@@ -380,9 +380,7 @@ int main(int argc, const char* argv[]){
     NULL                /* data to pass to the callback */
   );
   fclose(f);
-  FILE * f2 = fopen("cert.pem", "wb");
-  if (!f2)
-    printf("\n\nf2 not working\n\n");
+  FILE * f2 = fopen("certs/cert.pem", "wb");
   PEM_write_X509(
       f2,   /* write the certificate to the file we've opened */
       c->cert /* our certificate */
