@@ -182,11 +182,12 @@ set_target_properties(engine_check PROPERTIES COMPILE_FLAGS "-lcrypto -lssl -ggd
 
 # file(MAKE_DIRECTORY )
 # Install library
-install(DIRECTORY DESTINATION bin)
-install(TARGETS round5_engine #dilithium round5 xkcp
-        ARCHIVE  DESTINATION bin
-        LIBRARY  DESTINATION bin
-        RUNTIME  DESTINATION bin
+# install(DIRECTORY DESTINATION bin)
+install(TARGETS round5_engine #engine_lib round5 dilithium #dilithium round5 xkcp
+        EXPORT round5_engine #engine_lib round5 dilithium
+        ARCHIVE  DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        LIBRARY  DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        RUNTIME  DESTINATION ${CMAKE_INSTALL_BINDIR}
         COMPONENT library
 )
 # install(FILES gostsum.1 gost12sum.1 DESTINATION ${OPENSSL_MAN_INSTALL_DIR})

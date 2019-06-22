@@ -263,7 +263,7 @@ int crypto_sign(unsigned char *sm,
 
   /* Write signature */
   pack_sig(sm, &z, &h, &c);
-  printf("\nsm: %s\n", sm);
+  // printf("\nsm: %s\n", sm);
   *smlen = mlen + CRYPTO_BYTES;
   return 0;
 }

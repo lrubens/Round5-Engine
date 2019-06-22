@@ -178,8 +178,8 @@ static int pki_gen_ctrl(/*int nid,*/ EVP_PKEY *pkey, int op, long arg1, void *ar
         return 1;
 #endif
     case ASN1_PKEY_CTRL_DEFAULT_MD_NID:
-        printf("\ncase 5\n");
-        *(int *)arg2 = NID_sha256;
+        // printf("\ncase 5\n");
+        *(int *)arg2 = NID_sha512;
         return 2;
     }
     printf("\nbase case\n");
@@ -288,11 +288,8 @@ static int pki_gen_pub_decode(EVP_PKEY *pkey, X509_PUBKEY *pubkey)
     if (!X509_PUBKEY_get0_param(&palgobj, &pubkey_buf, &pub_len, &palg, pubkey))
         return 0;
     kpair = round5_new();
-    //kpair->pk = OPENSSL_malloc(pub_len);
     memcpy(kpair->pk, pubkey_buf, pub_len);
-    printf("\npubkey buf: %s\n", pubkey_buf);
     EVP_PKEY_assign(pkey, NID_ROUND5, kpair);
-    // OPENSSL_free(kpair->pk);
     return 1;
 }
 
@@ -309,8 +306,10 @@ static int dilithium_item_sign(EVP_MD_CTX *ctx, const ASN1_ITEM *it, void *asn, 
 }
 
 static int get_pkey_size(const EVP_PKEY *pkey){
-    int nid = EVP_PKEY_base_id(pkey);
-    return (nid == NID_ROUND5 ? PKLEN : get_crypto_bytes_(0));
+    // pd(SHA512_DIGEST_LENGTH + CRYPTO_BYTES);
+    return SHA512_DIGEST_LENGTH + 2701;
+    // int nid = EVP_PKEY_base_id(pkey);
+    // return (nid == NID_ROUND5 ? SKLEN : SHA512_DIGEST_LENGTH + CRYPTO_BYTES);
 }
 
 static int dilithium_item_verify(EVP_MD_CTX *ctx, const ASN1_ITEM *it, void *asn, X509_ALGOR *sigalg, ASN1_BIT_STRING *str, EVP_PKEY *pkey){
@@ -331,7 +330,7 @@ int _register_asn1_meth(int nid, EVP_PKEY_ASN1_METHOD **ameth, const char *pem_s
     if (!*ameth)
         return 0;
     if (nid == NID_ROUND5){
-        EVP_PKEY_asn1_set_public(*ameth, pki_gen_pub_decode, pki_gen_pub_encode, pki_pub_cmp, pki_gen_pub_print, get_pkey_size, pki_curve25519_bits);
+        EVP_PKEY_asn1_set_public(*ameth, pki_gen_pub_decode, pki_gen_pub_encode, pki_pub_cmp, pki_gen_pub_print, NULL, pki_curve25519_bits);
         EVP_PKEY_asn1_set_private(*ameth, pki_gen_priv_decode, pki_gen_priv_encode, pki_gen_priv_print);
         EVP_PKEY_asn1_set_ctrl(*ameth, pki_gen_ctrl);
     }

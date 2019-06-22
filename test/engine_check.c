@@ -259,6 +259,31 @@ struct certKey *gen_cert(){
   return c;
 }
 
+int validate_peer_cert(X509 *cert, EVP_PKEY *pkey){
+  unsigned char *result;
+  int r = X509_verify(cert, pkey);
+  return r;
+}
+
+void validate_self_signed_cert(X509 * cert){
+  int status;
+  X509_STORE_CTX *ctx;
+  ctx = X509_STORE_CTX_new();
+  X509_STORE *store = X509_STORE_new();
+
+  X509_STORE_add_cert(store, cert);
+
+  X509_STORE_CTX_init(ctx, store, cert, NULL);
+
+  status = X509_verify_cert(ctx);
+  if(status == 1)
+  {
+      printf("Certificate verified ok\n");
+  }else
+  {
+      ps("INTRUDER");
+  }
+}
 
 int main(int argc, const char* argv[]){
   // signature();
@@ -275,6 +300,7 @@ int main(int argc, const char* argv[]){
 
   
   struct certKey *c = gen_cert();
+  X509 *cert = c->cert;
   EVP_PKEY *pkey = test_dilithium();
 
   // EVP_MD_CTX *cx = EVP_MD_CTX_create();
@@ -292,21 +318,9 @@ int main(int argc, const char* argv[]){
   // EVP_DigestUpdate(cx, msg, msg_len);
   // EVP_DigestFinal(cx, md, &md_len);
   // ps(md);
-
-  const EVP_PKEY_ASN1_METHOD *pk_ameth = EVP_PKEY_get0_asn1(pkey);
-  int *ppkey_id = NULL;
-  ppkey_id = (int *)malloc(sizeof(*ppkey_id));
-  int *ppkey_base_id = NULL;
-  int *ppkey_flags = NULL;
-  const char **pinfo = NULL;
-  const char **ppem_str = NULL;
-  ppem_str = (const char **)malloc(sizeof(*ppem_str));
-  if(!EVP_PKEY_asn1_get0_info(ppkey_id, ppkey_base_id, ppkey_flags, pinfo, ppem_str, pk_ameth)){
-    ps("function bad");
-  }
   
-  // EVP_PKEY * pkey;
-  // pkey = EVP_PKEY_new();
+  // EVP_PKEY * tkey;
+  // tkey = EVP_PKEY_new();
   // RSA *rsa = NULL;
   // BIGNUM *bne = NULL;
 
@@ -326,7 +340,7 @@ int main(int argc, const char* argv[]){
   // if(ret != 1){
   //     //do something
   // }
-  // EVP_PKEY_assign_RSA(pkey, rsa);
+  // EVP_PKEY_assign_RSA(tkey, rsa);
   
   EVP_MD_CTX *mctx;
   T(mctx = EVP_MD_CTX_new());
@@ -335,17 +349,19 @@ int main(int argc, const char* argv[]){
   T(EVP_DigestSignInit(mctx, &pkctx, EVP_sha512(), NULL, pkey));
   T(X509_sign_ctx(c->cert, mctx));
   EVP_MD_CTX_free(mctx);
-
   // if(X509_sign(c->cert, pkey, EVP_sha256()) == 0){
   //   printf("X509_sign  failed, error 0x%lx\n", ERR_get_error());
   //   const char* error_string = ERR_error_string(ERR_get_error(), NULL);
   //   printf("X509_sign returns %s\n", error_string);
   //   exit(0);
   // } 
-  // T(X509_sign(c->cert, pkey, EVP_sha256()));
   // printf("\nreturn: %d\n", ret);
   X509_print_fp(stdout, c->cert);
-
+  int with_dilithium = validate_peer_cert(c->cert, pkey);
+  // (X509_sign(cert, tkey, EVP_sha256()));
+  // int with_rsa = validate_peer_cert(cert, pkey);
+  // pd(with_dilithium);
+  // // pd(with_rsa);
   // print_pkey(pkey);
   // printf("\ndone\n");
   // return 0;

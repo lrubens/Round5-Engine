@@ -23,3 +23,5 @@ CMakeCache.txt
 # Shared objects 
 *.so
 *.so.*
+
+engine_check
