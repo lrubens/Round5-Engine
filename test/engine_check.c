@@ -141,21 +141,11 @@ struct certKey *gen_cert(){
   struct certKey *c = (struct certKey *)malloc(sizeof(struct certKey));
   c->cert = (X509 *)malloc(sizeof(x509ss));
   c->key = (EVP_PKEY *)malloc(sizeof(pkey));
-
-  // c->cert = memset(c->cert, 0, sizeof(c->cert));
   c->cert = x509ss;
   // memcpy(c->key, pkey, sizeof(pkey));
   c->key = pkey;
   EVP_MD_CTX *mctx = NULL;
   T(mctx = EVP_MD_CTX_new());
-  if(!ctx){
-    printf("\n!ctx\n");
-  }
-  // (EVP_DigestSignInit(mctx, &ctx, NULL, NULL, c->key));
-
-  // // printf("\nbefore x509 sign\n");
-  // EVP_PKEY_CTX_set_rsa_padding()
-  // (X509_sign_ctx(c->cert, mctx));
   EVP_MD_CTX_free(mctx);
 
   // print_pkey(c->key);
@@ -247,15 +237,6 @@ struct certKey *gen_cert(){
   
   cleanup:
   EVP_PKEY_CTX_free(ctx);
-  // EVP_PKEY_CTX_free(tx);
-  // free(buf);
-  // free(buf2);
-
-  // EVP_PKEY_free(pkey);
-
-  //EVP_PKEY_CTX_free(ctx);
-  // EVP_MD_CTX_free(cx);
-  // printf("\nfinished\n");
   return c;
 }
 
@@ -295,34 +276,9 @@ int main(int argc, const char* argv[]){
 	T(round5_engine = ENGINE_by_id("round5"));
 	T(ENGINE_init(round5_engine));
   T(ENGINE_set_default(round5_engine, ENGINE_METHOD_ALL));
-  // ENGINE_set_default_pkey_asn1_meths(round5_engine);
-  // ENGINE_set_default_pkey_meths(round5_engine);
-
-  
   struct certKey *c = gen_cert();
   X509 *cert = c->cert;
   EVP_PKEY *pkey = test_dilithium();
-
-  // EVP_MD_CTX *cx = EVP_MD_CTX_create();
-  // const EVP_MD *keccak = EVP_get_digestbynid(NID_KECCAK);
-  // if (!keccak){
-  //   ps(keccak);
-  //   exit(0);
-  // }
-  // EVP_DigestInit(cx, keccak);
-  // const char *msg = "hello world";
-  // ps(msg);
-  // unsigned char md[256];
-  // unsigned int md_len = 256;
-  // size_t msg_len = strlen(msg);
-  // EVP_DigestUpdate(cx, msg, msg_len);
-  // EVP_DigestFinal(cx, md, &md_len);
-  // ps(md);
-  
-  // EVP_PKEY * tkey;
-  // tkey = EVP_PKEY_new();
-  // RSA *rsa = NULL;
-  // BIGNUM *bne = NULL;
 
   // //BIO *bp_public = NULL, *bp_private = NULL;
 
@@ -349,22 +305,8 @@ int main(int argc, const char* argv[]){
   T(EVP_DigestSignInit(mctx, &pkctx, EVP_sha512(), NULL, pkey));
   T(X509_sign_ctx(c->cert, mctx));
   EVP_MD_CTX_free(mctx);
-  // if(X509_sign(c->cert, pkey, EVP_sha256()) == 0){
-  //   printf("X509_sign  failed, error 0x%lx\n", ERR_get_error());
-  //   const char* error_string = ERR_error_string(ERR_get_error(), NULL);
-  //   printf("X509_sign returns %s\n", error_string);
-  //   exit(0);
-  // } 
-  // printf("\nreturn: %d\n", ret);
   X509_print_fp(stdout, c->cert);
   int with_dilithium = validate_peer_cert(c->cert, pkey);
-  // (X509_sign(cert, tkey, EVP_sha256()));
-  // int with_rsa = validate_peer_cert(cert, pkey);
-  // pd(with_dilithium);
-  // // pd(with_rsa);
-  // print_pkey(pkey);
-  // printf("\ndone\n");
-  // return 0;
   if(!c->key){
     printf("\n!c->key\n");
     return 1;
