@@ -16,7 +16,11 @@
 #include "ossl/objects.h"
 #include "network/linux/client.h"
 #include "network/linux/server.h"
-// #include "../dilithium/ref/params.h"
+#include <time.h>
+
+#define cDBLUE	"\033[0;34m"
+#define cNORM	"\033[m"
+#define cBLUE	"\033[1;34m"
 #define T(e) ({ if (!(e)) { \
 		ERR_print_errors_fp(stderr); \
 		OpenSSLDie(__FILE__, __LINE__, #e); \
@@ -267,8 +271,7 @@ void validate_self_signed_cert(X509 * cert){
 }
 
 int main(int argc, const char* argv[]){
-  // signature();
-  //return 0;
+  printf(cBLUE "Testing Certificate Generation\n" cNORM);
   OPENSSL_add_all_algorithms_conf();
   ERR_load_crypto_strings();
   ENGINE_load_dynamic();
@@ -276,7 +279,12 @@ int main(int argc, const char* argv[]){
 	T(round5_engine = ENGINE_by_id("round5"));
 	T(ENGINE_init(round5_engine));
   T(ENGINE_set_default(round5_engine, ENGINE_METHOD_ALL));
+  clock_t start, end;
+  double time_elapsed;
+  start = clock();
   struct certKey *c = gen_cert();
+  end = clock();
+  time_elapsed = ((double) (end - start)) / CLOCKS_PER_SEC;
   X509 *cert = c->cert;
   EVP_PKEY *pkey = test_dilithium();
 
@@ -327,6 +335,10 @@ int main(int argc, const char* argv[]){
       f2,   /* write the certificate to the file we've opened */
       c->cert /* our certificate */
   );
+  printf("\n********************************************************\n");
+  printf("\nComputation time: %f\n", time_elapsed);
+  printf("\n********************************************************\n");
+
   fclose(f2);
   X509_free(c->cert);
   EVP_PKEY_free(c->key);

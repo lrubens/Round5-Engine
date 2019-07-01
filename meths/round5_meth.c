@@ -16,7 +16,6 @@
 #include <openssl/ec.h>
 #include "../keypair.h"
 #include "../ossl/objects.h"
-// #include "dilithium_meth.h"
 
 
 parameters *params;
@@ -32,50 +31,19 @@ int round5_sk_to_pk(unsigned char *pk, const unsigned char *sk, parameters *para
     }
 }
 
-// static int init_round5(){
-//     #ifndef PKLEN
-//     #define PKLEN get_crypto_public_key_bytes(params)
-//     #endif
-//     #ifndef SKLEN
-//     #define SKLEN get_crypto_secret_key_bytes(params, 1)
-//     #endif
-//     return 1;
-// }
-
 
 static int keygen(EVP_PKEY_CTX *ctx, EVP_PKEY *pkey){
-    // printf("\nkeygen\n");
     set_key_size();
     struct ROUND5 *kpair = NULL;
     kpair = EVP_PKEY_get0(pkey);
     params = set_parameters_from_api();
-    // #ifndef PKLEN
-    // #define PKLEN get_crypto_public_key_bytes(params)
-    // #endif
-    // #ifndef SKLEN
-    // #define SKLEN get_crypto_secret_key_bytes(params, 1)
-    // #endif
-    // return 1;
-    // memset(kpair->pk, 0, pk_len);
-    // memset(kpair->sk, 0, sk_len);
-    // printf("\nparams->ct_size: %d\n",params->ct_size);
+    // pd(get_crypto_public_key_bytes(params));
     if (!kpair){
         kpair = round5_new();
         EVP_PKEY_assign(pkey, NID_ROUND5, kpair);
     }
     if (!round5_sk_to_pk(kpair->pk, kpair->sk, params))
         goto err;
-    // kpair->pk = &pk;
-    // kpair->sk = &sk;
-    // memcpy(kpair->pk, pk, pk_len);
-    // memcpy(kpair->sk, sk, sk_len);
-    //test_func(kpair->sk);
-    //exit(0);
-    // printf("\n\nFinished printing: %d\n\n", get_crypto_public_key_bytes(params));
-    //EVP_PKEY_assign(pkey, NID_ROUND5, kpair);
-    //printf("\n\n\n\n%d\n\n\n\n", sizeof(kpair->sk));
-    // free(kpair);
-    // free(kpair->sk);
     return 1;
     err:
     return 0;
@@ -106,7 +74,6 @@ static int round5_decrypt_init(EVP_PKEY_CTX *pctx){
 }
 
 void pki_register_round5(EVP_PKEY_METHOD *pmeth){
-    // EVP_PKEY_meth_set_sign(pmeth, NULL, dilithium_sign);
     EVP_PKEY_meth_set_keygen(pmeth, NULL, keygen);
     EVP_PKEY_meth_set_encrypt(pmeth, round5_encrypt_init, round5_encrypt);
     EVP_PKEY_meth_set_decrypt(pmeth, round5_decrypt_init, round5_decrypt);

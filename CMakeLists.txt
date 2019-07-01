@@ -95,6 +95,14 @@ set(TEST
     test/engine_check.c
 )
 
+# set (PARAMS "R5ND_5PKE_5d" CACHE STRING "Round5 parameter to be used")
+# set_property(CACHE PARAMS
+#     PROPERTY STRINGS
+# )
+
+set(PARAM R5N1_3PKE_0smallCT CACHE STRING "Round5 algorithm parameter")
+# set(PARAM R5ND_5PKE_5d)
+message("Param set: ${PARAM}")
 # Include header files
 include_directories(${CMAKE_SOURCE_DIR})
 include_directories(meths)
@@ -110,34 +118,35 @@ set_target_properties(dilithium PROPERTIES POSITION_INDEPENDENT_CODE ON)
 # Create round5 library
 add_library(round5 STATIC ${ROUND5_LIB_SOURCE})
 set_target_properties(round5 PROPERTIES POSITION_INDEPENDENT_CODE ON)
-target_compile_definitions(round5 PUBLIC R5ND_5PKE_5d)
+target_compile_definitions(round5 PUBLIC ${PARAM})
 set_target_properties(round5 PROPERTIES COMPILE_FLAGS "-lkeccak -lcrypto -lssl -Xlinker -zmuldefs")
 
 # Create engine util library
 add_library(engine_lib STATIC ${ENGINE_CORE})
 set_target_properties(engine_lib PROPERTIES POSITION_INDEPENDENT_CODE ON)
 target_include_directories(engine_lib PUBLIC Round5/reference/src)
-target_compile_definitions(engine_lib PUBLIC R5ND_5PKE_5d)
+target_compile_definitions(engine_lib PUBLIC ${PARAM})
 
 # Create shared library
 add_library(round5_engine SHARED ${ROUND5_ENGINE_SOURCE_FILES})
 target_link_libraries(round5_engine dilithium round5 engine_lib ${OPENSSL_CRYPTO_LIBRARY} -Xlinker -zmuldefs)
 target_include_directories(round5_engine PUBLIC Round5/reference/src)
-target_compile_definitions(round5_engine PUBLIC R5ND_5PKE_5d)
+target_compile_definitions(round5_engine PUBLIC ${PARAM})
+set_target_properties(round5_engine PROPERTIES PREFIX "" OUTPUT_NAME "round5")
 set_target_properties(round5_engine PROPERTIES COMPILE_FLAGS "-lkeccak -lcrypto -lssl -Xlinker -zmuldefs")
 
 # run test
 add_executable(engine_check ${TEST} ${DILITHIUM_SOURCE_FILES})
 target_link_libraries(engine_check dilithium round5 engine_lib ${OPENSSL_CRYPTO_LIBRARY}  -Xlinker -zmuldefs)
-target_compile_definitions(engine_check PUBLIC R5ND_5PKE_5d)
+target_compile_definitions(engine_check PUBLIC ${PARAM})
 set_target_properties(engine_check PROPERTIES COMPILE_FLAGS "-lcrypto -lssl -ggdb3 -O0")
 
 # Install library
 set(ENGINE_DIR /usr/local/ssl/lib/engines-1.1/)
 install(TARGETS round5_engine #engine_lib round5 dilithium #dilithium round5 xkcp
-        EXPORT round5_engine #engine_lib round5 dilithium
+        # EXPORT round5_engine #engine_lib round5 dilithium
         ARCHIVE  DESTINATION ${ENGINE_DIR}
         LIBRARY  DESTINATION ${ENGINE_DIR}
         RUNTIME  DESTINATION ${ENGINE_DIR}
-        COMPONENT library
+        # COMPONENT library
 )
