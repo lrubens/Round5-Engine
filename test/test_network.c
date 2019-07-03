@@ -47,9 +47,9 @@ struct nodes{
 int main(int argc, const char* argv[]){
   printf(cBLUE "Testing client-server cert distribution\n" cNORM);
   struct nodes *clients= malloc(sizeof(struct nodes));
-  char *server_addr = "localhost";
-	clients->addresses[0] = "192.168.1.10";    // Change accordingly
-  clients->addresses[1] = "192.168.1.11";    //Change accordingly
+  char *server_addr = "192.168.2.2";
+	clients->addresses[0] = "192.168.2.5";    // Change accordingly
+  clients->addresses[1] = "192.168.1.4";    //Change accordingly
   clients->names[0] = "Alice";
   clients->names[1] = "Bob";
   char *hostname = "Alice";
@@ -73,6 +73,8 @@ int main(int argc, const char* argv[]){
   char * sign_key_location = "dilithium.pem";
   EVP_PKEY *pkey;
 	if (user_input == 1){
+    char *host = "server";
+    printf("\nhostname: %s\n", host);
     char *client_addr = NULL;
 		unsigned char *csr_str = NULL;
     pkey = genkey_dilithium();
@@ -86,18 +88,20 @@ int main(int argc, const char* argv[]){
     }
     EVP_PKEY_print_public(b, pkey, 4, pctx);
     BIO_get_mem_data(b, &public_key_text);
-    for (int i = 0; i < sizeof(clients->addresses); i++){
-      send_data(clients->addresses[i], public_key_text);
-	  }
+    printf("\nPress enter to send public key to clients\n");
+    while( getchar() != '\n' );
+    // for (int i = 0; i < sizeof(clients->addresses); i++){
+    //   ps(clients->addresses[i]);
+    //   send_data(clients->addresses[i], public_key_text);
+	  // }
+    send_data("192.168.2.5", public_key_text);
     receive(csr_str, client_addr);
     printf("\nReceived CSR from host (%s):\n %s", client_addr, csr_str);
     X509_REQ *csr = PEM_toX509Req((const char*)csr_str);
     X509 *signed_cert = sign_csr(csr, pkey);
     char *cert_str = X509_to_PEM(signed_cert);
     printf("\nPress enter to send client signed cert\n");
-    unsigned char *user_input = NULL;
-    scanf("%s", user_input);
-    send_data(client_addr, cert_str);
+    while(getchar() != '\n');
   }
 	else{
     EVP_PKEY *pub_key = NULL;
