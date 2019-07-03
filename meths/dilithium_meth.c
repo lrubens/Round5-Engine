@@ -127,11 +127,10 @@ static int dilithium_sign(EVP_PKEY_CTX *ctx, unsigned char *sig, size_t *siglen,
     return crypto_sign(sig, (unsigned long long *)siglen, tbs, tbs_len, kpair->sk);
 }
 
-int dilithium_verify(EVP_PKEY_CTX *ctx, const unsigned char *sig, size_t *siglen, unsigned char *tbs, size_t tbs_len){
-    ps("in verify");
+int dilithium_verify(EVP_PKEY_CTX *ctx, const unsigned char *sig, size_t siglen, unsigned char *tbv, size_t tbv_len){
     EVP_PKEY *pkey = EVP_PKEY_CTX_get0_pkey(ctx);
     struct ROUND5 *kpair = (struct ROUND5 *)EVP_PKEY_get0(pkey);
-    return crypto_sign_open(tbs, (unsigned long long *)tbs_len, sig, *siglen, kpair->pk);
+    return (!crypto_sign_open(tbv, &tbv_len, sig, (unsigned long long)siglen, kpair->pk));
 }
 
 static int dilithium_ctx_init(EVP_PKEY_CTX *ctx){
@@ -214,7 +213,6 @@ int dilithium_ctrl_str(EVP_PKEY_CTX *ctx, const char *type, const char *value){
 }
 
 int dilithium_sign_init(EVP_PKEY_CTX *ctx){
-    // ps("sign_init");
     return 1;
 }
 
@@ -227,7 +225,6 @@ int dilithium_verify_init(EVP_PKEY_CTX *ctx){
 }
 
 int dilithium_copy(EVP_PKEY_CTX *dst, EVP_PKEY_CTX *src){
-    // ps(__func__);
     return 1;
 }
 

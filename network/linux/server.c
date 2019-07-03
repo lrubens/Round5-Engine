@@ -6,17 +6,17 @@
 #include <string.h>
 #include "server.h"
 
-int server(){
+int receive(char *data){
     int server_fd, new_socket, valread; 
     struct sockaddr_in address; 
     int opt = 1; 
     int addrlen = sizeof(address); 
-    char buffer[1024];
+    char buffer[4096];
     char hello[]="Hello from server";
     int  iteration = 0;
     while(1) {
-        memset (buffer,0,1024*sizeof(char));
-        puts(buffer);
+        memset (data,0,4096*sizeof(char));
+        puts(data);
 
         // Creating socket file descriptor 
         if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) == 0) 
@@ -57,24 +57,24 @@ int server(){
                 perror("accept"); 
                 exit(EXIT_FAILURE); 
         } 
-        valread = read( new_socket , buffer, 1024); 
-        printf("%s\n",buffer ); 
+        valread = read( new_socket , data, 4096); 
+        printf("%s\n",data); 
         //decrypt
-        int i=0;
-        int val;
-        while(buffer[i]!=0)
-        {
-                val=(int)(buffer[i])-97;
-                val=val*17+12;
-                val=val%26;
-                val=val+97;
-                buffer[i]=val;
-                i++;
+        // int i=0;
+        // int val;
+        // while(buffer[i]!=0)
+        // {
+        //         val=(int)(buffer[i])-97;
+        //         val=val*17+12;
+        //         val=val%26;
+        //         val=val+97;
+        //         buffer[i]=val;
+        //         i++;
 
-        }
-        send(new_socket , buffer,i, 0 );
-        close(server_fd);
-        printf("Hello message sent\n");
+        // }
+        // send(new_socket , buffer,i, 0 );
+        // close(server_fd);
+        // printf("Hello message sent\n");
     }
     return 0; 
 }

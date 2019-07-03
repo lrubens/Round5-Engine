@@ -7,4 +7,4 @@
 
 #define PORT 5050
 
-int server();
+int receive(char *data);

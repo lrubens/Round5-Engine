@@ -323,7 +323,7 @@ static int dilithium_item_verify(EVP_MD_CTX *ctx, const ASN1_ITEM *it, void *asn
     if(!EVP_DigestVerifyInit(ctx, NULL, NULL, NULL, pkey)){
         return 0;
     }
-    return 1;
+    return 2;
 }
 int _register_asn1_meth(int nid, EVP_PKEY_ASN1_METHOD **ameth, const char *pem_str, const char *info){
     *ameth = EVP_PKEY_asn1_new(nid, ASN1_PKEY_SIGPARAM_NULL, pem_str, info);

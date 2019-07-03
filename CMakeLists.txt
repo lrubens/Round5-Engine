@@ -69,6 +69,7 @@ set(OSSL_SOURCE_FILES
 set(UTIL_SOURCE_FILES
     keypair.c
     keypair.h
+    cert_util.h
 )
 
 file(GLOB ENGINE_SOURCE round5_engine.c)
@@ -100,8 +101,8 @@ set(TEST
 #     PROPERTY STRINGS
 # )
 
-set(PARAM R5N1_3PKE_0smallCT CACHE STRING "Round5 algorithm parameter")
-# set(PARAM R5ND_5PKE_5d)
+#set(PARAM R5N1_3PKE_0smallCT CACHE STRING "Round5 algorithm parameter")
+set(PARAM R5ND_5PKE_5d)
 message("Param set: ${PARAM}")
 # Include header files
 include_directories(${CMAKE_SOURCE_DIR})

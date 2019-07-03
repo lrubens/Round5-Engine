@@ -268,6 +268,11 @@ static int register_ameth(int id, EVP_PKEY_ASN1_METHOD **ameth, int flags){
         return 0;
     pem_str = OBJ_nid2sn(id);
     info = OBJ_nid2ln(id);
+    if (id == NID_DILITHIUM){
+        if (!OBJ_add_sigid(NID_DILITHIUM, NID_undef, NID_DILITHIUM)){
+            ps("OBJ_add_sigid() broken");
+        }
+    }
     // ps(pem_str);
     return _register_asn1_meth(id, ameth, pem_str, info);
 }

@@ -2,6 +2,7 @@
 #include <openssl/engine.h>
 #include <stdio.h>
 #include <string.h>
+#include <unistd.h>
 #include <err.h>
 #include <openssl/err.h>
 #include <openssl/evp.h>
@@ -17,6 +18,8 @@
 #include "network/linux/client.h"
 #include "network/linux/server.h"
 #include <time.h>
+#include <sys/time.h>
+#include "../cert_util.h"
 
 #define cDBLUE	"\033[0;34m"
 #define cNORM	"\033[m"
@@ -59,30 +62,6 @@ static void print_pkey(EVP_PKEY *pkey){
   printf("%s\n", private_key_text);
   BIO_free(b);
   ASN1_PCTX_free(pctx);
-}
-
-EVP_PKEY *test_dilithium(){
-  const char *algoname = OBJ_nid2sn(NID_DILITHIUM);
-  EVP_PKEY *ckey;
-  T(ckey = EVP_PKEY_new());
-
-  T(EVP_PKEY_set_type_str(ckey, algoname, strlen(algoname)));
-  EVP_PKEY_set_type(ckey, NID_DILITHIUM);
-
-  EVP_PKEY_CTX *tx;
-  (tx = EVP_PKEY_CTX_new(ckey, NULL));
-  T(EVP_PKEY_keygen_init(tx));
-
-  EVP_PKEY *qkey = NULL;
-  qkey = EVP_PKEY_new();
-  ((EVP_PKEY_keygen(tx, &qkey)));
-  if(!qkey){
-    printf("\n!qkey\n");
-  }
-  // print_pkey(qkey);
-  EVP_PKEY_free(ckey);
-
-  return qkey;
 }
 
 struct certKey *gen_cert(){
@@ -146,7 +125,6 @@ struct certKey *gen_cert(){
   c->cert = (X509 *)malloc(sizeof(x509ss));
   c->key = (EVP_PKEY *)malloc(sizeof(pkey));
   c->cert = x509ss;
-  // memcpy(c->key, pkey, sizeof(pkey));
   c->key = pkey;
   EVP_MD_CTX *mctx = NULL;
   T(mctx = EVP_MD_CTX_new());
@@ -156,90 +134,87 @@ struct certKey *gen_cert(){
   return c;
 }
 
-int validate_peer_cert(X509 *cert, EVP_PKEY *pkey){
-  unsigned char *result;
-  int r = X509_verify(cert, pkey);
-  return r;
-}
+void get_field(char * field){
 
-void validate_self_signed_cert(X509 * cert){
-  int status;
-  X509_STORE_CTX *ctx;
-  ctx = X509_STORE_CTX_new();
-  X509_STORE *store = X509_STORE_new();
-
-  X509_STORE_add_cert(store, cert);
-
-  X509_STORE_CTX_init(ctx, store, cert, NULL);
-
-  status = X509_verify_cert(ctx);
-  if(status == 1)
-  {
-      printf("Certificate verified ok\n");
-  }else
-  {
-      ps("INTRUDER");
-  }
 }
 
 int main(int argc, const char* argv[]){
-  printf(cBLUE "Testing Certificate Generation\n" cNORM);
-  OPENSSL_add_all_algorithms_conf();
-  ERR_load_crypto_strings();
-  ENGINE_load_dynamic();
+	unsigned char *nodes[2] = {"192.168.1.10", "192.168.1.11"};
+	printf(cBLUE "Testing Certificate Generation\n" cNORM);
+	OPENSSL_add_all_algorithms_conf();
+	ERR_load_crypto_strings();
+	ENGINE_load_dynamic();
   ENGINE *round5_engine;
 	T(round5_engine = ENGINE_by_id("round5"));
 	T(ENGINE_init(round5_engine));
   T(ENGINE_set_default(round5_engine, ENGINE_METHOD_ALL));
-  clock_t start, end;
   double time_elapsed;
-  start = clock();
-  struct certKey *c = gen_cert();
-  end = clock();
-  time_elapsed = ((double) (end - start)) / CLOCKS_PER_SEC;
-  X509 *cert = c->cert;
-  EVP_PKEY *pkey = test_dilithium();
-  EVP_MD_CTX *mctx;
-  T(mctx = EVP_MD_CTX_new());
-  EVP_PKEY_CTX *pkctx = NULL;
-  EVP_MD_CTX_init(mctx);
-  T(EVP_DigestSignInit(mctx, &pkctx, EVP_sha512(), NULL, pkey));
-  T(X509_sign_ctx(c->cert, mctx));
-  EVP_MD_CTX_free(mctx);
-  X509_print_fp(stdout, c->cert);
-  int with_dilithium = validate_peer_cert(c->cert, pkey);
-  if(with_dilithium == 1)
-    printf("Certificate verification successful!");
-  if(!c->key){
-    printf("\n!c->key\n");
-    return 1;
+	int user_input;
+	printf("\nEnter 1 for server and 2 for client: ");
+	scanf("%d", &user_input);
+	while (user_input != 1 && user_input != 2){
+		printf("\nPlease enter correct value!\n");
+		printf("\nEnter 1 for server and 2 for client: ");
+		scanf("%d", &user_input);
+	}
+  char * sign_key_location = "dilithium.pem";
+  EVP_PKEY *pkey;
+	if (user_input == 1){
+		// if(access(sign_key_location, F_OK) != -1){
+    pkey = genkey_dilithium();
+    BIO *b = NULL;
+    b = BIO_new(BIO_s_mem());
+    ASN1_PCTX *pctx = NULL;
+    pctx = ASN1_PCTX_new();
+    unsigned char *public_key_text = NULL;
+    if(!pkey){
+      printf("\n!pkey\n");
+    }
+    EVP_PKEY_print_public(b, pkey, 4, pctx);
+    BIO_get_mem_data(b, &public_key_text);
+    for (int i = 0; i < sizeof(nodes); i++){
+      send_data(nodes[i], public_key_text);
+	  }
   }
-  FILE * f = fopen("certs/key.pem", "wb");
-  PEM_write_PrivateKey(
-    f,                  /* write the key to the file we've opened */
-    c->key,               /* our key from earlier */
-    EVP_des_ede3_cbc(), /* default cipher for encrypting the key on disk */
-    (unsigned char *)"hello",       /* passphrase required for decrypting the key on disk */
-    5,                 /* length of the passphrase string */
-    NULL,               /* callback for requesting a password */
-    NULL                /* data to pass to the callback */
-  );
-  fclose(f);
-  FILE * f2 = fopen("certs/cert.pem", "wb");
-  PEM_write_X509(
-      f2,   /* write the certificate to the file we've opened */
-      c->cert /* our certificate */
-  );
-  printf("\n********************************************************\n");
-  printf("\nComputation time: %f\n", time_elapsed);
-  printf("\n********************************************************\n");
-
-  fclose(f2);
-  X509_free(c->cert);
-  EVP_PKEY_free(c->key);
-  free(c);
-  ENGINE_finish(round5_engine);
-  ENGINE_free(round5_engine);
-  ENGINE_cleanup();
-  return 0;
+	else{
+    EVP_PKEY *pub_key = NULL;
+    char *server_public_key = NULL;
+    ps("Receiving public key");
+    receive(server_public_key);
+    char_to_EVP_PKEY(pub_key, server_public_key);
+    FILE *f = fopen("server.pem", "wb");
+    PEM_write_PublicKey(
+		  f,                  /* write the key to the file we've opened */
+	  	pub_key,               /* our key from earlier */
+		  EVP_des_ede3_cbc(), /* default cipher for encrypting the key on disk */
+		  (unsigned char *)"hello",       /* passphrase required for decrypting the key on disk */
+		  5,                 /* length of the passphrase string */
+		  NULL,               /* callback for requesting a password */
+		  NULL                /* data to pass to the callback */
+	  );
+	  fclose(f);
+	}
+	
+	// X509_print_fp(stdout, c->cert);
+	// int with_dilithium = validate_peer_cert(c->cert, pkey);
+	// pd(with_dilithium);
+	// unsigned char *params[10] = {"R5ND_1PKE_5d", "R5ND_3PKE_5d", "R5ND_5PKE_5d", "R5ND_1PKE_0d", "R5ND_3PKE_0d", "R5ND_5PKE_0d", "R5ND_1KEM_5d", "R5ND_3KEM_5d", "R5ND_5KEM_5d", "R5N1_3PKE_0smallCT"};
+	// ps(params[0]);
+	// printf("\n********************************************************\n");
+	// // printf("\nComputation time: %lu\n", diff);
+	// printf("\n********************************************************\n");
+	// FILE *f3 = fopen("data.txt", "a");
+	// fprintf(f3, "%f\n", time_elapsed);
+	// fclose(f3);
+	// fclose(f2);
+	// EVP_MD_CTX_free(mctx);
+  // BIO_free(b);
+  // ASN1_PCTX_free(pctx);
+	// X509_free(c->cert);
+	// EVP_PKEY_free(c->key);
+	free(c);
+	ENGINE_finish(round5_engine);
+	ENGINE_free(round5_engine);
+	ENGINE_cleanup();
+	return 0;
 }
