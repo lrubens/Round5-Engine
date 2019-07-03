@@ -142,6 +142,11 @@ target_link_libraries(engine_check dilithium round5 engine_lib ${OPENSSL_CRYPTO_
 target_compile_definitions(engine_check PUBLIC ${PARAM})
 set_target_properties(engine_check PROPERTIES COMPILE_FLAGS "-lcrypto -lssl -ggdb3 -O0")
 
+add_executable(test_network test/test_network.c ${DILITHIUM_SOURCE_FILES})
+target_link_libraries(test_network dilithium round5 engine_lib ${OPENSSL_CRYPTO_LIBRARY}  -Xlinker -zmuldefs)
+target_compile_definitions(test_network PUBLIC ${PARAM})
+set_target_properties(test_network PROPERTIES COMPILE_FLAGS "-lcrypto -lssl -ggdb3 -O0")
+
 # Install library
 set(ENGINE_DIR /usr/local/ssl/lib/engines-1.1/)
 install(TARGETS round5_engine #engine_lib round5 dilithium #dilithium round5 xkcp

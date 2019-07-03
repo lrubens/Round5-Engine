@@ -6,16 +6,14 @@
 #include <string.h>
 #include "server.h"
 
-int receive(char *data){
+int receive(char *data, char *client_addr){
     int server_fd, new_socket, valread; 
-    struct sockaddr_in address; 
+    struct sockaddr_in address;
     int opt = 1; 
     int addrlen = sizeof(address); 
     char buffer[4096];
-    char hello[]="Hello from server";
-    int  iteration = 0;
     while(1) {
-        memset (data,0,4096*sizeof(char));
+        memset (data, 0, 4096*sizeof(char));
         puts(data);
 
         // Creating socket file descriptor 
@@ -30,14 +28,13 @@ int receive(char *data){
                                 &opt, sizeof(opt))) 
         { 
                 perror("setsockopt"); 
-                exit(EXIT_FAILURE); 
-
+                exit(EXIT_FAILURE);
         } 
         address.sin_family = AF_INET; 
         address.sin_addr.s_addr = INADDR_ANY; 
         address.sin_port = htons( PORT ); 
 
-        // Forcefully attaching socket to the port 8080 
+        // Forcefully attaching socket to the port 5050 
         if (bind(server_fd, (struct sockaddr *)&address, 
                                 sizeof(address))<0) 
 
@@ -57,29 +54,12 @@ int receive(char *data){
                 perror("accept"); 
                 exit(EXIT_FAILURE); 
         } 
+        struct sockaddr_in *addr = (struct sockaddr_in *)&address;
+        struct in_addr ip_addr = addr->sin_addr;
+        client_addr = malloc(INET_ADDRSTRLEN);
+        inet_ntop(AF_INET, &ip_addr, client_addr, INET_ADDRSTRLEN);
         valread = read( new_socket , data, 4096); 
-        printf("%s\n",data); 
-        //decrypt
-        // int i=0;
-        // int val;
-        // while(buffer[i]!=0)
-        // {
-        //         val=(int)(buffer[i])-97;
-        //         val=val*17+12;
-        //         val=val%26;
-        //         val=val+97;
-        //         buffer[i]=val;
-        //         i++;
-
-        // }
-        // send(new_socket , buffer,i, 0 );
-        // close(server_fd);
-        // printf("Hello message sent\n");
+        printf("%s\n",data);
     }
-    return 0; 
+    return 1; 
 }
-
-// int main(int argc, char const *argv[]) 
-// { 
-//     return server();
-// } 

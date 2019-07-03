@@ -20,6 +20,7 @@
 #include <time.h>
 #include <sys/time.h>
 #include "../cert_util.h"
+#include <sys/socket.h>
 
 #define cDBLUE	"\033[0;34m"
 #define cNORM	"\033[m"
@@ -38,9 +39,9 @@
         })
 
 
-struct certKey{
-  X509 *cert;
-  EVP_PKEY *key;
+struct nodes{
+  unsigned char *addresses[2];
+  unsigned char *names[2];
 };
 
 static void print_pkey(EVP_PKEY *pkey){
@@ -49,89 +50,15 @@ static void print_pkey(EVP_PKEY *pkey){
   b = BIO_new(BIO_s_mem());
   ASN1_PCTX *pctx = NULL;
   pctx = ASN1_PCTX_new();
-
   unsigned char *private_key_text = NULL;
   if(!pkey){
     printf("\n!pkey\n");
   }
-
   EVP_PKEY_print_public(b, pkey, 4, pctx);
-
   BIO_get_mem_data(b, &private_key_text);
-
   printf("%s\n", private_key_text);
   BIO_free(b);
   ASN1_PCTX_free(pctx);
-}
-
-struct certKey *gen_cert(){
-  // Testing Engine functions
-  char *algname = "Round5";
-  EVP_PKEY *tkey;
-  T(tkey = EVP_PKEY_new());
-  T(EVP_PKEY_set_type_str(tkey, algname, strlen(algname)));
-  EVP_PKEY_CTX *ctx = NULL;
-  T(ctx = EVP_PKEY_CTX_new(tkey, NULL));
-  T(EVP_PKEY_keygen_init(ctx));
-
-  EVP_PKEY *pkey = NULL;
-  pkey = EVP_PKEY_new();
-  T((EVP_PKEY_keygen(ctx, &pkey)) == 1);
-  EVP_PKEY_free(tkey);
-
-  X509_REQ *req = NULL;
-  T(req = X509_REQ_new());
-  T(X509_REQ_set_version(req, 0L));
-  X509_NAME *name;
-  T(name = X509_NAME_new());
-  X509_NAME_add_entry_by_txt(name, "C",  MBSTRING_ASC, (unsigned char *)"US", -1, -1, 0);
-  X509_NAME_add_entry_by_txt(name, "ST",  MBSTRING_ASC, (unsigned char *)"MA", -1, -1, 0);
-  X509_NAME_add_entry_by_txt(name, "L",  MBSTRING_ASC, (unsigned char *)"Cambridge", -1, -1, 0);
-  X509_NAME_add_entry_by_txt(name, "O",  MBSTRING_ASC, (unsigned char *)"Draper", -1, -1, 0);
-  X509_NAME_add_entry_by_txt(name, "CN", MBSTRING_ASC, (unsigned char *)"localhost", -1, -1, 0);
-  T(X509_REQ_set_subject_name(req, name));
-  T(X509_REQ_set_pubkey(req, pkey));
-  X509_NAME_free(name);
-  /* Cert. */
-  X509 *x509ss = NULL;
-  T(x509ss = X509_new());
-  T(X509_set_version(x509ss, 2));
-  BIGNUM *brnd = BN_new();
-  T(BN_rand(brnd, 20 * 8 - 1, -1, 0));
-  T(BN_to_ASN1_INTEGER(brnd, X509_get_serialNumber(x509ss)));
-  T(X509_set_issuer_name(x509ss, X509_REQ_get_subject_name(req)));
-  T(X509_gmtime_adj(X509_getm_notBefore(x509ss), 0));
-  T(X509_time_adj_ex(X509_getm_notAfter(x509ss), 1, 0, NULL));
-  T(X509_set_subject_name(x509ss, X509_REQ_get_subject_name(req)));
-  T(X509_set_pubkey(x509ss, X509_REQ_get0_pubkey(req)));
-  X509_REQ_free(req);
-  BN_free(brnd);
-
-  X509V3_CTX v3ctx;
-  X509V3_set_ctx_nodb(&v3ctx);
-  X509V3_set_ctx(&v3ctx, x509ss, x509ss, NULL, NULL, 0);
-  X509_EXTENSION *ext;
-  T(ext = X509V3_EXT_conf_nid(NULL, &v3ctx, NID_basic_constraints, "critical,CA:TRUE"));
-  T(X509_add_ext(x509ss, ext, 0));
-  X509_EXTENSION_free(ext);
-  T(ext = X509V3_EXT_conf_nid(NULL, &v3ctx, NID_subject_key_identifier, "hash"));
-  T(X509_add_ext(x509ss, ext, 1));
-  X509_EXTENSION_free(ext);
-  T(ext = X509V3_EXT_conf_nid(NULL, &v3ctx, NID_authority_key_identifier, "keyid:always,issuer"));
-  T(X509_add_ext(x509ss, ext, 2));
-  X509_EXTENSION_free(ext);
-
-  struct certKey *c = (struct certKey *)malloc(sizeof(struct certKey));
-  c->cert = (X509 *)malloc(sizeof(x509ss));
-  c->key = (EVP_PKEY *)malloc(sizeof(pkey));
-  c->cert = x509ss;
-  c->key = pkey;
-  EVP_MD_CTX *mctx = NULL;
-  T(mctx = EVP_MD_CTX_new());
-  EVP_MD_CTX_free(mctx);
-  cleanup:
-  EVP_PKEY_CTX_free(ctx);
-  return c;
 }
 
 void get_field(char * field){
@@ -139,8 +66,15 @@ void get_field(char * field){
 }
 
 int main(int argc, const char* argv[]){
-	unsigned char *nodes[2] = {"192.168.1.10", "192.168.1.11"};
-	printf(cBLUE "Testing Certificate Generation\n" cNORM);
+  printf(cBLUE "Testing client-server cert distribution\n" cNORM);
+  struct nodes *clients= malloc(sizeof(struct nodes));
+  char *server_addr = "localhost";
+	clients.addresses[0] = "192.168.1.10";    // Change accordingly
+  clients.addresses[1] = "192.168.1.11";    //Change accordingly
+  clients.names[0] = "Alice";
+  clients.names[1] = "Bob";
+  char *hostname = (get_IP() == clients.addresses[0] ? clients.names[0] : clients.names[1]);
+  printf("\n---Hostname: [ %s ]---\n", hostname);
 	OPENSSL_add_all_algorithms_conf();
 	ERR_load_crypto_strings();
 	ENGINE_load_dynamic();
@@ -160,7 +94,8 @@ int main(int argc, const char* argv[]){
   char * sign_key_location = "dilithium.pem";
   EVP_PKEY *pkey;
 	if (user_input == 1){
-		// if(access(sign_key_location, F_OK) != -1){
+    char *client_addr = NULL;
+		unsigned char *csr_str = NULL;
     pkey = genkey_dilithium();
     BIO *b = NULL;
     b = BIO_new(BIO_s_mem());
@@ -175,45 +110,48 @@ int main(int argc, const char* argv[]){
     for (int i = 0; i < sizeof(nodes); i++){
       send_data(nodes[i], public_key_text);
 	  }
+    receive(csr_str, client_addr);
+    printf("\nReceived CSR from host (%s):\n %s", client_addr, csr_str);
+    X509_REQ *csr = PEM_toX509Req((const char*)csr_str);
+    X509 *signed_cert = sign_csr(csr, pkey);
+    char *cert_str = X509_to_PEM(signed_cert);
+    printf("\nPress enter to send client signed cert\n");
+    unsigned char *user_input = NULL;
+    scanf("%s", user_input);
+    send_data(client_addr, cert_str);
   }
 	else{
     EVP_PKEY *pub_key = NULL;
     char *server_public_key = NULL;
+    char *client_addr = NULL;
     ps("Receiving public key");
-    receive(server_public_key);
+    receive(server_public_key, client_addr);
     char_to_EVP_PKEY(pub_key, server_public_key);
-    FILE *f = fopen("server.pem", "wb");
-    PEM_write_PublicKey(
-		  f,                  /* write the key to the file we've opened */
-	  	pub_key,               /* our key from earlier */
-		  EVP_des_ede3_cbc(), /* default cipher for encrypting the key on disk */
-		  (unsigned char *)"hello",       /* passphrase required for decrypting the key on disk */
-		  5,                 /* length of the passphrase string */
-		  NULL,               /* callback for requesting a password */
-		  NULL                /* data to pass to the callback */
-	  );
+    FILE *f = fopen("certs/server.pem", "wb");
+    PEM_write_PUBKEY(f, pub_key);
 	  fclose(f);
+    client_addr = NULL;
+    unsigned char *country = "US";
+    unsigned char *province = "MA";
+    unsigned char *city = "Cambridge";
+    unsigned char *organization = "Draper"; 
+    unsigned char * fqdn = hostname;
+    X509_REQ *req = gen_csr(country, province, city, organization, fqdn);
+    unsigned char *csr_str = X509Req_to_PEM(req);
+    printf("\nPress enter to send server CSR\n");
+    unsigned char *user_input = NULL;
+    scanf("%s", user_input);
+    send_data(server, csr_str);
+    unsigned char *signed_cert_str = NULL;
+    receive(signed_cert_str, client_addr);
+    printf("\nReceived signed cert from host (%s):\n %s", client_addr, signed_cert_str);
+    X509 *signed_cert = PEM_to_X509((const char*)signed_cert_str);
+    FILE *f2 = open("certs/client.pem", "wb");
+    PEM_write_X509(f2, signed_cert);
+    fclose(f2);
 	}
-	
-	// X509_print_fp(stdout, c->cert);
-	// int with_dilithium = validate_peer_cert(c->cert, pkey);
-	// pd(with_dilithium);
-	// unsigned char *params[10] = {"R5ND_1PKE_5d", "R5ND_3PKE_5d", "R5ND_5PKE_5d", "R5ND_1PKE_0d", "R5ND_3PKE_0d", "R5ND_5PKE_0d", "R5ND_1KEM_5d", "R5ND_3KEM_5d", "R5ND_5KEM_5d", "R5N1_3PKE_0smallCT"};
-	// ps(params[0]);
-	// printf("\n********************************************************\n");
-	// // printf("\nComputation time: %lu\n", diff);
-	// printf("\n********************************************************\n");
-	// FILE *f3 = fopen("data.txt", "a");
-	// fprintf(f3, "%f\n", time_elapsed);
-	// fclose(f3);
-	// fclose(f2);
-	// EVP_MD_CTX_free(mctx);
-  // BIO_free(b);
-  // ASN1_PCTX_free(pctx);
-	// X509_free(c->cert);
-	// EVP_PKEY_free(c->key);
-	free(c);
 	ENGINE_finish(round5_engine);
+  ASN1_PCTX_free(pctx);
 	ENGINE_free(round5_engine);
 	ENGINE_cleanup();
 	return 0;

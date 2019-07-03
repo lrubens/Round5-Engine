@@ -10,6 +10,9 @@
 #include "keypair.h"
 #include <openssl/bio.h>
 #include <openssl/x509v3.h>
+#include <arpa/inet.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
 
 
 inline X509_REQ *gen_csr(unsigned char *country, unsigned char *province, unsigned char *city, unsigned char *organization, unsigned char * fqdn){
@@ -141,14 +144,40 @@ inline X509 * PEM_to_X509(const char *cert){
   BIO *b = BIO_new(BIO_s_mem());
   BIO_puts(b, cert);
   X509 *cert_obj = PEM_read_bio_X509(b, NULL, NULL, NULL);
+  BIO_free(b);
   return cert_obj;
 }
 
+inline X509_REQ *PEM_toX509Req(const char *csr_str){
+  BIO *b = BIO_new(bIO_s_mem());
+  BIO_puts(b, csr_str);
+  X509_REQ *req = PEM_read_bio_X509_REQ(b, NULL, NULL, NULL);
+  return req;
+}
+
 inline char *X509Req_to_PEM(X509_REQ *csr){
-  printf("\nNot implemented\n");
-  return NULL;
+  BIO *bio = NULL;
+  char *pem = NULL;
+  bio = BIO_new(BIO_s_mem());
+  PEM_write_bio_X509(bio, csr);
+  pem = (char *) malloc(bio->num_write + 1);
+  memset(pem, 0, bio->num_write + 1);
+  BIO_read(bio, pem, bio->num_write);
+  BIO_free(bio);
+  return pem;
 }
 
 inline int char_to_EVP_PKEY(char *key_str, EVP_PKEY *pkey){
   i2d_PublicKey(pkey, &key_str);
+}
+
+inline char *get_IP(){
+  char *IP_buf;
+  char host_buffer[256];
+  struct hostent *host_entry;
+  int hostname;
+  hostname = gethostname(host_buffer, sizeof(host_buffer));
+  IP_buf = inet_ntoa(*((struct in_addr*)host_entry->h_addr_list[0]));
+  printf("\n%s\n", IP_buf);
+  return IP_buf;
 }
