@@ -7,7 +7,6 @@
 #include "client.h"
    
 int send_data(char *address, char *data){
-    struct sockaddr_in address;
 	//valread takes a message, sock refers to the socket
     int sock = 0, valread; 
     struct sockaddr_in serv_addr;  

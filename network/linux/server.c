@@ -7,6 +7,7 @@
 #include "server.h"
 
 int receive(char *data, char *client_addr){
+    data = malloc(4096);
     int server_fd, new_socket, valread; 
     struct sockaddr_in address;
     int opt = 1; 

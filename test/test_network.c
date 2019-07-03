@@ -20,7 +20,7 @@
 #include <time.h>
 #include <sys/time.h>
 #include "../cert_util.h"
-#include <sys/socket.h>
+//#include <sys/socket.h>
 
 #define cDBLUE	"\033[0;34m"
 #define cNORM	"\033[m"
@@ -44,36 +44,15 @@ struct nodes{
   unsigned char *names[2];
 };
 
-static void print_pkey(EVP_PKEY *pkey){
-
-  BIO *b = NULL;
-  b = BIO_new(BIO_s_mem());
-  ASN1_PCTX *pctx = NULL;
-  pctx = ASN1_PCTX_new();
-  unsigned char *private_key_text = NULL;
-  if(!pkey){
-    printf("\n!pkey\n");
-  }
-  EVP_PKEY_print_public(b, pkey, 4, pctx);
-  BIO_get_mem_data(b, &private_key_text);
-  printf("%s\n", private_key_text);
-  BIO_free(b);
-  ASN1_PCTX_free(pctx);
-}
-
-void get_field(char * field){
-
-}
-
 int main(int argc, const char* argv[]){
   printf(cBLUE "Testing client-server cert distribution\n" cNORM);
   struct nodes *clients= malloc(sizeof(struct nodes));
   char *server_addr = "localhost";
-	clients.addresses[0] = "192.168.1.10";    // Change accordingly
-  clients.addresses[1] = "192.168.1.11";    //Change accordingly
-  clients.names[0] = "Alice";
-  clients.names[1] = "Bob";
-  char *hostname = (get_IP() == clients.addresses[0] ? clients.names[0] : clients.names[1]);
+	clients->addresses[0] = "192.168.1.10";    // Change accordingly
+  clients->addresses[1] = "192.168.1.11";    //Change accordingly
+  clients->names[0] = "Alice";
+  clients->names[1] = "Bob";
+  char *hostname = "Alice";
   printf("\n---Hostname: [ %s ]---\n", hostname);
 	OPENSSL_add_all_algorithms_conf();
 	ERR_load_crypto_strings();
@@ -107,8 +86,8 @@ int main(int argc, const char* argv[]){
     }
     EVP_PKEY_print_public(b, pkey, 4, pctx);
     BIO_get_mem_data(b, &public_key_text);
-    for (int i = 0; i < sizeof(nodes); i++){
-      send_data(nodes[i], public_key_text);
+    for (int i = 0; i < sizeof(clients->addresses); i++){
+      send_data(clients->addresses[i], public_key_text);
 	  }
     receive(csr_str, client_addr);
     printf("\nReceived CSR from host (%s):\n %s", client_addr, csr_str);
@@ -141,17 +120,16 @@ int main(int argc, const char* argv[]){
     printf("\nPress enter to send server CSR\n");
     unsigned char *user_input = NULL;
     scanf("%s", user_input);
-    send_data(server, csr_str);
+    send_data(server_addr, csr_str);
     unsigned char *signed_cert_str = NULL;
     receive(signed_cert_str, client_addr);
     printf("\nReceived signed cert from host (%s):\n %s", client_addr, signed_cert_str);
     X509 *signed_cert = PEM_to_X509((const char*)signed_cert_str);
-    FILE *f2 = open("certs/client.pem", "wb");
+    FILE *f2 = fopen("certs/client.pem", "wb");
     PEM_write_X509(f2, signed_cert);
     fclose(f2);
 	}
 	ENGINE_finish(round5_engine);
-  ASN1_PCTX_free(pctx);
 	ENGINE_free(round5_engine);
 	ENGINE_cleanup();
 	return 0;

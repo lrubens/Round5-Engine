@@ -70,6 +70,13 @@ set(UTIL_SOURCE_FILES
     keypair.c
     keypair.h
     cert_util.h
+    cert_util.c
+)
+
+file(GLOB NETWORK_CORE network/linux/*.c network/linux/*.h)
+
+set(NETWORK_FILES
+    ${NETWORK_CORE}
 )
 
 file(GLOB ENGINE_SOURCE round5_engine.c)
@@ -90,6 +97,7 @@ set(ENGINE_CORE
     ${METHODS_SOURCE_FILES}
     ${OSSL_SOURCE_FILES}
     ${UTIL_SOURCE_FILES}
+    ${NETWORK_FILES}
 )
 
 set(TEST
@@ -142,8 +150,8 @@ target_link_libraries(engine_check dilithium round5 engine_lib ${OPENSSL_CRYPTO_
 target_compile_definitions(engine_check PUBLIC ${PARAM})
 set_target_properties(engine_check PROPERTIES COMPILE_FLAGS "-lcrypto -lssl -ggdb3 -O0")
 
-add_executable(test_network test/test_network.c ${DILITHIUM_SOURCE_FILES})
-target_link_libraries(test_network dilithium round5 engine_lib ${OPENSSL_CRYPTO_LIBRARY}  -Xlinker -zmuldefs)
+add_executable(test_network test/test_network.c)
+target_link_libraries(test_network engine_lib ${OPENSSL_CRYPTO_LIBRARY} -Xlinker -zmuldefs)
 target_compile_definitions(test_network PUBLIC ${PARAM})
 set_target_properties(test_network PROPERTIES COMPILE_FLAGS "-lcrypto -lssl -ggdb3 -O0")
 
@@ -156,3 +164,4 @@ install(TARGETS round5_engine #engine_lib round5 dilithium #dilithium round5 xkc
         RUNTIME  DESTINATION ${ENGINE_DIR}
         # COMPONENT library
 )
+
