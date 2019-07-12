@@ -171,6 +171,11 @@ char *X509_to_PEM(X509 *cert){
   return pem;
 }
 
+int generate_cert(char *data){
+
+  return NULL;
+}
+
 X509 * PEM_to_X509(const char *cert){
   BIO *b = BIO_new(BIO_s_mem());
   BIO_puts(b, cert);

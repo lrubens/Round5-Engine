@@ -5,6 +5,7 @@
 #include <netinet/in.h> 
 #include <string.h> 
 #include "client.h"
+#include <unistd.h>
    
 int send_data(char *address, char *data){
 	//valread takes a message, sock refers to the socket
@@ -34,14 +35,17 @@ int send_data(char *address, char *data){
         printf("\nConnection Failed \n"); 
         return -1; 
     }
-	//Place your message in this pointer
-    
-	// char *message="Hello again from Rubens";
-    send(sock , data , strlen(data) , 0 ); 
+    char *csr_fields[] = {"name", "country", "province", "city", "organization", "fqdn"};
+    char *csr[7] = {0};
+
+    int i;
+    for(i = 0; i < sizeof(csr_fields); i++){
+        printf("Enter %s:", csr_fields[i]);
+        scanf("%s", csr[i]);
+    }
+    csr[7] = data;
+    write(sock, csr, sizeof(csr));
+    // send(sock , data , strlen(data) , 0 ); 
     printf("Message sent\n");
-	//Receive encrypted message
-    // valread = read( sock , buffer, 4096);
-	// //Print encrypted message (optional)
-    // printf("Encrypted message: %s\n",buffer ); 
     return 0;
 }

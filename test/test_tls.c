@@ -41,11 +41,6 @@ int main(int argc, const char* argv[]){
     return 0;
   }
   char *role = argv[1];
-  // printf("\n\n", arg);
-  printf("\nRole: %s\n", role);
-  // struct nodes *clients= malloc(sizeof(struct nodes));
-  // char *hostname = "Alice";
-  // printf("\n---Hostname: [ %s ]---\n", hostname);
   OPENSSL_add_all_algorithms_conf();
   ERR_load_crypto_strings();
   ENGINE_load_dynamic();
@@ -55,10 +50,10 @@ int main(int argc, const char* argv[]){
   T(ENGINE_set_default(round5_engine, ENGINE_METHOD_ALL));
   if(!strcmp(role, "server")){
     char *public_key = NULL;
-    char *client_addr = NULL;
-    receive(public_key, client_addr);
+    // char *client_addr = NULL;
+    char *data = NULL;
+    receive(public_key, generate_cert(data));
     printf("\nPublic key:\n%s\n", public_key);
-    printf("\nClient addr:\n%s\n", client_addr);
   }
   else if(!strcmp(role, "client")){
     char server_addr[256];

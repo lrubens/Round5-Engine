@@ -5,4 +5,4 @@
 
 #define PORT 5050
 
-int receive(char *data, char *client_addr);
+int receive(char *data, int (*handle_request)(char *, char *));

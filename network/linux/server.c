@@ -7,8 +7,8 @@
 #include "server.h"
 #include <arpa/inet.h>
 
-int receive(char *data, char *client_addr){
-    printf("\nReceive!!!!\n");
+int receive(char *data, int (*handle_request)(char *, char *)){
+    char *client_addr;
     int size = 8192;
     data = malloc(size);
     int server_fd, new_socket, valread; 
@@ -63,6 +63,9 @@ int receive(char *data, char *client_addr){
         client_addr = malloc(INET_ADDRSTRLEN);
         inet_ntop(AF_INET, &ip_addr, client_addr, INET_ADDRSTRLEN);
         valread = read( new_socket , data, size); 
+        if((*handle_request)){
+            (*handle_request)(data, client_addr);
+        }
         printf("\nIP Address: %s\n", client_addr);
         printf("%s\n",data);
         break;
