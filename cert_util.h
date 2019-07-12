@@ -4,7 +4,7 @@
 #include <openssl/x509v3.h>
 
 struct CSR{
-    char *name;
+    // char *name;
     char *country;
     char *province;
     char *city;

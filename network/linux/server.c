@@ -7,7 +7,7 @@
 #include "server.h"
 #include <arpa/inet.h>
 
-int receive(char *data, int (*handle_request)(char *, char *)){
+int receive(void *data, int (*handle_request)(char *, char *)){
     char *client_addr;
     int size = 8192;
     data = malloc(size);
@@ -18,7 +18,7 @@ int receive(char *data, int (*handle_request)(char *, char *)){
     char buffer[size];
     while(1) {
         memset (data, 0, size*sizeof(char));
-        puts(data);
+        // puts(data);
 
         // Creating socket file descriptor 
         if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) == 0) 
@@ -62,12 +62,37 @@ int receive(char *data, int (*handle_request)(char *, char *)){
         struct in_addr ip_addr = addr->sin_addr;
         client_addr = malloc(INET_ADDRSTRLEN);
         inet_ntop(AF_INET, &ip_addr, client_addr, INET_ADDRSTRLEN);
-        valread = read( new_socket , data, size); 
+        // char *data_[7] = {0};
+        // char data_[7][30];
+        // char **data_ = malloc(7 * sizeof(*data_));
+        
+        valread = recv( new_socket , data, 8192, 0); 
+        char *data_ = strtok(data, "\n");
+        while(data_ != NULL){
+            printf("\ndata_: %s\n", data_);
+            data_ = strtok(NULL, "\n");
+        }
+        int i;
+        // char *pk;
+        // for(i = 0; i < strlen(data); i++){
+        //     if(data[i] == "\n"){
+        //         pk = malloc(strlen(data) - i);
+        //         strncpy(pk, data + i + 1, strlen(data) - i);
+        //     }
+        // }
+        // printf("\nPK!!!!!!!: %s\n", pk);
+
+        // printf("\n%s\n", data_[1]);
+        // data = data_[1];
+        // printf("\n%s\n", data);
+        // revc_size(new_socket, &data)
         if((*handle_request)){
+            printf("done");
             (*handle_request)(data, client_addr);
         }
         printf("\nIP Address: %s\n", client_addr);
-        printf("%s\n",data);
+        printf("\n%s\n", data);
+        
         break;
     }
     return 1; 

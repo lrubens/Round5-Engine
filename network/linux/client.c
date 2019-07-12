@@ -6,6 +6,13 @@
 #include <string.h> 
 #include "client.h"
 #include <unistd.h>
+
+void raw_input(char *prompt, char *buffer, size_t length){
+    printf("%s", prompt);
+    fflush(stdout);
+    // fgets(buffer, length, stdin);
+    scanf("%s", buffer);
+}
    
 int send_data(char *address, char *data){
 	//valread takes a message, sock refers to the socket
@@ -36,16 +43,23 @@ int send_data(char *address, char *data){
         return -1; 
     }
     char *csr_fields[] = {"name", "country", "province", "city", "organization", "fqdn"};
-    char *csr[7] = {0};
-
-    int i;
-    for(i = 0; i < sizeof(csr_fields); i++){
-        printf("Enter %s:", csr_fields[i]);
-        scanf("%s", csr[i]);
-    }
-    csr[7] = data;
-    write(sock, csr, sizeof(csr));
-    // send(sock , data , strlen(data) , 0 ); 
+    // char **csr = malloc(7 * sizeof(*csr));
+    // *csr = "Rubens";
+    // *(csr+1) = "US";
+    // *(csr+2) = "MA";
+    // *(csr+3) = "Cambridge";
+    // *(csr+4) = "Draper";
+    // *(csr+5) = "hostname";
+    // *(csr+6) = data;
+    char *csr[] = {"Rubens", "US", "MA", "Cambridge", "Draper", "hostname", data};
+    char str[8192];
+    sprintf(str, "%s\n%s\n%s\n%s\n%s\n%s\n%s", csr[0], csr[1], csr[2], csr[3], csr[4], csr[5], csr[6]);
+    printf("\nConcatenated str: %s\n", str);
+    // csr = {"Rubens", "US", "MA", "Cambridge", "Draper", "hostname", data};
+    // for(i = 0; i < sizeof(*csr_fields); i++){
+    //     raw_input(("Enter %s:", csr_fields[i]), csr[i], 1024);
+    // }
+    send(sock , str, strlen(str), 0); 
     printf("Message sent\n");
     return 0;
 }
