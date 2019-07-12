@@ -53,7 +53,6 @@ int main(int argc, const char* argv[]){
   T(round5_engine = ENGINE_by_id("round5"));
   T(ENGINE_init(round5_engine));
   T(ENGINE_set_default(round5_engine, ENGINE_METHOD_ALL));
-  EVP_PKEY *pkey = NULL;
   if(!strcmp(role, "server")){
     char *public_key = NULL;
     char *client_addr = NULL;
@@ -62,12 +61,21 @@ int main(int argc, const char* argv[]){
     printf("\nClient addr:\n%s\n", client_addr);
   }
   else if(!strcmp(role, "client")){
-    char *server_addr = NULL;
+    char server_addr[256];
+    EVP_PKEY *pkey = NULL;
+    char *algname = "Round5";
+    EVP_PKEY *tkey = NULL;
+    tkey = EVP_PKEY_new();
+    EVP_PKEY_set_type_str(tkey, algname, strlen(algname));
+    EVP_PKEY_CTX *ctx = NULL;
+    ctx = EVP_PKEY_CTX_new(tkey, NULL);
+    EVP_PKEY_keygen_init(ctx);
+    pkey = EVP_PKEY_new();
+    EVP_PKEY_keygen(ctx, &pkey);
+    EVP_PKEY_free(tkey);
     printf("\nPlease enter address of server:\n");
-    scanf("%s", &server_addr);
-    char *key_buf = NULL;
-    EVP_gen_round5(pkey);
-    EVP_PKEY_to_char(pkey, key_buf);
+    scanf("%s", server_addr);
+    char *key_buf = EVP_PKEY_to_char(pkey);
     printf("\nPublic key: \n%s\n", key_buf);
     send_data(server_addr, key_buf);
   }

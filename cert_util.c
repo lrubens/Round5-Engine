@@ -213,16 +213,18 @@ int char_to_EVP_PKEY(const char *key_str, EVP_PKEY *pkey){
   // printf
 }
 
-int EVP_PKEY_to_char(EVP_PKEY *pkey, char *key_str){
+char *EVP_PKEY_to_char(EVP_PKEY *pkey){
   BIO *b = NULL;
   b = BIO_new(BIO_s_mem());
   ASN1_PCTX *pctx = NULL;
   pctx = ASN1_PCTX_new();
+  char * key_str = NULL;
   if(!pkey){
     printf("\n!pkey\n");
   }
   EVP_PKEY_print_public(b, pkey, 4, pctx);
   BIO_get_mem_data(b, &key_str);
+  return key_str;
   ASN1_PCTX_free(pctx);
   BIO_free(b);
 }
