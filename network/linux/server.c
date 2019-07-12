@@ -5,16 +5,18 @@
 #include <netinet/in.h> 
 #include <string.h>
 #include "server.h"
+#include <arpa/inet.h>
 
 int receive(char *data, char *client_addr){
-    data = malloc(4096);
+    int size = 8192;
+    data = malloc(size);
     int server_fd, new_socket, valread; 
     struct sockaddr_in address;
     int opt = 1; 
     int addrlen = sizeof(address); 
-    char buffer[4096];
+    char buffer[size];
     while(1) {
-        memset (data, 0, 4096*sizeof(char));
+        memset (data, 0, size*sizeof(char));
         puts(data);
 
         // Creating socket file descriptor 
@@ -59,8 +61,10 @@ int receive(char *data, char *client_addr){
         struct in_addr ip_addr = addr->sin_addr;
         client_addr = malloc(INET_ADDRSTRLEN);
         inet_ntop(AF_INET, &ip_addr, client_addr, INET_ADDRSTRLEN);
-        valread = read( new_socket , data, 4096); 
+        valread = read( new_socket , data, size); 
+        printf("\nIP Address: %s\n", client_addr);
         printf("%s\n",data);
+        break;
     }
     return 1; 
 }

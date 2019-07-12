@@ -13,3 +13,4 @@ X509_REQ *PEM_toX509Req(const char *csr_str);
 char *X509Req_to_PEM(X509_REQ *csr);
 int char_to_EVP_PKEY(char *key_str, EVP_PKEY *pkey);
 char *get_IP();
+int EVP_gen_round5(EVP_PKEY *pkey);

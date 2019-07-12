@@ -8,9 +8,10 @@
    
 int send_data(char *address, char *data){
 	//valread takes a message, sock refers to the socket
+    printf("\nData sent: %s\n", data);
     int sock = 0, valread; 
     struct sockaddr_in serv_addr;  
-    char buffer[4096] = {0};
+    char buffer[8192] = {0};
     if ((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0) 
     { 
         printf("\n Socket creation error \n"); 
@@ -18,7 +19,7 @@ int send_data(char *address, char *data){
     } 
    
     memset(&serv_addr, '0', sizeof(serv_addr)); 
-   
+    printf("\n%s\n", address);
     serv_addr.sin_family = AF_INET; 
     serv_addr.sin_port = htons(PORT); 
     // Convert IPv4 and IPv6 addresses from text to binary form 

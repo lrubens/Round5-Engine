@@ -1,21 +1,44 @@
-//#include <openssl/crypto.h>
-//#include <openssl/engine.h>
+#include <openssl/crypto.h>
+#include <openssl/engine.h>
 #include <stdio.h>
 #include <string.h>
 #include <err.h>
 #include <openssl/err.h>
 #include <openssl/evp.h>
-//#include <openssl/conf.h>
+#include <openssl/conf.h>
 //#include <openssl/ssl.h>
 #include "keypair.h"
 #include <openssl/bio.h>
 #include <openssl/x509v3.h>
+#include <openssl/x509.h>
 #include <arpa/inet.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <sys/types.h>
 #include <netdb.h>
 #include <ifaddrs.h>
+
+static int add_ext(STACK_OF(X509_EXTENSION) *sk, int nid, char *value){
+  X509_EXTENSION *ex;
+  ex = X509V3_EXT_conf_nid(NULL, NULL, nid, value);
+  if (!ex)
+    return 0;
+  sk_X509_EXTENSION_push(sk, ex);
+  return 1;
+ }
+
+int EVP_gen_round5(EVP_PKEY *pkey){
+  char *algname = "Round5";
+  EVP_PKEY *tkey;
+  tkey = EVP_PKEY_new();
+  EVP_PKEY_set_type_str(tkey, algname, strlen(algname));
+  EVP_PKEY_CTX *ctx = NULL;
+  ctx = EVP_PKEY_CTX_new(tkey, NULL);
+  EVP_PKEY_keygen_init(ctx);
+  pkey = EVP_PKEY_new();
+  EVP_PKEY_keygen(ctx, &pkey);
+  EVP_PKEY_free(tkey);
+}
 
 X509_REQ *gen_csr(unsigned char *country, unsigned char *province, unsigned char *city, unsigned char *organization, unsigned char * fqdn){
   char *algname = "Round5";
@@ -25,12 +48,10 @@ X509_REQ *gen_csr(unsigned char *country, unsigned char *province, unsigned char
   EVP_PKEY_CTX *ctx = NULL;
   ctx = EVP_PKEY_CTX_new(tkey, NULL);
   EVP_PKEY_keygen_init(ctx);
-
   EVP_PKEY *pkey = NULL;
   pkey = EVP_PKEY_new();
   EVP_PKEY_keygen(ctx, &pkey);
   EVP_PKEY_free(tkey);
-
   X509_REQ *req = NULL;
   req = X509_REQ_new();
   X509_REQ_set_version(req, 0L);
@@ -44,6 +65,15 @@ X509_REQ *gen_csr(unsigned char *country, unsigned char *province, unsigned char
   X509_REQ_set_subject_name(req, name);
   X509_REQ_set_pubkey(req, pkey);
   X509_NAME_free(name);
+  if(!req){
+    printf("\nNULL req\n");
+    exit(0);
+  }
+  STACK_OF(X509_EXTENSION) *exts = NULL;
+  sk_X509_EXTENSION_new_null();
+  add_ext(exts, NID_key_usage, "critical, false, digitalSignature, keyEncipherment");
+  X509_REQ_add_extensions(req, exts);
+  sk_X509_EXTENSION_pop_free(exts, X509_EXTENSION_free);
   return req;
 }
 
@@ -150,9 +180,11 @@ X509 * PEM_to_X509(const char *cert){
 }
 
 X509_REQ *PEM_toX509Req(const char *csr_str){
+  printf("\n%s\n", csr_str);
   BIO *b = BIO_new(BIO_s_mem());
   BIO_puts(b, csr_str);
   X509_REQ *req = PEM_read_bio_X509_REQ(b, NULL, NULL, NULL);
+  BIO_free(b);
   return req;
 }
 
@@ -164,12 +196,19 @@ char *X509Req_to_PEM(X509_REQ *csr){
   int len = i2d_X509_REQ(csr, NULL);
   pem = (char *) malloc(len);
   memset(pem, 0, len);
-  BIO_read(bio, pem, len - 1);
+  BIO_read(bio, pem, len);
   BIO_free(bio);
   return pem;
 }
 
-int char_to_EVP_PKEY(char *key_str, EVP_PKEY *pkey){
+int char_to_EVP_PKEY(const char *key_str, EVP_PKEY *pkey){
+  // BIO *b = BIO_new(BIO_s_mem());
+  // BIO_puts(b, key_str);
+  // pkey = PEM_read_bio_PUBKEY(b, &pkey, NULL, NULL);
+  if(!pkey){
+    printf("\nNULL\n");
+    exit(0);
+  }
   i2d_PublicKey(pkey, &key_str);
 }
 

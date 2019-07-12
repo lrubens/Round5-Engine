@@ -8,13 +8,10 @@
 #include <openssl/evp.h>
 #include <openssl/conf.h>
 #include <openssl/ssl.h>
-#include "meths/round5_meth.h"
-#include "meths/asn1_meth.h"
-#include "keypair.h"
 #include <openssl/bio.h>
 #include <openssl/x509v3.h>
 #include <openssl/sha.h>
-#include "ossl/objects.h"
+#include "../keypair.h"
 #include "network/linux/client.h"
 #include "network/linux/server.h"
 #include <time.h>
@@ -47,8 +44,8 @@ struct nodes{
 int main(int argc, const char* argv[]){
   printf(cBLUE "Testing client-server cert distribution\n" cNORM);
   struct nodes *clients= malloc(sizeof(struct nodes));
-  char *server_addr = "192.168.2.2";
-	clients->addresses[0] = "192.168.2.5";    // Change accordingly
+  char *server_addr = "192.168.1.2";
+	clients->addresses[0] = "192.168.1.4";    // Change accordingly
   clients->addresses[1] = "192.168.1.4";    //Change accordingly
   clients->names[0] = "Alice";
   clients->names[1] = "Bob";
@@ -89,27 +86,26 @@ int main(int argc, const char* argv[]){
     EVP_PKEY_print_public(b, pkey, 4, pctx);
     BIO_get_mem_data(b, &public_key_text);
     printf("\nPress enter to send public key to clients\n");
-    while( getchar() != '\n' );
-    // for (int i = 0; i < sizeof(clients->addresses); i++){
-    //   ps(clients->addresses[i]);
-    //   send_data(clients->addresses[i], public_key_text);
-	  // }
-    send_data("192.168.2.5", public_key_text);
+    getchar();
+    printf("\nSending key to 192.168.1.4\n");
+    send_data("192.168.1.4", public_key_text);
     receive(csr_str, client_addr);
     printf("\nReceived CSR from host (%s):\n %s", client_addr, csr_str);
-    X509_REQ *csr = PEM_toX509Req((const char*)csr_str);
+    X509_REQ *csr = X509_REQ_new();
+    csr = PEM_toX509Req((const char*)csr_str);
     X509 *signed_cert = sign_csr(csr, pkey);
     char *cert_str = X509_to_PEM(signed_cert);
     printf("\nPress enter to send client signed cert\n");
-    while(getchar() != '\n');
+    getchar();
   }
 	else{
     EVP_PKEY *pub_key = NULL;
+    pub_key = EVP_PKEY_new();
     char *server_public_key = NULL;
     char *client_addr = NULL;
     ps("Receiving public key");
     receive(server_public_key, client_addr);
-    char_to_EVP_PKEY(pub_key, server_public_key);
+    char_to_EVP_PKEY((const char *)server_public_key, pub_key);
     FILE *f = fopen("certs/server.pem", "wb");
     PEM_write_PUBKEY(f, pub_key);
 	  fclose(f);
@@ -119,12 +115,18 @@ int main(int argc, const char* argv[]){
     unsigned char *city = "Cambridge";
     unsigned char *organization = "Draper"; 
     unsigned char * fqdn = hostname;
-    X509_REQ *req = gen_csr(country, province, city, organization, fqdn);
+    X509_REQ *req = X509_REQ_new();
+    req = gen_csr(country, province, city, organization, fqdn);
+    if (!req){
+      printf("\nNULL\n");
+      goto err;
+    }
     unsigned char *csr_str = X509Req_to_PEM(req);
-    printf("\nPress enter to send server CSR\n");
-    unsigned char *user_input = NULL;
-    scanf("%s", user_input);
+    printf("\nCSR string: \n%s\n", csr_str);
+    // printf("\nPress enter to send server CSR\n");
+    //getchar();
     send_data(server_addr, csr_str);
+    ps("Sent csr");
     unsigned char *signed_cert_str = NULL;
     receive(signed_cert_str, client_addr);
     printf("\nReceived signed cert from host (%s):\n %s", client_addr, signed_cert_str);
@@ -133,6 +135,7 @@ int main(int argc, const char* argv[]){
     PEM_write_X509(f2, signed_cert);
     fclose(f2);
 	}
+  err:
 	ENGINE_finish(round5_engine);
 	ENGINE_free(round5_engine);
 	ENGINE_cleanup();
