@@ -206,10 +206,25 @@ int char_to_EVP_PKEY(const char *key_str, EVP_PKEY *pkey){
   // BIO_puts(b, key_str);
   // pkey = PEM_read_bio_PUBKEY(b, &pkey, NULL, NULL);
   if(!pkey){
-    printf("\nNULL\n");
+    printf("\nPKEY NULL\n");
     exit(0);
   }
   i2d_PublicKey(pkey, &key_str);
+  // printf
+}
+
+int EVP_PKEY_to_char(EVP_PKEY *pkey, char *key_str){
+  BIO *b = NULL;
+  b = BIO_new(BIO_s_mem());
+  ASN1_PCTX *pctx = NULL;
+  pctx = ASN1_PCTX_new();
+  if(!pkey){
+    printf("\n!pkey\n");
+  }
+  EVP_PKEY_print_public(b, pkey, 4, pctx);
+  BIO_get_mem_data(b, &key_str);
+  ASN1_PCTX_free(pctx);
+  BIO_free(b);
 }
 
 char *get_IP(){

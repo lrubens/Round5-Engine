@@ -67,7 +67,7 @@ int main(int argc, const char* argv[]){
     scanf("%s", &server_addr);
     char *key_buf = NULL;
     EVP_gen_round5(pkey);
-    char_to_EVP_PKEY(key_buf, pkey);
+    EVP_PKEY_to_char(pkey, key_buf);
     printf("\nPublic key: \n%s\n", key_buf);
     send_data(server_addr, key_buf);
   }

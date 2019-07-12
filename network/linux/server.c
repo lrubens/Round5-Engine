@@ -8,6 +8,7 @@
 #include <arpa/inet.h>
 
 int receive(char *data, char *client_addr){
+    printf("\nReceive!!!!\n");
     int size = 8192;
     data = malloc(size);
     int server_fd, new_socket, valread; 
