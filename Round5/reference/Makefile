@@ -81,7 +81,7 @@ AFLFUZZER_CC = afl-gcc
 LIBFUZZER_CC = clang
 
 # Compiler flags, allow to set *additional* parameters at the command-line
-override CFLAGS += -I $(srcdir) -std=c99 -pedantic -Wall -Wextra -Wconversion -Wcast-qual -Wcast-align
+override CFLAGS += -I $(srcdir) -std=c99 -pedantic -Wall -Wextra -Wconversion -Wcast-qual -Wcast-align -fPIC -ggdb3 -O0
 
 # Define version to build
 override CFLAGS += -D$(ALG)
@@ -189,7 +189,7 @@ doc pdf latex: ;
 endif
 
 # Remove the generated documentation and build files
-clean: clean-build 
+clean: clean-build clean-doc
 
 # Remove only the generated build files
 clean-build:
@@ -204,8 +204,8 @@ clean-obj:
 	@rm -fr $(objdir)
 
 # Remove only the generated documentation
-# clean-doc:
-	# @rm -fr $(docdir)
+clean-doc:
+	@rm -fr $(docdir)
 
 # Above are all "phony" targets
 .PHONY: build all doc pdf latex clean clean-obj clean-dep clean-doc clean-all createAfixed
@@ -248,9 +248,7 @@ $(1): $$(patsubst $(builddir)/%,$(objdir)/$(2)/%.o,$(1)) $(filter-out $(objdir)/
 	$(CC) $(LDFLAGS) $$^ $(LOADLIBS) $(LDLIBS) -o $$@
 endef
 
-compile: $(CC) -fPIC $(LDFLAGS) -c round5_engine.c meths/*.c ossl/*.c $(LOADLIBS) $(LDLIBS)
-
-# $(foreach exe,$(examples),$(eval $(call exe_template,$(exe),examples)))
+$(foreach exe,$(examples),$(eval $(call exe_template,$(exe),examples)))
 
 
 # Fuzzers
@@ -279,4 +277,3 @@ $(depdir)/%.d: ;
 
 # Include dependency files
 include $(wildcard $(patsubst $(srcdir)/%,$(depdir)/%.d,$(basename $(srcs))))
-

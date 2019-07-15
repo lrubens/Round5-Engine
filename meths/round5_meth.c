@@ -3,14 +3,14 @@
 //
 
 #include "round5_meth.h"
-#include "../../reference/src/r5_cca_pke.h"
-#include "../../reference/src/parameters.h"
-#include "../../reference/src/r5_memory.c"
-#include "../../reference/src/r5_cpa_kem.h"
-#include "../../reference/src/misc.h"
-#include "../../reference/src/r5_memory.h"
-#include "../../reference/src/rng.h"
-#include "../../reference/src/a_fixed.h"
+#include "../../configurable/src/r5_cca_pke.h"
+#include "../../configurable/src/parameters.h"
+#include "../../configurable/src/r5_memory.c"
+#include "../../configurable/src/r5_cpa_kem.h"
+#include "../../configurable/src/misc.h"
+#include "../../configurable/src/r5_memory.h"
+#include "../../configurable/src/rng.h"
+#include "../../configurable/src/a_fixed.h"
 #include <openssl/crypto.h>
 #include <openssl/err.h>
 #include <openssl/ec.h>
@@ -51,10 +51,11 @@ static int keygen(EVP_PKEY_CTX *ctx, EVP_PKEY *pkey){
 
 static int round5_encrypt(EVP_PKEY_CTX *pctx, unsigned char *out, size_t *out_len, const unsigned char *data, size_t data_len){
     params = set_parameters_from_api();
+    
     EVP_PKEY *pkey = EVP_PKEY_CTX_get0_pkey(pctx); 
     struct ROUND5 *kpair = NULL;
     kpair = EVP_PKEY_get0(pkey);
-    return r5_cca_pke_encrypt(out, out_len, data, data_len, kpair->pk, params);
+    return !r5_cca_pke_encrypt(out, out_len, data, data_len, kpair->pk, params);
 } 
 
 static int round5_decrypt(EVP_PKEY_CTX *pctx, unsigned char *data, size_t *data_len, const unsigned char *in, size_t in_len){
@@ -62,7 +63,7 @@ static int round5_decrypt(EVP_PKEY_CTX *pctx, unsigned char *data, size_t *data_
     EVP_PKEY *pkey = EVP_PKEY_CTX_get0_pkey(pctx);
     struct ROUND5 *kpair = NULL;
     kpair = EVP_PKEY_get0(pkey);
-    return r5_cca_pke_decrypt(data, data_len, in, in_len, kpair->sk, params);
+    return !r5_cca_pke_decrypt(data, data_len, in, in_len, kpair->sk, params);
 }
 
 static int round5_encrypt_init(EVP_PKEY_CTX *pctx){

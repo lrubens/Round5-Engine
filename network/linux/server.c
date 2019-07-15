@@ -67,21 +67,21 @@ int receive(char *data, char *client, int (*handle_request)(char *, char *)){
         // char **data_ = malloc(7 * sizeof(*data_));
         
         valread = recv( new_socket , data, 8192, 0); 
-        char *buf = malloc(8192);
-        strcpy(buf, data);
-        int count = 0;
-        char *client_req[7];
-        char *data_ = strtok(buf, "/");
-        while(data_ != NULL){
-            client_req[count++] = data_;
-            // printf("\ndata_: %s\n", data_);
-            data_ = strtok(NULL, "/");
-        }
-        strcpy(data, client_req[6]);
-        if((*handle_request)){
-        //     printf("done");
-            (*handle_request)(data, client_addr);
-        }
+        // char *buf = malloc(8192);
+        // strcpy(buf, data);
+        // int count = 0;
+        // char *client_req[7];
+        // char *data_ = strtok(buf, "/");
+        // while(data_ != NULL){
+        //     client_req[count++] = data_;
+        //     // printf("\ndata_: %s\n", data_);
+        //     data_ = strtok(NULL, "/");
+        // }
+        // strcpy(data, client_req[6]);
+        // if((*handle_request)){
+        // //     printf("done");
+        //     (*handle_request)(data, client_addr);
+        // }
         // printf("\nIP Address: %s\n", client_addr);
         // printf("\n%s\n", data);
         close(new_socket);

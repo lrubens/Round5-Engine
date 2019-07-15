@@ -216,14 +216,11 @@ int generate_cert(void *data){
     printf("CTX init failed");
     exit(0);
   }
-        /* Error */
-        /* Error */
   /* Determine buffer length */
   if (EVP_PKEY_encrypt(ctx, NULL, &outlen, key, 16) <= 0){
     printf("Encrypt initial failed");
     exit(0);
   }
-        /* Error */
   out = OPENSSL_malloc(outlen);
   if (EVP_PKEY_encrypt(ctx, out, &outlen, key, 16) <= 0){
     printf("Encrypt failed");

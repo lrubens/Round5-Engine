@@ -16,7 +16,7 @@ void raw_input(char *prompt, char *buffer, size_t length){
    
 int send_data(char *address, void *data, int to_server){
 	//valread takes a message, sock refers to the socket
-    printf("\nData sent: %s\n", data);
+    // printf("\nData sent: %s\n", data);
     int sock = 0, valread; 
     struct sockaddr_in serv_addr;  
     char buffer[8192] = {0};
@@ -27,7 +27,6 @@ int send_data(char *address, void *data, int to_server){
     } 
    
     memset(&serv_addr, '0', sizeof(serv_addr)); 
-    printf("\n%s\n", address);
     serv_addr.sin_family = AF_INET; 
     serv_addr.sin_port = htons(PORT); 
     // Convert IPv4 and IPv6 addresses from text to binary form 
@@ -59,7 +58,7 @@ int send_data(char *address, void *data, int to_server){
     else{
         sprintf(str, "%s", data);
     }
-    printf("\nstr: %s\n", str);
+    // printf("\nstr: %s\n", str);
     // csr = {"Rubens", "US", "MA", "Cambridge", "Draper", "hostname", data};
     // for(i = 0; i < sizeof(*csr_fields); i++){
     //     raw_input(("Enter %s:", csr_fields[i]), csr[i], 1024);
