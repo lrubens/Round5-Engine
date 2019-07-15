@@ -7,6 +7,7 @@
 #include <openssl/evp.h>
 #include <openssl/conf.h>
 //#include <openssl/ssl.h>
+#include <openssl/rand.h>
 #include "keypair.h"
 #include <openssl/bio.h>
 #include <openssl/x509v3.h>
@@ -27,7 +28,7 @@ static int add_ext(STACK_OF(X509_EXTENSION) *sk, int nid, char *value){
   return 1;
  }
 
-int EVP_gen_round5(EVP_PKEY *pkey){
+int EVP_gen_round5(EVP_PKEY *data){
   char *algname = "Round5";
   EVP_PKEY *tkey;
   tkey = EVP_PKEY_new();
@@ -35,8 +36,8 @@ int EVP_gen_round5(EVP_PKEY *pkey){
   EVP_PKEY_CTX *ctx = NULL;
   ctx = EVP_PKEY_CTX_new(tkey, NULL);
   EVP_PKEY_keygen_init(ctx);
-  pkey = EVP_PKEY_new();
-  EVP_PKEY_keygen(ctx, &pkey);
+  data = EVP_PKEY_new();
+  EVP_PKEY_keygen(ctx, &data);
   EVP_PKEY_free(tkey);
 }
 
@@ -48,9 +49,9 @@ X509_REQ *gen_csr(unsigned char *country, unsigned char *province, unsigned char
   EVP_PKEY_CTX *ctx = NULL;
   ctx = EVP_PKEY_CTX_new(tkey, NULL);
   EVP_PKEY_keygen_init(ctx);
-  EVP_PKEY *pkey = NULL;
-  pkey = EVP_PKEY_new();
-  EVP_PKEY_keygen(ctx, &pkey);
+  EVP_PKEY *data = NULL;
+  data = EVP_PKEY_new();
+  EVP_PKEY_keygen(ctx, &data);
   EVP_PKEY_free(tkey);
   X509_REQ *req = NULL;
   req = X509_REQ_new();
@@ -63,7 +64,7 @@ X509_REQ *gen_csr(unsigned char *country, unsigned char *province, unsigned char
   X509_NAME_add_entry_by_txt(name, "O",  MBSTRING_ASC, organization, -1, -1, 0);
   X509_NAME_add_entry_by_txt(name, "CN", MBSTRING_ASC, fqdn, -1, -1, 0);
   X509_REQ_set_subject_name(req, name);
-  X509_REQ_set_pubkey(req, pkey);
+  X509_REQ_set_pubkey(req, data);
   X509_NAME_free(name);
   if(!req){
     printf("\nNULL req\n");
@@ -136,9 +137,9 @@ EVP_PKEY *genkey_dilithium(){
   return qkey;
 }
 
-int validate_peer_cert(X509 *cert, EVP_PKEY *pkey){
+int validate_peer_cert(X509 *cert, EVP_PKEY *data){
   unsigned char *result;
-  int r = X509_verify(cert, pkey);
+  int r = X509_verify(cert, data);
   return r;
 }
 
@@ -171,9 +172,65 @@ char *X509_to_PEM(X509 *cert){
   return pem;
 }
 
-int generate_cert(char *data){
+int generate_cert(void *data){
 
-  return NULL;
+  // printf("Size: %d", EVP_PKEY_size(data));
+  // BIO *b = NULL;
+  // b = BIO_new(BIO_s_mem());
+  // ASN1_PCTX *pctx = NULL;
+  // pctx = ASN1_PCTX_new();
+  // char * key_str = NULL;
+  // if(!data){
+  //   printf("\n!data\n");
+  // }
+  // EVP_PKEY_print_public(b, data, 4, pctx);
+  // BIO_get_mem_data(b, &key_str);
+  // printf("\n%s\n", key_str);
+  unsigned char key[16], iv[16], *out;
+  size_t *outlen;
+  if (!RAND_bytes(key, sizeof(key))) {
+    printf("Rand_bytes key failed");
+    exit(0);
+  }
+  if (!RAND_bytes(iv, sizeof(iv))) {
+    printf("Rand_bytes iv failed");
+    exit(0);
+  }
+  EVP_PKEY *pkey = EVP_PKEY_new();
+  char_to_EVP_PKEY(data, pkey);
+  EVP_PKEY_CTX *ctx = EVP_PKEY_CTX_new(pkey,NULL);
+  BIO *b = NULL;
+  b = BIO_new(BIO_s_mem());
+  ASN1_PCTX *pctx = NULL;
+  pctx = ASN1_PCTX_new();
+  char * key_str = NULL;
+  if(!pkey){
+    printf("\n!data\n");
+  }
+  EVP_PKEY_print_public(b, pkey, 4, pctx);
+  BIO_get_mem_data(b, &key_str);
+  printf("\nkey str print: \n%s\n", key_str);
+        /* Error occurred */
+  if (EVP_PKEY_encrypt_init(ctx) <= 0){
+    printf("\nEncrypt init: %d\n", EVP_PKEY_encrypt_init(ctx));
+    printf("CTX init failed");
+    exit(0);
+  }
+        /* Error */
+        /* Error */
+  /* Determine buffer length */
+  if (EVP_PKEY_encrypt(ctx, NULL, &outlen, key, 16) <= 0){
+    printf("Encrypt initial failed");
+    exit(0);
+  }
+        /* Error */
+  out = OPENSSL_malloc(outlen);
+  if (EVP_PKEY_encrypt(ctx, out, &outlen, key, 16) <= 0){
+    printf("Encrypt failed");
+    exit(0);
+  }
+  printf("\n%s\n", out);
+  return 1;
 }
 
 X509 * PEM_to_X509(const char *cert){
@@ -206,28 +263,28 @@ char *X509Req_to_PEM(X509_REQ *csr){
   return pem;
 }
 
-int char_to_EVP_PKEY(const char *key_str, EVP_PKEY *pkey){
+int char_to_EVP_PKEY(const char *key_str, EVP_PKEY *data){
   // BIO *b = BIO_new(BIO_s_mem());
   // BIO_puts(b, key_str);
-  // pkey = PEM_read_bio_PUBKEY(b, &pkey, NULL, NULL);
-  if(!pkey){
+  // data = PEM_read_bio_PUBKEY(b, &data, NULL, NULL);
+  if(!data){
     printf("\nPKEY NULL\n");
     exit(0);
   }
-  i2d_PublicKey(pkey, &key_str);
+  i2d_PublicKey(data, &key_str);
   // printf
 }
 
-char *EVP_PKEY_to_char(EVP_PKEY *pkey){
+char *EVP_PKEY_to_char(EVP_PKEY *data){
   BIO *b = NULL;
   b = BIO_new(BIO_s_mem());
   ASN1_PCTX *pctx = NULL;
   pctx = ASN1_PCTX_new();
   char * key_str = NULL;
-  if(!pkey){
-    printf("\n!pkey\n");
+  if(!data){
+    printf("\n!data\n");
   }
-  EVP_PKEY_print_public(b, pkey, 4, pctx);
+  EVP_PKEY_print_public(b, data, 4, pctx);
   BIO_get_mem_data(b, &key_str);
   return key_str;
   ASN1_PCTX_free(pctx);

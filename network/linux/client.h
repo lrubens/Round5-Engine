@@ -4,4 +4,4 @@
 
 #define PORT 5050 
 
-int send_data(char *address, char *data);
+int send_data(char *address, void *data, int to_server);

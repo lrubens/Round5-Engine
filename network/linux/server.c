@@ -7,10 +7,10 @@
 #include "server.h"
 #include <arpa/inet.h>
 
-int receive(void *data, int (*handle_request)(char *, char *)){
+int receive(char *data, char *client, int (*handle_request)(char *, char *)){
     char *client_addr;
     int size = 8192;
-    data = malloc(size);
+    // data = malloc(size);
     int server_fd, new_socket, valread; 
     struct sockaddr_in address;
     int opt = 1; 
@@ -22,7 +22,7 @@ int receive(void *data, int (*handle_request)(char *, char *)){
 
         // Creating socket file descriptor 
         if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) == 0) 
-        { 
+        {
                 perror("socket failed"); 
                 exit(EXIT_FAILURE); 
         } 
@@ -61,38 +61,30 @@ int receive(void *data, int (*handle_request)(char *, char *)){
         struct sockaddr_in *addr = (struct sockaddr_in *)&address;
         struct in_addr ip_addr = addr->sin_addr;
         client_addr = malloc(INET_ADDRSTRLEN);
-        inet_ntop(AF_INET, &ip_addr, client_addr, INET_ADDRSTRLEN);
+        inet_ntop(AF_INET, &ip_addr, client, INET_ADDRSTRLEN);
         // char *data_[7] = {0};
         // char data_[7][30];
         // char **data_ = malloc(7 * sizeof(*data_));
         
         valread = recv( new_socket , data, 8192, 0); 
-        char *data_ = strtok(data, "\n");
+        char *buf = malloc(8192);
+        strcpy(buf, data);
+        int count = 0;
+        char *client_req[7];
+        char *data_ = strtok(buf, "/");
         while(data_ != NULL){
-            printf("\ndata_: %s\n", data_);
-            data_ = strtok(NULL, "\n");
+            client_req[count++] = data_;
+            // printf("\ndata_: %s\n", data_);
+            data_ = strtok(NULL, "/");
         }
-        int i;
-        // char *pk;
-        // for(i = 0; i < strlen(data); i++){
-        //     if(data[i] == "\n"){
-        //         pk = malloc(strlen(data) - i);
-        //         strncpy(pk, data + i + 1, strlen(data) - i);
-        //     }
-        // }
-        // printf("\nPK!!!!!!!: %s\n", pk);
-
-        // printf("\n%s\n", data_[1]);
-        // data = data_[1];
-        // printf("\n%s\n", data);
-        // revc_size(new_socket, &data)
+        strcpy(data, client_req[6]);
         if((*handle_request)){
-            printf("done");
+        //     printf("done");
             (*handle_request)(data, client_addr);
         }
-        printf("\nIP Address: %s\n", client_addr);
-        printf("\n%s\n", data);
-        
+        // printf("\nIP Address: %s\n", client_addr);
+        // printf("\n%s\n", data);
+        close(new_socket);
         break;
     }
     return 1; 

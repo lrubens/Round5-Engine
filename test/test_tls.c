@@ -11,6 +11,7 @@
 #include <openssl/bio.h>
 #include <openssl/x509v3.h>
 #include <openssl/sha.h>
+#include "../keypair.h"
 #include "network/linux/client.h"
 #include "network/linux/server.h"
 #include <time.h>
@@ -49,15 +50,29 @@ int main(int argc, const char* argv[]){
   T(ENGINE_init(round5_engine));
   T(ENGINE_set_default(round5_engine, ENGINE_METHOD_ALL));
   if(!strcmp(role, "server")){
-    char *public_key = NULL;
-    // char *client_addr = NULL;
-    char *data = NULL;
-    receive(public_key, generate_cert(data));
+    char public_key[8192];
+    char client_addr[256];
+    receive(public_key, client_addr, NULL);
     printf("\nPublic key:\n%s\n", public_key);
+    EVP_PKEY *server_key = EVP_PKEY_new();
+    char_to_EVP_PKEY(public_key, server_key);
+    EVP_PKEY_CTX *ctx = EVP_PKEY_CTX_new(server_key,NULL);
+    BIO *b = NULL;
+    b = BIO_new(BIO_s_mem());
+    ASN1_PCTX *pctx = NULL;
+    pctx = ASN1_PCTX_new();
+    char * key_str = NULL;
+    if(!server_key){
+      printf("\n!data\n");
+    }
+    EVP_PKEY_print_public(b, server_key, 4, pctx);
+    BIO_get_mem_data(b, &key_str);
+    printf("\nkey str print: \n%s\n", key_str);
   }
   else if(!strcmp(role, "client")){
     char server_addr[256];
-    EVP_PKEY *pkey = NULL;
+    char *public_key;
+    EVP_PKEY *client_key = NULL;
     char *algname = "Round5";
     EVP_PKEY *tkey = NULL;
     tkey = EVP_PKEY_new();
@@ -65,14 +80,19 @@ int main(int argc, const char* argv[]){
     EVP_PKEY_CTX *ctx = NULL;
     ctx = EVP_PKEY_CTX_new(tkey, NULL);
     EVP_PKEY_keygen_init(ctx);
-    pkey = EVP_PKEY_new();
-    EVP_PKEY_keygen(ctx, &pkey);
+    client_key = EVP_PKEY_new();
+    EVP_PKEY_keygen(ctx, &client_key);
     EVP_PKEY_free(tkey);
+    FILE *f = fopen("certs/client_pub.pem", "wb");
+    PEM_write_PUBKEY(f, client_key);
     printf("\nPlease enter address of server:\n");
     scanf("%s", server_addr);
-    char *key_buf = EVP_PKEY_to_char(pkey);
-    printf("\nPublic key: \n%s\n", key_buf);
-    send_data(server_addr, key_buf);
+    struct ROUND5 *kpair = EVP_PKEY_get0(client_key);
+    char *key_buf = EVP_PKEY_to_char(client_key);
+    // printf("\nPublic key: \n%s\n", key_buf);
+    send_data(server_addr, key_buf, 1);
+    // receive(public_key, server_addr, NULL);
+    // send_data(server_addr, key_buf);
   }
   err:
   ENGINE_finish(round5_engine);

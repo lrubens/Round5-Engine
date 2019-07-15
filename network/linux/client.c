@@ -14,7 +14,7 @@ void raw_input(char *prompt, char *buffer, size_t length){
     scanf("%s", buffer);
 }
    
-int send_data(char *address, char *data){
+int send_data(char *address, void *data, int to_server){
 	//valread takes a message, sock refers to the socket
     printf("\nData sent: %s\n", data);
     int sock = 0, valread; 
@@ -53,13 +53,20 @@ int send_data(char *address, char *data){
     // *(csr+6) = data;
     char *csr[] = {"Rubens", "US", "MA", "Cambridge", "Draper", "hostname", data};
     char str[8192];
-    sprintf(str, "%s\n%s\n%s\n%s\n%s\n%s\n%s", csr[0], csr[1], csr[2], csr[3], csr[4], csr[5], csr[6]);
-    printf("\nConcatenated str: %s\n", str);
+    if(to_server){
+        sprintf(str, "%s/%s/%s/%s/%s/%s/%s", csr[0], csr[1], csr[2], csr[3], csr[4], csr[5], csr[6]);
+    }
+    else{
+        sprintf(str, "%s", data);
+    }
+    printf("\nstr: %s\n", str);
     // csr = {"Rubens", "US", "MA", "Cambridge", "Draper", "hostname", data};
     // for(i = 0; i < sizeof(*csr_fields); i++){
     //     raw_input(("Enter %s:", csr_fields[i]), csr[i], 1024);
     // }
-    send(sock , str, strlen(str), 0); 
+    send(sock , str, strlen(str), 0);
+    close(sock);
+    // send(sock, data, data_len, 0); 
     printf("Message sent\n");
     return 0;
 }

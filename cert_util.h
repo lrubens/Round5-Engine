@@ -24,4 +24,4 @@ int char_to_EVP_PKEY(char *key_str, EVP_PKEY *pkey);
 char *EVP_PKEY_to_char(EVP_PKEY *pkey);
 char *get_IP();
 int EVP_gen_round5(EVP_PKEY *pkey);
-int generate_cert(char *data);
+int generate_cert(void *data);
