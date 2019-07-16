@@ -10,7 +10,7 @@
 int receive(char *data, char *client, int (*handle_request)(char *, char *)){
     char *client_addr;
     int size = 8192;
-    // data = malloc(size);
+    data = malloc(size);
     int server_fd, new_socket, valread; 
     struct sockaddr_in address;
     int opt = 1; 

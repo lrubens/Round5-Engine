@@ -51,11 +51,12 @@ static int keygen(EVP_PKEY_CTX *ctx, EVP_PKEY *pkey){
 
 static int round5_encrypt(EVP_PKEY_CTX *pctx, unsigned char *out, size_t *out_len, const unsigned char *data, size_t data_len){
     params = set_parameters_from_api();
-    
+    out = (unsigned char *)malloc((get_crypto_bytes(params, 1) + data_len));
+    pd((get_crypto_bytes(params, 1) + data_len));
     EVP_PKEY *pkey = EVP_PKEY_CTX_get0_pkey(pctx); 
     struct ROUND5 *kpair = NULL;
     kpair = EVP_PKEY_get0(pkey);
-    return !r5_cca_pke_encrypt(out, out_len, data, data_len, kpair->pk, params);
+    return !(r5_cca_pke_encrypt(out, out_len, data, data_len, kpair->pk, params));
 } 
 
 static int round5_decrypt(EVP_PKEY_CTX *pctx, unsigned char *data, size_t *data_len, const unsigned char *in, size_t in_len){
@@ -63,7 +64,7 @@ static int round5_decrypt(EVP_PKEY_CTX *pctx, unsigned char *data, size_t *data_
     EVP_PKEY *pkey = EVP_PKEY_CTX_get0_pkey(pctx);
     struct ROUND5 *kpair = NULL;
     kpair = EVP_PKEY_get0(pkey);
-    return !r5_cca_pke_decrypt(data, data_len, in, in_len, kpair->sk, params);
+    return !(r5_cca_pke_decrypt(data, data_len, in, in_len, kpair->sk, params));
 }
 
 static int round5_encrypt_init(EVP_PKEY_CTX *pctx){
