@@ -10,14 +10,14 @@
 int receive(char *data, char *client, int (*handle_request)(char *, char *)){
     char *client_addr;
     int size = 8192;
-    data = malloc(size);
+    // data = malloc(size);
     int server_fd, new_socket, valread; 
     struct sockaddr_in address;
     int opt = 1; 
     int addrlen = sizeof(address); 
     char buffer[size];
     while(1) {
-        memset (data, 0, size*sizeof(char));
+        // memset (data, 0, size*sizeof(char));
         // puts(data);
 
         // Creating socket file descriptor 
@@ -57,7 +57,7 @@ int receive(char *data, char *client, int (*handle_request)(char *, char *)){
         { 
                 perror("accept"); 
                 exit(EXIT_FAILURE); 
-        } 
+        }
         struct sockaddr_in *addr = (struct sockaddr_in *)&address;
         struct in_addr ip_addr = addr->sin_addr;
         client_addr = malloc(INET_ADDRSTRLEN);
@@ -66,9 +66,14 @@ int receive(char *data, char *client, int (*handle_request)(char *, char *)){
         // char data_[7][30];
         // char **data_ = malloc(7 * sizeof(*data_));
         
-        valread = recv( new_socket , data, 8192, 0); 
+        valread = recv( new_socket , buffer, 8192, 0); 
         // char *buf = malloc(8192);
-        // strcpy(buf, data);
+        printf("\nbuffer_len: %d\n", strlen(buffer));
+        if(!data)
+            data = malloc(strlen(buffer) + 1);
+        // printf("\nbuffer: %s\n", buffer);
+        strcpy(data, buffer);
+        // printf("\ndata: %s\n", data);
         // int count = 0;
         // char *client_req[7];
         // char *data_ = strtok(buf, "/");

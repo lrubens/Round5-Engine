@@ -27,6 +27,7 @@ int send_data(char *address, void *data, int to_server){
     } 
    
     memset(&serv_addr, '0', sizeof(serv_addr)); 
+    printf("\n%s\n", address);
     serv_addr.sin_family = AF_INET; 
     serv_addr.sin_port = htons(PORT); 
     // Convert IPv4 and IPv6 addresses from text to binary form 
