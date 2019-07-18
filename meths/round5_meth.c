@@ -46,8 +46,10 @@ static int keygen(EVP_PKEY_CTX *ctx, EVP_PKEY *pkey){
         kpair = round5_new();
         EVP_PKEY_assign(pkey, NID_ROUND5, kpair);
     }
-    kpair->pk = malloc(CRYPTO_SECRETKEYBYTES);
-    kpair->sk = malloc(CRYPTO_PUBLICKEYBYTES);
+    pd(CRYPTO_PUBLICKEYBYTES);
+    pd(CRYPTO_SECRETKEYBYTES);
+    kpair->pk = malloc(CRYPTO_PUBLICKEYBYTES);
+    kpair->sk = malloc(CRYPTO_SECRETKEYBYTES);
     if (!round5_sk_to_pk(kpair->pk, kpair->sk))
         goto err;
     print_hex("PK", kpair->pk, CRYPTO_PUBLICKEYBYTES, 1);

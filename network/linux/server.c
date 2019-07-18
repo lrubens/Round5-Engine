@@ -71,7 +71,7 @@ int receive(char *data, char *client, int (*handle_request)(char *, char *)){
         printf("\nbuffer_len: %d\n", strlen(buffer));
         if(!data)
             data = malloc(strlen(buffer) + 1);
-        // printf("\nbuffer: %s\n", buffer);
+        printf("\nbuffer: %s\n", buffer);
         strcpy(data, buffer);
         // printf("\ndata: %s\n", data);
         // int count = 0;

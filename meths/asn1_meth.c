@@ -253,7 +253,7 @@ static int pki_gen_pub_encode(X509_PUBKEY *pub,  EVP_PKEY *pk)
     int data_len, ret = -1;
     int ptype = V_ASN1_UNDEF ;
     struct ROUND5 *kpair = (struct ROUND5 *)EVP_PKEY_get0(pk);
-    // set_key_size();
+    set_key_size();
     algobj = OBJ_nid2obj(EVP_PKEY_base_id(pk));
     // char buffer[1024];
     // OBJ_obj2txt(buffer, 1024, algobj, 1);
@@ -263,6 +263,7 @@ static int pki_gen_pub_encode(X509_PUBKEY *pub,  EVP_PKEY *pk)
 	ptype = V_ASN1_SEQUENCE;
     // databuf = OPENSSL_memdup(kpair->pk, PKLEN);
     // printf("\npk: %s\n", PKLEN);
+    // pd(PKLEN);
     databuf = OPENSSL_malloc(PKLEN);
     // printf("\npk: %s\n", PKLEN);
     if(kpair->pk)
@@ -290,7 +291,7 @@ static int pki_gen_pub_decode(EVP_PKEY *pkey, X509_PUBKEY *pubkey)
     if (!X509_PUBKEY_get0_param(&palgobj, &pubkey_buf, &pub_len, &palg, pubkey))
         return 0;
     kpair = round5_new();
-    memcpy(kpair->pk, pubkey_buf, pub_len);
+    strcpy(kpair->pk, pubkey_buf);
     EVP_PKEY_assign(pkey, NID_ROUND5, kpair);
     return 1;
 }
