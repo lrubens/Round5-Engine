@@ -7,7 +7,7 @@
 #include <openssl/obj_mac.h>
 #include <stdint.h>
 #include <stddef.h>
-#include "Round5/reference/src/parameters.h"
+// #include "Round5/reference/src/parameters.h"
 #define CURVE25519_BITS 253
 #define CURVE25519_SECURITY_BITS 128
 // #ifdef PKLEN

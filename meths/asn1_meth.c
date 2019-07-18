@@ -5,6 +5,8 @@
 #include "asn1_meth.h"
 #include "../keypair.h"
 #include "../ossl/objects.h"
+#include "cpa_kem.h"
+#include "cca_encrypt.h"
 #include <openssl/err.h>
 #include <openssl/bio.h>
 #include <openssl/ec.h>

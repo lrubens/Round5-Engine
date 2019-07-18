@@ -3,6 +3,7 @@
 //
 
 #include "round5_meth.h"
+#include "../keypair.h"
 #include "cpa_kem.h"
 #include "cca_encrypt.h"
 #include "rng.h"
@@ -18,14 +19,13 @@
 #include <openssl/crypto.h>
 #include <openssl/err.h>
 #include <openssl/ec.h>
-#include "../keypair.h"
 #include "../ossl/objects.h"
 
 
 // parameters *params;
 
 
-int round5_sk_to_pk(unsigned char *pk, const unsigned char *sk){//, parameters *params){
+int round5_sk_to_pk(unsigned char *pk, unsigned char *sk){//, parameters *params){
     // printf("\nupdate\n");
     if(crypto_encrypt_keypair(pk, sk) != 0){
         return 0;
@@ -89,7 +89,7 @@ static int round5_encrypt(EVP_PKEY_CTX *pctx, unsigned char *out, size_t *out_le
     // pd(data_len);
     // return (!r5_cca_kem_encapsulate(out, data, kpair->pk, params));
     print_hex("key in encrypt", data, data_len, 1);
-    crypto_encrypt(out, (unsigned long long *)&out_len, data, data_len, kpair->pk);
+    crypto_encrypt(out, (unsigned long long *)out_len, data, (const unsigned long long)data_len, kpair->pk);
     pd(out_len);
     // exit(0);
     print_hex("Encrypted_key", out, out_len, 1);

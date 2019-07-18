@@ -146,7 +146,7 @@ LDLIBS     += -lcrypto -lkeccak -lm
 ################################################################################
 
 # Builds the example/test applications
-#build: $(examples) createAfixed
+build: createAfixed
 
 # Builds all, including docs
 all: build doc

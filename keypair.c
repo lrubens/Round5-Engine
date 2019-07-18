@@ -8,13 +8,13 @@
 #include "ossl/ossl_compat.h"
 #include "ossl/objects.h"
 // #include "Round5/reference/src/parameters.h"
-extern int round5_sk_to_pk(unsigned char *pk, const unsigned char *sk);
+// extern int round5_sk_to_pk(unsigned char *pk, unsigned char *sk);
 
-parameters *params;
+// parameters *params;
 
 struct round5_nid_data_st _round5_nid_data[] = {
         {
-            0, 0, round5_sk_to_pk, NID_undef
+            0, 0, NULL, NID_undef
         }
 };
 
