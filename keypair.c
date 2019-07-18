@@ -7,7 +7,7 @@
 #include <openssl/err.h>
 #include "ossl/ossl_compat.h"
 #include "ossl/objects.h"
-#include "Round5/reference/src/parameters.h"
+// #include "Round5/reference/src/parameters.h"
 extern int round5_sk_to_pk(unsigned char *pk, const unsigned char *sk);
 
 parameters *params;
@@ -25,15 +25,15 @@ inline const struct round5_nid_data_st *round5_get_nid_data(int nid){
     return NULL;
 }
 
-int set_key_size(){
-    params = set_parameters_from_api();
-    PKLEN = get_crypto_public_key_bytes(params);
-    SKLEN = get_crypto_secret_key_bytes(params, 1);
-    return 1;
-}
+// int set_key_size(){
+//     // params = set_parameters_from_api();
+//     PKLEN = CRYPTO_PUBLICKEYBYTES;
+//     SKLEN = CRYPTO_SECRETKEYBYTES;
+//     return 1;
+// }
 
 struct ROUND5 *round5_new(){
-    set_key_size();
+    // set_key_size();
     // params = set_parameters_from_api();
     // size_t pk_len = get_crypto_public_key_bytes(params);
     // size_t sk_len = get_crypto_secret_key_bytes(params, 1);

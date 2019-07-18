@@ -78,7 +78,38 @@ X509_REQ *gen_csr(unsigned char *country, unsigned char *province, unsigned char
   return req;
 }
 
-X509 * sign_csr(X509_REQ *req, EVP_PKEY *server_key){
+EVP_PKEY *genkey_rsa(){
+  EVP_PKEY * pkey;
+  pkey = EVP_PKEY_new();
+  RSA *rsa = NULL;
+  BIGNUM *bne = NULL;
+  //BIO *bp_public = NULL, *bp_private = NULL;
+
+  int bits = 2048;
+  unsigned long e = RSA_F4;
+
+  bne = BN_new();
+  BN_set_word(bne,e);
+  rsa = RSA_new();
+  RSA_generate_key_ex(rsa, bits, bne, NULL);
+  EVP_PKEY_assign_RSA(pkey, rsa);
+  return pkey;
+}
+
+X509 * sign_csr(EVP_PKEY *client_key, EVP_PKEY *server_key){
+  // set request info
+  X509_REQ *req = NULL;
+  req = X509_REQ_new();
+  X509_REQ_set_version(req, 0L);
+  X509_NAME *name_;
+  name_ = X509_NAME_new();
+  X509_NAME_add_entry_by_txt(name_, "C",  MBSTRING_ASC, "US", -1, -1, 0);
+  X509_NAME_add_entry_by_txt(name_, "ST",  MBSTRING_ASC, "CA", -1, -1, 0);
+  X509_NAME_add_entry_by_txt(name_, "L",  MBSTRING_ASC, "Los Angeles", -1, -1, 0);
+  X509_NAME_add_entry_by_txt(name_, "O",  MBSTRING_ASC, "Apple", -1, -1, 0);
+  X509_NAME_add_entry_by_txt(name_, "CN", MBSTRING_ASC, "Client", -1, -1, 0);
+  X509_REQ_set_subject_name(req, name_);
+  // Set issuer info
   X509_NAME *name = X509_NAME_new();
   X509_NAME_add_entry_by_txt(name, "C",  MBSTRING_ASC, "US", -1, -1, 0);
   X509_NAME_add_entry_by_txt(name, "ST",  MBSTRING_ASC, "MA", -1, -1, 0);
@@ -95,7 +126,7 @@ X509 * sign_csr(X509_REQ *req, EVP_PKEY *server_key){
   X509_gmtime_adj(X509_getm_notBefore(signed_cert), 0);
   X509_time_adj_ex(X509_getm_notAfter(signed_cert), 1, 0, NULL);
   X509_set_subject_name(signed_cert, X509_REQ_get_subject_name(req));
-  X509_set_pubkey(signed_cert, X509_REQ_get0_pubkey(req));
+  X509_set_pubkey(signed_cert, client_key);
   X509_REQ_free(req);
   BN_free(brnd);
 
@@ -172,7 +203,7 @@ char *X509_to_PEM(X509 *cert){
   return pem;
 }
 
-int generate_cert(void *data){
+int generate_cert(EVP_PKEY *pkey){
 
   // printf("Size: %d", EVP_PKEY_size(data));
   // BIO *b = NULL;
@@ -186,47 +217,23 @@ int generate_cert(void *data){
   // EVP_PKEY_print_public(b, data, 4, pctx);
   // BIO_get_mem_data(b, &key_str);
   // printf("\n%s\n", key_str);
-  unsigned char key[16], iv[16], *out;
-  size_t *outlen;
-  if (!RAND_bytes(key, sizeof(key))) {
-    printf("Rand_bytes key failed");
-    exit(0);
-  }
-  if (!RAND_bytes(iv, sizeof(iv))) {
-    printf("Rand_bytes iv failed");
-    exit(0);
-  }
-  EVP_PKEY *pkey = EVP_PKEY_new();
-  char_to_EVP_PKEY(data, pkey);
-  EVP_PKEY_CTX *ctx = EVP_PKEY_CTX_new(pkey,NULL);
-  BIO *b = NULL;
-  b = BIO_new(BIO_s_mem());
-  ASN1_PCTX *pctx = NULL;
-  pctx = ASN1_PCTX_new();
-  char * key_str = NULL;
-  if(!pkey){
-    printf("\n!data\n");
-  }
-  EVP_PKEY_print_public(b, pkey, 4, pctx);
-  BIO_get_mem_data(b, &key_str);
-  printf("\nkey str print: \n%s\n", key_str);
         /* Error occurred */
-  if (EVP_PKEY_encrypt_init(ctx) <= 0){
-    printf("\nEncrypt init: %d\n", EVP_PKEY_encrypt_init(ctx));
-    printf("CTX init failed");
-    exit(0);
-  }
-  /* Determine buffer length */
-  if (EVP_PKEY_encrypt(ctx, NULL, &outlen, key, 16) <= 0){
-    printf("Encrypt initial failed");
-    exit(0);
-  }
-  out = OPENSSL_malloc(outlen);
-  if (EVP_PKEY_encrypt(ctx, out, &outlen, key, 16) <= 0){
-    printf("Encrypt failed");
-    exit(0);
-  }
-  printf("\n%s\n", out);
+  // if (EVP_PKEY_encrypt_init(ctx) <= 0){
+  //   printf("\nEncrypt init: %d\n", EVP_PKEY_encrypt_init(ctx));
+  //   printf("CTX init failed");
+  //   exit(0);
+  // }
+  // /* Determine buffer length */
+  // if (EVP_PKEY_encrypt(ctx, NULL, &outlen, key, 16) <= 0){
+  //   printf("Encrypt initial failed");
+  //   exit(0);
+  // }
+  // out = OPENSSL_malloc(outlen);
+  // if (EVP_PKEY_encrypt(ctx, out, &outlen, key, 16) <= 0){
+  //   printf("Encrypt failed");
+  //   exit(0);
+  // }
+  // printf("\n%s\n", out);
   return 1;
 }
 

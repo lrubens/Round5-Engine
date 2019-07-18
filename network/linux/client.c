@@ -57,7 +57,7 @@ int send_data(char *address, void *data, int to_server){
         sprintf(str, "%s/%s/%s/%s/%s/%s/%s", csr[0], csr[1], csr[2], csr[3], csr[4], csr[5], csr[6]);
     }
     else{
-        sprintf(str, "%s", data);
+        sprintf(str, "%s", (char *)data);
     }
     // printf("\nstr: %s\n", str);
     // csr = {"Rubens", "US", "MA", "Cambridge", "Draper", "hostname", data};

@@ -53,15 +53,15 @@ int main(int argc, const char* argv[]){
   T(ENGINE_init(round5_engine));
   T(ENGINE_set_default(round5_engine, ENGINE_METHOD_ALL));
   if(!strcmp(role, "server")){
-    char public_key[2048] = {NULL};
+    char public_key[2048];
     char client_addr[24];
-    char msg_len_buf[4];
+    // char msg_len_buf[4];
     // receive(msg_len_buf, client_addr, NULL);
     // ps(msg_len_buf);
     // size_t msg_len = (size_t)atoi(msg_len_buf);
     // pd(msg_len);
     receive(public_key, client_addr, NULL);
-    ps(public_key);
+    // ps(public_key);
     // char *key = malloc(17);
     // char *key = NULL;
     char *key = "helloworld123456";
@@ -78,31 +78,43 @@ int main(int argc, const char* argv[]){
     BIO_write(b, public_key, strlen(public_key));
     EVP_PKEY *client_key = NULL;
     PEM_read_bio_PUBKEY(b, &client_key, NULL, NULL);
+    EVP_PKEY *server_key = genkey_rsa();
+    X509 *client_cert = sign_csr(client_key, server_key);
+    b = NULL;
+    b = BIO_new(BIO_s_mem());
+    PEM_write_bio_X509(b, client_cert);
+    unsigned char *client_cert_str = NULL;
+    BIO_get_mem_data(b, &client_cert_str);
+    ps(client_cert_str);
     EVP_PKEY_CTX *ctx = EVP_PKEY_CTX_new(client_key,NULL);
     if (EVP_PKEY_encrypt_init(ctx) <= 0){
       printf("\nEncrypt init: %d\n", EVP_PKEY_encrypt_init(ctx));
       printf("CTX init failed");
       exit(0);
     }
-    out = malloc(4096);
-    size_t out_len, in_len = 16;
-    int ret = EVP_PKEY_encrypt(ctx, out, &out_len, key, strlen(key));
+    size_t in_len = 16;
+    size_t out_len = get_params(strlen(key));
+    // pd(out_len);
+    out = malloc(out_len);
+    // size_t outlen;
+    int ret = EVP_PKEY_encrypt(ctx, out, &out_len, key, in_len);
     if (ret <= 0){
       pd(ret);
       printf("Encrypt failed");
       exit(0);
     }
-    char data_to_send[1024];
-    sprintf(data_to_send, "%s-END-%d", out, out_len);
-    fflush(stdout);
+    // char data_to_send[1024];
+    // sprintf(data_to_send, "%s-END-%d", out, out_len);
+    // fflush(stdout);
     ps(out);
-    ps(data_to_send);
-    send_data(client_addr, data_to_send, 0);
+    print_hex("Key", out, out_len, 1);
+    // ps(data_to_send);
+    send_data(client_addr, out, 0);
     BIO_free(b);
   }
   else if(!strcmp(role, "client")){
     char server_addr[24];
-    char *public_key;
+    // char *public_key;
     EVP_PKEY *client_key = NULL;
     char *algname = "Round5";
     EVP_PKEY *tkey = NULL;
@@ -121,7 +133,7 @@ int main(int argc, const char* argv[]){
     // PEM_write_PUBKEY(f, client_key);
     PEM_write_bio_PUBKEY(b, client_key);
     BIO_get_mem_data(b, &key_str);
-    ps(key_str);
+    // ps(key_str);
     printf("\nPlease enter address of server:\n");
     scanf("%s", server_addr);
     // char *data = malloc(sizeof(int));
@@ -138,29 +150,41 @@ int main(int argc, const char* argv[]){
     // ps(server_addr);
 
     send_data(server_addr, key_str, 0);
-    char encapsulated_key[8192], *key = malloc(17);
-    char *buf = malloc(8192);
+    char encapsulated_key[8192];
+    // char *buf = malloc(1024);
     char *server_addr2 = malloc(24);
     receive(encapsulated_key, server_addr2, NULL);
+    // ps(server_addr2);
     ps(encapsulated_key);
-    size_t out_len = 16, in_len;
-    strcpy(buf, encapsulated_key);
-    char *data = strtok(buf, "-END-");
-    int i = 0;
-    char *buf_arr[2] = {NULL};
-    while(buf != NULL){
-      buf_arr[i++] = buf;
-      buf = strtok(NULL, "-END-");
-    }
-    ps(buf_arr[0]);
-    in_len = atoi(buf_arr[0]);
-    strcpy(encapsulated_key, buf_arr[1]);
+    size_t out_len;
+    size_t in_len;
+    // strcpy(buf, encapsulated_key);
+    // char *data = strtok(buf, "-END-");
+    in_len = get_params(16);
+    char *key = malloc(16);
+    // char *buf_arr[2] = {NULL};
+    // while(buf != NULL){
+    //   buf_arr[i++] = buf;
+    //   buf = strtok(NULL, "-END-");
+    // }
+    // ps(buf_arr[1]);
+    // in_len = 730;
+    // pd(in_len);
+    // strcpy(encapsulated_key, buf_arr[0]);
+    // print_hex("Encrypted_key", encapsulated_key, in_len, 1);
     EVP_PKEY_CTX *decrypt_ctx = EVP_PKEY_CTX_new(client_key, NULL);
     EVP_PKEY_decrypt_init(decrypt_ctx);
-    EVP_PKEY_decrypt(decrypt_ctx, key, &out_len, encapsulated_key, in_len);
+    EVP_PKEY_decrypt(decrypt_ctx, (unsigned char *)key, &out_len, (const unsigned char *)encapsulated_key, in_len);
+    pd(out_len);
+    // print_hex("key", key, &out_len, 1);
     ps(key);
+    // print_hex("key in client", key, 16, 1);
     BIO_free(b);
     EVP_PKEY_free(tkey);
+    free(key);
+    free(server_addr2);
+    // free(encapsulated_key);
+    // free(buf);
   }
   err:
   ENGINE_finish(round5_engine);

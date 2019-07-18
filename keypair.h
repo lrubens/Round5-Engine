@@ -43,7 +43,7 @@ struct ROUND5 *round5_new();
 
 int round5_free(struct ROUND5 *keypair);
 
-int set_key_size();
+// int set_key_size();
 
 struct round5_nid_data_st {
     const char *name;

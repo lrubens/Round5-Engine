@@ -202,7 +202,7 @@ static int pki_gen_priv_encode(PKCS8_PRIV_KEY_INFO *p8, const EVP_PKEY *pkey)
     kpair = (struct ROUND5 *)EVP_PKEY_get0(pkey);
     // ps(kpair->pk);
     return PKCS8_pkey_set0(p8, algobj, 0, V_ASN1_SEQUENCE, params,
-                           kpair->sk, EVP_PKEY_base_id(pkey) == NID_ROUND5 ? SKLEN : get_crypto_bytes_(1));
+                           kpair->sk, EVP_PKEY_base_id(pkey) == NID_ROUND5 ? SKLEN : CRYPTO_BYTES);
 }
 
 static int pki_curve25519_bits(const EVP_PKEY *pkey)
@@ -251,7 +251,7 @@ static int pki_gen_pub_encode(X509_PUBKEY *pub,  EVP_PKEY *pk)
     int data_len, ret = -1;
     int ptype = V_ASN1_UNDEF ;
     struct ROUND5 *kpair = (struct ROUND5 *)EVP_PKEY_get0(pk);
-    set_key_size();
+    // set_key_size();
     algobj = OBJ_nid2obj(EVP_PKEY_base_id(pk));
     // char buffer[1024];
     // OBJ_obj2txt(buffer, 1024, algobj, 1);
