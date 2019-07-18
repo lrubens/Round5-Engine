@@ -28,12 +28,12 @@ endif
 
 # NIST level (1, 3, 5)
 ifeq (,$(NIST_LEVEL))
-    NIST_LEVEL := 1
+    NIST_LEVEL := 5
 endif
 
 # PKE or KEM
 ifeq (,$(KEM_PKE))
-    KEM_PKE := KEM
+    KEM_PKE := PKE
 endif
 
 # Set the algorithm (if none set)
@@ -146,7 +146,7 @@ LDLIBS     += -lcrypto -lkeccak -lm
 ################################################################################
 
 # Builds the example/test applications
-build: createAfixed
+#build: createAfixed
 
 # Builds all, including docs
 all: build doc

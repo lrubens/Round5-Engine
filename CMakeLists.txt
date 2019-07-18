@@ -9,7 +9,7 @@ include_directories(${OPENSSL_INCLUDE_DIR})
 
 add_compile_options(-g -lcrypto -lssl -lm -Xlinker -zmuldefs -finstrument-functions)
 
-add_custom_command(OUTPUT round5 COMMAND make WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/Round5/optimized)
+add_custom_command(OUTPUT round5 COMMAND make ALG=R5ND_5PKE_5d WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/Round5/optimized)
 add_custom_target(extern_lib DEPENDS round5)
 
 file(GLOB round5_core ${CMAKE_CURRENT_SOURCE_DIR}/Round5/optimized/build/.o/*.o)
@@ -125,7 +125,7 @@ set_target_properties(dilithium PROPERTIES POSITION_INDEPENDENT_CODE ON)
 # Create engine util library
 add_library(engine_lib STATIC ${ENGINE_CORE} ${ROUND5_OBJS})
 # target_link_libraries(engine_lib extern_lib)
-# add_dependencies(engine_lib extern_lib)
+add_dependencies(engine_lib extern_lib)
 set_target_properties(engine_lib PROPERTIES POSITION_INDEPENDENT_CODE ON)
 target_include_directories(engine_lib PUBLIC ${CMAKE_SOURCE_DIR}/Round5/optimized/src)
 target_compile_definitions(engine_lib PUBLIC R5ND_5PKE_5d)

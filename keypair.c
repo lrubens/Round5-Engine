@@ -7,8 +7,9 @@
 #include <openssl/err.h>
 #include "ossl/ossl_compat.h"
 #include "ossl/objects.h"
-// #include "Round5/reference/src/parameters.h"
-// extern int round5_sk_to_pk(unsigned char *pk, unsigned char *sk);
+#include "Round5/optimized/src/cca_encrypt.h"
+#include "Round5/optimized/src/cpa_kem.h"
+extern int round5_sk_to_pk(unsigned char *pk, unsigned char *sk);
 
 // parameters *params;
 
