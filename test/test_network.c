@@ -42,31 +42,41 @@ struct nodes{
 };
 
 int main(int argc, const char* argv[]){
-  printf(cBLUE "Testing client-server cert distribution\n" cNORM);
-  struct nodes *clients= malloc(sizeof(struct nodes));
-  char *server_addr = "192.168.1.2";
-	clients->addresses[0] = "192.168.1.4";    // Change accordingly
-  clients->addresses[1] = "192.168.1.4";    //Change accordingly
-  clients->names[0] = "Alice";
-  clients->names[1] = "Bob";
-  char *hostname = "Alice";
-  printf("\n---Hostname: [ %s ]---\n", hostname);
-	OPENSSL_add_all_algorithms_conf();
+  OPENSSL_add_all_algorithms_conf();
 	ERR_load_crypto_strings();
 	ENGINE_load_dynamic();
   ENGINE *round5_engine;
 	T(round5_engine = ENGINE_by_id("round5"));
 	T(ENGINE_init(round5_engine));
   T(ENGINE_set_default(round5_engine, ENGINE_METHOD_ALL));
+
+  printf(cBLUE "Testing client-server cert distribution\n" cNORM);
+  if(argc < 2){
+    printf("Please enter server or client!");
+    return 0;
+  }
+
+  struct nodes *clients= malloc(sizeof(struct nodes));
+  char *server_addr = "192.168.1.2";
+	clients->addresses[0] = "192.168.1.4";    // Change accordingly
+  clients->addresses[1] = "192.168.1.4";    //Change accordingly
+  clients->names[0] = "Alice";
+  clients->names[1] = "Bob";
+
+  char hostname[24];
+  char host_ip[24];
+  printf("\nPlease enter your IP address:\n");
+  scanf("%s", &host_ip);
+  printf("\nPlease enter your hostname:\n");
+  scanf("%s", &hostname);
+  printf("\n---Hostname: [ %s ]---\n", hostname);
   double time_elapsed;
 	int user_input;
-	printf("\nEnter 1 for server and 2 for client: ");
-	scanf("%d", &user_input);
-	while (user_input != 1 && user_input != 2){
-		printf("\nPlease enter correct value!\n");
-		printf("\nEnter 1 for server and 2 for client: ");
-		scanf("%d", &user_input);
-	}
+	// while (user_input != 1 && user_input != 2){
+	// 	printf("\nPlease enter correct value!\n");
+	// 	printf("\nEnter 1 for server and 2 for client: ");
+	// 	scanf("%d", &user_input);
+	// }
   char * sign_key_location = "dilithium.pem";
   EVP_PKEY *pkey;
 	if (user_input == 1){

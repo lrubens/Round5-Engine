@@ -81,74 +81,66 @@ X509_REQ *gen_csr(unsigned char *country, unsigned char *province, unsigned char
 EVP_PKEY *genkey_rsa(){
   EVP_PKEY * pkey;
   pkey = EVP_PKEY_new();
-  RSA *rsa = NULL;
-  BIGNUM *bne = NULL;
-  //BIO *bp_public = NULL, *bp_private = NULL;
-
-  int bits = 2048;
-  unsigned long e = RSA_F4;
-
-  bne = BN_new();
-  BN_set_word(bne,e);
-  rsa = RSA_new();
-  RSA_generate_key_ex(rsa, bits, bne, NULL);
-  EVP_PKEY_assign_RSA(pkey, rsa);
+  EVP_PKEY_CTX *ctx = EVP_PKEY_CTX_new_id(EVP_PKEY_RSA, NULL);
+  EVP_PKEY_keygen_init(ctx);
+  EVP_PKEY_CTX_set_rsa_keygen_bits(ctx, 2048);
+  EVP_PKEY_keygen(ctx, &pkey);
   return pkey;
 }
 
-X509 * sign_csr(EVP_PKEY *client_key, EVP_PKEY *server_key){
-  // set request info
-  X509_REQ *req = NULL;
-  req = X509_REQ_new();
-  X509_REQ_set_version(req, 0L);
-  X509_NAME *name_;
-  name_ = X509_NAME_new();
-  X509_NAME_add_entry_by_txt(name_, "C",  MBSTRING_ASC, "US", -1, -1, 0);
-  X509_NAME_add_entry_by_txt(name_, "ST",  MBSTRING_ASC, "CA", -1, -1, 0);
-  X509_NAME_add_entry_by_txt(name_, "L",  MBSTRING_ASC, "Los Angeles", -1, -1, 0);
-  X509_NAME_add_entry_by_txt(name_, "O",  MBSTRING_ASC, "Apple", -1, -1, 0);
-  X509_NAME_add_entry_by_txt(name_, "CN", MBSTRING_ASC, "Client", -1, -1, 0);
-  X509_REQ_set_subject_name(req, name_);
-  // Set issuer info
-  X509_NAME *name = X509_NAME_new();
-  X509_NAME_add_entry_by_txt(name, "C",  MBSTRING_ASC, "US", -1, -1, 0);
-  X509_NAME_add_entry_by_txt(name, "ST",  MBSTRING_ASC, "MA", -1, -1, 0);
-  X509_NAME_add_entry_by_txt(name, "L",  MBSTRING_ASC, "Cambridge", -1, -1, 0);
-  X509_NAME_add_entry_by_txt(name, "O",  MBSTRING_ASC, "Draper", -1, -1, 0);
-  X509_NAME_add_entry_by_txt(name, "CN", MBSTRING_ASC, "Server", -1, -1, 0);
-  X509 *signed_cert = NULL;
-  signed_cert = X509_new();
-  X509_set_version(signed_cert, 2);
-  BIGNUM *brnd = BN_new();
-  BN_rand(brnd, 20 * 8 - 1, -1, 0);
-  BN_to_ASN1_INTEGER(brnd, X509_get_serialNumber(signed_cert));
-  X509_set_issuer_name(signed_cert, name);
-  X509_gmtime_adj(X509_getm_notBefore(signed_cert), 0);
-  X509_time_adj_ex(X509_getm_notAfter(signed_cert), 1, 0, NULL);
-  X509_set_subject_name(signed_cert, X509_REQ_get_subject_name(req));
-  X509_set_pubkey(signed_cert, client_key);
-  X509_REQ_free(req);
-  BN_free(brnd);
+// X509 * sign_csr(EVP_PKEY *client_key, EVP_PKEY *server_key){
+//   // set request info
+//   X509_REQ *req = NULL;
+//   req = X509_REQ_new();
+//   X509_REQ_set_version(req, 0L);
+//   X509_NAME *name_;
+//   name_ = X509_NAME_new();
+//   X509_NAME_add_entry_by_txt(name_, "C",  MBSTRING_ASC, "US", -1, -1, 0);
+//   X509_NAME_add_entry_by_txt(name_, "ST",  MBSTRING_ASC, "CA", -1, -1, 0);
+//   X509_NAME_add_entry_by_txt(name_, "L",  MBSTRING_ASC, "Los Angeles", -1, -1, 0);
+//   X509_NAME_add_entry_by_txt(name_, "O",  MBSTRING_ASC, "Apple", -1, -1, 0);
+//   X509_NAME_add_entry_by_txt(name_, "CN", MBSTRING_ASC, "Client", -1, -1, 0);
+//   X509_REQ_set_subject_name(req, name_);
+//   // Set issuer info
+//   X509_NAME *name = X509_NAME_new();
+//   X509_NAME_add_entry_by_txt(name, "C",  MBSTRING_ASC, "US", -1, -1, 0);
+//   X509_NAME_add_entry_by_txt(name, "ST",  MBSTRING_ASC, "MA", -1, -1, 0);
+//   X509_NAME_add_entry_by_txt(name, "L",  MBSTRING_ASC, "Cambridge", -1, -1, 0);
+//   X509_NAME_add_entry_by_txt(name, "O",  MBSTRING_ASC, "Draper", -1, -1, 0);
+//   X509_NAME_add_entry_by_txt(name, "CN", MBSTRING_ASC, "Server", -1, -1, 0);
+//   X509 *signed_cert = NULL;
+//   signed_cert = X509_new();
+//   X509_set_version(signed_cert, 2);
+//   BIGNUM *brnd = BN_new();
+//   BN_rand(brnd, 20 * 8 - 1, -1, 0);
+//   BN_to_ASN1_INTEGER(brnd, X509_get_serialNumber(signed_cert));
+//   X509_set_issuer_name(signed_cert, name);
+//   X509_gmtime_adj(X509_getm_notBefore(signed_cert), 0);
+//   X509_time_adj_ex(X509_getm_notAfter(signed_cert), 1, 0, NULL);
+//   X509_set_subject_name(signed_cert, X509_REQ_get_subject_name(req));
+//   X509_set_pubkey(signed_cert, client_key);
+//   X509_REQ_free(req);
+//   BN_free(brnd);
 
-  X509V3_CTX v3ctx;
-  X509V3_set_ctx_nodb(&v3ctx);
-  X509V3_set_ctx(&v3ctx, signed_cert, signed_cert, NULL, NULL, 0);
-  X509_EXTENSION *ext;
-  ext = X509V3_EXT_conf_nid(NULL, &v3ctx, NID_basic_constraints, "critical,CA:TRUE");
-  X509_add_ext(signed_cert, ext, 0);
-  X509_EXTENSION_free(ext);
-  ext = X509V3_EXT_conf_nid(NULL, &v3ctx, NID_subject_key_identifier, "hash");
-  X509_add_ext(signed_cert, ext, 1);
-  X509_EXTENSION_free(ext);
-  ext = X509V3_EXT_conf_nid(NULL, &v3ctx, NID_authority_key_identifier, "keyid:always,issuer");
-  X509_add_ext(signed_cert, ext, 2);
-  X509_EXTENSION_free(ext);
-  if (!X509_sign(signed_cert, server_key, EVP_sha512())){
-    printf("\n****Error in sign****\n");
-    return NULL;
-  }
-  return signed_cert;
-}
+//   X509V3_CTX v3ctx;
+//   X509V3_set_ctx_nodb(&v3ctx);
+//   X509V3_set_ctx(&v3ctx, signed_cert, signed_cert, NULL, NULL, 0);
+//   X509_EXTENSION *ext;
+//   ext = X509V3_EXT_conf_nid(NULL, &v3ctx, NID_basic_constraints, "critical,CA:TRUE");
+//   X509_add_ext(signed_cert, ext, 0);
+//   X509_EXTENSION_free(ext);
+//   ext = X509V3_EXT_conf_nid(NULL, &v3ctx, NID_subject_key_identifier, "hash");
+//   X509_add_ext(signed_cert, ext, 1);
+//   X509_EXTENSION_free(ext);
+//   ext = X509V3_EXT_conf_nid(NULL, &v3ctx, NID_authority_key_identifier, "keyid:always,issuer");
+//   X509_add_ext(signed_cert, ext, 2);
+//   X509_EXTENSION_free(ext);
+//   if (!X509_sign(signed_cert, server_key, EVP_sha512())){
+//     printf("\n****Error in sign****\n");
+//     return NULL;
+//   }
+//   return signed_cert;
+// }
 
 EVP_PKEY *genkey_dilithium(){
   const char *algoname = "Dilithium";

@@ -14,11 +14,11 @@
 #!/bin/bash
 
 for param in R5ND_1PKE_5d R5ND_3PKE_5d R5ND_5PKE_5d R5ND_1PKE_0d R5ND_3PKE_0d R5ND_5PKE_0d R5ND_1KEM_5d R5ND_3KEM_5d R5ND_5KEM_5d R5N1_3PKE_0smallCT; do
-    cmake . -DPARAM=$param
+    cmake . -DPARAMS=$param
     # echo Selected param: $param
     make 
     sudo cp round5.so /usr/local/ssl/lib/engines-1.1/
-    ./engine_check
+    ./run_tls client
     sleep 1 
 done
 

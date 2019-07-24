@@ -219,7 +219,7 @@ static int example_run(int api_set_number, uint8_t tau) {
  * @param argv the command-line arguments
  * @return __0__ in case of success
  */
-int main(int argc, char **argv) {
+int main_(int argc, char **argv) {
     /* Initialize random bytes RNG */
     unsigned char entropy_input[48];
     for (int i = 0; i < 48; i++) {

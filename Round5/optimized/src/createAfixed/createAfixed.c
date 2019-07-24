@@ -25,7 +25,7 @@
  *
  * @return __0__ in case of success
  */
-int main(void) {
+int main_(void) {
     /* Initialize random bytes RNG */
     unsigned char entropy_input[48];
     int i;

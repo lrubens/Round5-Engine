@@ -10,12 +10,6 @@
 // #include "Round5/reference/src/parameters.h"
 #define CURVE25519_BITS 253
 #define CURVE25519_SECURITY_BITS 128
-// #ifdef PKLEN
-// #undef PKLEN
-// #endif
-// #ifdef SKLEN
-// #undef SKLEN
-// #endif
 extern int PKLEN = 0;
 extern int SKLEN = 0;
 
@@ -23,6 +17,10 @@ struct ROUND5{
     unsigned char *sk;
     unsigned char *pk;
     int nid;
+};
+
+struct sym_key{
+    unsigned char *encrypted_key;
 };
 
 struct DILITHIUM{

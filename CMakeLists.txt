@@ -9,10 +9,17 @@ include_directories(${OPENSSL_INCLUDE_DIR})
 
 add_compile_options(-g -lcrypto -lssl -lm -Xlinker -zmuldefs -finstrument-functions)
 
-add_custom_command(OUTPUT round5 COMMAND make ALG=R5ND_5PKE_5d WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/Round5/optimized)
+IF (NOT DEFINED PARAMS)
+    SET(PARAMS R5ND_5PKE_5d)
+    # message(${PARAM})
+ENDIF()
+ADD_DEFINITIONS(-DPARAMS=${PARAMS})
+# message(STATUS "Building engine with user-defined algorithm: " ${PARAM})
+
+add_custom_command(OUTPUT round5 COMMAND make clean && make ALG=${PARAMS} WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/Round5/optimized)
 add_custom_target(extern_lib DEPENDS round5)
 
-file(GLOB round5_core ${CMAKE_CURRENT_SOURCE_DIR}/Round5/optimized/build/.o/*.o)
+file(GLOB round5_core ${CMAKE_CURRENT_SOURCE_DIR}/Round5/optimized/build/.o/*.o ${CMAKE_CURRENT_SOURCE_DIR}/Round5/optimized/build/.o/rng/*.o)
 
 set(ROUND5_OBJS
     ${round5_core}
@@ -114,13 +121,13 @@ set(TEST
 include_directories(${CMAKE_SOURCE_DIR})
 include_directories(meths)
 include_directories(ossl)
-include_directories(dilithium/ref)
+# include_directories(dilithium/ref)
 include_directories(${CMAKE_SOURCE_DIR}/Round5/optimized/src)
 include_directories(XKCP/bin/generic64/libkeccak.a.headers)
 
 # Create dilithium library
-add_library(dilithium STATIC ${DILITHIUM_SOURCE_FILES})
-set_target_properties(dilithium PROPERTIES POSITION_INDEPENDENT_CODE ON)
+# add_library(dilithium STATIC ${DILITHIUM_SOURCE_FILES})
+# set_target_properties(dilithium PROPERTIES POSITION_INDEPENDENT_CODE ON)
 
 # Create engine util library
 add_library(engine_lib STATIC ${ENGINE_CORE} ${ROUND5_OBJS})
@@ -128,11 +135,11 @@ add_library(engine_lib STATIC ${ENGINE_CORE} ${ROUND5_OBJS})
 add_dependencies(engine_lib extern_lib)
 set_target_properties(engine_lib PROPERTIES POSITION_INDEPENDENT_CODE ON)
 target_include_directories(engine_lib PUBLIC ${CMAKE_SOURCE_DIR}/Round5/optimized/src)
-target_compile_definitions(engine_lib PUBLIC R5ND_5PKE_5d)
+target_compile_definitions(engine_lib PUBLIC ${PARAMS})
 
 # Create shared library
 add_library(round5_engine SHARED ${ROUND5_ENGINE_SOURCE_FILES} ${XKCP_SOURCE_FILES} ${ROUND5_OBJS})
-target_link_libraries(round5_engine dilithium engine_lib ${OPENSSL_CRYPTO_LIBRARY} -Xlinker -zmuldefs)
+target_link_libraries(round5_engine engine_lib ${OPENSSL_CRYPTO_LIBRARY} -Xlinker -zmuldefs)
 target_include_directories(round5_engine PUBLIC ${CMAKE_SOURCE_DIR}/Round5/optimized/src)
 # target_compile_definitions(round5_engine PUBLIC ${PARAM})
 set_target_properties(round5_engine PROPERTIES PREFIX "" OUTPUT_NAME "round5")
@@ -149,12 +156,16 @@ set_target_properties(round5_engine PROPERTIES COMPILE_FLAGS "-lkeccak -lcrypto 
 # target_compile_definitions(test_network PUBLIC ${PARAM})
 # set_target_properties(test_network PROPERTIES COMPILE_FLAGS "-lcrypto -lssl -ggdb3 -O0")
 
-add_executable(test_tls test/test_tls.c ${ROUND5_OBJS})
-target_link_libraries(test_tls engine_lib round5_engine ${OPENSSL_CRYPTO_LIBRARY})
-target_include_directories(test_tls PUBLIC ${CMAKE_SOURCE_DIR}/Round5/optimized/src)
-# target_compile_definitions(test_tls PUBLIC ${PARAM})
-# add_dependencies(test_tls extern_lib)
-set_target_properties(test_tls PROPERTIES COMPILE_FLAGS "-lcrypto -lssl -ggdb3 -O0 -lengine_lib")
+# add_executable(test_tls test/test_tls.c ${ROUND5_OBJS})
+# target_link_libraries(test_tls round5_engine engine_lib ${OPENSSL_CRYPTO_LIBRARY})
+# target_include_directories(test_tls PUBLIC ${CMAKE_SOURCE_DIR}/Round5/optimized/src)
+# set_target_properties(test_tls PROPERTIES COMPILE_FLAGS "-lcrypto -lssl -ggdb3 -O0")
+
+add_executable(run_tls test/tls_test.c)
+target_link_libraries(run_tls round5_engine ${OPENSSL_CRYPTO_LIBRARY} -lcrypto -lssl -lkeccak)
+# target_include_directories(run_tls PUBLIC ${CMAKE_SOURCE_DIR}/Round5/optimized/src)
+set_target_properties(run_tls PROPERTIES COMPILE_FLAGS "-ggdb3 -O0 -DPURIFY")
+
 
 # Install library
 set(ENGINE_DIR /usr/local/ssl/lib/engines-1.1/)

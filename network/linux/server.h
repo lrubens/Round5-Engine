@@ -3,6 +3,7 @@
 #include <stdlib.h> 
 #include <string.h>
 
-#define PORT 5051
+#define PORT 5052
 
-int receive(char *data, char *client_addr, int (*handle_request)(char *, char *));
+int receive(char *data, char *client_addr, int *size);
+int receive_file(char *filename);

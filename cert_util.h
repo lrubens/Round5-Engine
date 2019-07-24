@@ -4,6 +4,8 @@
 #include <openssl/x509v3.h>
 #include <openssl/evp.h>
 
+extern EVP_PKEY *client_pub_key, *server_pub_key;
+
 struct CSR{
     // char *name;
     char *country;

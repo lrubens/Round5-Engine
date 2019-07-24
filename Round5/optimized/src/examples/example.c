@@ -166,13 +166,13 @@ static int example_run() {
  *
  * @return __0__ in case of success
  */
-int main_(void) {
-    /* Initialize random bytes RNG */
-    unsigned char entropy_input[48];
-    for (int i = 0; i < 48; i++) {
-        entropy_input[i] = (unsigned char) i;
-    }
-    randombytes_init(entropy_input, NULL, 256);
+//int main_(void) {
+//    /* Initialize random bytes RNG */
+//    unsigned char entropy_input[48];
+//    for (int i = 0; i < 48; i++) {
+//        entropy_input[i] = (unsigned char) i;
+//    }
+//    randombytes_init(entropy_input, NULL, 256);
 
-    return example_run();
-}
+//    return example_run();
+//}
