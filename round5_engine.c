@@ -10,7 +10,7 @@
 #include "meths/round5_meth.h"
 #include "meths/asn1_meth.h"
 #include "ossl/objects.h"
-// #include "meths/dilithium_meth.h"
+#include "meths/dilithium_meth.h"
 #include "meths/round5_md.h"
 // #include "meths/dilithium_meth.h"
 #ifndef ENGINE_ID
@@ -63,11 +63,11 @@ static int digest_nids_init(){
 
 static void pkey_meth_nids_init(){
     pkey_meth_nids[0] = NID_ROUND5;
-    // pkey_meth_nids[1] = NID_DILITHIUM;
+    pkey_meth_nids[1] = NID_DILITHIUM;
 }
 
 static EVP_PKEY_METHOD *pmeth_round5 = NULL;
-// static EVP_PKEY_METHOD *pmeth_dilithium = NULL;
+static EVP_PKEY_METHOD *pmeth_dilithium = NULL;
 
 static EVP_MD *md_obj = NULL;
 
@@ -81,11 +81,11 @@ static int pkey_asn1_meth_nids[] = {
 
 static void pkey_asn1_meth_nids_init(){
     pkey_asn1_meth_nids[0] = NID_ROUND5;
-    // pkey_asn1_meth_nids[1] = NID_DILITHIUM;
+    pkey_asn1_meth_nids[1] = NID_DILITHIUM;
 }
 
 static EVP_PKEY_ASN1_METHOD *ameth_round5 = NULL;
-// static EVP_PKEY_ASN1_METHOD *ameth_dilithium = NULL;
+static EVP_PKEY_ASN1_METHOD *ameth_dilithium = NULL;
 static EVP_PKEY_ASN1_METHOD *ameth_keccak = NULL;
 
 
@@ -155,7 +155,6 @@ static int bind(ENGINE *e, const char *id){
         printf("Failure registering NIDs\n");
         goto end;
     } else {
-        // printf("\nregistered nids\n");
         pkey_meth_nids_init();
         pkey_asn1_meth_nids_init();
         digest_nids_init();
@@ -194,11 +193,6 @@ static int bind(ENGINE *e, const char *id){
     // }
     
     // ENGINE_register_all_complete();
-//    if (suola_implementation_init() != 0) {       // TODO: figure this out
-//        errorf("suola_implementation_init failed\n");
-//        goto end;
-//    }
-
     ret = 1;
     end:
     return ret;
@@ -215,7 +209,7 @@ static int pkey_meths(ENGINE *e, EVP_PKEY_METHOD **pmeth, const int **nids, int 
         return 1;
     }
     else if(nid == NID_DILITHIUM){
-        // *pmeth = pmeth_dilithium;
+        *pmeth = pmeth_dilithium;
         return 1;
     }
     *pmeth = NULL;
@@ -228,10 +222,10 @@ static int register_pmeth(int id, EVP_PKEY_METHOD **pmeth, int flags){
         return 0;
     if (id == NID_ROUND5){
         pki_register_round5(*pmeth);
-        // EVP_PKEY_meth_set_sign(pmeth, NULL, dilithium_sign);
+        EVP_PKEY_meth_set_sign(*pmeth, NULL, dilithium_sign);
     }
     else if(id == NID_DILITHIUM){
-        // pki_register_dilithium(*pmeth);
+        pki_register_dilithium(*pmeth);
         // return 1;
     }
     else{
@@ -245,19 +239,16 @@ static int pkey_asn1_meths(ENGINE *e, EVP_PKEY_ASN1_METHOD **ameth, const int **
     if (!ameth){
         pkey_asn1_meth_nids_init();
         *nids = pkey_asn1_meth_nids;
-        // printf("\nsize: %d\n", sizeof_static_array(pkey_asn1_meth_nids));
-        // printf("\nnids[0]: %d\n", *nids[0]);
-        // printf("\nnids[1]: %d\n", *nids[1]);
         return sizeof_static_array(pkey_asn1_meth_nids);
     }
     if (nid == NID_ROUND5){
         *ameth = ameth_round5;
         return 1;
     }
-    // else if(nid == NID_DILITHIUM){
-    //     *ameth = ameth_dilithium;
-    //     return 1;
-    // }
+    else if(nid == NID_DILITHIUM){
+        *ameth = ameth_dilithium;
+        return 1;
+    }
     *ameth = NULL;
     return 0;
 }
@@ -271,10 +262,9 @@ static int register_ameth(int id, EVP_PKEY_ASN1_METHOD **ameth, int flags){
     info = OBJ_nid2ln(id);
     if (id == NID_DILITHIUM){
         if (!OBJ_add_sigid(NID_DILITHIUM, NID_undef, NID_DILITHIUM)){
-            ps("OBJ_add_sigid() broken");
+            perror("OBJ_add_sigid");
         }
     }
-    // ps(pem_str);
     return _register_asn1_meth(id, ameth, pem_str, info);
 }
 
@@ -305,10 +295,8 @@ static int register_md(int md_id, int pkey_type, EVP_MD **md, int flags)
             // OBJ_nid2ln(md_id), md_id, pkey_type, flags);
 
     *md = EVP_MD_meth_new(md_id, pkey_type);
-
     if (*md == NULL)
         return 0;
-    //printf("\nmd is not null\n");
     if ( md_id == NID_KECCAK ) {
         md_obj = digest();
         // printf("\nmd: %s\n", OBJ_nid2ln(NID_KECCAK));
@@ -336,15 +324,15 @@ static int register_methods(){
     // if (!register_md(NID_KECCAK, NID_ROUND5, &md_obj, 0)){
     //     return 0;
     // }
-    // if (!register_pmeth(NID_DILITHIUM, &pmeth_dilithium, 0)){
-    //     return 0;
-    // }
-    // if (!register_ameth(NID_DILITHIUM, &ameth_dilithium, 0)){
-    //     return 0;
-    // }
-    if (!register_ameth(NID_KECCAK, &ameth_keccak, 0)){
+    if (!register_pmeth(NID_DILITHIUM, &pmeth_dilithium, 0)){
         return 0;
     }
+    if (!register_ameth(NID_DILITHIUM, &ameth_dilithium, 0)){
+        return 0;
+    }
+    // if (!register_ameth(NID_KECCAK, &ameth_keccak, 0)){
+    //     return 0;
+    // }
     // EVP_MD_meth_free(md_obj);
     return 1;
 }

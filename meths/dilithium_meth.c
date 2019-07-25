@@ -110,7 +110,7 @@ static int dilithium_signctx_init(EVP_PKEY_CTX *ctx, EVP_MD_CTX *mctx)
     return 1;
 }
 
-static int dilithium_sign(EVP_PKEY_CTX *ctx, unsigned char *sig, size_t *siglen, const unsigned char *tbs, size_t tbs_len)
+int dilithium_sign(EVP_PKEY_CTX *ctx, unsigned char *sig, size_t *siglen, const unsigned char *tbs, size_t tbs_len)
 {
     EVP_PKEY *pkey = EVP_PKEY_CTX_get0_pkey(ctx);
     if (!siglen)
@@ -127,7 +127,7 @@ static int dilithium_sign(EVP_PKEY_CTX *ctx, unsigned char *sig, size_t *siglen,
     return crypto_sign(sig, (unsigned long long *)siglen, tbs, tbs_len, kpair->sk);
 }
 
-int dilithium_verify(EVP_PKEY_CTX *ctx, const unsigned char *sig, size_t siglen, unsigned char *tbv, size_t tbv_len){
+int dilithium_verify(EVP_PKEY_CTX *ctx, const unsigned char *sig, size_t siglen, const unsigned char *tbv, size_t tbv_len){
     EVP_PKEY *pkey = EVP_PKEY_CTX_get0_pkey(ctx);
     struct ROUND5 *kpair = (struct ROUND5 *)EVP_PKEY_get0(pkey);
     return (!crypto_sign_open(tbv, &tbv_len, sig, (unsigned long long)siglen, kpair->pk));

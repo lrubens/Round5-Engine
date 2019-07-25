@@ -71,29 +71,6 @@ unsigned long get_buffer_size(unsigned long num){
 #define ps(s) printf("\n%s: %s:%d\n     %s: %s\n", __FILE__, __func__, __LINE__, #s, s)
 #define pd(s) printf("\n%s: %s:%d\n     %s: %d\n", __FILE__, __func__, __LINE__, #s, s)
 
-/*
- * Simple TLS Server code is based on
- * https://wiki.openssl.org/index.php/Simple_TLS_Server
- */
-
-// void print_hex(const char *var, const unsigned char *data, const size_t nr_elements, const size_t element_size) {
-//     size_t i, ii;
-//     if (var != NULL) {
-//         printf("%s[%zu]=", var, nr_elements);
-//     }
-//     for (i = 0; i < nr_elements; ++i) {
-//         if (i > 0) {
-//             printf(" ");
-//         }
-//         for (ii = element_size; ii > 0; --ii) {
-//             printf("%02hhX", data[i * element_size + ii - 1]);
-//         }
-//     }
-//     if (var != NULL) {
-//         printf("\n");
-//     }
-// }
-
 char *base64(const unsigned char *input, int length)
 {
     BIO *bmem, *b64;
@@ -165,6 +142,10 @@ int create_server_socket(int port)
     return s;
 }
 
+/*
+ * Simple TLS Server code is based on
+ * https://wiki.openssl.org/index.php/Simple_TLS_Server
+ */
 static int s_server(EVP_PKEY *pkey, X509 *cert, int client)
 {
     SSL_CTX *ctx;
@@ -316,8 +297,8 @@ static struct certkey certgen(const char *algname, const char *paramset)
     T(ctx = EVP_PKEY_CTX_new(tkey, NULL));
     T(EVP_PKEY_keygen_init(ctx));
     if (paramset)
-	T(EVP_PKEY_CTX_ctrl_str(ctx, "paramset", paramset));
-    EVP_PKEY *pkey = NULL;
+	    T(EVP_PKEY_CTX_ctrl_str(ctx, "paramset", paramset));
+    EVP_PKEY *pkey = EVP_PKEY_new();
     T((EVP_PKEY_keygen(ctx, &pkey)) == 1);
     EVP_PKEY_CTX_free(ctx);
     EVP_PKEY_free(tkey);
@@ -447,7 +428,7 @@ int main(int argc, char **argv){
     }
 
     ENGINE_finish(eng);
-    // ENGINE_free(eng);
+    ENGINE_free(eng);
     ENGINE_cleanup();
 
     // if (ret)

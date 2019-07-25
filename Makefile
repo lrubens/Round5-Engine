@@ -157,17 +157,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named engine_lib
+# Target rules for targets named dilithium
 
 # Build rule for target.
-engine_lib: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 engine_lib
-.PHONY : engine_lib
+dilithium: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 dilithium
+.PHONY : dilithium
 
 # fast build rule for target.
-engine_lib/fast:
-	$(MAKE) -f CMakeFiles/engine_lib.dir/build.make CMakeFiles/engine_lib.dir/build
-.PHONY : engine_lib/fast
+dilithium/fast:
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/build
+.PHONY : dilithium/fast
 
 #=============================================================================
 # Target rules for targets named extern_lib
@@ -181,6 +181,19 @@ extern_lib: cmake_check_build_system
 extern_lib/fast:
 	$(MAKE) -f CMakeFiles/extern_lib.dir/build.make CMakeFiles/extern_lib.dir/build
 .PHONY : extern_lib/fast
+
+#=============================================================================
+# Target rules for targets named engine_lib
+
+# Build rule for target.
+engine_lib: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 engine_lib
+.PHONY : engine_lib
+
+# fast build rule for target.
+engine_lib/fast:
+	$(MAKE) -f CMakeFiles/engine_lib.dir/build.make CMakeFiles/engine_lib.dir/build
+.PHONY : engine_lib/fast
 
 #=============================================================================
 # Target rules for targets named round5_engine
@@ -1207,6 +1220,330 @@ cert_util.c.s:
 	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/cert_util.c.s
 .PHONY : cert_util.c.s
 
+dilithium/ref/PQCgenKAT_sign.o: dilithium/ref/PQCgenKAT_sign.c.o
+
+.PHONY : dilithium/ref/PQCgenKAT_sign.o
+
+# target to build an object file
+dilithium/ref/PQCgenKAT_sign.c.o:
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/PQCgenKAT_sign.c.o
+.PHONY : dilithium/ref/PQCgenKAT_sign.c.o
+
+dilithium/ref/PQCgenKAT_sign.i: dilithium/ref/PQCgenKAT_sign.c.i
+
+.PHONY : dilithium/ref/PQCgenKAT_sign.i
+
+# target to preprocess a source file
+dilithium/ref/PQCgenKAT_sign.c.i:
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/PQCgenKAT_sign.c.i
+.PHONY : dilithium/ref/PQCgenKAT_sign.c.i
+
+dilithium/ref/PQCgenKAT_sign.s: dilithium/ref/PQCgenKAT_sign.c.s
+
+.PHONY : dilithium/ref/PQCgenKAT_sign.s
+
+# target to generate assembly for a file
+dilithium/ref/PQCgenKAT_sign.c.s:
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/PQCgenKAT_sign.c.s
+.PHONY : dilithium/ref/PQCgenKAT_sign.c.s
+
+dilithium/ref/aes256ctr.o: dilithium/ref/aes256ctr.c.o
+
+.PHONY : dilithium/ref/aes256ctr.o
+
+# target to build an object file
+dilithium/ref/aes256ctr.c.o:
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/aes256ctr.c.o
+.PHONY : dilithium/ref/aes256ctr.c.o
+
+dilithium/ref/aes256ctr.i: dilithium/ref/aes256ctr.c.i
+
+.PHONY : dilithium/ref/aes256ctr.i
+
+# target to preprocess a source file
+dilithium/ref/aes256ctr.c.i:
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/aes256ctr.c.i
+.PHONY : dilithium/ref/aes256ctr.c.i
+
+dilithium/ref/aes256ctr.s: dilithium/ref/aes256ctr.c.s
+
+.PHONY : dilithium/ref/aes256ctr.s
+
+# target to generate assembly for a file
+dilithium/ref/aes256ctr.c.s:
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/aes256ctr.c.s
+.PHONY : dilithium/ref/aes256ctr.c.s
+
+dilithium/ref/fips202.o: dilithium/ref/fips202.c.o
+
+.PHONY : dilithium/ref/fips202.o
+
+# target to build an object file
+dilithium/ref/fips202.c.o:
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/fips202.c.o
+.PHONY : dilithium/ref/fips202.c.o
+
+dilithium/ref/fips202.i: dilithium/ref/fips202.c.i
+
+.PHONY : dilithium/ref/fips202.i
+
+# target to preprocess a source file
+dilithium/ref/fips202.c.i:
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/fips202.c.i
+.PHONY : dilithium/ref/fips202.c.i
+
+dilithium/ref/fips202.s: dilithium/ref/fips202.c.s
+
+.PHONY : dilithium/ref/fips202.s
+
+# target to generate assembly for a file
+dilithium/ref/fips202.c.s:
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/fips202.c.s
+.PHONY : dilithium/ref/fips202.c.s
+
+dilithium/ref/ntt.o: dilithium/ref/ntt.c.o
+
+.PHONY : dilithium/ref/ntt.o
+
+# target to build an object file
+dilithium/ref/ntt.c.o:
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/ntt.c.o
+.PHONY : dilithium/ref/ntt.c.o
+
+dilithium/ref/ntt.i: dilithium/ref/ntt.c.i
+
+.PHONY : dilithium/ref/ntt.i
+
+# target to preprocess a source file
+dilithium/ref/ntt.c.i:
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/ntt.c.i
+.PHONY : dilithium/ref/ntt.c.i
+
+dilithium/ref/ntt.s: dilithium/ref/ntt.c.s
+
+.PHONY : dilithium/ref/ntt.s
+
+# target to generate assembly for a file
+dilithium/ref/ntt.c.s:
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/ntt.c.s
+.PHONY : dilithium/ref/ntt.c.s
+
+dilithium/ref/packing.o: dilithium/ref/packing.c.o
+
+.PHONY : dilithium/ref/packing.o
+
+# target to build an object file
+dilithium/ref/packing.c.o:
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/packing.c.o
+.PHONY : dilithium/ref/packing.c.o
+
+dilithium/ref/packing.i: dilithium/ref/packing.c.i
+
+.PHONY : dilithium/ref/packing.i
+
+# target to preprocess a source file
+dilithium/ref/packing.c.i:
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/packing.c.i
+.PHONY : dilithium/ref/packing.c.i
+
+dilithium/ref/packing.s: dilithium/ref/packing.c.s
+
+.PHONY : dilithium/ref/packing.s
+
+# target to generate assembly for a file
+dilithium/ref/packing.c.s:
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/packing.c.s
+.PHONY : dilithium/ref/packing.c.s
+
+dilithium/ref/poly.o: dilithium/ref/poly.c.o
+
+.PHONY : dilithium/ref/poly.o
+
+# target to build an object file
+dilithium/ref/poly.c.o:
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/poly.c.o
+.PHONY : dilithium/ref/poly.c.o
+
+dilithium/ref/poly.i: dilithium/ref/poly.c.i
+
+.PHONY : dilithium/ref/poly.i
+
+# target to preprocess a source file
+dilithium/ref/poly.c.i:
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/poly.c.i
+.PHONY : dilithium/ref/poly.c.i
+
+dilithium/ref/poly.s: dilithium/ref/poly.c.s
+
+.PHONY : dilithium/ref/poly.s
+
+# target to generate assembly for a file
+dilithium/ref/poly.c.s:
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/poly.c.s
+.PHONY : dilithium/ref/poly.c.s
+
+dilithium/ref/polyvec.o: dilithium/ref/polyvec.c.o
+
+.PHONY : dilithium/ref/polyvec.o
+
+# target to build an object file
+dilithium/ref/polyvec.c.o:
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/polyvec.c.o
+.PHONY : dilithium/ref/polyvec.c.o
+
+dilithium/ref/polyvec.i: dilithium/ref/polyvec.c.i
+
+.PHONY : dilithium/ref/polyvec.i
+
+# target to preprocess a source file
+dilithium/ref/polyvec.c.i:
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/polyvec.c.i
+.PHONY : dilithium/ref/polyvec.c.i
+
+dilithium/ref/polyvec.s: dilithium/ref/polyvec.c.s
+
+.PHONY : dilithium/ref/polyvec.s
+
+# target to generate assembly for a file
+dilithium/ref/polyvec.c.s:
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/polyvec.c.s
+.PHONY : dilithium/ref/polyvec.c.s
+
+dilithium/ref/randombytes.o: dilithium/ref/randombytes.c.o
+
+.PHONY : dilithium/ref/randombytes.o
+
+# target to build an object file
+dilithium/ref/randombytes.c.o:
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/randombytes.c.o
+.PHONY : dilithium/ref/randombytes.c.o
+
+dilithium/ref/randombytes.i: dilithium/ref/randombytes.c.i
+
+.PHONY : dilithium/ref/randombytes.i
+
+# target to preprocess a source file
+dilithium/ref/randombytes.c.i:
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/randombytes.c.i
+.PHONY : dilithium/ref/randombytes.c.i
+
+dilithium/ref/randombytes.s: dilithium/ref/randombytes.c.s
+
+.PHONY : dilithium/ref/randombytes.s
+
+# target to generate assembly for a file
+dilithium/ref/randombytes.c.s:
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/randombytes.c.s
+.PHONY : dilithium/ref/randombytes.c.s
+
+dilithium/ref/reduce.o: dilithium/ref/reduce.c.o
+
+.PHONY : dilithium/ref/reduce.o
+
+# target to build an object file
+dilithium/ref/reduce.c.o:
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/reduce.c.o
+.PHONY : dilithium/ref/reduce.c.o
+
+dilithium/ref/reduce.i: dilithium/ref/reduce.c.i
+
+.PHONY : dilithium/ref/reduce.i
+
+# target to preprocess a source file
+dilithium/ref/reduce.c.i:
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/reduce.c.i
+.PHONY : dilithium/ref/reduce.c.i
+
+dilithium/ref/reduce.s: dilithium/ref/reduce.c.s
+
+.PHONY : dilithium/ref/reduce.s
+
+# target to generate assembly for a file
+dilithium/ref/reduce.c.s:
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/reduce.c.s
+.PHONY : dilithium/ref/reduce.c.s
+
+dilithium/ref/rng.o: dilithium/ref/rng.c.o
+
+.PHONY : dilithium/ref/rng.o
+
+# target to build an object file
+dilithium/ref/rng.c.o:
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/rng.c.o
+.PHONY : dilithium/ref/rng.c.o
+
+dilithium/ref/rng.i: dilithium/ref/rng.c.i
+
+.PHONY : dilithium/ref/rng.i
+
+# target to preprocess a source file
+dilithium/ref/rng.c.i:
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/rng.c.i
+.PHONY : dilithium/ref/rng.c.i
+
+dilithium/ref/rng.s: dilithium/ref/rng.c.s
+
+.PHONY : dilithium/ref/rng.s
+
+# target to generate assembly for a file
+dilithium/ref/rng.c.s:
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/rng.c.s
+.PHONY : dilithium/ref/rng.c.s
+
+dilithium/ref/rounding.o: dilithium/ref/rounding.c.o
+
+.PHONY : dilithium/ref/rounding.o
+
+# target to build an object file
+dilithium/ref/rounding.c.o:
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/rounding.c.o
+.PHONY : dilithium/ref/rounding.c.o
+
+dilithium/ref/rounding.i: dilithium/ref/rounding.c.i
+
+.PHONY : dilithium/ref/rounding.i
+
+# target to preprocess a source file
+dilithium/ref/rounding.c.i:
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/rounding.c.i
+.PHONY : dilithium/ref/rounding.c.i
+
+dilithium/ref/rounding.s: dilithium/ref/rounding.c.s
+
+.PHONY : dilithium/ref/rounding.s
+
+# target to generate assembly for a file
+dilithium/ref/rounding.c.s:
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/rounding.c.s
+.PHONY : dilithium/ref/rounding.c.s
+
+dilithium/ref/sign.o: dilithium/ref/sign.c.o
+
+.PHONY : dilithium/ref/sign.o
+
+# target to build an object file
+dilithium/ref/sign.c.o:
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/sign.c.o
+.PHONY : dilithium/ref/sign.c.o
+
+dilithium/ref/sign.i: dilithium/ref/sign.c.i
+
+.PHONY : dilithium/ref/sign.i
+
+# target to preprocess a source file
+dilithium/ref/sign.c.i:
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/sign.c.i
+.PHONY : dilithium/ref/sign.c.i
+
+dilithium/ref/sign.s: dilithium/ref/sign.c.s
+
+.PHONY : dilithium/ref/sign.s
+
+# target to generate assembly for a file
+dilithium/ref/sign.c.s:
+	$(MAKE) -f CMakeFiles/dilithium.dir/build.make CMakeFiles/dilithium.dir/dilithium/ref/sign.c.s
+.PHONY : dilithium/ref/sign.c.s
+
 keypair.o: keypair.c.o
 
 .PHONY : keypair.o
@@ -1263,6 +1600,36 @@ meths/asn1_meth.c.s:
 	$(MAKE) -f CMakeFiles/engine_lib.dir/build.make CMakeFiles/engine_lib.dir/meths/asn1_meth.c.s
 	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/meths/asn1_meth.c.s
 .PHONY : meths/asn1_meth.c.s
+
+meths/dilithium_meth.o: meths/dilithium_meth.c.o
+
+.PHONY : meths/dilithium_meth.o
+
+# target to build an object file
+meths/dilithium_meth.c.o:
+	$(MAKE) -f CMakeFiles/engine_lib.dir/build.make CMakeFiles/engine_lib.dir/meths/dilithium_meth.c.o
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.o
+.PHONY : meths/dilithium_meth.c.o
+
+meths/dilithium_meth.i: meths/dilithium_meth.c.i
+
+.PHONY : meths/dilithium_meth.i
+
+# target to preprocess a source file
+meths/dilithium_meth.c.i:
+	$(MAKE) -f CMakeFiles/engine_lib.dir/build.make CMakeFiles/engine_lib.dir/meths/dilithium_meth.c.i
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.i
+.PHONY : meths/dilithium_meth.c.i
+
+meths/dilithium_meth.s: meths/dilithium_meth.c.s
+
+.PHONY : meths/dilithium_meth.s
+
+# target to generate assembly for a file
+meths/dilithium_meth.c.s:
+	$(MAKE) -f CMakeFiles/engine_lib.dir/build.make CMakeFiles/engine_lib.dir/meths/dilithium_meth.c.s
+	$(MAKE) -f CMakeFiles/round5_engine.dir/build.make CMakeFiles/round5_engine.dir/meths/dilithium_meth.c.s
+.PHONY : meths/dilithium_meth.c.s
 
 meths/round5_md.o: meths/round5_md.c.o
 
@@ -1495,9 +1862,10 @@ help:
 	@echo "... install/strip"
 	@echo "... install"
 	@echo "... list_install_components"
-	@echo "... engine_lib"
+	@echo "... dilithium"
 	@echo "... install/local"
 	@echo "... extern_lib"
+	@echo "... engine_lib"
 	@echo "... rebuild_cache"
 	@echo "... round5_engine"
 	@echo "... run_tls"
@@ -1613,12 +1981,51 @@ help:
 	@echo "... cert_util.o"
 	@echo "... cert_util.i"
 	@echo "... cert_util.s"
+	@echo "... dilithium/ref/PQCgenKAT_sign.o"
+	@echo "... dilithium/ref/PQCgenKAT_sign.i"
+	@echo "... dilithium/ref/PQCgenKAT_sign.s"
+	@echo "... dilithium/ref/aes256ctr.o"
+	@echo "... dilithium/ref/aes256ctr.i"
+	@echo "... dilithium/ref/aes256ctr.s"
+	@echo "... dilithium/ref/fips202.o"
+	@echo "... dilithium/ref/fips202.i"
+	@echo "... dilithium/ref/fips202.s"
+	@echo "... dilithium/ref/ntt.o"
+	@echo "... dilithium/ref/ntt.i"
+	@echo "... dilithium/ref/ntt.s"
+	@echo "... dilithium/ref/packing.o"
+	@echo "... dilithium/ref/packing.i"
+	@echo "... dilithium/ref/packing.s"
+	@echo "... dilithium/ref/poly.o"
+	@echo "... dilithium/ref/poly.i"
+	@echo "... dilithium/ref/poly.s"
+	@echo "... dilithium/ref/polyvec.o"
+	@echo "... dilithium/ref/polyvec.i"
+	@echo "... dilithium/ref/polyvec.s"
+	@echo "... dilithium/ref/randombytes.o"
+	@echo "... dilithium/ref/randombytes.i"
+	@echo "... dilithium/ref/randombytes.s"
+	@echo "... dilithium/ref/reduce.o"
+	@echo "... dilithium/ref/reduce.i"
+	@echo "... dilithium/ref/reduce.s"
+	@echo "... dilithium/ref/rng.o"
+	@echo "... dilithium/ref/rng.i"
+	@echo "... dilithium/ref/rng.s"
+	@echo "... dilithium/ref/rounding.o"
+	@echo "... dilithium/ref/rounding.i"
+	@echo "... dilithium/ref/rounding.s"
+	@echo "... dilithium/ref/sign.o"
+	@echo "... dilithium/ref/sign.i"
+	@echo "... dilithium/ref/sign.s"
 	@echo "... keypair.o"
 	@echo "... keypair.i"
 	@echo "... keypair.s"
 	@echo "... meths/asn1_meth.o"
 	@echo "... meths/asn1_meth.i"
 	@echo "... meths/asn1_meth.s"
+	@echo "... meths/dilithium_meth.o"
+	@echo "... meths/dilithium_meth.i"
+	@echo "... meths/dilithium_meth.s"
 	@echo "... meths/round5_md.o"
 	@echo "... meths/round5_md.i"
 	@echo "... meths/round5_md.s"

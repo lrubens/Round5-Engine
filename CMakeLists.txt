@@ -126,8 +126,8 @@ include_directories(${CMAKE_SOURCE_DIR}/Round5/optimized/src)
 include_directories(XKCP/bin/generic64/libkeccak.a.headers)
 
 # Create dilithium library
-# add_library(dilithium STATIC ${DILITHIUM_SOURCE_FILES})
-# set_target_properties(dilithium PROPERTIES POSITION_INDEPENDENT_CODE ON)
+add_library(dilithium STATIC ${DILITHIUM_SOURCE_FILES})
+set_target_properties(dilithium PROPERTIES POSITION_INDEPENDENT_CODE ON)
 
 # Create engine util library
 add_library(engine_lib STATIC ${ENGINE_CORE} ${ROUND5_OBJS})
@@ -139,7 +139,7 @@ target_compile_definitions(engine_lib PUBLIC ${PARAMS})
 
 # Create shared library
 add_library(round5_engine SHARED ${ROUND5_ENGINE_SOURCE_FILES} ${XKCP_SOURCE_FILES} ${ROUND5_OBJS})
-target_link_libraries(round5_engine engine_lib ${OPENSSL_CRYPTO_LIBRARY} -Xlinker -zmuldefs)
+target_link_libraries(round5_engine engine_lib dilithium ${OPENSSL_CRYPTO_LIBRARY} -Xlinker -zmuldefs)
 target_include_directories(round5_engine PUBLIC ${CMAKE_SOURCE_DIR}/Round5/optimized/src)
 # target_compile_definitions(round5_engine PUBLIC ${PARAM})
 set_target_properties(round5_engine PROPERTIES PREFIX "" OUTPUT_NAME "round5")
@@ -161,8 +161,8 @@ set_target_properties(round5_engine PROPERTIES COMPILE_FLAGS "-lkeccak -lcrypto 
 # target_include_directories(test_tls PUBLIC ${CMAKE_SOURCE_DIR}/Round5/optimized/src)
 # set_target_properties(test_tls PROPERTIES COMPILE_FLAGS "-lcrypto -lssl -ggdb3 -O0")
 
-add_executable(run_tls test/tls_test.c)
-target_link_libraries(run_tls round5_engine ${OPENSSL_CRYPTO_LIBRARY} -lcrypto -lssl -lkeccak)
+add_executable(run_tls test/tls_test.c ${ROUND5_OBJS})
+target_link_libraries(run_tls round5_engine engine_lib ${OPENSSL_CRYPTO_LIBRARY} -lcrypto -lssl -lkeccak)
 # target_include_directories(run_tls PUBLIC ${CMAKE_SOURCE_DIR}/Round5/optimized/src)
 set_target_properties(run_tls PROPERTIES COMPILE_FLAGS "-ggdb3 -O0 -DPURIFY")
 
