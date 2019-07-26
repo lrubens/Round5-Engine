@@ -75,7 +75,7 @@ static int register_ameth(int id, EVP_PKEY_ASN1_METHOD **ameth, int flags);
 
 static int pkey_asn1_meth_nids[] = {
         0,
-        0,
+        // 0,
         0
 };
 

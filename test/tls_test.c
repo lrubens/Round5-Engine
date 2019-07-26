@@ -21,6 +21,10 @@
 #include <openssl/buffer.h>
 #include <openssl/rand.h>
 #include "../keypair.h"
+#include "cpucycles.h"
+#include "speed.h"
+
+#define NTESTS 10
 
 /* For X509_NAME_add_entry_by_txt */
 #pragma GCC diagnostic ignored "-Wpointer-sign"
@@ -55,6 +59,7 @@ struct certkey {
 };
 
 unsigned long BUFFER_SIZE;
+unsigned long long timing_overhead;
 
 unsigned long get_buffer_size(unsigned long num){
     num--;
@@ -70,11 +75,6 @@ unsigned long get_buffer_size(unsigned long num){
 /* How much K to transfer between client and server. */
 #define ps(s) printf("\n%s: %s:%d\n     %s: %s\n", __FILE__, __func__, __LINE__, #s, s)
 #define pd(s) printf("\n%s: %s:%d\n     %s: %d\n", __FILE__, __func__, __LINE__, #s, s)
-
-/*
- * Simple TLS Server code is based on
- * https://wiki.openssl.org/index.php/Simple_TLS_Server
- */
 
 // void print_hex(const char *var, const unsigned char *data, const size_t nr_elements, const size_t element_size) {
 //     size_t i, ii;
@@ -165,6 +165,10 @@ int create_server_socket(int port)
     return s;
 }
 
+/*
+ * Simple TLS Server code is based on
+ * https://wiki.openssl.org/index.php/Simple_TLS_Server
+ */
 static int s_server(EVP_PKEY *pkey, X509 *cert, int client)
 {
     SSL_CTX *ctx;
@@ -203,22 +207,21 @@ static int s_server(EVP_PKEY *pkey, X509 *cert, int client)
     EVP_PKEY_encrypt(encrypt_ctx, NULL, &encrypted_key_len, key, key_size);
     encrypted_key = malloc(encrypted_key_len);
     EVP_PKEY_encrypt(encrypt_ctx, encrypted_key, &encrypted_key_len, key, key_size);
-    #ifdef DEBUG
-    pd(encrypted_key_len);
-    ps(encrypted_key);
+    #if 0
     print_hex("Encrypted key in server", encrypted_key, (const size_t)encrypted_key_len, 1);
     #endif
     // #endif
     char *encoded_key = base64(encrypted_key, encrypted_key_len);
 	int bytes_sent = SSL_write(ssl, encoded_key, strlen(encoded_key));
-    #ifdef DEBUG
-    pd(bytes_sent);
-    #endif
     SSL_shutdown(ssl);
     SSL_free(ssl);
     close(client);
-
+    free(encrypted_key);
+    free(encoded_key);
+    EVP_PKEY_CTX_free(encrypt_ctx);
+    EVP_PKEY_free(client_key);
     SSL_CTX_free(ctx);
+    BIO_free(b);
     return 1;
 }
 
@@ -256,9 +259,10 @@ static int s_client(int server, EVP_PKEY *client_key)
 #endif
     T(SSL_set_fd(ssl, server));
     T(BIO_do_handshake(sbio) == 1);
-
+    #ifdef DEBUG
     printf("Protocol: %s\n", SSL_get_version(ssl));
     printf("Cipher:   %s\n", SSL_get_cipher_name(ssl));
+    #endif
 #if 0
     SSL_SESSION *sess = SSL_get0_session(ssl);
     SSL_SESSION_print_fp(stdout, sess);
@@ -268,7 +272,9 @@ static int s_client(int server, EVP_PKEY *client_key)
     T(cert = SSL_get_peer_certificate(ssl));
     X509_free(cert);
     int verify = SSL_get_verify_result(ssl);
+    #ifdef DEBUG
     printf("Verify:   %s\n", X509_verify_cert_error_string(verify));
+    #endif
     if (verify != X509_V_ERR_DEPTH_ZERO_SELF_SIGNED_CERT)
 	    err(1, "invalid SSL_get_verify_result");
 
@@ -278,8 +284,8 @@ static int s_client(int server, EVP_PKEY *client_key)
     const char *algname = "round5";
     BIO *b = NULL;
     b = BIO_new(BIO_s_mem());
-    char *client_key_str = malloc(BUFFER_SIZE);
-    memset(client_key_str, 0, BUFFER_SIZE * sizeof(char));
+    char *client_key_str = NULL;
+    // memset(client_key_str, 0, BUFFER_SIZE * sizeof(char));
     PEM_write_bio_PUBKEY(b, client_key);
     BIO_get_mem_data(b, &client_key_str);
 	BIO_write(sbio, client_key_str, strlen(client_key_str));
@@ -289,7 +295,7 @@ static int s_client(int server, EVP_PKEY *client_key)
     char *key;
     char *decoded_key = unbase64(buf, strlen(buf));
     unsigned long long decoded_key_len = EVP_PKEY_size(client_key) + 16, key_len;
-    #ifdef DEBUG
+    #if 0
     printf("Received: %s", buf);
     #endif
     EVP_PKEY_CTX *decrypt_ctx = EVP_PKEY_CTX_new(client_key, NULL);
@@ -297,11 +303,16 @@ static int s_client(int server, EVP_PKEY *client_key)
     EVP_PKEY_decrypt(decrypt_ctx, NULL, &key_len, decoded_key, decoded_key_len);
     key = malloc(key_len);
     EVP_PKEY_decrypt(decrypt_ctx, key, &key_len, decoded_key, decoded_key_len);
+    #ifdef DEBUG
     print_hex("key", key, key_len, 1);
+    #endif
     i = BIO_get_num_renegotiates(sbio);
     BIO_free_all(sbio);
     SSL_CTX_free(ctx);
+    EVP_PKEY_CTX_free(decrypt_ctx);
     BIO_free(b);
+    free(decoded_key);
+    free(key);
     return 1;
 }
 
@@ -317,7 +328,7 @@ static struct certkey certgen(const char *algname, const char *paramset)
     T(EVP_PKEY_keygen_init(ctx));
     if (paramset)
 	T(EVP_PKEY_CTX_ctrl_str(ctx, "paramset", paramset));
-    EVP_PKEY *pkey = NULL;
+    EVP_PKEY *pkey = EVP_PKEY_new();
     T((EVP_PKEY_keygen(ctx, &pkey)) == 1);
     EVP_PKEY_CTX_free(ctx);
     EVP_PKEY_free(tkey);
@@ -382,11 +393,7 @@ static struct certkey certgen(const char *algname, const char *paramset)
 }
 
 int main(int argc, char **argv){
-    if(argc < 2){
-        printf("Please enter server or client!");
-        return 0;
-    }
-    printf(cBLUE "TestTLS %s", "round5");
+    printf(cBLUE "TestTLS %s", "Round5");
     printf(cNORM "\n");
     int ret = 0;
     int one = 1;
@@ -399,7 +406,48 @@ int main(int argc, char **argv){
     T(ENGINE_set_default(eng, ENGINE_METHOD_ALL));
     set_key_size();
     BUFFER_SIZE = get_buffer_size(PKLEN);
-    pd(BUFFER_SIZE);
+    #ifdef LOCALHOST
+    unsigned long long ttls[NTESTS];
+    unsigned long long tkeygen[NTESTS];
+    int i;
+    timing_overhead = cpucycles_overhead();
+    for(i = 0; i < NTESTS; ++i){
+        ttls[i] = cpucycles_start();
+        int sockfd[2];
+        if (socketpair(AF_LOCAL, SOCK_STREAM, 0, sockfd) == -1)
+            err(1, "socketpair");
+        struct certkey ck;
+        const char *algname = "rsa";
+        ck = certgen(algname, NULL);
+        pid_t pid = fork();
+        if(pid < 0)
+            err(1, "fork");
+        if(pid > 0){
+            int status;
+            const char *algname = "round5";
+            tkeygen[i] = cpucycles_start();
+            EVP_PKEY *client_key = round5_keygen(algname);
+            tkeygen[i] = cpucycles_stop() - tkeygen[i] - timing_overhead;
+            ret = s_client(sockfd[0], client_key);
+            wait(&status);
+            ret |= WIFEXITED(status) && WEXITSTATUS(status);
+            X509_free(ck.cert);
+            EVP_PKEY_free(ck.pkey);
+        } else if(pid == 0){
+            ret = s_server(ck.pkey, ck.cert, sockfd[1]);
+            X509_free(ck.cert);
+            EVP_PKEY_free(ck.pkey);
+            exit(ret);
+        }
+        ttls[i] = cpucycles_stop() - ttls[i] - timing_overhead;
+    }
+    print_results("Round5 keygen:", tkeygen, NTESTS);
+    print_results("TLS performance:", ttls, NTESTS);
+    #else
+    if(argc < 2){
+        printf("Please enter server or client!");
+        return 0;
+    }
     if(!strcmp(argv[1], "client")){
         int client_socket = socket(AF_INET, SOCK_STREAM, 0);
         #ifdef DEBUG
@@ -422,9 +470,7 @@ int main(int argc, char **argv){
             abort();
         }
         const char *algname = "round5";
-        EVP_PKEY *client_key = NULL;
-        client_key = EVP_PKEY_new();
-        client_key = round5_keygen(algname);
+        EVP_PKEY *client_key = round5_keygen(algname);
         
         int status = 0;
         ret = s_client(client_socket, client_key);
@@ -445,9 +491,10 @@ int main(int argc, char **argv){
         X509_free(ck.cert);
         EVP_PKEY_free(ck.pkey);
     }
+    #endif
 
     ENGINE_finish(eng);
-    // ENGINE_free(eng);
+    ENGINE_free(eng);
     ENGINE_cleanup();
 
     // if (ret)

@@ -21,6 +21,7 @@
 
 int round5_sk_to_pk(unsigned char *pk, unsigned char *sk){
     #ifdef CRYPTO_CIPHERTEXTBYTES == 0    
+    // ps("Executing PKE keygen");
     return (!crypto_encrypt_keypair(pk, sk));
     #else
     return (!crypto_kem_kpair(pk, sk));
@@ -35,8 +36,8 @@ static int keygen(EVP_PKEY_CTX *ctx, EVP_PKEY *pkey){
         kpair = round5_new();
         EVP_PKEY_assign(pkey, NID_ROUND5, kpair);
     }
-    kpair->pk = malloc(CRYPTO_PUBLICKEYBYTES);
-    kpair->sk = malloc(CRYPTO_SECRETKEYBYTES);
+    // kpair->pk = malloc(CRYPTO_PUBLICKEYBYTES);
+    // kpair->sk = malloc(CRYPTO_SECRETKEYBYTES);
     if (!round5_sk_to_pk(kpair->pk, kpair->sk))
         goto err;
     return 1;
@@ -49,10 +50,10 @@ size_t get_params(size_t message_len){
 }
 
 static int round5_encrypt(EVP_PKEY_CTX *pctx, unsigned char *out, size_t *out_len, const unsigned char *data, size_t data_len){
-    if(!out)
-        out = malloc((CRYPTO_BYTES + data_len));
+    int out_null = 0;
     if(!out){
         out = malloc((CRYPTO_BYTES + data_len));
+        out_null = 1;
     }
     EVP_PKEY *pkey = EVP_PKEY_CTX_get0_pkey(pctx); 
     struct ROUND5 *kpair = NULL;
@@ -64,6 +65,8 @@ static int round5_encrypt(EVP_PKEY_CTX *pctx, unsigned char *out, size_t *out_le
     crypto_kem_enc(out, data, kpair->pk);
     #endif
     *out_len = output_len;
+    if(out_null)
+        free(out);
     // print_hex("Encrypted_key in encrypt", out, *out_len, 1);
     return 1;
 } 

@@ -29,23 +29,8 @@ typedef enum {
 
 
 static void pki_free(EVP_PKEY *pkey){
-    //struct ROUND5 *kpair = NULL;
-    //kpair = OPENSSL_malloc(sizeof(*kpair));
     struct ROUND5 *kpair = (struct ROUND5 *)EVP_PKEY_get0(pkey);
-    //kpair->pk = NULL;
-    //kpair = NULL;
-    if(kpair){
-        // if (!kpair->pk)
-            // OPENSSL_free(kpair->pk);
-        // if (!kpair->sk)
-            // OPENSSL_free(kpair->sk);  
-        kpair = NULL;
-        // free(kpair);
-    }
-    //free(&kpair->pk);
-    pkey = NULL;
-
-    
+    round5_free(kpair);
 }
 
 static int pki_key_print( BIO *bp, const EVP_PKEY *pkey,
