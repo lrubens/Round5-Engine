@@ -303,7 +303,7 @@ static int get_pkey_size(const EVP_PKEY *pkey){
 static int get_round5_pkey_size(const EVP_PKEY *pkey){
     // set_key_size();
     // pd(CRYPTO_BYTES);
-    return CRYPTO_BYTES;
+    return CRYPTO_PUBLICKEYBYTES;
 }
 
 static int dilithium_item_verify(EVP_MD_CTX *ctx, const ASN1_ITEM *it, void *asn, X509_ALGOR *sigalg, ASN1_BIT_STRING *str, EVP_PKEY *pkey){

@@ -19,12 +19,11 @@
 #include <arpa/inet.h>
 #include <err.h>
 #include <openssl/buffer.h>
-#include <openssl/rand.h>
 #include "../keypair.h"
 #include "cpucycles.h"
 #include "speed.h"
 
-#define NTESTS 10
+#define NTESTS 100
 
 /* For X509_NAME_add_entry_by_txt */
 #pragma GCC diagnostic ignored "-Wpointer-sign"
@@ -182,9 +181,11 @@ static int s_server(EVP_PKEY *pkey, X509 *cert, int client)
     T(SSL_accept(ssl) == 1);
 
     /* Receive data from client */
-    char buf[BUFFER_SIZE];
+    char buf[BUFFER_SIZE * 2];
     int i;
-	int bytes = SSL_read(ssl, buf, sizeof(buf));
+	int bytes = SSL_read(ssl, buf, BUFFER_SIZE * 2);
+    buf[bytes] = NULL;
+    // ps(buf);
     BIO *b = NULL;
     b = BIO_new_mem_buf(buf, bytes);
     EVP_PKEY *client_key = NULL;
@@ -199,18 +200,23 @@ static int s_server(EVP_PKEY *pkey, X509 *cert, int client)
     #ifdef DEBUG
     print_hex("Key", key, key_size, 1);
     #endif
-    char *encrypted_key;
+    char *encrypted_key = NULL;
     unsigned long long encrypted_key_len = 0;
     EVP_PKEY_CTX *encrypt_ctx = EVP_PKEY_CTX_new(client_key, NULL);
-    EVP_PKEY_encrypt_init(encrypt_ctx);
+    if(EVP_PKEY_encrypt_init(encrypt_ctx) != 1){
+        perror("EVP_PKEY_encrypt_init");
+    }
     EVP_PKEY_encrypt(encrypt_ctx, NULL, &encrypted_key_len, key, key_size);
     encrypted_key = malloc(encrypted_key_len);
-    EVP_PKEY_encrypt(encrypt_ctx, encrypted_key, &encrypted_key_len, key, key_size);
-    #if 0
-    print_hex("Encrypted key in server", encrypted_key, (const size_t)encrypted_key_len, 1);
+    if(EVP_PKEY_encrypt(encrypt_ctx, encrypted_key, &encrypted_key_len, key, key_size) != 1){
+        perror("EVP_PKEY_encrypt");
+    }
+    #ifdef DEBUG
+    // print_hex("Encrypted key in server", encrypted_key, (const size_t)encrypted_key_len, 1);
     #endif
     // #endif
     char *encoded_key = base64(encrypted_key, encrypted_key_len);
+    SSL_write(ssl, &encrypted_key_len, sizeof(encrypted_key_len));
 	int bytes_sent = SSL_write(ssl, encoded_key, strlen(encoded_key));
     SSL_shutdown(ssl);
     SSL_free(ssl);
@@ -278,30 +284,28 @@ static int s_client(int server, EVP_PKEY *client_key)
 	    err(1, "invalid SSL_get_verify_result");
 
     /* Send data to server. */
-    char buf[BUFFER_SIZE];
+    char buf[BUFFER_SIZE * 2];
     int i;
     const char *algname = "round5";
     BIO *b = NULL;
     b = BIO_new(BIO_s_mem());
     char *client_key_str = NULL;
-    // memset(client_key_str, 0, BUFFER_SIZE * sizeof(char));
     PEM_write_bio_PUBKEY(b, client_key);
     BIO_get_mem_data(b, &client_key_str);
-	BIO_write(sbio, client_key_str, strlen(client_key_str));
+	int num = BIO_write(sbio, client_key_str, strlen(client_key_str));
     (void)BIO_shutdown_wr(sbio);
-    int n = BIO_read(sbio, buf, sizeof(buf));
+    unsigned long long encrypted_key_len;
+    BIO_read(sbio, &encrypted_key_len, sizeof(encrypted_key_len));
+    int n = BIO_read(sbio, buf, BUFFER_SIZE * 2);
     buf[n] = NULL;
     char *key;
     char *decoded_key = unbase64(buf, strlen(buf));
-    unsigned long long decoded_key_len = EVP_PKEY_size(client_key) + 16, key_len;
-    #if 0
-    printf("Received: %s", buf);
-    #endif
+    unsigned long long decoded_key_len = encrypted_key_len, key_len;
     EVP_PKEY_CTX *decrypt_ctx = EVP_PKEY_CTX_new(client_key, NULL);
     EVP_PKEY_decrypt_init(decrypt_ctx);
-    EVP_PKEY_decrypt(decrypt_ctx, NULL, &key_len, decoded_key, decoded_key_len);
+    EVP_PKEY_decrypt(decrypt_ctx, NULL, &key_len, decoded_key, encrypted_key_len);
     key = malloc(key_len);
-    EVP_PKEY_decrypt(decrypt_ctx, key, &key_len, decoded_key, decoded_key_len);
+    EVP_PKEY_decrypt(decrypt_ctx, key, &key_len, decoded_key, encrypted_key_len);
     #ifdef DEBUG
     print_hex("key", key, key_len, 1);
     #endif
@@ -403,8 +407,12 @@ int main(int argc, char **argv){
     T(eng = ENGINE_by_id("round5"));
     T(ENGINE_init(eng));
     T(ENGINE_set_default(eng, ENGINE_METHOD_ALL));
-    set_key_size();
-    BUFFER_SIZE = get_buffer_size(PKLEN);
+    EVP_PKEY *dummy_key = round5_keygen("round5");
+    BUFFER_SIZE = get_buffer_size(EVP_PKEY_size(dummy_key));
+    EVP_PKEY_free(dummy_key);
+    #ifdef DEBUG
+    // pd(BUFFER_SIZE);
+    #endif
     #ifdef LOCALHOST
     unsigned long long ttls[NTESTS];
     unsigned long long tkeygen[NTESTS];
@@ -451,6 +459,7 @@ int main(int argc, char **argv){
         int client_socket = socket(AF_INET, SOCK_STREAM, 0);
         #ifdef DEBUG
         char server_addr[] = "172.31.17.212";
+        //char *server_addr = "172.27.232.36";
         #else
         char server_addr[16];
         printf("Please enter address of server:\n");
