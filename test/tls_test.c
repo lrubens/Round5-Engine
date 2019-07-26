@@ -72,7 +72,6 @@ unsigned long get_buffer_size(unsigned long num){
     return num;
 }
 
-/* How much K to transfer between client and server. */
 #define ps(s) printf("\n%s: %s:%d\n     %s: %s\n", __FILE__, __func__, __LINE__, #s, s)
 #define pd(s) printf("\n%s: %s:%d\n     %s: %d\n", __FILE__, __func__, __LINE__, #s, s)
 
