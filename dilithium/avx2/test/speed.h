@@ -4,5 +4,6 @@
 #define MSECS(t) ((double)(t)/(2600000))
 
 void print_results(const char *s, unsigned long long *t, size_t tlen);
+unsigned long long average(unsigned long long *t, size_t tlen);
 
 #endif

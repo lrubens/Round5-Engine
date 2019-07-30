@@ -30,6 +30,7 @@
 #include "cpa_kem.h"
 
 #define NTESTS 100
+#define MSECS(t) (double)t/2600000
 
 /* For X509_NAME_add_entry_by_txt */
 #pragma GCC diagnostic ignored "-Wpointer-sign"
@@ -417,7 +418,7 @@ static struct certkey certgen(const char *kem_algname, EVP_PKEY *privkey)
  * Create an 256 bit key and IV using the supplied key_data. salt can be added for taste.
  * Fills in the encryption and decryption ctx objects and returns 0 on success
  **/
-int aes_init(unsigned char *key_data, int key_data_len, unsigned char *salt, int key_len, EVP_CIPHER_CTX *ctx){
+int aes_init(unsigned char *key_data, int key_data_len, unsigned char *salt, int key_len, EVP_CIPHER_CTX *ctx, int encrypt){
   int i, nrounds = 5;
   unsigned char key[32]; 
   unsigned char *iv = NULL;
@@ -430,7 +431,11 @@ int aes_init(unsigned char *key_data, int key_data_len, unsigned char *salt, int
   i = EVP_BytesToKey(EVP_aes_256_cbc(), EVP_sha1(), salt, key_data, key_data_len, nrounds, key, iv);
  
   EVP_CIPHER_CTX_init(ctx);
-  EVP_EncryptInit_ex(ctx, EVP_aes_256_cbc(), NULL, key, iv);
+  if(encrypt){
+    EVP_EncryptInit_ex(ctx, EVP_aes_256_cbc(), NULL, key, iv);
+  }else{
+    EVP_DecryptInit_ex(ctx, EVP_aes_256_cbc(), NULL, key, iv);
+  }
  
   return 1;
 }
@@ -481,16 +486,14 @@ int main(int argc, char **argv){
     printf(cNORM "\n");
     int ret = 0;
     int one = 1;
-    int port = 5054;
+    int port = 5055;
     OPENSSL_add_all_algorithms_conf();
     ERR_load_crypto_strings();
     ENGINE *eng;
     T(eng = ENGINE_by_id("round5"));
     T(ENGINE_init(eng));
     T(ENGINE_set_default(eng, ENGINE_METHOD_ALL));
-    EVP_PKEY *dummy_key = round5_keygen("round5");
-    BUFFER_SIZE = get_buffer_size(EVP_PKEY_size(dummy_key));
-    EVP_PKEY_free(dummy_key);
+    BUFFER_SIZE = get_buffer_size(CRYPTO_PUBLICKEYBYTES);
     #ifdef DEBUG
     // pd(BUFFER_SIZE);
     #endif
@@ -498,13 +501,14 @@ int main(int argc, char **argv){
     // unsigned long long tkeygen[NTESTS];
     // unsigned long long tencrypt[NTESTS];
     // unsigned long long tdecrypt[NTESTS];
-    unsigned long long *ttls;
+    unsigned long long *ttls_client, *ttls_server;
     unsigned long long *tkeygen;
     unsigned long long *tencrypt;
     unsigned long long *tdecrypt;
     int protection = PROT_READ | PROT_WRITE;
     int visibility = MAP_ANONYMOUS | MAP_SHARED;
-    ttls = (unsigned long long *)mmap(NULL, NTESTS * sizeof(unsigned long long), protection, visibility, -1, 0);
+    ttls_client = (unsigned long long *)mmap(NULL, NTESTS * sizeof(unsigned long long), protection, visibility, -1, 0);
+    ttls_server = (unsigned long long *)mmap(NULL, NTESTS * sizeof(unsigned long long), protection, visibility, -1, 0);
     tkeygen = (unsigned long long *)mmap(NULL, NTESTS * sizeof(unsigned long long), protection, visibility, -1, 0);
     tencrypt = (unsigned long long *)mmap(NULL, NTESTS * sizeof(unsigned long long), protection, visibility, -1, 0);
     tdecrypt = (unsigned long long *)mmap(NULL, NTESTS * sizeof(unsigned long long), protection, visibility, -1, 0);
@@ -521,11 +525,10 @@ int main(int argc, char **argv){
     for(i = 0; i < NTESTS; ++i){
         // pd(i);
         ck = certgen(kem_algname, NULL);
-        ttls[i] = cpucycles_start();
+        ttls_client[i] = cpucycles_start();
         int sockfd[2];
         if (socketpair(AF_LOCAL, SOCK_STREAM, 0, sockfd) == -1)
             err(1, "socketpair");
-        
         pid_t pid = fork();
         if(pid < 0)
             err(1, "fork");
@@ -546,12 +549,12 @@ int main(int argc, char **argv){
             EVP_PKEY_free(ck.pkey);
             exit(ret);
         }
-        ttls[i] = cpucycles_stop() - ttls[i] - timing_overhead;
+        ttls_client[i] = cpucycles_stop() - ttls_client[i] - timing_overhead;
         // pd(ttls[i]);
         // pd(tencrypt[i]);
     }
     print_results("Round5 keygen:", tkeygen, NTESTS);
-    print_results("TLS performance:", ttls, NTESTS);
+    print_results("TLS performance:", ttls_client, NTESTS);
     print_results("Encrypt:", tencrypt, NTESTS);
     print_results("Decrypt:", tdecrypt, NTESTS);
     #else
@@ -562,7 +565,6 @@ int main(int argc, char **argv){
     timing_overhead = cpucycles_overhead();
     if(!strcmp(argv[1], "client")){
         EVP_PKEY *client_key = NULL;
-        int client_socket = socket(AF_INET, SOCK_STREAM, 0);
         #ifdef DEBUG
         char server_addr[] = "172.31.17.212";
         //char *server_addr = "172.27.232.36";
@@ -571,70 +573,96 @@ int main(int argc, char **argv){
         printf("Please enter address of server:\n");
         scanf("%s", server_addr);
         #endif
-        struct sockaddr_in addr;
-        bzero(&addr, sizeof(addr));
-        addr.sin_family = AF_INET;
-        addr.sin_port = htons(port);
-        if(inet_pton(AF_INET, server_addr, &addr.sin_addr) <= 0){
-            perror("Invalid address/ Address not supported");
-            abort();
+        for(i = 0; i < NTESTS; i++){
+            int client_socket = socket(AF_INET, SOCK_STREAM, 0);
+            struct sockaddr_in addr;
+            bzero(&addr, sizeof(addr));
+            addr.sin_family = AF_INET;
+            addr.sin_port = htons(port);
+            if(inet_pton(AF_INET, server_addr, &addr.sin_addr) <= 0){
+                perror("Invalid address/ Address not supported");
+                abort();
+            }
+            if(connect(client_socket, (struct sockaddr *)&addr, sizeof(addr))){
+                perror("Connection failed");
+                abort();
+            }
+            const char *kem_algname = "round5";
+            tkeygen[i] = cpucycles_start();
+            client_key = round5_keygen(kem_algname);
+            tkeygen[i] = cpucycles_stop() - tkeygen[i] - timing_overhead;
+            
+            int status = 0;
+            ttls_client[i] = cpucycles_start();
+            unsigned long long timer;
+            ret = s_client(client_socket, client_key, &timer);
+            // pd(timer);
+            tdecrypt[i] = timer;
+            ttls_client[i] = cpucycles_stop() - ttls_client[i] - timing_overhead;
+            wait(&status);
+            ret |= WIFEXITED(status) && WEXITSTATUS(status);
+            EVP_PKEY_free(client_key);
         }
-        if(connect(client_socket, (struct sockaddr *)&addr, sizeof(addr))){
-            perror("Connection failed");
-            abort();
+        print_results("Round5 keygen:", tkeygen, NTESTS);
+        print_results("Client TLS performance:", ttls_client, NTESTS);
+        print_results("Round5 decrypt:", tdecrypt, NTESTS);
+        FILE *f = fopen("tls.txt", "wb");
+        int j;
+        for(j = 0; j < NTESTS; j++){
+            // fwrite((unsigned long long *)ttls_client[j], sizeof(unsigned long long), f);
+            fprintf(f, "%lf\n", MSECS(ttls_client[j]));
         }
-        const char *kem_algname = "round5";
-        tkeygen[i] = cpucycles_start();
-        client_key = round5_keygen(kem_algname);
-        tkeygen[i] = cpucycles_stop() - tkeygen[i] - timing_overhead;
-        
-        int status = 0;
-        ttls[i] = cpucycles_start();
-        unsigned long long timer;
-        ret = s_client(client_socket, client_key, &timer);
-        // pd(timer);
-        tdecrypt[i] = timer;
-        ttls[i] = cpucycles_stop() - ttls[i] - timing_overhead;
-        wait(&status);
-        ret |= WIFEXITED(status) && WEXITSTATUS(status);
-        EVP_PKEY_free(client_key);
-
-        print_results("Round5 keygen:", tkeygen, 1);
-        print_results("TLS performance:", ttls, 1);
-        print_results("Round5 decrypt:", tdecrypt, 1);
+        // size_t fret = fwrite(ttls_client, sizeof(unsigned long long), NTESTS * sizeof(unsigned long long), f);
+        fclose(f);
     }
     else if(!strcmp(argv[1], "server")){
         struct sockaddr_in addr;
         uint8_t len = sizeof(addr);
         int server_socket = create_server_socket(port);
         int count = 0;
-        // i = 0;
         struct certkey ck;
-        // const char *sig_algname = "rsa";
         const char *kem_algname = "rsa";
-        FILE *privkey_file = fopen("certs/privkey.pem", "r");
-        ck.pkey = PEM_read_PrivateKey(privkey_file, NULL, NULL, NULL);
-        // ck = certgen(kem_algname, pkey);
-        FILE *cacert_file = fopen("certs/cacert.pem", "r");
-        ck.cert = PEM_read_X509(cacert_file, NULL, NULL, NULL);
-        fclose(privkey_file);
-        fclose(cacert_file);
-        int client_socket;
-        int status;
-        client_socket = accept(server_socket, (struct sockaddr *)&addr, &len);
-        ttls[count] = cpucycles_start();
-        unsigned long long timer;
-        ret = s_server(ck.pkey, ck.cert, client_socket, &timer);
-        tencrypt[count] = timer;
-        ttls[count] = cpucycles_stop() - ttls[count] - timing_overhead;
-        X509_free(ck.cert);
-        EVP_PKEY_free(ck.pkey);
-        print_results("TLS performance:", ttls, 1);
-        print_results("Round5 encrypt:", tencrypt, 1);
+        while(1){
+            // pd(count);
+            int client_socket;
+            int status;
+            if(count == NTESTS){
+                int status;
+                wait(&status);
+                ret |= WIFEXITED(status) && WEXITSTATUS(status);
+                // X509_free(ck.cert);
+                // EVP_PKEY_free(ck.pkey);
+                close(server_socket);
+                break;
+            }
+            client_socket = accept(server_socket, (struct sockaddr *)&addr, &len);
+            pid_t pid = fork();
+            if(pid == 0){
+                close(server_socket);
+                ck = certgen(kem_algname, NULL);
+                timing_overhead = cpucycles_overhead();
+                ttls_server[count] = cpucycles_start();
+                unsigned long long timer;
+                ret = s_server(ck.pkey, ck.cert, client_socket, &timer);
+                tencrypt[count] = timer;
+                ttls_server[count] = cpucycles_stop() - ttls_server[count] - timing_overhead;
+                X509_free(ck.cert);
+                EVP_PKEY_free(ck.pkey);
+                close(client_socket);
+                exit(1);
+            }else if(pid > 0){
+                // ck = certgen(kem_algname, NULL);
+                close(client_socket);
+                count++;
+            }
+        }
+        print_results("Server TLS performance:", ttls_server, NTESTS);
+        print_results("Round5 encrypt:", tencrypt, NTESTS);
     }
     #endif
     free:
-    munmap(ttls, NTESTS * sizeof(unsigned long long));
+    munmap(ttls_client, NTESTS * sizeof(unsigned long long));
+    munmap(ttls_server, NTESTS * sizeof(unsigned long long));
     munmap(tkeygen, NTESTS * sizeof(unsigned long long));
     munmap(tencrypt, NTESTS * sizeof(unsigned long long));
     munmap(tdecrypt, NTESTS * sizeof(unsigned long long));

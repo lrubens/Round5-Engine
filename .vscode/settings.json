@@ -10,6 +10,7 @@
         "cpa_kem.h": "c",
         "r5_memory.h": "c",
         "rng.h": "c",
-        "ipc.h": "c"
+        "ipc.h": "c",
+        "speed.h": "c"
     }
 }

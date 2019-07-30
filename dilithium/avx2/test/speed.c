@@ -16,7 +16,7 @@ static unsigned long long median(unsigned long long *l, size_t llen) {
   else return (l[llen/2-1]+l[llen/2])/2;
 }
 
-static unsigned long long average(unsigned long long *t, size_t tlen) {
+unsigned long long average(unsigned long long *t, size_t tlen) {
   unsigned long long acc=0;
   size_t i;
 
