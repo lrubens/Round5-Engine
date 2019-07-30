@@ -75,7 +75,7 @@ static int round5_encrypt(EVP_PKEY_CTX *pctx, unsigned char *out, size_t *out_le
     // ps("kem encrypt");
     crypto_kem_enc(out, data, kpair->pk);
     // #ifdef DEBUG
-    print_hex("key", data, CRYPTO_BYTES, 1);
+    // print_hex("key", data, CRYPTO_BYTES, 1);
     // #endif
     // crypto_kem_dec(encrypted, data, kpair->sk);
     // printf("\n");
@@ -111,7 +111,7 @@ static int round5_decrypt(EVP_PKEY_CTX *pctx, unsigned char *message, size_t *me
     #else
     if(message){
         crypto_kem_dec(message, ct, kpair->sk);
-        print_hex("Key", message, CRYPTO_BYTES, 1);
+        // print_hex("Key", message, CRYPTO_BYTES, 1);
     }
     // #ifdef DEBUG
     // #endif

@@ -29,7 +29,7 @@
 #include "speed.h"
 #include "cpa_kem.h"
 
-#define NTESTS 1
+#define NTESTS 100
 
 /* For X509_NAME_add_entry_by_txt */
 #pragma GCC diagnostic ignored "-Wpointer-sign"
@@ -394,7 +394,7 @@ static struct certkey certgen(const char *kem_algname, EVP_PKEY *privkey)
 
     EVP_MD_CTX *mctx;
     T(mctx = EVP_MD_CTX_new());
-    T(EVP_DigestSignInit(mctx, NULL, NULL, NULL, privkey));
+    T(EVP_DigestSignInit(mctx, NULL, NULL, NULL, pkey));
     T(X509_sign_ctx(x509ss, mctx));
     EVP_MD_CTX_free(mctx);
 #if 0
@@ -494,22 +494,33 @@ int main(int argc, char **argv){
     #ifdef DEBUG
     // pd(BUFFER_SIZE);
     #endif
-    unsigned long long ttls[NTESTS];
-    unsigned long long tkeygen[NTESTS];
-    unsigned long long tencrypt[NTESTS];
-    unsigned long long tdecrypt[NTESTS];
+    // unsigned long long ttls[NTESTS];
+    // unsigned long long tkeygen[NTESTS];
+    // unsigned long long tencrypt[NTESTS];
+    // unsigned long long tdecrypt[NTESTS];
+    unsigned long long *ttls;
+    unsigned long long *tkeygen;
+    unsigned long long *tencrypt;
+    unsigned long long *tdecrypt;
+    int protection = PROT_READ | PROT_WRITE;
+    int visibility = MAP_ANONYMOUS | MAP_SHARED;
+    ttls = (unsigned long long *)mmap(NULL, NTESTS * sizeof(unsigned long long), protection, visibility, -1, 0);
+    tkeygen = (unsigned long long *)mmap(NULL, NTESTS * sizeof(unsigned long long), protection, visibility, -1, 0);
+    tencrypt = (unsigned long long *)mmap(NULL, NTESTS * sizeof(unsigned long long), protection, visibility, -1, 0);
+    tdecrypt = (unsigned long long *)mmap(NULL, NTESTS * sizeof(unsigned long long), protection, visibility, -1, 0);
     int i;
     #ifdef LOCALHOST
     struct certkey ck;
     // const char *sig_algname = "rsa";
     const char *kem_algname = "rsa";
-    FILE *privkey_file = fopen("certs/privkey.pem", "r");
-    EVP_PKEY *privkey = PEM_read_PrivateKey(privkey_file, NULL, NULL, NULL);
-    ck = certgen(kem_algname, privkey);
-    EVP_PKEY_free(privkey);
+    // FILE *privkey_file = fopen("certs/privkey.pem", "r");
+    // EVP_PKEY *privkey = PEM_read_PrivateKey(privkey_file, NULL, NULL, NULL);
+    
+    // EVP_PKEY_free(privkey);
     timing_overhead = cpucycles_overhead();
     for(i = 0; i < NTESTS; ++i){
-        pd(i);
+        // pd(i);
+        ck = certgen(kem_algname, NULL);
         ttls[i] = cpucycles_start();
         int sockfd[2];
         if (socketpair(AF_LOCAL, SOCK_STREAM, 0, sockfd) == -1)
@@ -536,9 +547,13 @@ int main(int argc, char **argv){
             exit(ret);
         }
         ttls[i] = cpucycles_stop() - ttls[i] - timing_overhead;
+        // pd(ttls[i]);
+        // pd(tencrypt[i]);
     }
     print_results("Round5 keygen:", tkeygen, NTESTS);
     print_results("TLS performance:", ttls, NTESTS);
+    print_results("Encrypt:", tencrypt, NTESTS);
+    print_results("Decrypt:", tdecrypt, NTESTS);
     #else
     if(argc < 2){
         printf("Please enter server or client!");
@@ -584,9 +599,9 @@ int main(int argc, char **argv){
         ret |= WIFEXITED(status) && WEXITSTATUS(status);
         EVP_PKEY_free(client_key);
 
-        print_results("Round5 keygen:", tkeygen, NTESTS);
-        print_results("TLS performance:", ttls, NTESTS);
-        print_results("Round5 decrypt:", tdecrypt, NTESTS);
+        print_results("Round5 keygen:", tkeygen, 1);
+        print_results("TLS performance:", ttls, 1);
+        print_results("Round5 decrypt:", tdecrypt, 1);
     }
     else if(!strcmp(argv[1], "server")){
         struct sockaddr_in addr;
@@ -614,11 +629,15 @@ int main(int argc, char **argv){
         ttls[count] = cpucycles_stop() - ttls[count] - timing_overhead;
         X509_free(ck.cert);
         EVP_PKEY_free(ck.pkey);
-        print_results("TLS performance:", ttls, NTESTS);
-        print_results("Round5 encrypt:", tencrypt, NTESTS);
+        print_results("TLS performance:", ttls, 1);
+        print_results("Round5 encrypt:", tencrypt, 1);
     }
     #endif
     free:
+    munmap(ttls, NTESTS * sizeof(unsigned long long));
+    munmap(tkeygen, NTESTS * sizeof(unsigned long long));
+    munmap(tencrypt, NTESTS * sizeof(unsigned long long));
+    munmap(tdecrypt, NTESTS * sizeof(unsigned long long));
     ENGINE_finish(eng);
     ENGINE_free(eng);
     ENGINE_cleanup();

@@ -1,0 +1,5 @@
+var searchData=
+[
+  ['hash',['hash',['../r5__hash_8c.html#ae0b94c187b85c77d99dbd334f528451e',1,'hash(uint8_t *output, const size_t output_len, const uint8_t *input, const size_t input_len, const uint8_t kappa_bytes):&#160;r5_hash.h'],['../r5__hash_8h.html#ae0b94c187b85c77d99dbd334f528451e',1,'hash(uint8_t *output, const size_t output_len, const uint8_t *input, const size_t input_len, const uint8_t kappa_bytes):&#160;r5_hash.h']]],
+  ['hash_5fcustomization',['hash_customization',['../r5__hash_8c.html#a41ab49da5fa25dd602f1939504f445fb',1,'hash_customization(uint8_t *output, const size_t output_len, const uint8_t *input, const size_t input_len, const uint8_t *customization, const size_t customization_len, const uint8_t kappa_bytes):&#160;r5_hash.h'],['../r5__hash_8h.html#a41ab49da5fa25dd602f1939504f445fb',1,'hash_customization(uint8_t *output, const size_t output_len, const uint8_t *input, const size_t input_len, const uint8_t *customization, const size_t customization_len, const uint8_t kappa_bytes):&#160;r5_hash.h']]]
+];
