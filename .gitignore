@@ -10,6 +10,9 @@ CMakeFiles/
 #cmakefiles
 CMakeCache.txt
 
+#makefile
+Makefile
+
 # Object files
 *.o
 *.obj
