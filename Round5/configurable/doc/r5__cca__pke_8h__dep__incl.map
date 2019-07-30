@@ -1,5 +1,0 @@
-<map id="r5_cca_pke.h" name="r5_cca_pke.h">
-<area shape="rect" id="node2" href="$cca__encrypt_8c.html" title="Implementation of the encrypt and decrypt functions based on the CCA KEM algorithm (NIST api)..." alt="" coords="5,80,109,107"/>
-<area shape="rect" id="node3" href="$example_8c.html" title="Example KEM application, shows the working of the algorithm. " alt="" coords="134,80,277,107"/>
-<area shape="rect" id="node4" href="$r5__cca__pke_8c.html" title="Implementation of the encrypt and decrypt functions based on the CCA KEM algorithm. " alt="" coords="301,80,401,107"/>
-</map>

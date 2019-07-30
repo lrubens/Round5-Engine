@@ -1,6 +1,0 @@
-<map id="cca_encrypt.c" name="cca_encrypt.c">
-<area shape="rect" id="node2" href="$cca__encrypt_8h.html" title="Declaration of the encrypt and decrypt functions based on the CCA KEM algorithm (NIST api)..." alt="" coords="7,155,111,181"/>
-<area shape="rect" id="node5" href="$r5__cca__pke_8h.html" title="Declaration of the encrypt and decrypt functions based on the CCA KEM algorithm. " alt="" coords="125,80,225,107"/>
-<area shape="rect" id="node3" href="$r5__parameter__sets_8h.html" title="Definition of the NIST API Round5 parameter sets and declaration of the (internal) Round5 parameter s..." alt="" coords="5,229,147,256"/>
-<area shape="rect" id="node6" href="$parameters_8h.html" title="Declaration of the algorithm parameters, structure, and functions. " alt="" coords="135,155,233,181"/>
-</map>
