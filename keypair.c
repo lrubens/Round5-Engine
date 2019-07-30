@@ -28,13 +28,17 @@ inline const struct round5_nid_data_st *round5_get_nid_data(int nid){
 
 int set_key_size(){
     // params = set_parameters_from_api();
+    #ifndef PKLEN && SKLEN
     PKLEN = CRYPTO_PUBLICKEYBYTES;
     SKLEN = CRYPTO_SECRETKEYBYTES;
+    #endif
     return 1;
 }
 
 struct ROUND5 *round5_new(){
+    #ifndef PKLEN && SKLEN
     set_key_size();
+    #endif
     // params = set_parameters_from_api();
     // size_t pk_len = get_crypto_public_key_bytes(params);
     // size_t sk_len = get_crypto_secret_key_bytes(params, 1);
@@ -59,6 +63,8 @@ struct ROUND5 *round5_new(){
     err:
     if (kpair)
         OPENSSL_secure_free(kpair);
+    #undef PKLEN
+    #undef SKLEN
     return NULL;
 }
 

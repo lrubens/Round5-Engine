@@ -6,6 +6,10 @@
         "keccakhash.h": "c",
         "params.h": "c",
         "objects.h": "c",
-        "packing.h": "c"
+        "packing.h": "c",
+        "cpa_kem.h": "c",
+        "r5_memory.h": "c",
+        "rng.h": "c",
+        "ipc.h": "c"
     }
 }

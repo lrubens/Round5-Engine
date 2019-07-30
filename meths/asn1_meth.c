@@ -238,7 +238,9 @@ static int pki_gen_pub_encode(X509_PUBKEY *pub,  EVP_PKEY *pk)
     int data_len, ret = -1;
     int ptype = V_ASN1_UNDEF ;
     struct ROUND5 *kpair = (struct ROUND5 *)EVP_PKEY_get0(pk);
+    #if PKLEN == 0 && SKLEN == 0
     set_key_size();
+    #endif
     algobj = OBJ_nid2obj(EVP_PKEY_base_id(pk));
     // char buffer[1024];
     // OBJ_obj2txt(buffer, 1024, algobj, 1);
@@ -260,6 +262,8 @@ static int pki_gen_pub_encode(X509_PUBKEY *pub,  EVP_PKEY *pk)
     // round5_free(kpair);
     //ASN1_STRING_free(params);
     // memset(kpair, 0, sizeof(*kpair));
+    #undef PKLEN
+    #undef SKLEN
     return 1;
 }
 

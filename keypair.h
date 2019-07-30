@@ -54,3 +54,5 @@ const struct round5_nid_data_st *round5_get_nid_data(int nid);
 
 #endif //ROUND5_KEYPAIR_H
 
+// #undef PKLEN
+// #undef SKLEN

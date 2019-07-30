@@ -212,7 +212,6 @@ int receive(char *data, char *client_addr, int *size){
 		close(newSocket);
 		break;
 	}
-
 	// 	if((childpid = fork()) == 0){
 	// 		close(sockfd);
     //         int count = 1;
