@@ -2,7 +2,7 @@
 *.d
 
 # Key and cert
-*.pem
+#*.pem
 
 # CmakeFiles
 CMakeFiles/
