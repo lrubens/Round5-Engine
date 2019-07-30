@@ -166,8 +166,12 @@ set_target_properties(round5_engine PROPERTIES COMPILE_FLAGS "-lkeccak -lcrypto 
 add_executable(run_tls test/tls_test.c ${SPEED_TEST} ${ROUND5_OBJS})
 target_link_libraries(run_tls engine_lib ${OPENSSL_CRYPTO_LIBRARY} -lcrypto -lssl -lkeccak -Xlinker -zmuldefs)
 target_include_directories(run_tls PUBLIC ${CMAKE_SOURCE_DIR}/speedtest/ Round5/optimized/src)
+<<<<<<< HEAD
 target_compile_definitions(run_tls PUBLIC ${PARAMS})
 set_target_properties(run_tls PROPERTIES COMPILE_FLAGS "-ggdb3 -O0 -DPURIFY") #-DLOCALHOST")
+=======
+set_target_properties(run_tls PROPERTIES COMPILE_FLAGS "-ggdb3 -O0 -DPURIFY -DLOCALHOST")
+>>>>>>> b505d614891ced3929cca5587e786971ba2682dc
 
 
 # Install library
