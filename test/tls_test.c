@@ -30,7 +30,7 @@
 #include "cpa_kem.h"
 
 #define NTESTS 100
-#define MSECS(t) (double)t/2600000
+// #define MSECS(t) (double)t/2600000
 
 /* For X509_NAME_add_entry_by_txt */
 #pragma GCC diagnostic ignored "-Wpointer-sign"
@@ -606,12 +606,29 @@ int main(int argc, char **argv){
         print_results("Round5 keygen:", tkeygen, NTESTS);
         print_results("Client TLS performance:", ttls_client, NTESTS);
         print_results("Round5 decrypt:", tdecrypt, NTESTS);
-        FILE *f = fopen("tls.txt", "wb");
+        FILE *f = fopen("tls.txt", "a");
         int j;
+        float tls_msec[NTESTS];
+        float keygen_msec[NTESTS];
+        float decrypt_msec[NTESTS];
         for(j = 0; j < NTESTS; j++){
-            // fwrite((unsigned long long *)ttls_client[j], sizeof(unsigned long long), f);
-            fprintf(f, "%lf\n", MSECS(ttls_client[j]));
+            tls_msec[j] = MSECS(ttls_client[j]);
+            keygen_msec[j] = MSECS(tkeygen[j]);
+            decrypt_msec[j] = MSECS(tdecrypt[j]);
+            // printf("%f\n", msec[j]);
         }
+        fprintf (f, "{ \"%s-%s\" : [", CRYPTO_ALGNAME, "TLS"); 
+        fprintf (f, " %.2f", MSECS(average(ttls_client, NTESTS)));
+        fprintf (f, ", %.2f", std_deviation(tls_msec, NTESTS));
+        fprintf (f, " ] }\n");
+        fprintf (f, "{ \"%s-%s\" : [", CRYPTO_ALGNAME, "Keygen"); 
+        fprintf (f, " %.2f", MSECS(average(tkeygen, NTESTS)));
+        fprintf (f, ", %.2f", std_deviation(keygen_msec, NTESTS));
+        fprintf (f, " ] }\n");
+        fprintf (f, "{ \"%s-%s\" : [", CRYPTO_ALGNAME, "Decrypt"); 
+        fprintf (f, " %.2f", MSECS(average(tdecrypt, NTESTS)));
+        fprintf (f, ", %.2f", std_deviation(decrypt_msec, NTESTS));
+        fprintf (f, " ] }\n\n");
         // size_t fret = fwrite(ttls_client, sizeof(unsigned long long), NTESTS * sizeof(unsigned long long), f);
         fclose(f);
     }

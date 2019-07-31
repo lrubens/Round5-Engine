@@ -1,0 +1,12 @@
+{ "R5ND_1PKE_5d-TLS" : [ 235.33, 135.17 ] }
+{ "R5ND_1PKE_5d-Keygen" : [ 0.08, 0.03 ] }
+{ "R5ND_1PKE_5d-Decrypt" : [ 0.21, 0.06 ] }
+
+{ "R5ND_3PKE_5d-TLS" : [ 231.02, 105.92 ] }
+{ "R5ND_3PKE_5d-Keygen" : [ 0.11, 0.04 ] }
+{ "R5ND_3PKE_5d-Decrypt" : [ 0.35, 0.10 ] }
+
+{ "R5ND_5PKE_5d-TLS" : [ 222.75, 99.29 ] }
+{ "R5ND_5PKE_5d-Keygen" : [ 0.14, 0.04 ] }
+{ "R5ND_5PKE_5d-Decrypt" : [ 0.47, 0.13 ] }
+

@@ -1,7 +1,21 @@
 #include <stdlib.h>
+#include <math.h>
 #include <stdio.h>
 #include "speed.h"
 #include "config.h"
+
+float std_deviation(float *data, int size){
+  float sum = 0.0, mean, standardDeviation = 0.0;
+  int i;
+  for(i = 0; i < size; ++i){
+    sum += data[i];
+  }
+  mean = sum / size;
+  // printf("%f", mean);
+  for(i = 0; i < size; ++i)
+    standardDeviation += pow(data[i] - mean, 2);
+  return sqrt(standardDeviation / size);
+}
 
 static int cmp_llu(const void *a, const void *b) {
   if(*(unsigned long long *)a < *(unsigned long long *)b) return -1;
@@ -16,7 +30,7 @@ static unsigned long long median(unsigned long long *l, size_t llen) {
   else return (l[llen/2-1]+l[llen/2])/2;
 }
 
-static unsigned long long average(unsigned long long *t, size_t tlen) {
+unsigned long long average(unsigned long long *t, size_t tlen) {
   unsigned long long acc=0;
   size_t i;
 

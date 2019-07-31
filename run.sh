@@ -13,7 +13,7 @@
 
 #!/bin/bash
 
-for param in R5ND_1PKE_5d R5ND_3PKE_5d R5ND_5PKE_5d R5ND_1PKE_0d R5ND_3PKE_0d R5ND_5PKE_0d R5ND_1KEM_5d R5ND_3KEM_5d R5ND_5KEM_5d R5N1_3PKE_0smallCT; do
+for param in R5ND_1PKE_5d R5ND_3PKE_5d R5ND_5PKE_5d R5ND_1PKE_0d R5ND_3PKE_0d R5ND_5PKE_0d R5ND_1KEM_5d R5ND_3KEM_5d R5ND_5KEM_5d; do
     cmake . -DPARAMS=$param
     # echo Selected param: $param
     make 

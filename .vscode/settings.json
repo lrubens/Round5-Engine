@@ -11,6 +11,7 @@
         "r5_memory.h": "c",
         "rng.h": "c",
         "ipc.h": "c",
-        "speed.h": "c"
+        "speed.h": "c",
+        "cmath": "c"
     }
 }
