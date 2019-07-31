@@ -29,7 +29,7 @@
 #include "speed.h"
 #include "cpa_kem.h"
 
-#define NTESTS 100
+#define NTESTS 500
 // #define MSECS(t) (double)t/2600000
 
 /* For X509_NAME_add_entry_by_txt */
@@ -209,7 +209,7 @@ static int s_server(EVP_PKEY *pkey, X509 *cert, int client, unsigned long long *
     char *encoded_key = base64(encrypted_key, encrypted_key_len);
     SSL_write(ssl, &encrypted_key_len, sizeof(encrypted_key_len));
 	int bytes_sent = SSL_write(ssl, encoded_key, strlen(encoded_key));
-    char *client_done = malloc(5);
+    char client_done[5];
     SSL_read(ssl, client_done, 5);
     char *server_done = "DONE";
     SSL_write(ssl, server_done, strlen(server_done));
@@ -251,16 +251,17 @@ static int s_client(int server, EVP_PKEY *client_key, unsigned long long *timer)
     SSL_CTX *ctx;
     T(ctx = SSL_CTX_new(TLS_client_method()));
 
-    BIO *sbio;
-    T(sbio = BIO_new_ssl_connect(ctx));
-    SSL *ssl;
-    T(BIO_get_ssl(sbio, &ssl));
+    // BIO *sbio;
+    // T(sbio = BIO_new_ssl_connect(ctx));
+    SSL *ssl = SSL_new(ctx);
+    // T(BIO_get_ssl(sbio, &ssl));
     T(SSL_set_mode(ssl, SSL_MODE_AUTO_RETRY));
 #if 0
     /* Does not work with reneg. */
     BIO_set_ssl_renegotiate_bytes(sbio, 100 * 1024);
 #endif
     T(SSL_set_fd(ssl, server));
+    T(SSL_connect(ssl));
     X509_STORE_CTX *store_ctx;
     store_ctx = X509_STORE_CTX_new();
     X509_STORE *store = X509_STORE_new();
@@ -269,7 +270,7 @@ static int s_client(int server, EVP_PKEY *client_key, unsigned long long *timer)
     X509_STORE_add_cert(store, cacert);
     X509_STORE_CTX_init(store_ctx, store, cacert, NULL);
     SSL_set0_verify_cert_store(ssl, store);
-    T(BIO_do_handshake(sbio) == 1);
+    // T(BIO_do_handshake(sbio) == 1);
     #ifdef DEBUG
     printf("Protocol: %s\n", SSL_get_version(ssl));
     printf("Cipher:   %s\n", SSL_get_cipher_name(ssl));
@@ -280,7 +281,7 @@ static int s_client(int server, EVP_PKEY *client_key, unsigned long long *timer)
 #endif
 
     X509 *cert;
-    T(cert = SSL_get_peer_certificate(ssl));
+    cert = SSL_get_peer_certificate(ssl);
     X509_free(cert);
     int verify = SSL_get_verify_result(ssl);
     #ifdef DEBUG
@@ -297,11 +298,11 @@ static int s_client(int server, EVP_PKEY *client_key, unsigned long long *timer)
     char *client_key_str = NULL;
     PEM_write_bio_PUBKEY(b, client_key);
     BIO_get_mem_data(b, &client_key_str);
-	int num = BIO_write(sbio, client_key_str, strlen(client_key_str));
-    (void)BIO_shutdown_wr(sbio);
+	int num = SSL_write(ssl, client_key_str, strlen(client_key_str));
+    // (void)BIO_shutdown_wr(sbio);
     unsigned long long encrypted_key_len;
-    BIO_read(sbio, &encrypted_key_len, sizeof(encrypted_key_len));
-    int bytes_received = BIO_read(sbio, buf, BUFFER_SIZE * 2);
+    SSL_read(ssl, &encrypted_key_len, sizeof(encrypted_key_len));
+    int bytes_received = SSL_read(ssl, buf, BUFFER_SIZE * 2);
     buf[bytes_received] = NULL;
     // ps(buf);
     unsigned char *key;
@@ -320,16 +321,18 @@ static int s_client(int server, EVP_PKEY *client_key, unsigned long long *timer)
     key = (unsigned char *)malloc(key_len);
     EVP_PKEY_decrypt(decrypt_ctx, (unsigned char *)key, (size_t *)&key_len, (const unsigned char *)decoded_key, encrypted_key_len);
     *timer = cpucycles_stop() - *timer - decrypt_timing_overhead;
-    char *server_done = "DONE";
-    BIO_write(sbio, server_done, strlen(server_done));
-    char *client_done = malloc(5);
-    BIO_read(sbio, client_done, 5);
+    char server_done[] = "DONE";
+    SSL_write(ssl, server_done, strlen(server_done));
+    char client_done[5];
+    SSL_read(ssl, client_done, 5);
     #if 0
     print_hex("key", key, key_len, 1);
     #endif
-    i = BIO_get_num_renegotiates(sbio);
-    BIO_free_all(sbio);
+    // i = BIO_get_num_renegotiates(sbio);
+    // BIO_free_all(sbio);
     SSL_CTX_free(ctx);
+    SSL_free(ssl);
+    close(server);
     EVP_PKEY_CTX_free(decrypt_ctx);
     BIO_free(b);
     free(decoded_key);
@@ -599,8 +602,9 @@ int main(int argc, char **argv){
             // pd(timer);
             tdecrypt[i] = timer;
             ttls_client[i] = cpucycles_stop() - ttls_client[i] - timing_overhead;
-            wait(&status);
-            ret |= WIFEXITED(status) && WEXITSTATUS(status);
+            // wait(&status);
+            // ret |= WIFEXITED(status) && WEXITSTATUS(status);
+            close(client_socket);
             EVP_PKEY_free(client_key);
         }
         print_results("Round5 keygen:", tkeygen, NTESTS);

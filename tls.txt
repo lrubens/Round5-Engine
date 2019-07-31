@@ -10,3 +10,79 @@
 { "R5ND_5PKE_5d-Keygen" : [ 0.14, 0.04 ] }
 { "R5ND_5PKE_5d-Decrypt" : [ 0.47, 0.13 ] }
 
+{ "R5ND_3PKE_5d-TLS" : [ 212.43, 109.55 ] }
+{ "R5ND_3PKE_5d-Keygen" : [ 0.15, 0.24 ] }
+{ "R5ND_3PKE_5d-Decrypt" : [ 0.32, 0.12 ] }
+
+{ "R5ND_1PKE_5d-TLS" : [ 242.68, 129.54 ] }
+{ "R5ND_1PKE_5d-Keygen" : [ 0.10, 0.24 ] }
+{ "R5ND_1PKE_5d-Decrypt" : [ 0.22, 0.06 ] }
+
+{ "R5ND_3PKE_5d-TLS" : [ 242.92, 116.72 ] }
+{ "R5ND_3PKE_5d-Keygen" : [ 0.13, 0.18 ] }
+{ "R5ND_3PKE_5d-Decrypt" : [ 0.37, 0.09 ] }
+
+{ "R5ND_3PKE_5d-TLS" : [ 271.29, 143.33 ] }
+{ "R5ND_3PKE_5d-Keygen" : [ 0.11, 0.04 ] }
+{ "R5ND_3PKE_5d-Decrypt" : [ 0.37, 0.09 ] }
+
+{ "R5ND_1PKE_5d-TLS" : [ 222.11, 89.78 ] }
+{ "R5ND_1PKE_5d-Keygen" : [ 0.09, 0.27 ] }
+{ "R5ND_1PKE_5d-Decrypt" : [ 0.00, 0.00 ] }
+
+{ "R5ND_3PKE_5d-TLS" : [ 239.97, 109.63 ] }
+{ "R5ND_3PKE_5d-Keygen" : [ 0.12, 0.05 ] }
+{ "R5ND_3PKE_5d-Decrypt" : [ 0.36, 0.10 ] }
+
+{ "R5ND_5PKE_0d-TLS" : [ 239.35, 121.19 ] }
+{ "R5ND_5PKE_0d-Keygen" : [ 0.15, 0.19 ] }
+{ "R5ND_5PKE_0d-Decrypt" : [ 0.50, 0.12 ] }
+
+{ "R5ND_3PKE_5d-TLS" : [ 187.04, 61.33 ] }
+{ "R5ND_3PKE_5d-Keygen" : [ 0.14, 0.08 ] }
+{ "R5ND_3PKE_5d-Decrypt" : [ 0.35, 0.09 ] }
+
+{ "R5ND_1PKE_5d-TLS" : [ 220.26, 123.14 ] }
+{ "R5ND_1PKE_5d-Keygen" : [ 0.08, 0.05 ] }
+{ "R5ND_1PKE_5d-Decrypt" : [ 0.21, 0.07 ] }
+
+{ "R5ND_3PKE_5d-TLS" : [ 228.55, 132.24 ] }
+{ "R5ND_3PKE_5d-Keygen" : [ 0.11, 0.04 ] }
+{ "R5ND_3PKE_5d-Decrypt" : [ 0.32, 0.10 ] }
+
+{ "R5ND_5PKE_5d-TLS" : [ 244.01, 100.81 ] }
+{ "R5ND_5PKE_5d-Keygen" : [ 0.17, 0.07 ] }
+{ "R5ND_5PKE_5d-Decrypt" : [ 0.51, 0.13 ] }
+
+{ "R5ND_1PKE_0d-TLS" : [ 308.05, 140.39 ] }
+{ "R5ND_1PKE_0d-Keygen" : [ 0.10, 0.05 ] }
+{ "R5ND_1PKE_0d-Decrypt" : [ 0.28, 0.06 ] }
+
+{ "R5ND_3PKE_0d-TLS" : [ 223.87, 147.11 ] }
+{ "R5ND_3PKE_0d-Keygen" : [ 0.14, 0.09 ] }
+{ "R5ND_3PKE_0d-Decrypt" : [ 0.38, 0.13 ] }
+
+{ "R5ND_5PKE_0d-TLS" : [ 292.91, 142.00 ] }
+{ "R5ND_5PKE_0d-Keygen" : [ 0.19, 0.11 ] }
+{ "R5ND_5PKE_0d-Decrypt" : [ 0.45, 0.12 ] }
+
+{ "R5ND_1KEM_5d-TLS" : [ 280.21, 132.41 ] }
+{ "R5ND_1KEM_5d-Keygen" : [ 0.10, 0.05 ] }
+{ "R5ND_1KEM_5d-Decrypt" : [ 0.05, 0.02 ] }
+
+{ "R5ND_3KEM_5d-TLS" : [ 219.45, 57.03 ] }
+{ "R5ND_3KEM_5d-Keygen" : [ 0.11, 0.05 ] }
+{ "R5ND_3KEM_5d-Decrypt" : [ 0.06, 0.02 ] }
+
+{ "R5ND_5KEM_5d-TLS" : [ 275.74, 189.58 ] }
+{ "R5ND_5KEM_5d-Keygen" : [ 0.17, 0.09 ] }
+{ "R5ND_5KEM_5d-Decrypt" : [ 0.07, 0.02 ] }
+
+{ "R5ND_5KEM_5d-TLS" : [ 226.31, 111.59 ] }
+{ "R5ND_5KEM_5d-Keygen" : [ 0.14, 0.10 ] }
+{ "R5ND_5KEM_5d-Decrypt" : [ 0.08, 0.02 ] }
+
+{ "R5ND_1PKE_5d-TLS" : [ 224.50, 109.68 ] }
+{ "R5ND_1PKE_5d-Keygen" : [ 0.08, 0.03 ] }
+{ "R5ND_1PKE_5d-Decrypt" : [ 0.21, 0.06 ] }
+
