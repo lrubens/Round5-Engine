@@ -238,7 +238,7 @@ static int pki_gen_pub_encode(X509_PUBKEY *pub,  EVP_PKEY *pk)
     int data_len, ret = -1;
     int ptype = V_ASN1_UNDEF ;
     struct ROUND5 *kpair = (struct ROUND5 *)EVP_PKEY_get0(pk);
-    #if PKLEN == 0 && SKLEN == 0
+    #if PKLEN == 0
     set_key_size();
     #endif
     algobj = OBJ_nid2obj(EVP_PKEY_base_id(pk));

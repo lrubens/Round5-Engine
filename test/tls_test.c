@@ -29,7 +29,7 @@
 #include "speed.h"
 #include "cpa_kem.h"
 
-#define NTESTS 500
+#define NTESTS 10
 // #define MSECS(t) (double)t/2600000
 
 /* For X509_NAME_add_entry_by_txt */
@@ -516,51 +516,6 @@ int main(int argc, char **argv){
     tencrypt = (unsigned long long *)mmap(NULL, NTESTS * sizeof(unsigned long long), protection, visibility, -1, 0);
     tdecrypt = (unsigned long long *)mmap(NULL, NTESTS * sizeof(unsigned long long), protection, visibility, -1, 0);
     int i;
-    #ifdef LOCALHOST
-    struct certkey ck;
-    // const char *sig_algname = "rsa";
-    const char *kem_algname = "rsa";
-    // FILE *privkey_file = fopen("certs/privkey.pem", "r");
-    // EVP_PKEY *privkey = PEM_read_PrivateKey(privkey_file, NULL, NULL, NULL);
-    
-    // EVP_PKEY_free(privkey);
-    timing_overhead = cpucycles_overhead();
-    for(i = 0; i < NTESTS; ++i){
-        // pd(i);
-        ck = certgen(kem_algname, NULL);
-        ttls_client[i] = cpucycles_start();
-        int sockfd[2];
-        if (socketpair(AF_LOCAL, SOCK_STREAM, 0, sockfd) == -1)
-            err(1, "socketpair");
-        pid_t pid = fork();
-        if(pid < 0)
-            err(1, "fork");
-        if(pid > 0){
-            int status;
-            const char *kem_algname = "round5";
-            tkeygen[i] = cpucycles_start();
-            EVP_PKEY *client_key = round5_keygen(kem_algname);
-            tkeygen[i] = cpucycles_stop() - tkeygen[i] - timing_overhead;
-            ret = s_client(sockfd[0], client_key, &tdecrypt[i]);
-            wait(&status);
-            ret |= WIFEXITED(status) && WEXITSTATUS(status);
-            X509_free(ck.cert);
-            EVP_PKEY_free(ck.pkey);
-        } else if(pid == 0){
-            ret = s_server(ck.pkey, ck.cert, sockfd[1], &tencrypt[i]);
-            X509_free(ck.cert);
-            EVP_PKEY_free(ck.pkey);
-            exit(ret);
-        }
-        ttls_client[i] = cpucycles_stop() - ttls_client[i] - timing_overhead;
-        // pd(ttls[i]);
-        // pd(tencrypt[i]);
-    }
-    print_results("Round5 keygen:", tkeygen, NTESTS);
-    print_results("TLS performance:", ttls_client, NTESTS);
-    print_results("Encrypt:", tencrypt, NTESTS);
-    print_results("Decrypt:", tdecrypt, NTESTS);
-    #else
     if(argc < 2){
         printf("Please enter server or client!");
         return 0;
@@ -677,10 +632,9 @@ int main(int argc, char **argv){
                 count++;
             }
         }
-        print_results("Server TLS performance:", ttls_server, NTESTS);
+        // print_results("Server TLS performance:", ttls_server, NTESTS);
         print_results("Round5 encrypt:", tencrypt, NTESTS);
     }
-    #endif
     free:
     munmap(ttls_client, NTESTS * sizeof(unsigned long long));
     munmap(ttls_server, NTESTS * sizeof(unsigned long long));

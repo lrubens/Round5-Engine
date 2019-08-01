@@ -246,17 +246,17 @@
 },
 {
   "directory": "/home/rubensl/Post-Quantum-PKI/build",
-  "command": "/usr/bin/c99-gcc -DPARAMS=R5ND_5PKE_5d -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/Round5/optimized/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers -I/home/rubensl/Post-Quantum-PKI/speedtest  -g   -ggdb3 -O0 -DPURIFY -DDEBUG -g -lcrypto -lssl -lm -Xlinker -zmuldefs -finstrument-functions -o CMakeFiles/run_tls.dir/test/tls_test.c.o   -c /home/rubensl/Post-Quantum-PKI/test/tls_test.c",
+  "command": "/usr/bin/c99-gcc -DPARAMS=R5ND_5PKE_5d -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/Round5/optimized/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers -I/home/rubensl/Post-Quantum-PKI/speedtest  -g   -ggdb3 -lm -O0 -DPURIFY -g -lcrypto -lssl -lm -Xlinker -zmuldefs -finstrument-functions -o CMakeFiles/run_tls.dir/test/tls_test.c.o   -c /home/rubensl/Post-Quantum-PKI/test/tls_test.c",
   "file": "/home/rubensl/Post-Quantum-PKI/test/tls_test.c"
 },
 {
   "directory": "/home/rubensl/Post-Quantum-PKI/build",
-  "command": "/usr/bin/c99-gcc -DPARAMS=R5ND_5PKE_5d -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/Round5/optimized/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers -I/home/rubensl/Post-Quantum-PKI/speedtest  -g   -ggdb3 -O0 -DPURIFY -DDEBUG -g -lcrypto -lssl -lm -Xlinker -zmuldefs -finstrument-functions -o CMakeFiles/run_tls.dir/speedtest/cpucycles.c.o   -c /home/rubensl/Post-Quantum-PKI/speedtest/cpucycles.c",
+  "command": "/usr/bin/c99-gcc -DPARAMS=R5ND_5PKE_5d -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/Round5/optimized/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers -I/home/rubensl/Post-Quantum-PKI/speedtest  -g   -ggdb3 -lm -O0 -DPURIFY -g -lcrypto -lssl -lm -Xlinker -zmuldefs -finstrument-functions -o CMakeFiles/run_tls.dir/speedtest/cpucycles.c.o   -c /home/rubensl/Post-Quantum-PKI/speedtest/cpucycles.c",
   "file": "/home/rubensl/Post-Quantum-PKI/speedtest/cpucycles.c"
 },
 {
   "directory": "/home/rubensl/Post-Quantum-PKI/build",
-  "command": "/usr/bin/c99-gcc -DPARAMS=R5ND_5PKE_5d -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/Round5/optimized/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers -I/home/rubensl/Post-Quantum-PKI/speedtest  -g   -ggdb3 -O0 -DPURIFY -DDEBUG -g -lcrypto -lssl -lm -Xlinker -zmuldefs -finstrument-functions -o CMakeFiles/run_tls.dir/speedtest/speed.c.o   -c /home/rubensl/Post-Quantum-PKI/speedtest/speed.c",
+  "command": "/usr/bin/c99-gcc -DPARAMS=R5ND_5PKE_5d -DR5ND_5PKE_5d -I/home/rubensl/Post-Quantum-PKI -I/home/rubensl/Post-Quantum-PKI/meths -I/home/rubensl/Post-Quantum-PKI/ossl -I/home/rubensl/Post-Quantum-PKI/Round5/optimized/src -I/home/rubensl/Post-Quantum-PKI/XKCP/bin/generic64/libkeccak.a.headers -I/home/rubensl/Post-Quantum-PKI/speedtest  -g   -ggdb3 -lm -O0 -DPURIFY -g -lcrypto -lssl -lm -Xlinker -zmuldefs -finstrument-functions -o CMakeFiles/run_tls.dir/speedtest/speed.c.o   -c /home/rubensl/Post-Quantum-PKI/speedtest/speed.c",
   "file": "/home/rubensl/Post-Quantum-PKI/speedtest/speed.c"
 }
 ]

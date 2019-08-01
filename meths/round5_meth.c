@@ -31,13 +31,15 @@ int round5_sk_to_pk(unsigned char *pk, unsigned char *sk){
 
 static int keygen(EVP_PKEY_CTX *ctx, EVP_PKEY *pkey){
     struct ROUND5 *kpair = NULL;
-    kpair = EVP_PKEY_get0(pkey);
+    kpair = (struct ROUND5 *)EVP_PKEY_get0(pkey);
     if (!kpair){
         kpair = round5_new();
         EVP_PKEY_assign(pkey, NID_ROUND5, kpair);
     }
-    kpair->pk = malloc(CRYPTO_PUBLICKEYBYTES);
-    kpair->sk = malloc(CRYPTO_SECRETKEYBYTES);
+    if(!kpair->pk)
+        kpair->pk = (unsigned char *)malloc(CRYPTO_PUBLICKEYBYTES);
+    if(!kpair->sk)
+        kpair->sk = (unsigned char *)malloc(CRYPTO_SECRETKEYBYTES);
     if (!round5_sk_to_pk(kpair->pk, kpair->sk))
         goto err;
     // print_hex("PK", kpair->pk, CRYPTO_PUBLICKEYBYTES, 1);
