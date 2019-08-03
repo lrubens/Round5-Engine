@@ -1,2 +1,2 @@
 # Round5 Engine
-An implementation of the Round5 public key algorithm and dilithium signature algorithm for OpenSSL
+An implementation of the Round5 post-quantum public key algorithm and dilithium post-quantum signature algorithm for OpenSSL
